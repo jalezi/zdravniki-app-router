@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { setStaticParamsLocale } from 'next-international/server';
 
-import { getI18n, getScopedI18n, getStaticParams } from '@/locales/server';
+import { getI18n, getScopedI18n } from '@/locales/server';
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getScopedI18n('page.home.seo');
@@ -20,9 +20,5 @@ export default async function Home({
   setStaticParamsLocale(locale);
   const t = await getI18n();
 
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      {t('test')}
-    </main>
-  );
+  return <main>{t('test')}</main>;
 }
