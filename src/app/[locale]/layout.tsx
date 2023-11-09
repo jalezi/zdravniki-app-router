@@ -1,21 +1,54 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
-import {
-  getCurrentLocale,
-  getScopedI18n,
-  getStaticParams,
-} from '@/locales/server';
+import { getCurrentLocale, getScopedI18n } from '@/locales/server';
 import './globals.css';
+import { getSiteUrl } from '@/lib';
 
 const inter = Inter({ subsets: ['latin'] });
 
+// https://nextjs.org/docs/app/api-reference/functions/generate-metadata
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getScopedI18n('page.home.seo');
 
   return {
     title: { template: '%s - Sledilnik', default: t('title') },
     description: t('description'),
+    metadataBase: new URL(getSiteUrl()),
+    alternates: {
+      canonical: getSiteUrl(),
+      languages: {
+        sl: '/sl',
+        en: '/en',
+        it: '/it',
+      },
+    },
+    robots: {
+      // https://www.conductor.com/academy/meta-robots-tag/
+      follow: true,
+      index: true,
+    },
+    openGraph: {
+      type: 'website',
+      title: `${t('title')} - Sledilnik`,
+      description: t('description'),
+      images: [
+        {
+          url: '/opengraph-image.png',
+          alt: `${t('title')} - Sledilnik`,
+        },
+      ],
+      locale: getCurrentLocale(),
+    },
+    // twitter: {
+    //   card: 'summary_large_image',
+    //   title: 'Next.js',
+    //   description: 'The React Framework for the Web',
+    //   siteId: '1467726470533754880',
+    //   creator: '@nextjs',
+    //   creatorId: '1467726470533754880',
+    //   images: ['https://nextjs.org/og.png'],
+    // },
   };
 }
 
