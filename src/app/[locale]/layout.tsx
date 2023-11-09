@@ -1,11 +1,18 @@
+import './globals.css';
+
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { cx } from 'class-variance-authority';
+import { IBM_Plex_Sans as FontSans } from 'next/font/google';
 
 import { getCurrentLocale, getScopedI18n } from '@/locales/server';
-import './globals.css';
 import { getSiteUrl } from '@/lib';
 
-const inter = Inter({ subsets: ['latin'] });
+export const fontSans = FontSans({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700'],
+  style: ['italic', 'normal'],
+  variable: '--font-sans',
+});
 
 // https://nextjs.org/docs/app/api-reference/functions/generate-metadata
 export async function generateMetadata(): Promise<Metadata> {
@@ -63,7 +70,14 @@ export default function RootLayout({
 
   return (
     <html lang={locale}>
-      <body className={inter.className}>{children}</body>
+      <body
+        className={cx(
+          'min-h-[100svh] font-sans antialiased',
+          fontSans.variable
+        )}
+      >
+        {children}
+      </body>
     </html>
   );
 }
