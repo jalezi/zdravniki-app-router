@@ -4,10 +4,10 @@ import { setStaticParamsLocale } from 'next-international/server';
 import { getI18n, getScopedI18n } from '@/locales/server';
 
 export async function generateMetadata(): Promise<Metadata> {
-  const t = await getScopedI18n('page.home.seo');
+  const t = await getScopedI18n('seo');
 
   return {
-    title: `${t('title')} - Sledilnik`,
+    title: `${t('title.default')} - Sledilnik`,
     description: t('description'),
   };
 }

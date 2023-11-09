@@ -9,10 +9,12 @@ const inter = Inter({ subsets: ['latin'] });
 
 // https://nextjs.org/docs/app/api-reference/functions/generate-metadata
 export async function generateMetadata(): Promise<Metadata> {
-  const t = await getScopedI18n('page.home.seo');
+  const t = await getScopedI18n('seo');
+
+  const title = t('title.default');
 
   return {
-    title: { template: '%s - Sledilnik', default: t('title') },
+    title: { template: '%s - Sledilnik', default: title },
     description: t('description'),
     metadataBase: new URL(getSiteUrl()),
     alternates: {
@@ -30,12 +32,12 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     openGraph: {
       type: 'website',
-      title: `${t('title')} - Sledilnik`,
+      title: `${title} - Sledilnik`,
       description: t('description'),
       images: [
         {
           url: '/opengraph-image.png',
-          alt: `${t('title')} - Sledilnik`,
+          alt: `${title} - Sledilnik`,
         },
       ],
       locale: getCurrentLocale(),
