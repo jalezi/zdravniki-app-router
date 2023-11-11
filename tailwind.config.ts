@@ -72,17 +72,69 @@ const config: Config = {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: '0' },
         },
+        'hamburger-close-1': {
+          '0%': { transform: 'translate3d(0, 0, 0) rotate(0deg)' },
+          '50%': { transform: 'translate3d(0, 0.5625rem, 0) rotate(0deg)' },
+          '100%': {
+            transform: 'translate3d(0, 0.5625rem, 0) rotate(-45deg)',
+          },
+        },
+        'hamburger-close-2': {
+          '0%': { opacity: '1' },
+          '49%': { opacity: '0' },
+          '100%': { opacity: '0' },
+        },
+        'hamburger-close-3': {
+          '0%': { transform: 'translate3d(0, 0, 0) rotate(0deg)' },
+          '50%': { transform: 'translate3d(0, -0.5625rem, 0) rotate(0deg)' },
+          '100%': {
+            transform: 'translate3d(0, -0.5625rem, 0) rotate(45deg)',
+          },
+        },
+        'hamburger-open-1': {
+          '0%': { transform: 'translate3d(0, 0.5625rem, 0) rotate(-45deg)' },
+          '50%': { transform: 'translate3d(0, 0.5625rem, 0) rotate(0deg)' },
+          '100%': { transform: 'translate3d(0, 0, 0) rotate(0deg)' },
+        },
+        'hamburger-open-2': {
+          '0%': { opacity: '0' },
+          '50%': { opacity: '1' },
+          '100%': { opacity: '1' },
+        },
+        'hamburger-open-3': {
+          '0%': { transform: 'translate3d(0, -0.5625rem, 0) rotate(45deg)' },
+          '50%': { transform: 'translate3d(0, -0.5625rem, 0) rotate(0deg)' },
+          '100%': { transform: 'translate3d(0, 0, 0) rotate(0deg)' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        'hamburger-close-1': 'hamburger-close-1 0.6s ease-out forwards',
+        'hamburger-close-2': 'hamburger-close-2 0.6s ease-out forwards',
+        'hamburger-close-3': 'hamburger-close-3 0.6s ease-out forwards',
+        'hamburger-open-1': 'hamburger-open-1 0.6s ease-out forwards',
+        'hamburger-open-2': 'hamburger-open-2 0.6s ease-out forwards',
+        'hamburger-open-3': 'hamburger-open-3 0.6s ease-out forwards',
+      },
+      transitionDuration: {
+        '600': '600ms',
       },
     },
   },
   plugins: [
     require('tailwindcss-animate'),
-    plugin(function ({ addVariant }) {
+    plugin(function ({ addVariant, theme, matchUtilities }) {
       addVariant('child', '& > *');
+      matchUtilities(
+        {
+          'translate-z': (value: string) => ({
+            '--tw-translate-z': value,
+            transform: ` translate3d(var(--tw-translate-x), var(--tw-translate-y), var(--tw-translate-z)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))`,
+          }), // this is actual CSS
+        },
+        { values: theme('translate'), supportsNegativeValues: true }
+      );
     }),
   ],
 };

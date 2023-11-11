@@ -1,3 +1,40 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .hamburger.cross > .hamburger-line:nth-of-type(1) {
+    @apply animate-hamburger-close-1;
+  }
+
+  .hamburger.cross > .hamburger-line:nth-of-type(2) {
+    @apply animate-hamburger-close-2;
+  }
+
+  .hamburger.cross > .hamburger-line:nth-of-type(3) {
+    @apply animate-hamburger-close-3;
+  }
+
+  .hamburger.bars > .hamburger-line:nth-of-type(1) {
+    @apply animate-hamburger-open-1;
+  }
+
+  .hamburger.bars > .hamburger-line:nth-of-type(2) {
+    @apply animate-hamburger-open-2;
+  }
+
+  .hamburger.bars > .hamburger-line:nth-of-type(3) {
+    @apply animate-hamburger-open-3;
+  }
+
+  .hamburger-line {
+    @apply duration-600 h-[0.125rem] w-6 rounded-sm bg-text-500 will-change-transform;
+    &:not(:first-of-type) {
+      @apply mt-[0.4375rem];
+    }
+
+    &:nth-of-type(2) {
+      @apply will-change-[opacity];
+    }
+  }
+}

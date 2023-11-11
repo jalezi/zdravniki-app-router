@@ -4,6 +4,7 @@ import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { Logo } from '@/components/icons';
 import { getCurrentLocale, getScopedI18n } from '@/locales/server';
+import { Hamburger } from './hamburger';
 
 export interface HeaderProps extends React.HTMLAttributes<HTMLHeadElement> {}
 
@@ -17,12 +18,11 @@ export default async function Header({ className, ...props }: HeaderProps) {
 
   return (
     <header className={headerDefaultStyles} {...props}>
-      <ul className='flex grow items-center gap-6 text-[0.875rem]'>
-        <li>
-          <Link href={`/${locale}`} hrefLang={locale}>
-            <Logo className='text-sm' aria-label='logo' />
-          </Link>
-        </li>
+      <Link href={`/${locale}`} hrefLang={locale}>
+        <Logo className='text-sm' aria-label='logo' />
+      </Link>
+      <Hamburger />
+      <ul className='hidden grow items-center gap-6 text-[0.875rem] md:flex'>
         <li className='ml-auto'>
           <Link
             href={`/${locale}`}
