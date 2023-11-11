@@ -4,4 +4,5 @@ export const navLinks = {
   faq: 'Pojasnila',
   home: 'Imenik',
   sledilnik: 'Sledilnik.org',
+  menu: 'Meni',
 } as const;

@@ -119,6 +119,8 @@ const config: Config = {
       },
       transitionDuration: {
         '600': '600ms',
+        '650': '650ms',
+        '367': '367ms',
       },
     },
   },

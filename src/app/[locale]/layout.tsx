@@ -8,7 +8,7 @@ import { getCurrentLocale, getScopedI18n } from '@/locales/server';
 import { getSiteUrl } from '@/lib';
 import { Header } from '@/components/header';
 
-export const fontSans = FontSans({
+const fontSans = FontSans({
   subsets: ['latin'],
   weight: ['100', '200', '300', '400', '500', '600', '700'],
   style: ['italic', 'normal'],
