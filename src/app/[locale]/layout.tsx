@@ -6,6 +6,7 @@ import { IBM_Plex_Sans as FontSans } from 'next/font/google';
 
 import { getCurrentLocale, getScopedI18n } from '@/locales/server';
 import { getSiteUrl } from '@/lib';
+import { Header } from '@/components/header';
 
 export const fontSans = FontSans({
   subsets: ['latin'],
@@ -72,10 +73,11 @@ export default function RootLayout({
     <html lang={locale}>
       <body
         className={cx(
-          'min-h-[100svh] font-sans antialiased',
+          'min-h-[100svh] font-sans text-text-500 antialiased',
           fontSans.variable
         )}
       >
+        <Header />
         {children}
       </body>
     </html>
