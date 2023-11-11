@@ -1,6 +1,7 @@
 // https://www.color-name.com/hex/09afda
 // https://www.tints.dev/brand/09AFDA
 import { fontFamily } from 'tailwindcss/defaultTheme';
+import plugin from 'tailwindcss/plugin';
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
@@ -10,6 +11,13 @@ const config: Config = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    container: {
+      center: true,
+      padding: '2rem',
+      screens: {
+        '2xl': '1400px',
+      },
+    },
     extend: {
       colors: {
         accent: {
@@ -38,12 +46,44 @@ const config: Config = {
           900: '#042A34',
           950: '#021318',
         },
+        text: {
+          50: '#E6E8EB',
+          100: '#CFD4D8',
+          200: '#9FA8B2',
+          300: '#6F7D8A',
+          400: '#49525A',
+          500: '#212529',
+          600: '#1B1F22',
+          700: '#141719',
+          800: '#0E0F11',
+          900: '#070808',
+          950: '#020303',
+        },
       },
       fontFamily: {
         sans: ['var(--font-sans)', ...fontFamily.sans],
       },
+      keyframes: {
+        'accordion-down': {
+          from: { height: '0' },
+          to: { height: 'var(--radix-accordion-content-height)' },
+        },
+        'accordion-up': {
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: '0' },
+        },
+      },
+      animation: {
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss-animate'),
+    plugin(function ({ addVariant }) {
+      addVariant('child', '& > *');
+    }),
+  ],
 };
 export default config;
