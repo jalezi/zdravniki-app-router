@@ -82,13 +82,17 @@ const Nav = () => {
           )}
         >
           <li className=''>
-            <NavLink href={`/${locale}`}>{t('home')}</NavLink>
+            <NavLink href={`/${locale}`}>{t('home.label')}</NavLink>
           </li>
           <li>
-            <NavLink href={`/${locale}/faq`}>{t('faq')}</NavLink>
+            <NavLink href={`/${locale}/${t('faq.slug')}`}>
+              {t('faq.label')}
+            </NavLink>
           </li>
           <li>
-            <NavLink href={`/${locale}/about`}>{t('about')}</NavLink>
+            <NavLink href={`/${locale}/${t('about.slug')}`}>
+              {t('about.label')}
+            </NavLink>
           </li>
           <li>
             <NavLink
@@ -96,7 +100,7 @@ const Nav = () => {
               target='_blank'
               rel='noopener noreferrer'
             >
-              {t('donate')}
+              {t('donate.label')}
             </NavLink>
           </li>
           <li>
@@ -105,7 +109,7 @@ const Nav = () => {
               target='_blank'
               rel='noopener noreferrer'
             >
-              {t('sledilnik')}
+              {t('sledilnik.label')}
             </NavLink>
           </li>
         </ul>

@@ -6,3 +6,5 @@ export const { getI18n, getScopedI18n, getStaticParams, getCurrentLocale } =
     en: () => import('./en'),
     it: () => import('./it'),
   });
+
+export type Locales = ReturnType<typeof getCurrentLocale>;

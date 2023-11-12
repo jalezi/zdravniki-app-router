@@ -30,6 +30,31 @@ const nextConfig = {
 
     return config;
   },
+  async rewrites() {
+    return {
+      beforeFiles: [
+        // These rewrites are checked after headers/redirects
+        // and before all files including _next/public files which
+        // allows overriding page files
+        {
+          source: '/sl/o-projektu',
+          destination: '/sl/about',
+        },
+        {
+          source: '/sl/pogosta-vprasanja',
+          destination: '/sl/faq',
+        },
+        {
+          source: '/it/il-progetto',
+          destination: '/it/about',
+        },
+        {
+          source: '/it/domande-frequenti',
+          destination: '/it/faq',
+        },
+      ],
+    };
+  },
 };
 
 export default nextConfig;

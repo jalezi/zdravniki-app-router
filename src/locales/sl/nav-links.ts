@@ -1,8 +1,8 @@
 export const navLinks = {
-  about: 'O projektu',
-  donate: 'Podpri!',
-  faq: 'Pojasnila',
-  home: 'Imenik',
-  sledilnik: 'Sledilnik.org',
+  about: { label: 'O projektu', slug: 'o-projektu' },
+  donate: { label: 'Podpri!' },
+  faq: { label: 'Pojasnila', slug: 'pogosta-vprasanja' },
+  home: { label: 'Imenik', slug: '' },
+  sledilnik: { label: 'Sledilnik.org' },
   menu: 'Meni',
 } as const;
