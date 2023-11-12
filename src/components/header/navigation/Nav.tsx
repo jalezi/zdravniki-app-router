@@ -8,12 +8,14 @@ import { useCurrentLocale, useScopedI18n } from '@/locales/client';
 
 import { Hamburger, HamburgerRef } from '@/components/header/hamburger';
 import { Overlay } from '@/components/ui/overlay';
-import { NavLink } from '@/components/header/nav-link';
+import { NavLink } from '@/components/header/link';
+import { FacebookIcon, GithubIcon, TwitterIcon } from '@/components/icons';
+import SocialLink from '../link/SocialLink';
 
 const MEDIUM_BREAKPOINT = 768;
 
 const navVariants = cva(
-  'fixed -right-[100%] px-[0.875rem] top-0 left-[100%] flex z-50 bg-brand-500 flex-col transition-all duration-650 min-h-[100svh] md:ml-auto md:relative md:flex-row md:inset-[unset] md:flex md:top-0 md:min-h-[unset] md:items-center md:bg-transparent md:duration-0',
+  'fixed -right-[100%] px-[0.875rem] top-0 left-[100%] flex z-50 bg-brand-500 flex-col transition-all duration-650 min-h-[100svh] md:ml-auto md:relative md:flex-row md:inset-[unset] md:flex md:top-0 md:min-h-[unset] md:items-center md:bg-transparent md:duration-0 md:px-0',
   {
     variants: {
       variant: {
@@ -25,7 +27,7 @@ const navVariants = cva(
 );
 
 const listVariants = cva(
-  'flex flex-col gap-6 text-[0.875rem] md:flex-row md:pointer-events-auto',
+  'flex items flex-col gap-6 text-[0.875rem] grow  md:flex-row md:pointer-events-auto ',
   {
     variants: {
       variant: {
@@ -111,6 +113,29 @@ const Nav = () => {
             >
               {t('sledilnik.label')}
             </NavLink>
+          </li>
+        </ul>
+        <ul className='mb-8 mt-auto flex flex-row items-center gap-2 md:mb-0 md:ml-4 md:mt-0'>
+          <li>
+            <SocialLink
+              href='https://facebook.com/sledilnik'
+              label='Facebook'
+              icon={<FacebookIcon />}
+            />
+          </li>
+          <li>
+            <SocialLink
+              href='https://twitter.com/sledilnik'
+              label='Twitter'
+              icon={<TwitterIcon />}
+            />
+          </li>
+          <li>
+            <SocialLink
+              href='https://github.com/jalezi/'
+              label='Github'
+              icon={<GithubIcon />}
+            />
           </li>
         </ul>
       </nav>
