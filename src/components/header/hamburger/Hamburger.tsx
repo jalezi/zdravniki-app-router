@@ -84,6 +84,7 @@ const Hamburger = forwardRef<HamburgerRef, HamburgerProps>(
         onClick={onClick ? onClick : handleClick}
         className='z-[9990] ml-auto grid h-6 w-6 items-center md:hidden'
         {...props}
+        aria-label='menu toggler'
       >
         <span ref={hamburgerRef} className='hamburger block cursor-pointer '>
           <span className='hamburger-line block' />
