@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @layer components {
+  /* HAMBURGER */
   .hamburger.cross > .hamburger-line:nth-of-type(1) {
     @apply animate-hamburger-close-1;
   }
@@ -28,7 +29,7 @@
   }
 
   .hamburger-line {
-    @apply duration-600 h-[0.125rem] w-6 rounded-sm bg-text-500 will-change-transform;
+    @apply h-[0.125rem] w-6 rounded-sm bg-text-500 duration-600 will-change-transform;
     &:not(:first-of-type) {
       @apply mt-[0.4375rem];
     }
@@ -36,5 +37,16 @@
     &:nth-of-type(2) {
       @apply will-change-[opacity];
     }
+  }
+
+  /* NAV LINK */
+  .nav-link {
+    @apply inline-flex text-sm font-medium leading-[1.875rem];
+    @apply text-text-500 transition-[box-shadow] duration-367;
+    @apply hover:shadow-nav-link hover:text-text-400;
+  }
+
+  .nav-link.active {
+    @apply shadow-nav-link text-text-500;
   }
 }

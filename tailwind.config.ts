@@ -19,6 +19,9 @@ const config: Config = {
       },
     },
     extend: {
+      boxShadow: {
+        'nav-link': '#ffffff 0 -0.625rem 0 inset ',
+      },
       colors: {
         accent: {
           50: '#E2F8FE',

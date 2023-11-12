@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { cva } from 'class-variance-authority';
 
@@ -9,6 +8,7 @@ import { useCurrentLocale, useScopedI18n } from '@/locales/client';
 
 import { Hamburger, HamburgerRef } from '@/components/header/hamburger';
 import { Overlay } from '@/components/ui/overlay';
+import { NavLink } from '@/components/header/nav-link';
 
 const MEDIUM_BREAKPOINT = 768;
 
@@ -24,14 +24,17 @@ const navVariants = cva(
   }
 );
 
-const listVariants = cva('flex flex-col gap-6 text-[0.875rem] md:flex-row', {
-  variants: {
-    variant: {
-      mobileHidden: 'pointer-events-none',
-      mobileVisible: 'pointer-events-auto',
+const listVariants = cva(
+  'flex flex-col gap-6 text-[0.875rem] md:flex-row md:pointer-events-auto',
+  {
+    variants: {
+      variant: {
+        mobileHidden: 'pointer-events-none',
+        mobileVisible: 'pointer-events-auto',
+      },
     },
-  },
-});
+  }
+);
 
 const Nav = () => {
   const locale = useCurrentLocale();
@@ -79,29 +82,31 @@ const Nav = () => {
           )}
         >
           <li className=''>
-            <Link href={`/${locale}`} hrefLang={locale}>
-              {t('home')}
-            </Link>
+            <NavLink href={`/${locale}`}>{t('home')}</NavLink>
           </li>
           <li>
-            <Link href={`/${locale}`} hrefLang={locale}>
-              {t('faq')}
-            </Link>
+            <NavLink href={`/${locale}/faq`}>{t('faq')}</NavLink>
           </li>
           <li>
-            <Link href={`/${locale}`} hrefLang={locale}>
-              {t('about')}
-            </Link>
+            <NavLink href={`/${locale}/about`}>{t('about')}</NavLink>
           </li>
           <li>
-            <Link href={`/${locale}`} hrefLang={locale}>
+            <NavLink
+              href={`https://covid-19.sledilnik.org/${locale}/donate`}
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               {t('donate')}
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link href={`/${locale}`} hrefLang={locale}>
+            <NavLink
+              href={`https://covid-19.sledilnik.org/${locale}`}
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               {t('sledilnik')}
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </nav>
