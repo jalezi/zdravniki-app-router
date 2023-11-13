@@ -13,7 +13,7 @@ export default async function Header({ className, ...props }: HeaderProps) {
 
   const headerDefaultStyles = cn(
     className,
-    'flex h-12 items-center bg-brand-500 px-4 dark:bg-brand-500 '
+    'flex h-12 items-center bg-brand-500 px-4 dark:bg-brand-500 md:h-16'
   );
 
   return (
