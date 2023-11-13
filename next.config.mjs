@@ -30,6 +30,58 @@ const nextConfig = {
 
     return config;
   },
+  async redirects() {
+    return [
+      { source: '/sl/about', destination: '/sl/o-projektu', permanent: true },
+      {
+        source: '/sl/faq',
+        destination: '/sl/pogosta-vprasanja',
+        permanent: true,
+      },
+      {
+        source: '/sl/il-progetto',
+        destination: '/sl/o-projektu',
+        permanent: true,
+      },
+      {
+        source: '/sl/domande-frequenti',
+        destination: '/sl/pogosta-vprasanja',
+        permanent: true,
+      },
+      { source: '/it/about', destination: '/it/il-progetto', permanent: true },
+      {
+        source: '/it/faq',
+        destination: '/it/domande-frequenti',
+        permanent: true,
+      },
+      {
+        source: '/it/o-projektu',
+        destination: '/it/il-progetto',
+        permanent: true,
+      },
+      {
+        source: '/it/pogosta-vprasanja',
+        destination: '/it/domande-frequenti',
+        permanent: true,
+      },
+      { source: '/en/il-progetto', destination: '/en/about', permanent: true },
+      {
+        source: '/en/domande-frequenti',
+        destination: '/en/faq',
+        permanent: true,
+      },
+      {
+        source: '/en/o-projektu',
+        destination: '/en/about',
+        permanent: true,
+      },
+      {
+        source: '/en/pogosta-vprasanja',
+        destination: '/en/faq',
+        permanent: true,
+      },
+    ];
+  },
   async rewrites() {
     return {
       beforeFiles: [
