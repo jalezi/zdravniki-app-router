@@ -11,6 +11,7 @@ import { NavLink } from '@/components/header/link';
 import { FacebookIcon, GithubIcon, TwitterIcon } from '@/components/icons';
 import SocialLink from '../link/SocialLink';
 import { useEscapeKey } from '@/lib/hooks';
+import { LangSelector } from '../lang-selector';
 
 const MEDIUM_BREAKPOINT = 768;
 
@@ -146,6 +147,9 @@ const Nav = () => {
               icon={<GithubIcon />}
               tabIndex={isMenuOpen ? undefined : -1}
             />
+          </li>
+          <li className='ml-auto'>
+            <LangSelector />
           </li>
         </ul>
       </nav>
