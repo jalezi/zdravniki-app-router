@@ -24,6 +24,15 @@ const Nav = () => {
   const t = useScopedI18n('navLinks');
 
   useLayoutEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.code === 'Escape') {
+        setIsMenuOpen(false);
+        hamburgerRef.current?.closeMenu();
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape);
+
     if (window.innerWidth > MEDIUM_BREAKPOINT) {
       setIsMenuOpen(false);
       hamburgerRef.current?.closeMenu();
@@ -34,6 +43,10 @@ const Nav = () => {
           link.removeAttribute('tabindex');
         });
     }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+    };
   }, []);
 
   useEffect(() => {
