@@ -39,12 +39,6 @@ const Hamburger = forwardRef<HamburgerRef, HamburgerProps>(
     }));
 
     useEffect(() => {
-      const handleEscape = (e: KeyboardEvent) => {
-        if (e.code === 'Escape') {
-          setIsMenuOpen(false);
-        }
-      };
-
       const handleResize = () => {
         if (window.innerWidth > MEDIUM_BREAKPOINT) {
           setIsMenuOpen(false);
@@ -52,11 +46,9 @@ const Hamburger = forwardRef<HamburgerRef, HamburgerProps>(
       };
 
       window.addEventListener('resize', handleResize);
-      document.addEventListener('keydown', handleEscape);
 
       return () => {
         window.removeEventListener('resize', handleResize);
-        document.removeEventListener('keydown', handleEscape);
       };
     });
 

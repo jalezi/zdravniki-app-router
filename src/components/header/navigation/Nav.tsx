@@ -10,6 +10,7 @@ import { Overlay } from '@/components/ui/overlay';
 import { NavLink } from '@/components/header/link';
 import { FacebookIcon, GithubIcon, TwitterIcon } from '@/components/icons';
 import SocialLink from '../link/SocialLink';
+import { useEscapeKey } from '@/lib/hooks';
 
 const MEDIUM_BREAKPOINT = 768;
 
@@ -23,19 +24,17 @@ const Nav = () => {
 
   const t = useScopedI18n('navLinks');
 
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+    hamburgerRef.current?.closeMenu();
+  };
+
+  useEscapeKey(closeMenu);
+
+  // remove tabindex from links when menu is closed on desktop
   useLayoutEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.code === 'Escape') {
-        setIsMenuOpen(false);
-        hamburgerRef.current?.closeMenu();
-      }
-    };
-
-    document.addEventListener('keydown', handleEscape);
-
     if (window.innerWidth > MEDIUM_BREAKPOINT) {
-      setIsMenuOpen(false);
-      hamburgerRef.current?.closeMenu();
+      closeMenu();
 
       const links = navRef.current?.querySelectorAll('a');
       links &&
@@ -43,12 +42,9 @@ const Nav = () => {
           link.removeAttribute('tabindex');
         });
     }
-
-    return () => {
-      document.removeEventListener('keydown', handleEscape);
-    };
   }, []);
 
+  // remove tabindex from links when user resize
   useEffect(() => {
     const links = navRef.current?.querySelectorAll('a');
     links &&
