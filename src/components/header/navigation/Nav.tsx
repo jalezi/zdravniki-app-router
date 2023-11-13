@@ -82,7 +82,11 @@ const Nav = () => {
         </h2>
         <ul className='nav-links-main'>
           <li>
-            <NavLink href={`/${locale}`} tabIndex={isMenuOpen ? undefined : -1}>
+            <NavLink
+              href={`/${locale}`}
+              tabIndex={isMenuOpen ? undefined : -1}
+              onClick={closeMenu}
+            >
               {t('home.label')}
             </NavLink>
           </li>
@@ -90,6 +94,7 @@ const Nav = () => {
             <NavLink
               href={`/${locale}/${t('faq.slug')}`}
               tabIndex={isMenuOpen ? undefined : -1}
+              onClick={closeMenu}
             >
               {t('faq.label')}
             </NavLink>
@@ -98,6 +103,7 @@ const Nav = () => {
             <NavLink
               href={`/${locale}/${t('about.slug')}`}
               tabIndex={isMenuOpen ? undefined : -1}
+              onClick={closeMenu}
             >
               {t('about.label')}
             </NavLink>
@@ -108,6 +114,7 @@ const Nav = () => {
               target='_blank'
               rel='noopener noreferrer'
               tabIndex={isMenuOpen ? undefined : -1}
+              onClick={closeMenu}
             >
               {t('donate.label')}
             </NavLink>
@@ -118,6 +125,7 @@ const Nav = () => {
               target='_blank'
               rel='noopener noreferrer'
               tabIndex={isMenuOpen ? undefined : -1}
+              onClick={closeMenu}
             >
               {t('sledilnik.label')}
             </NavLink>
@@ -130,6 +138,7 @@ const Nav = () => {
               label='Facebook'
               icon={<FacebookIcon />}
               tabIndex={isMenuOpen ? undefined : -1}
+              onClick={closeMenu}
             />
           </li>
           <li>
@@ -138,6 +147,7 @@ const Nav = () => {
               label='Twitter'
               icon={<TwitterIcon />}
               tabIndex={isMenuOpen ? undefined : -1}
+              onClick={closeMenu}
             />
           </li>
           <li>
@@ -146,6 +156,7 @@ const Nav = () => {
               label='Github'
               icon={<GithubIcon />}
               tabIndex={isMenuOpen ? undefined : -1}
+              onClick={closeMenu}
             />
           </li>
           <li className='ml-auto'>
