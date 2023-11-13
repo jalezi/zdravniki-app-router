@@ -1,7 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import { cva } from 'class-variance-authority';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 import { cn } from '@/lib/utils';
 import { useCurrentLocale, useScopedI18n } from '@/locales/client';
@@ -14,41 +13,40 @@ import SocialLink from '../link/SocialLink';
 
 const MEDIUM_BREAKPOINT = 768;
 
-const navVariants = cva(
-  'fixed -right-[100%] px-[0.875rem] top-0 left-[100%] flex z-50 bg-brand-500 flex-col transition-all duration-650 min-h-[100svh] md:ml-auto md:relative md:flex-row md:inset-[unset] md:flex md:top-0 md:min-h-[unset] md:items-center md:bg-transparent md:duration-0 md:px-0',
-  {
-    variants: {
-      variant: {
-        mobileHidden: '',
-        mobileVisible: 'left-[20%] right-0 sm:left-[35%]',
-      },
-    },
-  }
-);
-
-const listVariants = cva(
-  'flex items flex-col gap-6 text-[0.875rem] grow  md:flex-row md:pointer-events-auto ',
-  {
-    variants: {
-      variant: {
-        mobileHidden: 'pointer-events-none',
-        mobileVisible: 'pointer-events-auto',
-      },
-    },
-  }
-);
-
 const Nav = () => {
   const locale = useCurrentLocale();
-  const hamburger = useRef<HamburgerRef>(null);
-  const [isMenuOpen, setIsMenuOpen] = useState(hamburger.current?.isMenuOpen);
+  const hamburgerRef = useRef<HamburgerRef>(null);
+  const navRef = useRef<HTMLDivElement>(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(
+    hamburgerRef.current?.isMenuOpen
+  );
 
   const t = useScopedI18n('navLinks');
 
+  useLayoutEffect(() => {
+    if (window.innerWidth > MEDIUM_BREAKPOINT) {
+      setIsMenuOpen(false);
+      hamburgerRef.current?.closeMenu();
+
+      const links = navRef.current?.querySelectorAll('a');
+      links &&
+        [...links].forEach(link => {
+          link.removeAttribute('tabindex');
+        });
+    }
+  }, []);
+
   useEffect(() => {
+    const links = navRef.current?.querySelectorAll('a');
+    links &&
+      [...links].forEach(link => {
+        link.removeAttribute('tabindex');
+      });
+
     const handleResize = () => {
       if (window.innerWidth > MEDIUM_BREAKPOINT) {
         setIsMenuOpen(false);
+        hamburgerRef.current?.closeMenu();
       }
     };
 
@@ -60,39 +58,37 @@ const Nav = () => {
   });
 
   const handleHamburgerClick = () => {
-    hamburger.current?.toggleMenu();
+    hamburgerRef.current?.toggleMenu();
     setIsMenuOpen(prev => !prev);
   };
 
   return (
     <>
       <Overlay isVisible={isMenuOpen ? true : undefined} />
-      <Hamburger ref={hamburger} onClick={handleHamburgerClick} />
-      <nav
-        className={cn(
-          navVariants({
-            variant: isMenuOpen ? 'mobileVisible' : 'mobileHidden',
-          })
-        )}
-      >
-        <h2 className='flex h-12 items-center md:hidden'>{t('menu')}</h2>
-        <ul
-          className={cn(
-            listVariants({
-              variant: isMenuOpen ? 'mobileVisible' : 'mobileHidden',
-            })
-          )}
-        >
-          <li className=''>
-            <NavLink href={`/${locale}`}>{t('home.label')}</NavLink>
+      <Hamburger ref={hamburgerRef} onClick={handleHamburgerClick} />
+      <nav ref={navRef} className={cn('nav-main', isMenuOpen ? 'open' : '')}>
+        <h2 className='flex h-12 items-center font-medium md:hidden'>
+          {t('menu')}
+        </h2>
+        <ul className='nav-links-main'>
+          <li>
+            <NavLink href={`/${locale}`} tabIndex={isMenuOpen ? undefined : -1}>
+              {t('home.label')}
+            </NavLink>
           </li>
           <li>
-            <NavLink href={`/${locale}/${t('faq.slug')}`}>
+            <NavLink
+              href={`/${locale}/${t('faq.slug')}`}
+              tabIndex={isMenuOpen ? undefined : -1}
+            >
               {t('faq.label')}
             </NavLink>
           </li>
           <li>
-            <NavLink href={`/${locale}/${t('about.slug')}`}>
+            <NavLink
+              href={`/${locale}/${t('about.slug')}`}
+              tabIndex={isMenuOpen ? undefined : -1}
+            >
               {t('about.label')}
             </NavLink>
           </li>
@@ -101,6 +97,7 @@ const Nav = () => {
               href={`https://covid-19.sledilnik.org/${locale}/donate`}
               target='_blank'
               rel='noopener noreferrer'
+              tabIndex={isMenuOpen ? undefined : -1}
             >
               {t('donate.label')}
             </NavLink>
@@ -110,17 +107,19 @@ const Nav = () => {
               href={`https://covid-19.sledilnik.org/${locale}`}
               target='_blank'
               rel='noopener noreferrer'
+              tabIndex={isMenuOpen ? undefined : -1}
             >
               {t('sledilnik.label')}
             </NavLink>
           </li>
         </ul>
-        <ul className='mb-8 mt-auto flex flex-row items-center gap-2 md:mb-0 md:ml-4 md:mt-0'>
+        <ul className='nav-links-social'>
           <li>
             <SocialLink
               href='https://facebook.com/sledilnik'
               label='Facebook'
               icon={<FacebookIcon />}
+              tabIndex={isMenuOpen ? undefined : -1}
             />
           </li>
           <li>
@@ -128,6 +127,7 @@ const Nav = () => {
               href='https://twitter.com/sledilnik'
               label='Twitter'
               icon={<TwitterIcon />}
+              tabIndex={isMenuOpen ? undefined : -1}
             />
           </li>
           <li>
@@ -135,6 +135,7 @@ const Nav = () => {
               href='https://github.com/jalezi/'
               label='Github'
               icon={<GithubIcon />}
+              tabIndex={isMenuOpen ? undefined : -1}
             />
           </li>
         </ul>

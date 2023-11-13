@@ -6,7 +6,7 @@ export interface SocialLinkProps
   label: string;
 }
 
-const SocialLink = ({ href, icon, label }: SocialLinkProps) => {
+const SocialLink = ({ href, icon, label, ...props }: SocialLinkProps) => {
   return (
     <a
       href={href}
@@ -14,6 +14,7 @@ const SocialLink = ({ href, icon, label }: SocialLinkProps) => {
       rel='noopener noreferrer'
       className='text-2xl transition-colors hover:text-text-400'
       aria-label={label}
+      {...props}
     >
       {icon}
     </a>
