@@ -72,14 +72,17 @@ const Nav = () => {
     setIsMenuOpen(prev => !prev);
   };
 
+  const heading = cn(
+    'flex h-12 items-center font-medium md:hidden transition-[visibility] duration-0 ease-linear',
+    isMenuOpen ? 'visible' : 'invisible delay-500'
+  );
+
   return (
     <>
       <Overlay isVisible={isMenuOpen ? true : undefined} />
       <Hamburger ref={hamburgerRef} onClick={handleHamburgerClick} />
       <nav ref={navRef} className={cn('nav-main', isMenuOpen ? 'open' : '')}>
-        <h2 className='flex h-12 items-center font-medium md:hidden'>
-          {t('menu')}
-        </h2>
+        <h2 className={heading}>{t('menu')}</h2>
         <ul className='nav-links-main'>
           <li>
             <NavLink
