@@ -67,14 +67,6 @@ const config: Config = {
         sans: ['var(--font-sans)', ...fontFamily.sans],
       },
       keyframes: {
-        'accordion-down': {
-          from: { height: '0' },
-          to: { height: 'var(--radix-accordion-content-height)' },
-        },
-        'accordion-up': {
-          from: { height: 'var(--radix-accordion-content-height)' },
-          to: { height: '0' },
-        },
         'hamburger-close-1': {
           '0%': { transform: 'translate3d(0, 0, 0) rotate(0deg)' },
           '50%': { transform: 'translate3d(0, 0.5625rem, 0) rotate(0deg)' },
@@ -111,8 +103,6 @@ const config: Config = {
         },
       },
       animation: {
-        'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up': 'accordion-up 0.2s ease-out',
         'hamburger-close-1': 'hamburger-close-1 0.6s ease-out forwards',
         'hamburger-close-2': 'hamburger-close-2 0.6s ease-out forwards',
         'hamburger-close-3': 'hamburger-close-3 0.6s ease-out forwards',
