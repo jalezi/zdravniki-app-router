@@ -19,5 +19,9 @@ export default async function Home({
   setStaticParamsLocale(locale);
   const t = await getI18n();
 
-  return <main>{t('test')}</main>;
+  return (
+    <main>
+      <h1>{t('test')}</h1>
+    </main>
+  );
 }
