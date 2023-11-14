@@ -101,6 +101,22 @@ const config: Config = {
           '50%': { transform: 'translate3d(0, -0.5625rem, 0) rotate(0deg)' },
           '100%': { transform: 'translate3d(0, 0, 0) rotate(0deg)' },
         },
+        slideDownAndFade: {
+          from: { opacity: '0', transform: 'translateY(-2px)' },
+          to: { opacity: '1', transform: 'translateY(0)' },
+        },
+        slideLeftAndFade: {
+          from: { opacity: '0', transform: 'translateX(2px)' },
+          to: { opacity: '1', transform: 'translateX(0)' },
+        },
+        slideUpAndFade: {
+          from: { opacity: '0', transform: 'translateY(2px)' },
+          to: { opacity: '1', transform: 'translateY(0)' },
+        },
+        slideRightAndFade: {
+          from: { opacity: '0', transform: 'translateX(-2px)' },
+          to: { opacity: '1', transform: 'translateX(0)' },
+        },
       },
       animation: {
         'hamburger-close-1': 'hamburger-close-1 0.6s ease-out forwards',
@@ -109,6 +125,13 @@ const config: Config = {
         'hamburger-open-1': 'hamburger-open-1 0.6s ease-out forwards',
         'hamburger-open-2': 'hamburger-open-2 0.6s ease-out forwards',
         'hamburger-open-3': 'hamburger-open-3 0.6s ease-out forwards',
+        slideDownAndFade:
+          'slideDownAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)',
+        slideLeftAndFade:
+          'slideLeftAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)',
+        slideUpAndFade: 'slideUpAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)',
+        slideRightAndFade:
+          'slideRightAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)',
       },
       transitionDuration: {
         '600': '600ms',
