@@ -1,8 +1,8 @@
 // https://www.color-name.com/hex/09afda
 // https://www.tints.dev/brand/09AFDA
+import type { Config } from 'tailwindcss';
 import { fontFamily } from 'tailwindcss/defaultTheme';
 import plugin from 'tailwindcss/plugin';
-import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [

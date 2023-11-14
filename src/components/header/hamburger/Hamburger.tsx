@@ -1,11 +1,11 @@
 'use client';
 
 import {
-  useRef,
-  useImperativeHandle,
   forwardRef,
-  useState,
   useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
 } from 'react';
 
 const ANIMATION_DURATION = 600;

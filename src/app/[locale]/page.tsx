@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
-import { setStaticParamsLocale } from 'next-international/server';
-
 import { getI18n, getScopedI18n } from '@/locales/server';
+import { setStaticParamsLocale } from 'next-international/server';
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getScopedI18n('seo');

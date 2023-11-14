@@ -1,11 +1,11 @@
 import '@/styles/globals.css';
 
 import type { Metadata } from 'next';
-import { cx } from 'class-variance-authority';
 import { IBM_Plex_Sans as FontSans } from 'next/font/google';
-
-import { getCurrentLocale, getScopedI18n } from '@/locales/server';
 import { getSiteUrl } from '@/lib';
+import { getCurrentLocale, getScopedI18n } from '@/locales/server';
+import { cx } from 'class-variance-authority';
+
 import { Header } from '@/components/header';
 
 const fontSans = FontSans({

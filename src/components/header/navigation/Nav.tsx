@@ -1,17 +1,17 @@
 'use client';
 
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
-
-import { cn } from '@/lib/utils';
 import { useCurrentLocale, useScopedI18n } from '@/locales/client';
 
-import { Hamburger, HamburgerRef } from '@/components/header/hamburger';
+import { useEscapeKey } from '@/lib/hooks';
+import { cn } from '@/lib/utils';
 import { Overlay } from '@/components/ui/overlay';
+import { Hamburger, HamburgerRef } from '@/components/header/hamburger';
 import { NavLink } from '@/components/header/link';
 import { FacebookIcon, GithubIcon, TwitterIcon } from '@/components/icons';
-import SocialLink from '../link/SocialLink';
-import { useEscapeKey } from '@/lib/hooks';
+
 import { LanguageSelector } from '../language-selector';
+import SocialLink from '../link/SocialLink';
 
 const MEDIUM_BREAKPOINT = 768;
 

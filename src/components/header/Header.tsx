@@ -1,10 +1,11 @@
 import Link from 'next/link';
+import { I18nProviderClient } from '@/locales/client';
+import { getCurrentLocale } from '@/locales/server';
 
 import { cn } from '@/lib/utils';
 import { Logo } from '@/components/icons';
-import { getCurrentLocale } from '@/locales/server';
+
 import { Nav } from './navigation';
-import { I18nProviderClient } from '@/locales/client';
 
 export interface HeaderProps extends React.HTMLAttributes<HTMLHeadElement> {}
 

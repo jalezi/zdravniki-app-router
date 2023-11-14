@@ -1,14 +1,14 @@
 'use-client';
 
+import { useState } from 'react';
 import { useChangeLocale, useCurrentLocale } from '@/locales/client';
 import { Locales } from '@/locales/server';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import {
-  Languages as LanguageIcon,
   ChevronDown,
   ChevronUp,
+  Languages as LanguageIcon,
 } from 'lucide-react';
-import { useState } from 'react';
 
 export default function LanguageSelector() {
   const [open, setOpen] = useState(false);
