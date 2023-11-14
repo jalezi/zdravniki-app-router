@@ -9,5 +9,13 @@
     "rules": {
         // Additional, per-project rules...
         "no-unused-vars": "error"
-    }
+    },
+    "overrides": [
+        {
+            "files": [
+                "*.mdx"
+            ],
+            "extends": "plugin:mdx/recommended"
+        }
+    ]
 }
