@@ -1,8 +1,8 @@
-import { AnchorHTMLAttributes } from 'react';
+import { AnchorHTMLAttributes, ReactNode } from 'react';
 
 export interface SocialLinkProps
   extends AnchorHTMLAttributes<HTMLAnchorElement> {
-  icon: React.ReactNode;
+  icon: ReactNode;
   label: string;
 }
 

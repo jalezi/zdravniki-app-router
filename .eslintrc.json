@@ -1,37 +1,48 @@
 {
     "extends": [
-        "next/core-web-vitals",
         "eslint:recommended",
-        "plugin:@typescript-eslint/recommended-type-checked",
         "plugin:mdx/recommended",
-        "prettier"
+        "next",
+        "next/core-web-vitals"
     ],
     "plugins": [
+        "@typescript-eslint",
         "prettier"
     ],
     "rules": {
-        // Additional, per-project rules...
         "no-unused-vars": "error",
-        "mdx/no-unused-expressions": "off",
         "@typescript-eslint/no-explicit-any": "error"
     },
-    "overrides": [
-        {
-            "files": [
-                "*.mdx"
-            ],
-            "extends": "plugin:mdx/overrides"
-        }
-    ],
     "ignorePatterns": [
         "node_modules/",
         ".next/",
         "out/",
         "public/"
     ],
-    "parserOptions": {
-        "project": true,
-        "tsconfigRootDir": "__dirname"
+    "settings": {
+        "mdx/code-blocks": true,
+        "mdx/language-mapper": {}
     },
-    "root": true
+    "overrides": [
+        {
+            "files": "*.md",
+            "rules": {
+                "prettier/prettier": [
+                    "ERROR",
+                    {
+                        "parser": "markdown"
+                    }
+                ]
+            }
+        },
+        {
+            "files": [
+                "*.md",
+                "*.mdx"
+            ],
+            "extends": [
+                "plugin:mdx/recommended"
+            ]
+        }
+    ]
 }

@@ -2,6 +2,7 @@
 
 import {
   forwardRef,
+  HTMLAttributes,
   useEffect,
   useImperativeHandle,
   useRef,
@@ -11,8 +12,7 @@ import {
 const ANIMATION_DURATION = 600;
 const MEDIUM_BREAKPOINT = 768;
 
-export interface HamburgerProps
-  extends React.HTMLAttributes<HTMLButtonElement> {}
+export interface HamburgerProps extends HTMLAttributes<HTMLButtonElement> {}
 
 export type HamburgerRef = {
   button: HTMLButtonElement | null;

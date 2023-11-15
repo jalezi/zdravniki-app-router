@@ -1,3 +1,4 @@
+import { HTMLAttributes } from 'react';
 import Link from 'next/link';
 import { I18nProviderClient } from '@/locales/client';
 import { getCurrentLocale } from '@/locales/server';
@@ -7,7 +8,7 @@ import { Logo } from '@/components/icons';
 
 import { Nav } from './navigation';
 
-export interface HeaderProps extends React.HTMLAttributes<HTMLHeadElement> {}
+export interface HeaderProps extends HTMLAttributes<HTMLHeadElement> {}
 
 export default async function Header({ className, ...props }: HeaderProps) {
   const locale = getCurrentLocale();

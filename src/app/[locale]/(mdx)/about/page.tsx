@@ -20,8 +20,6 @@ export async function generateMetadata({
     };
   }
 
-  console.log(params);
-
   const { frontmatter } = await compileMDX<{
     title: string;
     description: string;

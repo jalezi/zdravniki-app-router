@@ -1,5 +1,6 @@
 import '@/styles/globals.css';
 
+import { ReactNode } from 'react';
 import type { Metadata } from 'next';
 import { IBM_Plex_Sans as FontSans } from 'next/font/google';
 import { getSiteUrl } from '@/lib';
@@ -62,11 +63,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   const locale = getCurrentLocale();
 
   return (

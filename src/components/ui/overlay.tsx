@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { forwardRef, HTMLAttributes } from 'react';
 import { cva } from 'class-variance-authority';
 
 import { cn } from '@/lib/utils';
@@ -18,7 +18,7 @@ const overlayVariants = cva(
   }
 );
 
-export interface OverlayProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface OverlayProps extends HTMLAttributes<HTMLDivElement> {
   isVisible: true | undefined;
 }
 
