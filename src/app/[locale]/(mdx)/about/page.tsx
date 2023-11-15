@@ -1,8 +1,11 @@
+import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import { BaseParams } from '@/types';
 import { compileMDX } from 'next-mdx-remote/rsc';
+import remarkGfm from 'remark-gfm';
 
 import { getContentBySlug } from '@/lib/get-content';
+import { MDXExternalLink } from '@/components/ui/mdx-external-link';
 import { Tooltip } from '@/components/ui/tooltip';
 
 export async function generateMetadata({
@@ -42,13 +45,17 @@ export default async function AboutPage({ params }: AboutPageProps) {
     description: string;
   }>({
     source: rawContent,
-    components: { Tooltip },
-    options: { parseFrontmatter: true },
+    components: { Tooltip, a: MDXExternalLink },
+    options: {
+      parseFrontmatter: true,
+      mdxOptions: { remarkPlugins: [remarkGfm], rehypePlugins: [] },
+    },
   });
 
   return (
     <>
       <h1 className='sr-only'>{frontmatter.title}</h1>
+      <Suspense fallback={<div>Loading...</div>}> </Suspense>
       {content}
     </>
   );
