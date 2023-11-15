@@ -1,6 +1,7 @@
 {
     "extends": [
         "next/core-web-vitals",
+        "plugin:mdx/recommended",
         "prettier"
     ],
     "plugins": [
@@ -8,14 +9,22 @@
     ],
     "rules": {
         // Additional, per-project rules...
-        "no-unused-vars": "error"
+        "no-unused-vars": "error",
+        "mdx/no-unused-expressions": "off",
+        "react/jsx-no-undefined": "off"
     },
     "overrides": [
         {
             "files": [
                 "*.mdx"
             ],
-            "extends": "plugin:mdx/recommended"
+            "extends": "plugin:mdx/overrides"
         }
+    ],
+    "ignorePatterns": [
+        "node_modules/",
+        ".next/",
+        "out/",
+        "public/"
     ]
 }

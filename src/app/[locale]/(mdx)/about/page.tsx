@@ -3,6 +3,7 @@ import { BaseParams } from '@/types';
 import { compileMDX } from 'next-mdx-remote/rsc';
 
 import { getContentBySlug } from '@/lib/get-content';
+import { Tooltip } from '@/components/ui/tooltip';
 
 export async function generateMetadata({
   params,
@@ -41,14 +42,14 @@ export default async function AboutPage({ params }: AboutPageProps) {
     description: string;
   }>({
     source: rawContent,
-    components: {},
+    components: { Tooltip },
     options: { parseFrontmatter: true },
   });
 
   return (
-    <div>
-      <h1>{frontmatter.title}</h1>
-      <div>{content}</div>
-    </div>
+    <>
+      <h1 className='sr-only'>{frontmatter.title}</h1>
+      {content}
+    </>
   );
 }

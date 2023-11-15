@@ -1,14 +1,14 @@
 import { forwardRef } from 'react';
-
 import { cva } from 'class-variance-authority';
+
 import { cn } from '@/lib/utils';
 
 const overlayVariants = cva(
-  'fixed inset-0 z-40 transparent transition-all duration-650',
+  'fixed inset-0 z-40 transparent transition-all duration-650 left-[100%] right-[-100%]',
   {
     variants: {
       variant: {
-        visible: 'bg-text-900/75 delay-367 z-40 md:delay-0',
+        visible: 'bg-text-900/75 delay-367 z-40 md:delay-0 left-0 right-0',
         hidden: 'transparent -z-10',
       },
     },

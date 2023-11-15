@@ -35,8 +35,12 @@
     "importOrderParserPlugins": [
         "typescript",
         "jsx",
-        "decorators-legacy"
+        "decorators-legacy",
+        "mdx"
     ],
     "importOrderMergeDuplicateImports": true,
-    "importOrderCombineTypeAndValueImports": true
+    "importOrderCombineTypeAndValueImports": true,
+    "mdx": {
+        "printWidth": "max-line_length"
+    }
 }

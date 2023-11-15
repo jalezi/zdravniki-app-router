@@ -73,7 +73,7 @@ export default function RootLayout({
     <html lang={locale}>
       <body
         className={cx(
-          'min-h-[100svh] font-sans text-text-500 antialiased',
+          'min-h-[100svh] font-sans text-text-500 antialiased bg-[#f4f8f8]',
           fontSans.variable
         )}
       >

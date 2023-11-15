@@ -4,3 +4,7 @@ root = false
 [*.json]
 indent_size = 4
 insert_final_newline = true
+
+[*.mdx]
+trim_trailing_whitespace = false
+print_width = max_line_length

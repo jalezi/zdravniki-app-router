@@ -45,6 +45,14 @@ const Nav = () => {
     }
   }, []);
 
+  useLayoutEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [isMenuOpen]);
+
   // remove tabindex from links when user resize
   useEffect(() => {
     const links = navRef.current?.querySelectorAll('a');

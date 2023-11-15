@@ -138,10 +138,25 @@ const config: Config = {
         '650': '650ms',
         '367': '367ms',
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            a: {
+              boxShadow: 'inset 0 0 0 #ffffff, inset 0 -0.25rem #27CDF6 ',
+              whiteSpace: 'nowrap',
+              textDecoration: 'none',
+              '&:hover': {
+                boxShadow: 'inset 0 0 0 #ffffff, inset 0 -1.25rem #27CDF6 ',
+              },
+            },
+          },
+        },
+      },
     },
   },
   plugins: [
     require('tailwindcss-animate'),
+    require('@tailwindcss/typography'),
     plugin(function ({ addVariant, theme, matchUtilities }) {
       addVariant('child', '& > *');
       matchUtilities(
