@@ -1,6 +1,8 @@
 import { Suspense } from 'react';
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { BaseParams } from '@/types';
+import { Construction } from 'lucide-react';
 import { compileMDX } from 'next-mdx-remote/rsc';
 import remarkGfm from 'remark-gfm';
 
@@ -17,6 +19,8 @@ export async function generateMetadata({
       title: '404',
     };
   }
+
+  console.log(params);
 
   const { frontmatter } = await compileMDX<{
     title: string;
@@ -45,7 +49,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
     description: string;
   }>({
     source: rawContent,
-    components: { Tooltip, a: MDXExternalLink },
+    components: { Tooltip, a: MDXExternalLink, Link, Construction },
     options: {
       parseFrontmatter: true,
       mdxOptions: { remarkPlugins: [remarkGfm], rehypePlugins: [] },
