@@ -8,7 +8,6 @@ import remarkGfm from 'remark-gfm';
 
 import { getContentBySlug } from '@/lib/get-content';
 import { MDXExternalLink } from '@/components/ui/mdx-external-link';
-import { Tooltip } from '@/components/ui/tooltip';
 
 export async function generateMetadata({
   params,
@@ -47,7 +46,7 @@ export default async function FaqPage({ params }: FaqPageProps) {
     description: string;
   }>({
     source: rawContent,
-    components: { Tooltip, a: MDXExternalLink, Link, Construction },
+    components: { a: MDXExternalLink, Link, Construction },
     options: {
       parseFrontmatter: true,
       mdxOptions: { remarkPlugins: [remarkGfm], rehypePlugins: [] },
