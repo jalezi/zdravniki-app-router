@@ -1,13 +1,15 @@
 import '@/styles/globals.css';
 
 import { ReactNode } from 'react';
+
 import type { Metadata } from 'next';
 import { IBM_Plex_Sans as FontSans } from 'next/font/google';
-import { getSiteUrl } from '@/lib';
-import { getCurrentLocale, getScopedI18n } from '@/locales/server';
+
 import { cx } from 'class-variance-authority';
 
 import { Header } from '@/components/header';
+import { getSiteUrl } from '@/lib';
+import { getCurrentLocale, getScopedI18n } from '@/locales/server';
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -70,7 +72,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang={locale}>
       <body
         className={cx(
-          'min-h-[100svh] font-sans text-text-500 antialiased bg-[#f4f8f8]',
+          'min-h-[100svh] bg-[#f4f8f8] font-sans text-text-500 antialiased',
           fontSans.variable
         )}
       >

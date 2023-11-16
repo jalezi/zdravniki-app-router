@@ -2,8 +2,7 @@
     "arrowParens": "avoid",
     "jsxSingleQuote": true,
     "plugins": [
-        "prettier-plugin-tailwindcss",
-        "@ianvs/prettier-plugin-sort-imports"
+        "prettier-plugin-tailwindcss"
     ],
     "printWidth": 80,
     "proseWrap": "always",
@@ -12,23 +11,6 @@
     "tabWidth": 2,
     "trailingComma": "es5",
     "endOfLine": "lf",
-    "importOrder": [
-        "^(react/(.*)$)|^(react$)",
-        "^(next/(.*)$)|^(next$)",
-        "<THIRD_PARTY_MODULES>",
-        "",
-        "^types$",
-        "^@/types/(.*)$",
-        "^@/config/(.*)$",
-        "^@/lib/(.*)$",
-        "^@/hooks/(.*)$",
-        "^@/components/ui/(.*)$",
-        "^@/components/(.*)$",
-        "^@/registry/(.*)$",
-        "^@/styles/(.*)$",
-        "",
-        "^[./]"
-    ],
     "importOrderSeparation": false,
     "importOrderSortSpecifiers": true,
     "importOrderBuiltinModulesToTop": true,

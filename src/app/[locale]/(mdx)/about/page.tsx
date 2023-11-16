@@ -1,15 +1,17 @@
 import { Suspense } from 'react';
+
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { getStaticParams } from '@/locales/server';
-import { BaseParams } from '@/types';
+
 import { Construction } from 'lucide-react';
 import { setStaticParamsLocale } from 'next-international/server';
 import { compileMDX } from 'next-mdx-remote/rsc';
 import remarkGfm from 'remark-gfm';
 
-import { getContentBySlug } from '@/lib/get-content';
 import { MDXExternalLink } from '@/components/ui/mdx-external-link';
+import { getContentBySlug } from '@/lib/get-content';
+import { getStaticParams } from '@/locales/server';
+import { BaseParams } from '@/types';
 
 export async function generateMetadata({
   params,

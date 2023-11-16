@@ -1,5 +1,6 @@
-import Link, { LinkProps } from 'next/link';
 import { AnchorHTMLAttributes, PropsWithChildren } from 'react';
+
+import Link, { LinkProps } from 'next/link';
 
 import { cn } from '@/lib/utils';
 

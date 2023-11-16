@@ -1,10 +1,11 @@
 import { HTMLAttributes } from 'react';
+
 import Link from 'next/link';
+
+import { Logo } from '@/components/icons';
+import { cn } from '@/lib/utils';
 import { I18nProviderClient } from '@/locales/client';
 import { getCurrentLocale } from '@/locales/server';
-
-import { cn } from '@/lib/utils';
-import { Logo } from '@/components/icons';
 
 import { Nav } from './navigation';
 

@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+
 import { Locales } from '@/locales/server';
 
 const basePath = path.join(process.cwd(), 'content');
