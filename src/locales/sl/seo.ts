@@ -1,6 +1,8 @@
 export const seo = {
-  description:
-    'Zdravniki Sledilnik Slovenija - zbrani, preverjeni, ažurirani, analizirani in pregledni podatki o zdravnikih v Sloveniji.',
+  description: {
+    default:
+      'Zdravniki Sledilnik Slovenija - zbrani, preverjeni, ažurirani, analizirani in pregledni podatki o zdravnikih v Sloveniji.',
+  },
   keywords: '',
   subtitle: 'Zdravniki Sledilnik',
   title: {
@@ -10,7 +12,7 @@ export const seo = {
     den: 'Seznam zobozdravnikov za odrasle',
     den_s: 'Seznam zobozdravnikov za študente',
     den_y: 'Seznam zobozdravnikov za mladino',
-    faq: 'Pogosta vprašanja',
+    faq: 'Pojasnila',
     gp: 'Seznam družinskih zdravnikov',
     gp_f: 'Seznam ambulant za neopredeljene',
     gp_x: 'Seznam družinskih zdravnikov za boljšo dostopnost',

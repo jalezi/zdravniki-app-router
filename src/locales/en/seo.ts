@@ -1,6 +1,8 @@
 export const seo = {
-  description:
-    'Doctors tracking - collected, verified, updated, analyzed and reviewed data about doctors in Slovenia.',
+  description: {
+    default:
+      'Doctors tracking - collected, verified, updated, analyzed and reviewed data about doctors in Slovenia.',
+  },
   keywords: '',
   subtitle: 'Doctors Tracker',
   title: {

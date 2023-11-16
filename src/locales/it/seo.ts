@@ -1,6 +1,8 @@
 export const seo = {
-  description:
-    'Monitoraggio dei medici: dati raccolti, verificati, aggiornati, analizzati e rivisti sui medici in Slovenia.',
+  description: {
+    default:
+      'Monitoraggio dei medici: dati raccolti, verificati, aggiornati, analizzati e rivisti sui medici in Slovenia.',
+  },
   keywords: '',
   subtitle: 'Tracciatore di medici',
   title: {

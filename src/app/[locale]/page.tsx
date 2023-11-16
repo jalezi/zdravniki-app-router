@@ -6,8 +6,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const t = await getScopedI18n('seo');
 
   return {
-    title: `${t('title.default')} - Sledilnik`,
-    description: t('description'),
+    title: `${t('title.default')} - Zdravniki Sledilnik`,
+    description: t('description.default'),
   };
 }
 

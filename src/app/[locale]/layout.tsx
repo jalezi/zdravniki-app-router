@@ -23,8 +23,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const title = t('title.default');
 
   return {
-    title: { template: '%s - Sledilnik', default: title },
-    description: t('description'),
+    title: { template: '%s - Zdravniki Sledilnik', default: title },
+    description: t('description.default'),
     metadataBase: new URL(getSiteUrl()),
     alternates: {
       canonical: getSiteUrl(),
@@ -42,7 +42,7 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       type: 'website',
       title: `${title} - Sledilnik`,
-      description: t('description'),
+      description: t('description.default'),
       images: [
         {
           url: '/opengraph-image.png',
