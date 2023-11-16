@@ -1,8 +1,10 @@
 import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { getStaticParams } from '@/locales/server';
 import { BaseParams } from '@/types';
 import { Construction } from 'lucide-react';
+import { setStaticParamsLocale } from 'next-international/server';
 import { compileMDX } from 'next-mdx-remote/rsc';
 import remarkGfm from 'remark-gfm';
 
@@ -33,10 +35,16 @@ export async function generateMetadata({
   };
 }
 
+export function generateStaticParams() {
+  return getStaticParams();
+}
+
 export type FaqPageProps = {
   params: BaseParams;
 };
 export default async function FaqPage({ params }: FaqPageProps) {
+  setStaticParamsLocale(params.locale);
+
   const rawContent = getContentBySlug('faq', params.locale);
 
   if (!rawContent) return null;
@@ -56,8 +64,7 @@ export default async function FaqPage({ params }: FaqPageProps) {
   return (
     <>
       <h1 className='sr-only'>{frontmatter.title}</h1>
-      <Suspense fallback={<div>Loading...</div>}> </Suspense>
-      {content}
+      <Suspense fallback={<div>Loading...</div>}> {content}</Suspense>
     </>
   );
 }

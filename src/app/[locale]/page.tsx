@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { getI18n, getScopedI18n } from '@/locales/server';
+import { getI18n, getScopedI18n, getStaticParams } from '@/locales/server';
 import { setStaticParamsLocale } from 'next-international/server';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -9,6 +9,10 @@ export async function generateMetadata(): Promise<Metadata> {
     title: `${t('title.default')} - Zdravniki Sledilnik`,
     description: t('description.default'),
   };
+}
+
+export function generateStaticParams() {
+  return getStaticParams();
 }
 
 export default async function Home({
