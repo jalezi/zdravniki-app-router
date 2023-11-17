@@ -3,6 +3,10 @@
         "prettier --write",
         "next lint"
     ],
+    "*.tsx": [
+        "prettier --write",
+        "next lint"
+    ],
     "*.html": [
         "next-lint",
         "prettier --write"
