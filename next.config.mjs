@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  trailingSlash: true,
   webpack(config) {
     // Configures webpack to handle SVG files with SVGR. SVGR optimizes and transforms SVG files
     // into React components. See https://react-svgr.com/docs/next/
