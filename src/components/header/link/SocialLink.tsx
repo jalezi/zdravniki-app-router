@@ -11,7 +11,6 @@ const SocialLink = ({ href, icon, label, ...props }: SocialLinkProps) => {
     <a
       href={href}
       target='_blank'
-      rel='noopener noreferrer'
       className='text-2xl transition-colors hover:text-text-400'
       aria-label={label}
       {...props}

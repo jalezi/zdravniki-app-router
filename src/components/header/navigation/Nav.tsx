@@ -139,7 +139,6 @@ const Nav = () => {
             <NavLink
               href={`https://covid-19.sledilnik.org/${locale}/donate`}
               target='_blank'
-              rel='noopener noreferrer'
               tabIndex={isMenuOpen ? undefined : -1}
               onClick={closeMenu}
             >
@@ -150,7 +149,6 @@ const Nav = () => {
             <NavLink
               href={`https://covid-19.sledilnik.org/${locale}`}
               target='_blank'
-              rel='noopener noreferrer'
               tabIndex={isMenuOpen ? undefined : -1}
               onClick={closeMenu}
             >
