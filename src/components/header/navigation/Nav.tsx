@@ -2,6 +2,8 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
+import { usePathname } from 'next/navigation';
+
 import { Hamburger, HamburgerRef } from '@/components/header/hamburger';
 import { NavLink } from '@/components/header/link';
 import { FacebookIcon, GithubIcon, TwitterIcon } from '@/components/icons';
@@ -17,6 +19,7 @@ const MEDIUM_BREAKPOINT = 768;
 
 const Nav = () => {
   const locale = useCurrentLocale();
+  const currentPathname = usePathname();
   const hamburgerRef = useRef<HamburgerRef>(null);
   const navRef = useRef<HTMLDivElement>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(
@@ -94,27 +97,40 @@ const Nav = () => {
         <ul className='nav-links-main'>
           <li>
             <NavLink
-              href={`/${locale}`}
+              href={`/${locale}/`}
               tabIndex={isMenuOpen ? undefined : -1}
               onClick={closeMenu}
+              className={
+                currentPathname === `/${locale}/` ? 'active' : undefined
+              }
             >
               {t('home.label')}
             </NavLink>
           </li>
           <li>
             <NavLink
-              href={`/${locale}/${t('faq.slug')}`}
+              href={`/${locale}/${t('faq.slug')}/`}
               tabIndex={isMenuOpen ? undefined : -1}
               onClick={closeMenu}
+              className={
+                currentPathname === `/${locale}/${t('faq.slug')}/`
+                  ? 'active'
+                  : undefined
+              }
             >
               {t('faq.label')}
             </NavLink>
           </li>
           <li>
             <NavLink
-              href={`/${locale}/${t('about.slug')}`}
+              href={`/${locale}/${t('about.slug')}/`}
               tabIndex={isMenuOpen ? undefined : -1}
               onClick={closeMenu}
+              className={
+                currentPathname === `/${locale}/${t('about.slug')}/`
+                  ? 'active'
+                  : undefined
+              }
             >
               {t('about.label')}
             </NavLink>
