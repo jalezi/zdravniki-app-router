@@ -1,0 +1,11 @@
+{
+    "*.ts": [
+        "prettier --write",
+        "next lint"
+    ],
+    "*.html": [
+        "next-lint",
+        "prettier --write"
+    ],
+    "*.css": "prettier --write"
+}
