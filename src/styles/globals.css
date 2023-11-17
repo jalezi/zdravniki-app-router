@@ -16,6 +16,10 @@
 @layer components {
   /* FOOTER */
   .footer {
+    @apply relative;
+  }
+
+  .footer {
     & strong,
     & a {
       @apply font-semibold;
