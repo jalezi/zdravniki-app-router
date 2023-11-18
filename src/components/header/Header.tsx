@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils';
 import { I18nProviderClient } from '@/locales/client';
 import { getCurrentLocale } from '@/locales/server';
 
-import { Nav } from './navigation';
+import { Navigation } from './navigation';
 
 export interface HeaderProps extends HTMLAttributes<HTMLHeadElement> {}
 
@@ -25,7 +25,7 @@ export default async function Header({ className, ...props }: HeaderProps) {
         <Logo className='text-sm' aria-label='logo' />
       </Link>
       <I18nProviderClient locale={locale}>
-        <Nav />
+        <Navigation />
       </I18nProviderClient>
     </header>
   );
