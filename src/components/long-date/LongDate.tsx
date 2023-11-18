@@ -1,4 +1,4 @@
-import { getCurrentLocale, getScopedI18n } from '@/locales/server';
+import { getCurrentLocale } from '@/locales/server';
 
 const LOCALE_MAP = {
   en: 'en-US',
@@ -8,6 +8,8 @@ const LOCALE_MAP = {
 
 export type LongDateProps = {
   timestamp: number | string | null;
+  timeDesignator?: string;
+  noData?: string;
 };
 
 /**
@@ -17,14 +19,19 @@ export type LongDateProps = {
  *
  * @param {Object} props - The properties passed to the function.
  * @param {number|string|null} props.timestamp - The timestamp to format in seconds. Can be a number, a string, or null.
+ * @param {string} props.timeDesignator - The time designator to use.
+ * @param {string} props.noData - The localized 'noData' string to return if the timestamp is null.
  * @returns {string | JSX.Element} A time element with the formatted date and time string.
  */
-export default async function LongDate({ timestamp }: LongDateProps) {
-  const t = await getScopedI18n('timestamp');
+export default async function LongDate({
+  timestamp,
+  timeDesignator,
+  noData,
+}: LongDateProps) {
   const locale = getCurrentLocale();
 
   if (!timestamp) {
-    return t('noData');
+    return noData;
   }
 
   const dateLocale = LOCALE_MAP[locale];
@@ -49,7 +56,7 @@ export default async function LongDate({ timestamp }: LongDateProps) {
 
   return (
     <time dateTime={dateTime}>
-      {date} {t('at')} {time}
+      {date} {timeDesignator} {time}
     </time>
   );
 }

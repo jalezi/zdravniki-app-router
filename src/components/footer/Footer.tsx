@@ -33,23 +33,21 @@ export default async function Footer({
   ...props
 }: FooterProps) {
   const timestamp = await getTimestamp(DOCTORS_TS_URL);
-  const t = await getScopedI18n('footer');
-  const dataSource = t('dataSource');
-  const lastChange = t('lastChange');
-  const zzzs = t('zzzs');
-  const gurs = t('gurs');
+  const tFooter = await getScopedI18n('footer');
+  const tTimestamp = await getScopedI18n('timestamp');
+
   return (
     <footer className={cn(footerVariants({ variant, className }))} {...props}>
       <div className='footer-content-wrapper'>
         <p className='not-prose'>
-          {dataSource}:{' '}
+          {tFooter('dataSource')}:{' '}
           <a
             className='not-prose'
             href='https://www.zzzs.si'
             target='_blank'
             rel='noreferrer'
           >
-            <abbr title={zzzs}>ZZZS</abbr>
+            <abbr title={tFooter('zzzs')}>ZZZS</abbr>
           </a>
           ,{' '}
           <a
@@ -57,13 +55,17 @@ export default async function Footer({
             target='_blank'
             rel='noreferrer'
           >
-            <abbr title={gurs}>GURS</abbr>
+            <abbr title={tFooter('gurs')}>GURS</abbr>
           </a>
         </p>
         <p className='not-prose'>
-          {lastChange}:{' '}
+          {tFooter('lastChange')}:{' '}
           <strong className='whitespace-nowrap'>
-            <LongDate timestamp={timestamp.data} />
+            <LongDate
+              timestamp={timestamp.data}
+              timeDesignator={tTimestamp('at')}
+              noData={tTimestamp('noData')}
+            />
           </strong>
         </p>
         <p className='not-prose'>
