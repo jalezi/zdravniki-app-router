@@ -60,21 +60,23 @@ const Hamburger = forwardRef<HamburgerRef, HamburgerProps>(
       hamburgerRef.current.classList.add('cross');
     }
 
-    if (hamburgerRef.current && !isMenuOpen) {
-      if (hamburgerRef.current.classList.contains('cross')) {
-        hamburgerRef.current.classList.add('bars');
-        hamburgerRef.current.classList.remove('cross');
-        setTimeout(() => {
-          hamburgerRef.current!.classList.remove('bars');
-        }, ANIMATION_DURATION);
-      }
+    if (
+      hamburgerRef.current &&
+      !isMenuOpen &&
+      hamburgerRef.current.classList.contains('cross')
+    ) {
+      hamburgerRef.current.classList.add('bars');
+      hamburgerRef.current.classList.remove('cross');
+      setTimeout(() => {
+        hamburgerRef.current!.classList.remove('bars');
+      }, ANIMATION_DURATION);
     }
 
     return (
       <button
         ref={buttonRef}
         onClick={onClick ? onClick : handleClick}
-        className='z-[9990] ml-auto grid h-6 w-6 items-center md:hidden'
+        className='relative z-[9990] ml-auto grid h-6 w-6 items-center md:hidden'
         {...props}
         aria-label='menu toggler'
       >

@@ -8,6 +8,8 @@ import {
   useState,
 } from 'react';
 
+import { FocusOn } from 'react-focus-on';
+
 import { Hamburger, HamburgerRef } from '@/components/header/hamburger';
 import { Overlay } from '@/components/ui/overlay';
 import { useEscapeKey } from '@/lib/hooks';
@@ -36,11 +38,7 @@ const Nav = () => {
       return;
     }
     closeMenu();
-  }, []);
-
-  useLayoutEffect(() => {
-    document.body.style.overflow = isMenuOpen ? 'hidden' : '';
-  }, [isMenuOpen]);
+  }, [closeMenu]);
 
   // close menu on resize if on desktop
   useEffect(() => {
@@ -72,8 +70,16 @@ const Nav = () => {
   return (
     <>
       <Overlay isVisible={isMenuOpen ? true : undefined} />
-      <Hamburger ref={hamburgerRef} onClick={handleHamburgerClick} />
-      <Links ref={navRef} isMenuOpen={isMenuOpen} closeMenu={closeMenu} />
+      <FocusOn
+        enabled={!!isMenuOpen}
+        onEscapeKey={closeMenu}
+        onClickOutside={closeMenu}
+        className='relative z-[9990] ml-auto'
+        returnFocus={true}
+      >
+        <Hamburger ref={hamburgerRef} onClick={handleHamburgerClick} />
+        <Links ref={navRef} isMenuOpen={isMenuOpen} closeMenu={closeMenu} />
+      </FocusOn>
     </>
   );
 };
