@@ -35,40 +35,31 @@ const Nav = () => {
 
   useEscapeKey(closeMenu);
 
-  // remove tabindex from links when menu is closed on desktop
+  // set isMenuOpen to false on desktop
   useLayoutEffect(() => {
-    if (window.innerWidth > MEDIUM_BREAKPOINT) {
-      closeMenu();
+    if (window.innerWidth <= MEDIUM_BREAKPOINT) {
+      return;
+    }
+    closeMenu();
+  }, []);
 
+  useLayoutEffect(() => {
+    document.body.style.overflow = isMenuOpen ? 'hidden' : '';
+  }, [isMenuOpen]);
+
+  // close menu on resize if on desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= MEDIUM_BREAKPOINT) {
+        return;
+      }
       const links = navRef.current?.querySelectorAll('a');
       links &&
         [...links].forEach(link => {
           link.removeAttribute('tabindex');
         });
-    }
-  }, []);
-
-  useLayoutEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-  }, [isMenuOpen]);
-
-  // remove tabindex from links when user resize
-  useEffect(() => {
-    const links = navRef.current?.querySelectorAll('a');
-    links &&
-      [...links].forEach(link => {
-        link.removeAttribute('tabindex');
-      });
-
-    const handleResize = () => {
-      if (window.innerWidth > MEDIUM_BREAKPOINT) {
-        setIsMenuOpen(false);
-        hamburgerRef.current?.closeMenu();
-      }
+      setIsMenuOpen(false);
+      hamburgerRef.current?.closeMenu();
     };
 
     window.addEventListener('resize', handleResize);
@@ -76,7 +67,7 @@ const Nav = () => {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  });
+  }, []);
 
   const handleHamburgerClick = () => {
     hamburgerRef.current?.toggleMenu();
