@@ -1,3 +1,6 @@
+import { HTMLAttributes } from 'react';
+
+import { cn } from '@/lib/utils';
 import { getCurrentLocale } from '@/locales/server';
 
 const LOCALE_MAP = {
@@ -6,11 +9,11 @@ const LOCALE_MAP = {
   it: 'it-IT',
 } as const;
 
-export type LongDateProps = {
+export interface LongDateProps extends HTMLAttributes<HTMLTimeElement> {
   timestamp: number | string | null;
   timeDesignator?: string;
   noData?: string;
-};
+}
 
 /**
  * This function takes a timestamp (in seconds) and returns a formatted date and time string.
@@ -27,6 +30,8 @@ export default async function LongDate({
   timestamp,
   timeDesignator,
   noData,
+  className,
+  ...props
 }: LongDateProps) {
   const locale = getCurrentLocale();
 
@@ -54,8 +59,10 @@ export default async function LongDate({
 
   const dateTime = localeDate.toLocaleString(dateLocale);
 
+  const styles = cn(className);
+
   return (
-    <time dateTime={dateTime}>
+    <time className={styles} dateTime={dateTime} {...props}>
       {date} {timeDesignator} {time}
     </time>
   );

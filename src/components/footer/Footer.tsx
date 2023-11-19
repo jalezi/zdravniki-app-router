@@ -60,11 +60,12 @@ export default async function Footer({
         </p>
         <p className='not-prose'>
           {tFooter('lastChange')}:{' '}
-          <strong className='whitespace-nowrap'>
+          <strong>
             <LongDate
               timestamp={timestamp.data}
               timeDesignator={tTimestamp('at')}
               noData={tTimestamp('noData')}
+              className='whitespace-nowrap'
             />
           </strong>
         </p>
