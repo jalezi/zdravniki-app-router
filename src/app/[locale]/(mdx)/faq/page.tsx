@@ -6,15 +6,13 @@ import Link from 'next/link';
 import { Construction } from 'lucide-react';
 import { setStaticParamsLocale } from 'next-international/server';
 import { compileMDX } from 'next-mdx-remote/rsc';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import rehypeExternalLinks from 'rehype-external-links';
-import rehypeSlug from 'rehype-slug';
-import remarkGfm from 'remark-gfm';
 
 import { components } from '@/components/ui/mdx-headings';
 import { getContentBySlug } from '@/lib/get-content';
 import { getStaticParams } from '@/locales/server';
 import { BaseParams } from '@/types';
+
+import { remarkPlugins, rehypePlugins } from '../rehype-and-remark-plugins';
 
 export async function generateMetadata({
   params,
@@ -63,12 +61,8 @@ export default async function FaqPage({ params }: FaqPageProps) {
     options: {
       parseFrontmatter: true,
       mdxOptions: {
-        remarkPlugins: [remarkGfm],
-        rehypePlugins: [
-          rehypeSlug,
-          rehypeAutolinkHeadings.bind(null, { behavior: 'prepend' }),
-          rehypeExternalLinks.bind(null, { target: '_blank', rel: 'nofollow' }),
-        ],
+        remarkPlugins,
+        rehypePlugins,
       },
     },
   });
