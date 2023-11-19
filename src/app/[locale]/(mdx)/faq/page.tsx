@@ -6,9 +6,11 @@ import Link from 'next/link';
 import { Construction } from 'lucide-react';
 import { setStaticParamsLocale } from 'next-international/server';
 import { compileMDX } from 'next-mdx-remote/rsc';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypeSlug from 'rehype-slug';
 import remarkGfm from 'remark-gfm';
 
-import { MDXExternalLink } from '@/components/ui/mdx-external-link';
+import { MDXLink } from '@/components/ui/mdx-link';
 import { getContentBySlug } from '@/lib/get-content';
 import { getStaticParams } from '@/locales/server';
 import { BaseParams } from '@/types';
@@ -56,10 +58,16 @@ export default async function FaqPage({ params }: FaqPageProps) {
     description: string;
   }>({
     source: rawContent,
-    components: { a: MDXExternalLink, Link, Construction },
+    components: { a: MDXLink, Link, Construction },
     options: {
       parseFrontmatter: true,
-      mdxOptions: { remarkPlugins: [remarkGfm], rehypePlugins: [] },
+      mdxOptions: {
+        remarkPlugins: [remarkGfm],
+        rehypePlugins: [
+          rehypeSlug,
+          rehypeAutolinkHeadings.bind(null, { behavior: 'before' }),
+        ],
+      },
     },
   });
 
