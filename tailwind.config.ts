@@ -150,6 +150,15 @@ const config: Config = {
                 boxShadow: 'inset 0 0 0 #ffffff, inset 0 -1.25rem #27CDF6 ',
               },
             },
+            td: {
+              textAlign: 'center',
+            },
+            th: {
+              textAlign: 'center',
+            },
+            table: {
+              backgroundColor: '#dfdfdf',
+            },
           },
         },
       },
