@@ -75,6 +75,7 @@ const Hamburger = forwardRef<HamburgerRef, HamburgerProps>(
     return (
       <button
         ref={buttonRef}
+        type='button'
         onClick={onClick ? onClick : handleClick}
         className='relative z-[9990] ml-auto grid h-6 w-6 items-center md:hidden'
         {...props}

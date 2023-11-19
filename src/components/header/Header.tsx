@@ -22,7 +22,10 @@ export default async function Header({ className, ...props }: HeaderProps) {
   return (
     <header className={headerDefaultStyles} {...props}>
       <Link href={`/${locale}`} hrefLang={locale}>
-        <Logo className='text-sm' aria-label='logo' />
+        <span id='aria-logo' className='sr-only'>
+          logo
+        </span>
+        <Logo className='text-sm' aria-labelledby='aria-logo' />
       </Link>
       <I18nProviderClient locale={locale}>
         <Navigation />

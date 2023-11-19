@@ -150,6 +150,12 @@ const config: Config = {
                 boxShadow: 'inset 0 0 0 #ffffff, inset 0 -1.25rem #27CDF6 ',
               },
             },
+            thead: {
+              borderColor: '#93E6FB',
+            },
+            tr: {
+              borderColor: '#93E6FB',
+            },
             td: {
               textAlign: 'center',
             },
@@ -157,7 +163,7 @@ const config: Config = {
               textAlign: 'center',
             },
             table: {
-              backgroundColor: '#dfdfdf',
+              backgroundColor: '#E2F8FE',
             },
           },
         },
