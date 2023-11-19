@@ -153,6 +153,9 @@ const config: Config = {
             thead: {
               borderColor: '#93E6FB',
             },
+            tfoot: {
+              borderColor: '#93E6FB',
+            },
             tr: {
               borderColor: '#93E6FB',
             },

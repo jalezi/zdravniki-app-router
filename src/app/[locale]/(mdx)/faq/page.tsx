@@ -62,6 +62,7 @@ export default async function FaqPage({ params }: FaqPageProps) {
       parseFrontmatter: true,
       mdxOptions: {
         remarkPlugins,
+        // @ts-ignore
         rehypePlugins,
       },
     },

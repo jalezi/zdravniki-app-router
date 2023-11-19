@@ -62,6 +62,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
       parseFrontmatter: true,
       mdxOptions: {
         remarkPlugins,
+        // @ts-ignore
         rehypePlugins,
       },
     },
