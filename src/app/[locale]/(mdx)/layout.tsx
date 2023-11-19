@@ -6,8 +6,8 @@ export default function MdxLayout({ children }: { children: ReactNode }) {
   return (
     <>
       <div id='main-wrapper' className='relative z-40 bg-[#f4f8f8]'>
-        <main className=' mx-auto mb-24 max-w-3xl bg-white px-4 pb-8 shadow-md md:mt-6 md:px-0'>
-          <div className='prose prose-sm mx-auto py-4 prose-a:transition-all prose-a:duration-367 prose-li:marker:text-inherit'>
+        <main className='mx-auto mb-24 max-w-3xl  bg-white px-6 pb-8 shadow-md md:mt-6 md:px-0'>
+          <div className='prose prose-sm mx-auto py-4 prose-a:transition-all prose-a:duration-367 prose-li:marker:text-inherit '>
             {children}
           </div>
         </main>
