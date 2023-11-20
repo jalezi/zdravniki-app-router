@@ -6,9 +6,9 @@ import rehypeSlug from 'rehype-slug';
 import remarkGfm from 'remark-gfm';
 
 export const rehypePlugins = [
-  rehypeAutolinkHeadings,
-  rehypeExternalLinks,
   rehypeSlug,
+  rehypeAutolinkHeadings.bind(null, { behavior: 'prepend' }),
+  rehypeExternalLinks.bind(null, { target: '_blank', rel: 'nofollow' }),
   [
     rehypeRewrite,
     { rewrite: rewriteTable, selector: 'table' } as RehypeRewriteOptions,
