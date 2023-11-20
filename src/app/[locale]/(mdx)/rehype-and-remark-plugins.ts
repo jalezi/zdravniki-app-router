@@ -80,10 +80,7 @@ function rewriteTable(
       type: 'element',
       tagName: 'tr',
       properties: { colSpan: 2 },
-      children: [
-        thNode,
-        { type: 'element', tagName: 'tr', properties: {}, children: [] },
-      ],
+      children: [thNode],
     };
 
     const tfootNode: ElementContent = {
