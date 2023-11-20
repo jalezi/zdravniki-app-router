@@ -95,7 +95,10 @@
             ],
             "extends": [
                 "plugin:mdx/recommended"
-            ]
+            ],
+            "rules": {
+                "import/namespace": "off"
+            }
         }
     ]
 }
