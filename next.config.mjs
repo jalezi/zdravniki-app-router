@@ -1,5 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // https://nextjs.org/docs/app/api-reference/next-config-js/logging
+  logging: {
+    fetches: {
+      fullUrl: true,
+    },
+  },
   trailingSlash: true,
   webpack(config) {
     // Configures webpack to handle SVG files with SVGR. SVGR optimizes and transforms SVG files
