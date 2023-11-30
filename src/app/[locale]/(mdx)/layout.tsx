@@ -5,7 +5,7 @@ import { Footer } from '@/components/footer';
 export default function MdxLayout({ children }: { children: ReactNode }) {
   return (
     <>
-      <aside className='sticky left-0 top-12 z-50 bg-white md:top-16'>
+      <aside className='sticky left-0 top-12 z-[45] bg-white md:top-16'>
         Neki
       </aside>
       <div id='main-wrapper' className='relative z-40  bg-white  '>
