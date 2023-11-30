@@ -3,12 +3,14 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeExternalLinks from 'rehype-external-links';
 import rehypeRewrite, { type RehypeRewriteOptions } from 'rehype-rewrite';
 import rehypeSlug from 'rehype-slug';
+import rehypeToc from 'rehype-toc';
 import remarkGfm from 'remark-gfm';
 
 export const rehypePlugins = [
   rehypeSlug,
   rehypeAutolinkHeadings.bind(null, { behavior: 'prepend' }),
   rehypeExternalLinks.bind(null, { target: '_blank', rel: 'nofollow' }),
+  rehypeToc,
   [
     rehypeRewrite,
     { rewrite: rewriteTable, selector: 'table' } as RehypeRewriteOptions,

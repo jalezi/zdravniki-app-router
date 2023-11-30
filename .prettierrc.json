@@ -22,7 +22,15 @@
     ],
     "importOrderMergeDuplicateImports": true,
     "importOrderCombineTypeAndValueImports": true,
-    "mdx": {
-        "printWidth": "max-line_length"
-    }
+    "overrides": [
+        {
+            "files": "*.mdx",
+            "options": {
+                "proseWrap": "always",
+                "htmlWhitespaceSensitivity": "ignore",
+                "printWidth": 80,
+                "tabWidth": 2
+            }
+        }
+    ]
 }

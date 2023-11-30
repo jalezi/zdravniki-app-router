@@ -1,13 +1,17 @@
 import { HTMLAttributes, PropsWithChildren } from 'react';
 
+import { cva } from 'class-variance-authority';
+
 import { cn } from '@/lib/utils';
 
 export interface HeadingsProps
   extends HTMLAttributes<HTMLHeadingElement>,
     PropsWithChildren<{}> {}
 
+const headingVariants = cva('group/heading scroll-mt-[5rem] md:scroll-mt-24');
+
 export const H1 = ({ children, className, ...props }: HeadingsProps) => {
-  const styles = cn('group/heading scroll-mt-14 md:scroll-mt-16', className);
+  const styles = cn(headingVariants(), className);
   return (
     <h1 className={styles} {...props}>
       {children}
@@ -16,7 +20,7 @@ export const H1 = ({ children, className, ...props }: HeadingsProps) => {
 };
 
 export const H2 = ({ children, className, ...props }: HeadingsProps) => {
-  const styles = cn('group/heading scroll-mt-14 md:scroll-mt-16', className);
+  const styles = cn(headingVariants(), className);
   return (
     <h2 className={styles} {...props}>
       {children}
@@ -25,7 +29,7 @@ export const H2 = ({ children, className, ...props }: HeadingsProps) => {
 };
 
 export const H3 = ({ children, className, ...props }: HeadingsProps) => {
-  const styles = cn('group/heading scroll-mt-14 md:scroll-mt-16', className);
+  const styles = cn(headingVariants(), className);
   return (
     <h3 className={styles} {...props}>
       {children}
@@ -34,7 +38,7 @@ export const H3 = ({ children, className, ...props }: HeadingsProps) => {
 };
 
 export const H4 = ({ children, className, ...props }: HeadingsProps) => {
-  const styles = cn('group/heading scroll-mt-14 md:scroll-mt-16', className);
+  const styles = cn(headingVariants(), className);
   return (
     <h4 className={styles} {...props}>
       {children}
@@ -43,7 +47,7 @@ export const H4 = ({ children, className, ...props }: HeadingsProps) => {
 };
 
 export const H5 = ({ children, className, ...props }: HeadingsProps) => {
-  const styles = cn('group/heading scroll-mt-14 md:scroll-mt-16', className);
+  const styles = cn(headingVariants(), className);
   return (
     <h5 className={styles} {...props}>
       {children}
@@ -52,7 +56,7 @@ export const H5 = ({ children, className, ...props }: HeadingsProps) => {
 };
 
 export const H6 = ({ children, className, ...props }: HeadingsProps) => {
-  const styles = cn('group/heading scroll-mt-16 md:scroll-mt-18', className);
+  const styles = cn(headingVariants(), className);
   return (
     <h6 className={styles} {...props}>
       {children}
