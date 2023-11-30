@@ -1,5 +1,7 @@
 import { ReactNode } from 'react';
 
+import { AlertCircle } from 'lucide-react';
+
 import { Footer } from '@/components/footer';
 import { ScrollToTop } from '@/components/scroll-to-top';
 import { getScopedI18n } from '@/locales/server';
@@ -15,7 +17,8 @@ export default async function MdxLayout({ children }: { children: ReactNode }) {
       <div id='main-wrapper' className='relative z-40  bg-white  '>
         <main className='mx-auto mb-24 grid min-h-[calc(100svh-10rem)] max-w-3xl place-items-center px-6 pb-8  md:min-h-[calc(100svh-12rem)] md:px-0'>
           <div className='prose prose-sm mx-auto pb-4 prose-a:transition-all prose-a:duration-367 prose-li:marker:text-inherit '>
-            <p className='mb-7 bg-brand-50 px-4 py-2 font-semibold'>
+            <p className='mb-7 flex gap-2 bg-red-50 px-4 py-2 font-semibold'>
+              <AlertCircle />
               {t('emergencyInfo')}
             </p>
             {children}

@@ -127,7 +127,7 @@
 
   .icon.icon-link::before {
     @apply absolute -left-5 top-0  opacity-0 transition-opacity duration-367;
-    content: url(/assets/svg/icon-link.svg); /* tw class: content-[url(/assets/svg/icon-link.svg)] */
+    content: url(/assets/svg/hash.svg); /* tw class: content-[url(/assets/svg/icon-link.svg)] */
     @apply group-hover/heading:opacity-100; /* mdx headings have class group/heading */
     @apply fill-text-200 text-text-200;
   }
