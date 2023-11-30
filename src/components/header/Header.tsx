@@ -4,7 +4,6 @@ import Link from 'next/link';
 
 import { Logo } from '@/components/icons';
 import { cn } from '@/lib/utils';
-import { I18nProviderClient } from '@/locales/client';
 import { getCurrentLocale } from '@/locales/server';
 
 import { Navigation } from './navigation';
@@ -27,9 +26,7 @@ export default async function Header({ className, ...props }: HeaderProps) {
         </span>
         <Logo className='text-sm' aria-labelledby='aria-logo' />
       </Link>
-      <I18nProviderClient locale={locale}>
-        <Navigation />
-      </I18nProviderClient>
+      <Navigation />
     </header>
   );
 }

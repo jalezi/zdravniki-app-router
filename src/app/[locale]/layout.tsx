@@ -9,6 +9,7 @@ import { cx } from 'class-variance-authority';
 
 import { Header } from '@/components/header';
 import { getSiteUrl } from '@/lib';
+import { I18nProviderClient } from '@/locales/client';
 import { getCurrentLocale, getScopedI18n } from '@/locales/server';
 
 const fontSans = FontSans({
@@ -76,8 +77,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           fontSans.variable
         )}
       >
-        <Header />
-        {children}
+        <I18nProviderClient locale={locale}>
+          <Header />
+          {children}
+        </I18nProviderClient>
       </body>
     </html>
   );

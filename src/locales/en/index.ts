@@ -10,4 +10,5 @@ export default {
   seo,
   test: 'Hello, World!',
   timestamp,
+  scrollToTop: 'Scroll to top',
 } as const;

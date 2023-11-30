@@ -8,6 +8,7 @@ export default {
   mdx,
   navLinks,
   seo,
-  test: 'Hello, World!',
+  test: 'Pozdravljen, svet!',
   timestamp,
+  scrollToTop: 'Na vrh',
 } as const;

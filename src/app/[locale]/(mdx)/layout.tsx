@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 
 import { Footer } from '@/components/footer';
+import { ScrollToTop } from '@/components/scroll-to-top';
 import { getScopedI18n } from '@/locales/server';
 
 export default async function MdxLayout({ children }: { children: ReactNode }) {
@@ -27,6 +28,7 @@ export default async function MdxLayout({ children }: { children: ReactNode }) {
       >
         <Footer variant='mdx' />
       </div>
+      <ScrollToTop offset={300} />
     </>
   );
 }
