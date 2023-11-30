@@ -27,7 +27,7 @@
             "files": "*.mdx",
             "options": {
                 "proseWrap": "always",
-                "htmlWhitespaceSensitivity": "ignore",
+                "htmlWhitespaceSensitivity": "css",
                 "printWidth": 80,
                 "tabWidth": 2
             }

@@ -7,133 +7,144 @@ description: Pojasnila in pogosta vpršanja o projektu Zdravniki - Sledilnik
 
 ### Od kod pridobivate podatke?
 
-&ZeroWidthSpace;<abbr>ZZZS</abbr> redno javno objavlja [seznam zdravnikov](https://zavarovanec.zzzs.si/wps/portal/portali/azos/ioz/ioz_izvajalci),
-ki jih lahko izberemo za osebne zdravnike, s podatki o zasedenosti splošnih zdravnikov,
-pediatrov, ginekologov ter zobozdravnikov v javni zdravstveni mreži.
+&ZeroWidthSpace;<abbr>ZZZS</abbr> redno javno objavlja
+[seznam zdravnikov](https://zavarovanec.zzzs.si/wps/portal/portali/azos/ioz/ioz_izvajalci),
+ki jih lahko izberemo za osebne zdravnike, s podatki o zasedenosti splošnih
+zdravnikov, pediatrov, ginekologov ter zobozdravnikov v javni zdravstveni mreži.
 
-Podatke uredimo in pripravimo za strojno branje ter jih shranimo [v
-odložišče](https://github.com/sledilnik/zdravniki-data). Koordinate, ki jih
-lahko prikažemo na zemljevidu, pridobimo prek naslovov ustanov, ki jih nato
-s pomočjo [Registra prostorskih enot
-(RPE)](https://podatki.gov.si/dataset/register-prostorskih-enot), ki ga
-ureja <abbr>GURS</abbr>, pretvorimo v koordinate.
+Podatke uredimo in pripravimo za strojno branje ter jih shranimo
+[v odložišče](https://github.com/sledilnik/zdravniki-data). Koordinate, ki jih
+lahko prikažemo na zemljevidu, pridobimo prek naslovov ustanov, ki jih nato s
+pomočjo
+[Registra prostorskih enot (RPE)](https://podatki.gov.si/dataset/register-prostorskih-enot),
+ki ga ureja &ZeroWidthSpace;<abbr>GURS</abbr>, pretvorimo v koordinate.
 
 ### Kako ZZZS pridobi podatke?
 
 **Izvajalci zdravstvenih storitev (gl. spodaj) samostojno določijo**, kateri
 zdravniki (ki izpolnjujejo pogoje za izbranega osebnega zdravnika) bodo
-opravljali naloge izbranega osebnega zdravnika, in to z **obrazcem sporočijo <abbr>ZZZS</abbr>**.
+opravljali naloge izbranega osebnega zdravnika, in to z **obrazcem
+sporočijo&nbsp;&ZeroWidthSpace;<abbr>ZZZS</abbr>**.
 
 Izvajalci sami določijo – v okviru pogodbenega obsega zdravniških timov za
-posamezno dejavnost – obseg tima po posameznih zdravnikih, ki so izbrani
-osebni zdravniki. Na podlagi te informacije <abbr>ZZZS</abbr> uredi vnos v program,
-temu sledita avtomatska računalniška obdelava podatkov (ki ne omogoča ročnih posegov) in
-objava podatkov na spletu.
+posamezno dejavnost – obseg tima po posameznih zdravnikih, ki so izbrani osebni
+zdravniki. Na podlagi te informacije &ZeroWidthSpace;<abbr>ZZZS</abbr> uredi
+vnos v program, temu sledita avtomatska računalniška obdelava podatkov (ki ne
+omogoča ročnih posegov) in objava podatkov na spletu.
 
 Če zdravnik iz kakšnega koli razloga **ne more** opravljati dela v določenem
-minimalnem obsegu (npr. 0,2 tima ali 0,1 tima), ga lahko **izvajalec
-izvzame** iz tega dela, zavarovane osebe pa **obvesti, naj poiščejo novega
-osebnega zdravnika (verjetno v okviru iste enote)**. Če je zdravnik začasno
-odsoten **že dlje časa**, pa lahko – po presoji izvajalca – bodisi
-**zmanjšajo njegov obseg tima** in zavarovane osebe **postopoma preusmerjajo
-v druge ambulante** ali pa zadržijo prvotni obseg tima ob zagotovilu, da se
-v ambulanti opredeli zavarovane osebe vsaj do minimalnega obsega 0,1 tima. V
-obeh primerih pa se mora **zagotoviti ustrezno nadomeščanje odsotnega
-zdravnika** glede na ordinacijski čas. Izvajalci zdravstvenih storitev (gl.
-spodaj) samostojno določijo, kateri zdravniki (ki izpolnjujejo pogoje za
-izbranega osebnega zdravnika) bodo opravljali naloge izbranega osebnega
-zdravnika, in to z obrazcem sporočijo <abbr>ZZZS</abbr>.
+minimalnem obsegu (npr. 0,2 tima ali 0,1 tima), ga lahko **izvajalec izvzame**
+iz tega dela, zavarovane osebe pa **obvesti, naj poiščejo novega osebnega
+zdravnika (verjetno v okviru iste enote)**. Če je zdravnik začasno odsoten **že
+dlje časa**, pa lahko – po presoji izvajalca – bodisi **zmanjšajo njegov obseg
+tima** in zavarovane osebe **postopoma preusmerjajo v druge ambulante** ali pa
+zadržijo prvotni obseg tima ob zagotovilu, da se v ambulanti opredeli zavarovane
+osebe vsaj do minimalnega obsega 0,1 tima. V obeh primerih pa se mora
+**zagotoviti ustrezno nadomeščanje odsotnega zdravnika** glede na ordinacijski
+čas. Izvajalci zdravstvenih storitev (gl. spodaj) samostojno določijo, kateri
+zdravniki (ki izpolnjujejo pogoje za izbranega osebnega zdravnika) bodo
+opravljali naloge izbranega osebnega zdravnika, in to z obrazcem
+sporočijo&nbsp;<abbr>ZZZS</abbr>.
 
 ### Zakaj piše, da zdravnik sprejema, potem pa jih ne?
 
-Podatki o zasedenosti ambulant se **[ne posodabljajo sproti](https://zavarovanec.zzzs.si/wps/portal/portali/azos/ioz/ioz_izvajalci)**,
-ampak na 1 dan (torej ne vsakič, ko pride do spremembe),
-zato lahko pride do neskladja med objavljenimi podatki in ažurnim stanjem.
-Zdravnik je lahko v obdobju od objave do trenutka vaše poizvedbe že dosegel
-zahtevane [glavarinske količnike](#glavarinski-količnik),
-je na porodniški/bolniški ali pa v pokoju oz. pred upokojitvijo.
+Podatki o zasedenosti ambulant se
+**[ne posodabljajo sproti](https://zavarovanec.zzzs.si/wps/portal/portali/azos/ioz/ioz_izvajalci)**,
+ampak na 1 dan (torej ne vsakič, ko pride do spremembe), zato lahko pride do
+neskladja med objavljenimi podatki in ažurnim stanjem. Zdravnik je lahko v
+obdobju od objave do trenutka vaše poizvedbe že dosegel zahtevane
+[glavarinske količnike](#glavarinski-količnik), je na porodniški/bolniški ali pa
+v pokoju oz. pred upokojitvijo.
 
 ### Kaj se zgodi, ko je zdravnik začasno odsoten?
 
 Izvajalec je v takih primerih **dolžan urediti nadomeščanje** in zagotoviti
 nemoteno delovanje ambulante s pomočjo nadomestnega zdravnika. Za to je tudi
-**plačan s strani <abbr>ZZZS</abbr>**. Ambulanta **začasno odsotnega zdravnika**, ki še
-**ne dosega ustrezne obremenjenosti** [glavarinskih količnikov](#glavarinski-količnik),
-je zato prav tako **dolžna sprejemati nove izbire zavarovanih oseb** in **ne
-sme odklanjati** novih pacientov, dokler ne doseže **predpisane obremenjenosti**
-iz Splošnega dogovora (1895 glavarinskih količnikov).
+**plačan s strani &ZeroWidthSpace;<abbr>ZZZS</abbr>**. Ambulanta **začasno
+odsotnega zdravnika**, ki še **ne dosega ustrezne obremenjenosti**
+[glavarinskih količnikov](#glavarinski-količnik), je zato prav tako **dolžna
+sprejemati nove izbire zavarovanih oseb** in **ne sme odklanjati** novih
+pacientov, dokler ne doseže **predpisane obremenjenosti** iz Splošnega dogovora
+(1895 glavarinskih količnikov).
 
 ### Kaj pomeni »obseg zaposlitve« in prikaz odstokov pri posameznem zdravniku?
 
-Izvajalec (javni zavodi ali samostojni zdravnik) ima z **<abbr>ZZZS</abbr> sklenjeno
-pogodbe** o izvajanju določenih storitev, ki so razvrščene po [zdravstvenih
-dejavnostih.](https://www.zzzs.si/zzzs-api/izvajalci-zdravstvenih-storitev/po-dejavnosti/)
+Izvajalec (javni zavodi ali samostojni zdravnik) ima z **<abbr>ZZZS</abbr>
+sklenjeno pogodbe** o izvajanju določenih storitev, ki so razvrščene po
+[zdravstvenih dejavnostih.](https://www.zzzs.si/zzzs-api/izvajalci-zdravstvenih-storitev/po-dejavnosti/)
 Skladno s pogodbenim deležem storitev **prejeme izvajalec plačilo** za
-opravljene storitev s strani <abbr>ZZZS</abbr>.
+opravljene storitev s strani &ZeroWidthSpace;<abbr>ZZZS</abbr>.
 
-Odstotek (%), prikazan pri
-posameznem zdravniku, pomeni **delež zdravstvenih storitev**, ki ga **izvaja**
-prikazani izvajalec (npr. zdravnik družinske medicine, pediater ...) oziroma
-zdravniški tim.
+Odstotek (%), prikazan pri posameznem zdravniku, pomeni **delež zdravstvenih
+storitev**, ki ga **izvaja** prikazani izvajalec (npr. zdravnik družinske
+medicine, pediater ...) oziroma zdravniški tim.
 
-**Obseg zaposlitve** zdravnika večinoma ustreza deležu **pogodbenih zdravstvenih storitev**.
+**Obseg zaposlitve** zdravnika večinoma ustreza deležu **pogodbenih zdravstvenih
+storitev**.
 
-**Nekatere** skupine zdravnikov, na primer pediatri, izvajajo **kurativne in preventivne**
-zdravstvene storitve. Zato lahko pri pediatrih prikazani odstotek v iskalniku
-pomeni samo delež **kurativnih storitev**. Preostali delež zasedajo
-preventivne storitve, ki v iskalniku niso prikazane. Pri **ginekologih** pa
-gre še za dodatno specifiko področja, ko lahko tudi ginekologi na
-**sekundarnem in terciarnem** nivoju lahko opravljajo **primarno** dejavnost.
-V tem primeru se obsegi zaposlitve štejejo **drugače** in napisan % **ni**
-relevanten.
+**Nekatere** skupine zdravnikov, na primer pediatri, izvajajo **kurativne in
+preventivne** zdravstvene storitve. Zato lahko pri pediatrih prikazani odstotek
+v iskalniku pomeni samo delež **kurativnih storitev**. Preostali delež zasedajo
+preventivne storitve, ki v iskalniku niso prikazane. Pri **ginekologih** pa gre
+še za dodatno specifiko področja, ko lahko tudi ginekologi na **sekundarnem in
+terciarnem** nivoju lahko opravljajo **primarno** dejavnost. V tem primeru se
+obsegi zaposlitve štejejo **drugače** in napisan % **ni** relevanten.
 
-Posamezni izvajalci imajo lahko sklenjenih tudi **več
-pogodb**o izvajanju storitev skladno z razvrstitvijo po zdravstvenih
-dejavnostih <abbr>ZZZS</abbr>. Tako ima lahko določen izvajalec, na primer **zobozdravnik,
-sklenjeno pogodbo o izvajanju storitev za odraslo in mladinsko
+Posamezni izvajalci imajo lahko sklenjenih tudi **več pogodb**o izvajanju
+storitev skladno z razvrstitvijo po zdravstvenih dejavnostih&nbsp;
+&ZeroWidthSpace;<abbr>ZZZS</abbr>. Tako ima lahko določen izvajalec, na primer
+**zobozdravnik, sklenjeno pogodbo o izvajanju storitev za odraslo in mladinsko
 zobozdravstvo**.
 
 ### Kako je financirana ambulanta družinske medicine?
 
 Ambulante družinske medicine dobijo plačilo iz **treh virov** :
 
-1. **<abbr>ZZZS</abbr>**
-2. **Zasebna sredstva iz prostovoljnih zavarovanj** (zavarovalnice za dopolnilno oz. dodatno zavarovanje)
+1. **&ZeroWidthSpace;<abbr>ZZZS</abbr>**
+2. **Zasebna sredstva iz prostovoljnih zavarovanj** (zavarovalnice za dopolnilno
+   oz. dodatno zavarovanje)
 3. **Zasebna sredstva** (samoplačniki)
 
-Ambulante dohodek ustvarjajo z glavarino, pregledi oz. obiski, medicinskimi posegi in pavšalnim zneskom za dogovorjene programe.
-Obračun [glavarine](#glavarina) (oziroma seštevka glavarinskih količnikov) predstavlja približno polovico letnega
-prihodka ambulante. Zdravniki dobijo za vsako storitev določen količnik.
+Ambulante dohodek ustvarjajo z glavarino, pregledi oz. obiski, medicinskimi
+posegi in pavšalnim zneskom za dogovorjene programe. Obračun
+[glavarine](#glavarina) (oziroma seštevka glavarinskih količnikov) predstavlja
+približno polovico letnega prihodka ambulante. Zdravniki dobijo za vsako
+storitev določen količnik.
 
-[Vir](https://plus.si.cobiss.net/opac7/bib/ukm/262524160?lang=SLV): Švab, I., & Rotar-Pavlič, D. (Eds.). (2012). Družinska medicina : učbenik.
-Združenje zdravnikov družinske medicine (strani: 127-135)
+[Vir](https://plus.si.cobiss.net/opac7/bib/ukm/262524160?lang=SLV): Švab, I., &
+Rotar-Pavlič, D. (Eds.). (2012). Družinska medicina : učbenik. Združenje
+zdravnikov družinske medicine (strani: 127-135)
 
 ### Glavarina v ambulantah družinske medicine
 
-Glavarinski količnik predstavlja glavni del obremenitve [zdravstvenega tima](#zdravstveni-tim).
-Čeprav oznaka »glavarinski« nakazuje, da gre za obremenitev po glavi oziroma
-osebi, pa v ambulantah družinske medicine to ne drži. Tu je glavarinski količnik
-namreč odvisen od **starosti zavarovane osebe**. To pomeni, da ena opredeljena
-zavarovana oseba v sistemu nikoli ne pomeni »ene glave«, temveč več kot eno
-(recimo 3 pri najmlajših in najstarejših bolnikih, _gl. spodnjo razpredelnico_)
-ali manj kot eno (pri osebah med 7. in 49. letom starosti). Vrednost količnika
-na opredeljeno osebo namreč odraža **predvidevanje** o **pogostosti** in
-**zahtevnosti** določene obravnave. Zato je vrednost količnika za najstarejše in
-najmlajše bolnike večja od drugih, kar pomeni tudi, da je obremenitev družinskih
-zdravnikov največja pri najmlajših in najstarejših osebah.
+Glavarinski količnik predstavlja glavni del obremenitve
+[zdravstvenega tima](#zdravstveni-tim). Čeprav oznaka »glavarinski« nakazuje, da
+gre za obremenitev po glavi oziroma osebi, pa v ambulantah družinske medicine to
+ne drži. Tu je glavarinski količnik namreč odvisen od **starosti zavarovane
+osebe**. To pomeni, da ena opredeljena zavarovana oseba v sistemu nikoli ne
+pomeni »ene glave«, temveč več kot eno (recimo 3 pri najmlajših in najstarejših
+bolnikih, _gl. spodnjo razpredelnico_) ali manj kot eno (pri osebah med 7.
+in 49. letom starosti). Vrednost količnika na opredeljeno osebo namreč odraža
+**predvidevanje** o **pogostosti** in **zahtevnosti** določene obravnave. Zato
+je vrednost količnika za najstarejše in najmlajše bolnike večja od drugih, kar
+pomeni tudi, da je obremenitev družinskih zdravnikov največja pri najmlajših in
+najstarejših osebah.
 
-Glavarina v ambulanti družinske medicine tako ni nikoli enaka številu bolnikov, ki si izberejo
-določenega zdravnika. V ambulanti družinske medicine se [glavarina](#glavarina)
-oziroma [glavarinskih količnikov](#glavarinski-količnik)
-izračuna tako, da se število **opredeljenih** zavarovanih oseb **množi** s **količniki**, ki so
-odvisni od starosti zavarovanih oseb. Tako lahko na primer obremenitev 1895 [količnikov](#glavarinski-količnik)
-pomeni, da ima zdravnik 1500 opredeljenih bolnikov. Ko zdravnik doseže določeno mejo [količnikov](#glavarinski-količnik),
-lahko zavrne obravnavo novih bolnikov.
+Glavarina v ambulanti družinske medicine tako ni nikoli enaka številu bolnikov,
+ki si izberejo določenega zdravnika. V ambulanti družinske medicine se
+[glavarina](#glavarina) oziroma [glavarinskih količnikov](#glavarinski-količnik)
+izračuna tako, da se število **opredeljenih** zavarovanih oseb **množi** s
+**količniki**, ki so odvisni od starosti zavarovanih oseb. Tako lahko na primer
+obremenitev 1895 [količnikov](#glavarinski-količnik) pomeni, da ima zdravnik
+1500 opredeljenih bolnikov. Ko zdravnik doseže določeno mejo
+[količnikov](#glavarinski-količnik), lahko zavrne obravnavo novih bolnikov.
 
-Ker si **vsi** prebivalci še **niso** izbrali osebnega zdravnika, se količniki iz [glavarine](#glavarina)
-pri vsakem nosilcu **korigirajo navzgor**, tako da so **razporejeni vsi mogoči** [količniki](#glavarinski-količnik).
+Ker si **vsi** prebivalci še **niso** izbrali osebnega zdravnika, se količniki
+iz [glavarine](#glavarina) pri vsakem nosilcu **korigirajo navzgor**, tako da so
+**razporejeni vsi mogoči** [količniki](#glavarinski-količnik).
 
-Preglednica: Vpliv **starostne strukture** opredeljenih zavarovanih oseb na **dejansko vrednost količnika** za izračun glavarine.
+Preglednica: Vpliv **starostne strukture** opredeljenih zavarovanih oseb na
+**dejansko vrednost količnika** za izračun glavarine.
 
 | Starost (leta) | Količnik |
 | -------------- | -------- |
@@ -145,22 +156,31 @@ Preglednica: Vpliv **starostne strukture** opredeljenih zavarovanih oseb na **de
 | 65-74          | 2,2      |
 | 75 in več      | 3,0      |
 
-[Vir](https://plus.si.cobiss.net/opac7/bib/ukm/262524160?lang=SLV): Švab, I., & Rotar-Pavlič, D. (Eds.). (2012).
-Družinska medicina: učbenik. Združenje zdravnikov družinske medicine (strani: 127-135)
+[Vir](https://plus.si.cobiss.net/opac7/bib/ukm/262524160?lang=SLV): Švab, I., &
+Rotar-Pavlič, D. (Eds.). (2012). Družinska medicina: učbenik. Združenje
+zdravnikov družinske medicine (strani: 127-135)
 
 ### Glavarina v ginekološki ambulanti na primarni ravni
 
-Na osnovi števila **opredeljenih** zavarovanih **žensk** se na **enak** način kot
-v splošnih ambulantah izračunajo količniki za [glavarino](#glavarina) oziroma [glavarinski količnik](#glavarinski-količnik). Ker si **vse** ženske še **niso** izbrale osebnega ginekologa, se količniki iz
-glavarine pri vsakem nosilcu **popravijo navzgor**, tako da so razporejeni **vsi
-mogoči količniki**. Količniki iz glavarine še neopredeljenih žensk se razdelijo med
-ginekologe v odstotku količnikov iz dejansko opredeljenih žensk.
+Na osnovi števila **opredeljenih** zavarovanih **žensk** se na **enak** način
+kot v splošnih ambulantah izračunajo količniki za [glavarino](#glavarina)
+oziroma [glavarinski količnik](#glavarinski-količnik). Ker si **vse** ženske še
+**niso** izbrale osebnega ginekologa, se količniki iz glavarine pri vsakem
+nosilcu **popravijo navzgor**, tako da so razporejeni **vsi mogoči količniki**.
+Količniki iz glavarine še neopredeljenih žensk se razdelijo med ginekologe v
+odstotku količnikov iz dejansko opredeljenih žensk.
 
-Posamezni zdravnik za poln program ekipe v dejavnosti ginekologije na primarni ravni **ne more preseči 2925 količnikov iz glavarine mesečno**.
+Posamezni zdravnik za poln program ekipe v dejavnosti ginekologije na primarni
+ravni **ne more preseči 2925 količnikov iz glavarine mesečno**.
 
-Količniki se **nad navedeno mejo** plačajo le v primerih, ko je izvajalec na področju posamezne izpostave Zavoda **edini** izvajalec dejavnosti ali ko je na območju posamezne izpostave Zavoda **več izvajalcev** dejavnosti in **vsi za več kot 10 % presegajo povprečno število opredeljenih zavarovanih oseb v svoji dejavnosti (indeks nad 110)**.
+Količniki se **nad navedeno mejo** plačajo le v primerih, ko je izvajalec na
+področju posamezne izpostave Zavoda **edini** izvajalec dejavnosti ali ko je na
+območju posamezne izpostave Zavoda **več izvajalcev** dejavnosti in **vsi za več
+kot 10 % presegajo povprečno število opredeljenih zavarovanih oseb v svoji
+dejavnosti (indeks nad 110)**.
 
-Preglednica: Vpliv **starostne strukture** opredeljenih zavarovanih oseb na **dejansko vrednost količnika** za izračun glavarine.
+Preglednica: Vpliv **starostne strukture** opredeljenih zavarovanih oseb na
+**dejansko vrednost količnika** za izračun glavarine.
 
 | Starost (leta)       | Količnik |
 | -------------------- | -------- |
@@ -170,118 +190,140 @@ Preglednica: Vpliv **starostne strukture** opredeljenih zavarovanih oseb na **de
 | 65 in več            | 0,17     |
 | dodatek za nosečnice | 2,20     |
 
-[Vir](http://api.zzzs.si/ZZZS/info/egradiva.nsf/0/8b39572a03527fecc12585a0002c4d20/$FILE/2Spremembe_1del_10052010.doc): Dokument <abbr>ZZZS</abbr>
-(dokument se bo naložil na vaš računalnik, zato preverite privzeto mapo, npr. Prenosi/Downloads)
+[Vir](http://api.zzzs.si/ZZZS/info/egradiva.nsf/0/8b39572a03527fecc12585a0002c4d20/$FILE/2Spremembe_1del_10052010.doc):
+Dokument &ZeroWidthSpace;<abbr>ZZZS</abbr> (dokument se bo naložil na vaš
+računalnik, zato preverite privzeto mapo, npr. Prenosi/Downloads)
 
 ### Glavarina v pediatrični ambulanti na primarni ravni
 
-Otroci niso pomanjšani odrasli in zato zahtevajo drugačen pristop k oskrbi kot njihovi starši in
-starejši člani družbe.
+Otroci niso pomanjšani odrasli in zato zahtevajo drugačen pristop k oskrbi kot
+njihovi starši in starejši člani družbe.
 
-Pediatri poleg **kurativne opravljajo tudi preventivno službo** - težavo poskušajo odkriti,
-še preden se klinično izrazi, in tako izboljšajo možnosti za ozdravitev.
+Pediatri poleg **kurativne opravljajo tudi preventivno službo** - težavo
+poskušajo odkriti, še preden se klinično izrazi, in tako izboljšajo možnosti za
+ozdravitev.
 
-Primarna pediatrija je financirana po **dveh** kanalih - **ločeno** za **preventivo**, pri kateri
-so plačane vse storitve, in **kurativo**, ki je plačana iz glavarine in po storitvah. Razmerje
-idealnega pediatričnega programa med kurativo in preventivo je 75 : 25. Gre za razmerje
-ordinacijskega časa, ki ga posamezen pediater nameni kurativi oziroma preventivi.
+Primarna pediatrija je financirana po **dveh** kanalih - **ločeno** za
+**preventivo**, pri kateri so plačane vse storitve, in **kurativo**, ki je
+plačana iz glavarine in po storitvah. Razmerje idealnega pediatričnega programa
+med kurativo in preventivo je 75 : 25. Gre za razmerje ordinacijskega časa, ki
+ga posamezen pediater nameni kurativi oziroma preventivi.
 
-Zato so pri pediatrih v podatkih prikazani **samo kurativni deleži**. To pomeni, da je odstotek pri
-pediatru, ki opravi 0,75 delež kurativnega dela, prikazan kot 75 %. Prikazani odstotek tako ne
-pomeni, da je pediater 75-odstotno zaseden, ampak da **75 % svojega ordinacijskega časa nameni
-kurativi**. Zato ta odstotek tudi **ne označuje dejanskega obsega dela**, ki ga pediatri izvajajo.
+Zato so pri pediatrih v podatkih prikazani **samo kurativni deleži**. To pomeni,
+da je odstotek pri pediatru, ki opravi 0,75 delež kurativnega dela, prikazan kot
+75 %. Prikazani odstotek tako ne pomeni, da je pediater 75-odstotno zaseden,
+ampak da **75 % svojega ordinacijskega časa nameni kurativi**. Zato ta odstotek
+tudi **ne označuje dejanskega obsega dela**, ki ga pediatri izvajajo.
 
 ### Glavarina v zobozdravniški ambulanti
 
-**Količnik iz glavarine** je pri zobozdravniških ambulantah za **vse paciente vreden 1,0**
-(odraža realno število opredeljenih pacientov). Zobozdravniki sprejemajo zavarovane osebe do
-povprečnega števila opredeljenih oseb v svoji dejavnosti na območju enote <abbr>ZZZS</abbr>.
+**Količnik iz glavarine** je pri zobozdravniških ambulantah za **vse paciente
+vreden 1,0** (odraža realno število opredeljenih pacientov). Zobozdravniki
+sprejemajo zavarovane osebe do povprečnega števila opredeljenih oseb v svoji
+dejavnosti na območju enote &ZeroWidthSpace;<abbr>ZZZS</abbr>.
 
-Če je zobozdravstvena ambulanta **zasedena** z oskrbo že opredeljenih pacientov, bo novo opredeljeno
-osebo uvrstila na **čakalni seznam**. Zobozdravniška ambulanta lahko odkloni sprejem zavarovane
-osebe, ko za **10 % preseže povprečno število** opredeljenih oseb na zobozdravnika v svoji dejavnosti.
+Če je zobozdravstvena ambulanta **zasedena** z oskrbo že opredeljenih pacientov,
+bo novo opredeljeno osebo uvrstila na **čakalni seznam**. Zobozdravniška
+ambulanta lahko odkloni sprejem zavarovane osebe, ko za **10 % preseže povprečno
+število** opredeljenih oseb na zobozdravnika v svoji dejavnosti.
 
-[Vir](https://partner.zzzs.si/wps/portal/portali/aizv/zdravstvene_storitve/izbira_osebnega_zdravnika/sezn_akt_zob_za_odrasle_in_mladino/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziTQxdPd2N_Q08_f1MTAwcHcOAtGWAsYGZuX5BtqMiAAUjgQU!/): Dokument <abbr>ZZZS</abbr>
+[Vir](https://partner.zzzs.si/wps/portal/portali/aizv/zdravstvene_storitve/izbira_osebnega_zdravnika/sezn_akt_zob_za_odrasle_in_mladino/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziTQxdPd2N_Q08_f1MTAwcHcOAtGWAsYGZuX5BtqMiAAUjgQU!/):
+Dokument &ZeroWidthSpace;<abbr>ZZZS</abbr>
 
 ### Kaj je modra knjiga standardov?
 
-[Modra knjiga standardov](https://sindikatfides.si/sites/default/files/4521-Modra%20knjiga.pdf) je
-leta 2011 objavljen dokument, ki na enem mestu zbira standarde in normative, po katerih bi
-zdravstvo zdravniku omogočalo **dovolj časa za obravnavo**, bolniku pa **največjo mogočo stopnjo
-varnosti**. Dokument je nastal v sodelovanju Zdravniške zbornice Slovenije, Sindikata zdravnikov
-in zobozdravnikov Fides ter Slovenskega zdravniškega društva.
+[Modra knjiga standardov](https://sindikatfides.si/sites/default/files/4521-Modra%20knjiga.pdf)
+je leta 2011 objavljen dokument, ki na enem mestu zbira standarde in normative,
+po katerih bi zdravstvo zdravniku omogočalo **dovolj časa za obravnavo**,
+bolniku pa **največjo mogočo stopnjo varnosti**. Dokument je nastal v
+sodelovanju Zdravniške zbornice Slovenije, Sindikata zdravnikov in
+zobozdravnikov Fides ter Slovenskega zdravniškega društva.
 
-Med drugim za optimalno obravnavo pacienta predlaga maksimalni **[glavarinski količnik](#glavarinski-količnik) 1500** na
-primarni ravni.
+Med drugim za optimalno obravnavo pacienta predlaga maksimalni
+**[glavarinski količnik](#glavarinski-količnik) 1500** na primarni ravni.
 
 ### Navodila ZZZS izvajalcem/družinskim zdravnikom v primeru preseganja glavarinskega količnika (glavarine)
 
-Zavod je od Ministrstva za zdravje 4. 7. 2019 prejel naslednjo razlago izvajanja te določbe:
+Zavod je od Ministrstva za zdravje 4. 7. 2019 prejel naslednjo razlago izvajanja
+te določbe:
 
-- Obstoječi [zdravstveni timi ](#zdravstveni-tim) z **visoko glavarino nad 1895** [glavarinskih količnikov](#glavarinski-količnik)
-  na podlagi tega aneksa svojih opredeljenih zavarovanih oseb **ne bodo izpisovali**,
-  bodo pa svoje zavarovane osebe **spodbujali** k izbiri osebnega zdravnika v timih z **nižjo
+- Obstoječi [zdravstveni timi ](#zdravstveni-tim) z **visoko glavarino nad
+  1895** [glavarinskih količnikov](#glavarinski-količnik) na podlagi tega aneksa
+  svojih opredeljenih zavarovanih oseb **ne bodo izpisovali**, bodo pa svoje
+  zavarovane osebe **spodbujali** k izbiri osebnega zdravnika v timih z **nižjo
   glavarino**.
-- Opredeljevanje **novih zavarovanih oseb** so najprej dolžni izvajati vsi **timi**, ki **ne
-  dosegajo (za leto 2019) določenih 1895** [glavarinskih količnikov](#glavarinski-količnik), ter timi z **najmanjšim
-  številom** glavarinskih količnikov ali opredeljenih zavarovanih oseb v območni enoti.
-- Obstoječi timi, ki **presegajo dogovorjeni normativ** glavarinskih količnikov ali število
-  opredeljenih zavarovanih oseb za leto 2019, izvajajo zdravstvene storitve **do 130 %** doseganja
-  v **rednem ordinacijskem** času. Pri preseganju meje 130 % se sorazmerno **podaljša tudi
-  ordinacijski čas**.
+- Opredeljevanje **novih zavarovanih oseb** so najprej dolžni izvajati vsi
+  **timi**, ki **ne dosegajo (za leto 2019) določenih 1895**
+  [glavarinskih količnikov](#glavarinski-količnik), ter timi z **najmanjšim
+  številom** glavarinskih količnikov ali opredeljenih zavarovanih oseb v območni
+  enoti.
+- Obstoječi timi, ki **presegajo dogovorjeni normativ** glavarinskih količnikov
+  ali število opredeljenih zavarovanih oseb za leto 2019, izvajajo zdravstvene
+  storitve **do 130 %** doseganja v **rednem ordinacijskem** času. Pri
+  preseganju meje 130 % se sorazmerno **podaljša tudi ordinacijski čas**.
 
 ### Kdo so izvajalci?
 
-Izvajalci so **fizične** (samostojni zdravniki in zobozdravniki) ali **pravne osebe**
-(podjetja in zavodi), ki izvajajo zdravstvene storitve. Izvajalci imajo **sklenjene pogodbe o
-izvajanju zdravstvenih storitev z <abbr>ZZZS</abbr>**.
+Izvajalci so **fizične** (samostojni zdravniki in zobozdravniki) ali **pravne
+osebe** (podjetja in zavodi), ki izvajajo zdravstvene storitve. Izvajalci imajo
+**sklenjene pogodbe o izvajanju zdravstvenih storitev z&nbsp;
+&ZeroWidthSpace;<abbr>ZZZS</abbr>**.
 
-Posamezni izvajalec ima lahko zaposlenega **enega zdravnika ali več**. Zdravstvene storitve pri
-izvajalcih opravljajo tudi **pogodbeni** zdravniki in zobozdravniki.
-Zdravstvene storitve, ki jih izvajajo izvajalci, so delno ali v celoti krite iz obveznega
-zdravstvenega zavarovanja v skladu s [Pravili <abbr>ZZZS</abbr>](https://www.zzzs.si/?id=126&detail=5580D0555F5A1FEAC1256CFB003BB45C).
+Posamezni izvajalec ima lahko zaposlenega **enega zdravnika ali več**.
+Zdravstvene storitve pri izvajalcih opravljajo tudi **pogodbeni** zdravniki in
+zobozdravniki. Zdravstvene storitve, ki jih izvajajo izvajalci, so delno ali v
+celoti krite iz obveznega zdravstvenega zavarovanja v skladu s
+[Pravili &ZeroWidthSpace;<abbr>ZZZS</abbr>](https://www.zzzs.si/?id=126&detail=5580D0555F5A1FEAC1256CFB003BB45C).
 
 Izvajalci so:
 
 - javni zavodi (zdravstveni dom, bolnišnica, socialni zavod)
 - podjetja in zasebni zavodi
-- samostojni zdravniki in zobozdravniki (družinski zdravnik, pediater, zobozdravnik, ginekolog in drugi zdravniki specialisti)
+- samostojni zdravniki in zobozdravniki (družinski zdravnik, pediater,
+  zobozdravnik, ginekolog in drugi zdravniki specialisti)
 
-[Vir](https://www.zzzs.si/zzzs-api/izvajalci-zdravstvenih-storitev/po-vrsti-izvajalcev/): <abbr>ZZZS</abbr>
+[Vir](https://www.zzzs.si/zzzs-api/izvajalci-zdravstvenih-storitev/po-vrsti-izvajalcev/):&nbsp;
+&ZeroWidthSpace;<abbr>ZZZS</abbr>
 
 ### Zakaj je naslov ambulante na napačni lokaciji?
 
-Ambulanta izvajalca zdravstvenih storitev je povzeta po **evidenci <abbr>ZZZS</abbr>**, ki beleži **le sedež**
-ustanove, za katero izvajalec dela. Zato se nekateri prikazani naslovi **ne ujemajo** s pravo
-lokacijo izvajalca, saj lahko **ambulanta deluje na drugem** naslovu od tistega, na katerem je
-izvajalec uradno vpisan.
+Ambulanta izvajalca zdravstvenih storitev je povzeta po
+**evidenci&nbsp;<abbr>ZZZS</abbr>**, ki beleži **le sedež** ustanove, za katero
+izvajalec dela. Zato se nekateri prikazani naslovi **ne ujemajo** s pravo
+lokacijo izvajalca, saj lahko **ambulanta deluje na drugem** naslovu od tistega,
+na katerem je izvajalec uradno vpisan.
 
 ### Koliko popravkov ste že izdali?
 
-Statistiko lahko spremljate na [našem repozitoriju Github.](https://github.com/sledilnik/zdravniki-data/tree/main/csv)
+Statistiko lahko spremljate na
+[našem repozitoriju Github.](https://github.com/sledilnik/zdravniki-data/tree/main/csv)
 
 ### Zakaj nimajo zdravniki in zdravnice v imeniku napisanih polnih nazivov?
 
-Na spletni strani so pripisana imena zdravnic in zdravnikov brez pripadajočih nazivov, za katere so
-morali trdo delati, da jih pridobijo. Tega ta trenutek ne pripisujemo zaradi
-**tehničnih omejitev podatkov**, s katerimi imamo opravka. Vseeno je prav, da se
-zavedamo, da gre za visoko izobražen kader, ki je moral opraviti dolgo šolanje,
-da lahko skrbi za pacienta. Tako so strokovni nazivi za zdravnike po
+Na spletni strani so pripisana imena zdravnic in zdravnikov brez pripadajočih
+nazivov, za katere so morali trdo delati, da jih pridobijo. Tega ta trenutek ne
+pripisujemo zaradi **tehničnih omejitev podatkov**, s katerimi imamo opravka.
+Vseeno je prav, da se zavedamo, da gre za visoko izobražen kader, ki je moral
+opraviti dolgo šolanje, da lahko skrbi za pacienta. Tako so strokovni nazivi za
+zdravnike po
 [zakonu o strokovnih nazivih](http://pisrs.si/Pis.web/pregledPredpisa?id=ZAKO4294):
 
 - končan študijski program medicine: doktor oziroma doktorica medicine in
-- končan študijski program dentalne medicine: doktor oziroma doktorica dentalne medicine.
+- končan študijski program dentalne medicine: doktor oziroma doktorica dentalne
+  medicine.
 
-Hkrati so zdravniki morali opraviti tudi [specializacije](https://www.zdravniskazbornica.si/karierni-razvoj/specializacije/seznam-specializacij),
+Hkrati so zdravniki morali opraviti tudi
+[specializacije](https://www.zdravniskazbornica.si/karierni-razvoj/specializacije/seznam-specializacij),
 ki so odvisne od področja, na katerem obratujejo.
 
-Po končani izobrazbi na medicinski fakulteti se lahko zdravnik odloči tudi za raziskovanje,
-pri čemer pridobiva naziv doktor znanosti in nato ostale akademske nazive.
+Po končani izobrazbi na medicinski fakulteti se lahko zdravnik odloči tudi za
+raziskovanje, pri čemer pridobiva naziv doktor znanosti in nato ostale akademske
+nazive.
 
 Za popolni naziv izbranega zdravnika lahko obiščete stran
 [Zdravniške zbornice Slovenije](https://www.zdravniskazbornica.si/informacije-publikacije-in-analize/javni-iskalnik-zdravnikov-in-zobozdravnikov),
-ki omogoča iskanje po priimkih in preverite, kakšen je poln naziv iskanega zdravnika.
-Za raziskovalno dejavnost pa se lahko obrnete na
+ki omogoča iskanje po priimkih in preverite, kakšen je poln naziv iskanega
+zdravnika. Za raziskovalno dejavnost pa se lahko obrnete na
 [informacijski sistem](https://www.sicris.si/public/jqm/cris.aspx?lang=slv&opdescr=home&opt=1)
 o raziskovalni dejavnosti v Sloveniji.
 
@@ -289,10 +331,12 @@ o raziskovalni dejavnosti v Sloveniji.
 
 1.  [Izbira](https://e-uprava.gov.si/podrocja/sociala-zdravje-smrt/zdravje/sociala-osebni-zdravnik.html)
     osebnega splošnega zdravnika, ginekologa in zobozdravnika
-2.  Moj osebni zdravnik: [izbira in menjava osebnega zdravnika](https://www.cakalnedobe.si/nasvet/moj-osebni-zdravnik-izbira-in-menjava-osebnega-zdravnika/)
-3.  [Javna mreža <abbr>PZD</abbr> v RS](https://www.gov.si/assets/ministrstva/MZ/DOKUMENTI/Organizacija-zdravstvenega-varstva/Javna-mreza-primarne-zdravstvene-dejavnosti-v-Republiki-Sloveniji.pdf)
+2.  Moj osebni zdravnik:
+    [izbira in menjava osebnega zdravnika](https://www.cakalnedobe.si/nasvet/moj-osebni-zdravnik-izbira-in-menjava-osebnega-zdravnika/)
+3.  [Javna mreža &ZeroWidthSpace;<abbr>PZD</abbr> v RS](https://www.gov.si/assets/ministrstva/MZ/DOKUMENTI/Organizacija-zdravstvenega-varstva/Javna-mreza-primarne-zdravstvene-dejavnosti-v-Republiki-Sloveniji.pdf)
 4.  [Prebivalstvo Slovenije (Statistični urad RS)](https://www.stat.si/StatWeb/Field/Index/17)
-5.  [Health Systems in Transition](https://www.euro.who.int/__data/assets/pdf_file/0018/312147/HiT-Slovenia_rev3.pdf): Slovenia (Vol. 18 No. 3 2016)
+5.  [Health Systems in Transition](https://www.euro.who.int/__data/assets/pdf_file/0018/312147/HiT-Slovenia_rev3.pdf):
+    Slovenia (Vol. 18 No. 3 2016)
 
 ### Kaj se zgodi, ko predlagam popravek?
 
@@ -307,69 +351,106 @@ prostovoljec v svojem prostem času in presodi za kakšno napako v podatkih gre.
 Nato podatek iz uradne evidence povozimo s točnejšim podatkom iz terena.
 
 Ko je podatek ponovno napačen, uporabnik spet javi napako in cikel se ponovi.
-Uporabnik je lahko kdorkoli, pacient, medicinska sestra, zdravnik, administrator.
-Vloge sporočevalca ne razlikujemo.
+Uporabnik je lahko kdorkoli, pacient, medicinska sestra, zdravnik,
+administrator. Vloge sporočevalca ne razlikujemo.
 
 ### Kaj so ambulante za boljšo dostopnost do izbranega osebnega zdravnika v splošnih ambulantah in dispanzerjih za otroke in šolarje?
 
-Seznam ambulant za neopredeljene na [spletni strani <abbr>MZ</abbr>](https://www.gov.si/teme/mreza-javne-zdravstvene-sluzbe/#Ambulante%20za%20neopredeljene%20zavarovane%20osebe)
-je daljši od dejanskih ambulant za neopredeljene na terenu, ki ga pridobimo od <abbr>ZZZS</abbr>
-([vir](https://zavarovanec.zzzs.si/wps/portal/portali/azos/ioz/ioz_izvajalci)), saj je <abbr>MZ</abbr> določilo
-koliko je maksimalni program, ki ga bodo dodatno financirali. Vsak zdravstveni dom se je nato glede
-na potrebe (nekateri še imajo zdravnike, ki sprejemajo in teh ambulant ne potrebujejo) in
-zmožnosti (nekateri ne morejo zagotoviti dodatnih ambulantnih timov) odločil ali ambulanta v <abbr>ZD</abbr>
-dejansko bo. Tako <abbr>ZZZS</abbr> prikazuje ambulante, ki imajo vsaj 1 opredeljeno osebo in ta seznam
-prikazujemo tudi mi.
+Seznam ambulant za neopredeljene na
+[spletni strani &ZeroWidthSpace;<abbr>MZ</abbr>](https://www.gov.si/teme/mreza-javne-zdravstvene-sluzbe/#Ambulante%20za%20neopredeljene%20zavarovane%20osebe)
+je daljši od dejanskih ambulant za neopredeljene na terenu, ki ga pridobimo od
+&nbsp;<abbr>ZZZS</abbr>
+([vir](https://zavarovanec.zzzs.si/wps/portal/portali/azos/ioz/ioz_izvajalci)),
+saj je &ZeroWidthSpace;<abbr>MZ</abbr> določilo koliko je maksimalni program, ki
+ga bodo dodatno financirali. Vsak zdravstveni dom se je nato glede na potrebe
+(nekateri še imajo zdravnike, ki sprejemajo in teh ambulant ne potrebujejo) in
+zmožnosti (nekateri ne morejo zagotoviti dodatnih ambulantnih timov) odločil ali
+ambulanta v &ZeroWidthSpace;<abbr>ZD</abbr> dejansko bo. Tako&nbsp;
+&ZeroWidthSpace;<abbr>ZZZS</abbr> prikazuje ambulante, ki imajo vsaj 1
+opredeljeno osebo in ta seznam prikazujemo tudi mi.
 
 ### Katere vrste ambulant imajo družinski zdravniki?
 
-Ambulante družinske medicine so zaradi naslavljanja pomanjkanja programov ambulant razdeljene na 3 vrste.
+Ambulante družinske medicine so zaradi naslavljanja pomanjkanja programov
+ambulant razdeljene na 3 vrste.
 
 1. Ambulante v sklopu splošnega dogovora
-2. Ambulante v sklopu programa za boljšo dostopnost [<abbr>ZZZS</abbr>](https://partner.zzzs.si/wps/portal/portali/aizv/zdravstvene_storitve/izbira_osebnega_zdravnika/seznam_zdr_v_spl_amb_otr_in_sol_dispan/)
-3. Ambulante za neopredeljene v sklopu [<abbr>MZ</abbr>](https://www.gov.si/teme/mreza-javne-zdravstvene-sluzbe/#Ambulante%20za%20neopredeljene%20zavarovane%20osebe)
+2. Ambulante v sklopu programa za boljšo dostopnost&nbsp;
+   [&ZeroWidthSpace;<abbr>ZZZS</abbr>](https://partner.zzzs.si/wps/portal/portali/aizv/zdravstvene_storitve/izbira_osebnega_zdravnika/seznam_zdr_v_spl_amb_otr_in_sol_dispan/)
+3. Ambulante za neopredeljene v sklopu&nbsp;
+   [&ZeroWidthSpace;<abbr>MZ</abbr>](https://www.gov.si/teme/mreza-javne-zdravstvene-sluzbe/#Ambulante%20za%20neopredeljene%20zavarovane%20osebe)
 
 ### Zakaj sta seznama ambulant za neopredeljene in ZD različna?
 
-V letu 2022 se postopno ustanavljajo ambulante za boljšo dostopnost do izbranega osebnega zdravnika
-v splošnih ambulantah in dispanzerjih za otroke in šolarje, v katerih si izbranega osebnega
-zdravnika lahko izberejo zavarovane osebe, ki v dejavnosti splošne ambulante (302 001) in
-dispanzerju za otroke in šolarje (327 009) nimajo izbranega osebnega zdravnika
-(sploh nimajo veljavne izbire, ali je izbrani osebni zdravnik trajno odsoten).
+V letu 2022 se postopno ustanavljajo ambulante za boljšo dostopnost do izbranega
+osebnega zdravnika v splošnih ambulantah in dispanzerjih za otroke in šolarje, v
+katerih si izbranega osebnega zdravnika lahko izberejo zavarovane osebe, ki v
+dejavnosti splošne ambulante (302 001) in dispanzerju za otroke in šolarje
+(327 009) nimajo izbranega osebnega zdravnika (sploh nimajo veljavne izbire, ali
+je izbrani osebni zdravnik trajno odsoten).
 
-[Vir](https://partner.zzzs.si/wps/portal/portali/aizv/zdravstvene_storitve/izbira_osebnega_zdravnika/seznam_zdr_v_spl_amb_otr_in_sol_dispan/): ZZZS.
+[Vir](https://partner.zzzs.si/wps/portal/portali/aizv/zdravstvene_storitve/izbira_osebnega_zdravnika/seznam_zdr_v_spl_amb_otr_in_sol_dispan/):
+&nbsp;<abbr>ZZZS</abbr>.
 
 ## Slovar izrazov
 
+<dl>
+  <dt>
+
 ### Glavarina
+
+  </dt>
+  <dd>
 
 Število oseb, ki je določenega zdravnika **izbralo za osebnega zdravnika** in
 predstavlja približno polovico prihodka. Na podlagi **števila opredeljenih
 zavarovanih** oseb, ki se ugotavlja **štirikrat** letno (28. februarja, 31.
 maja, 31. avgusta in 30. novembra), se izračunajo količniki za glavarino.
 
+  </dd>
+  <dt>
+
 ### Glavarinski količnik
 
-Glavarina, **popravljena glede na starost pacientov** oz. vrednost
-zavarovane osebe pri izpolnjevanju glavarinske kvote (gl. zgornje opise
-glavarin v ambulantah družinske medicine, pediatrije in ginekologije).
+  </dt>
+  <dd>
 
-Na primer: zavarovana oseba, stara **66 let**, pri končnemu seštevku
-glavarine nima vrednosti **1, pač pa 2,2**.
+Glavarina, **popravljena glede na starost pacientov** oz. vrednost zavarovane
+osebe pri izpolnjevanju glavarinske kvote (gl. zgornje opise glavarin v
+ambulantah družinske medicine, pediatrije in ginekologije).
 
-Podobne glavarinske sisteme, temelječe na starostnih razredih, spolu in
-občasno še na nekaterih drugih spremenljivkah, uporabljajo v **več evropskih
-državah** (Angliji, na Nizozemskem, v Belgiji, na Danskem, Švedskem,
-Norveškem ipd).
+Na primer: zavarovana oseba, stara **66 let**, pri končnemu seštevku glavarine
+nima vrednosti **1, pač pa 2,2**.
+
+Podobne glavarinske sisteme, temelječe na starostnih razredih, spolu in občasno
+še na nekaterih drugih spremenljivkah, uporabljajo v **več evropskih državah**
+(Angliji, na Nizozemskem, v Belgiji, na Danskem, Švedskem, Norveškem ipd).
+
+  </dd>
+  <dt>
 
 ### Glavarinska kvota
 
-**Maksimalni glavarinski količnik**, določen s strani <abbr>ZZZS</abbr>, pri katerem
-**lahko zdravniki primarnega nivoja odklonijo** sprejem zavarovane osebe.
+  </dt>
+  <dd>
+
+**Maksimalni glavarinski količnik**, določen s strani&nbsp;<abbr>ZZZS</abbr>,
+pri katerem **lahko zdravniki primarnega nivoja odklonijo** sprejem zavarovane
+osebe.
+
+  </dd>
+  <dt>
 
 ### Zdravstveni tim
+
+  </dt>
+  <dd>
 
 Zdravstveni tim predstavlja **najnižjo organizacijsko enoto** v sistemu, torej
 ekipo ljudi, ki so **nujno potrebni**, da se lahko **izvaja ambulantna
 dejavnost**. Tim ponavadi sestavljata **zdravnik specialist in diplomirana
 medicinska sestra**.
+
+  </dd>
+
+</dl>

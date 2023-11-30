@@ -168,6 +168,16 @@ const config: Config = {
             table: {
               backgroundColor: '#E2F8FE',
             },
+            dd: {
+              paddingLeft: '0',
+            },
+          },
+        },
+        sm: {
+          css: {
+            dd: {
+              paddingLeft: '0',
+            },
           },
         },
       },
