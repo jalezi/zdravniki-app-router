@@ -144,7 +144,7 @@ const config: Config = {
           css: {
             a: {
               boxShadow: 'inset 0 0 0 #ffffff, inset 0 -0.25rem #27CDF6 ',
-              whiteSpace: 'nowrap',
+              whiteSpace: 'nowrap', // todo should reconsider this
               textDecoration: 'none',
               '&:hover': {
                 boxShadow: 'inset 0 0 0 #ffffff, inset 0 -1.25rem #27CDF6 ',
