@@ -28,7 +28,7 @@ const Links = forwardRef<HTMLDivElement, LinksProps>(
 
     return (
       <nav ref={ref} className={cn('nav-main', isMenuOpen ? 'open' : '')}>
-        <h2 className={heading}>{t('menu')}</h2>
+        <span className={heading}>{t('menu')}</span>
         <ul className='nav-links-main'>
           <li>
             <NavLink
