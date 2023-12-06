@@ -9,10 +9,12 @@ export const rehypePlugins = [
   rehypeSlug,
   rehypeAutolinkHeadings.bind(null, { behavior: 'prepend' }),
   rehypeExternalLinks.bind(null, { target: '_blank', rel: 'nofollow' }),
-  [
-    rehypeRewrite,
-    { rewrite: rewriteTable, selector: 'table' } as RehypeRewriteOptions,
-  ],
+
+  // @ts-ignore
+  rehypeRewrite.bind(null, {
+    rewrite: rewriteTable,
+    selector: 'table',
+  } as RehypeRewriteOptions),
 ];
 
 export const remarkPlugins = [remarkGfm];
