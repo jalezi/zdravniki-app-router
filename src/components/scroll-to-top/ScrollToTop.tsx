@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils';
 import { useI18n } from '@/locales/client';
 
 const buttonVariants = cva(
-  'fixed -right-24 bottom-8 z-[50] transition-all duration-367 w-9 aspect-square rounded-full grid place-items-center bg-brand-300 hover:bg-brand-500 '
+  'fixed -right-24 bottom-8 z-[45] transition-all duration-367 w-12 aspect-square rounded-full grid place-items-center bg-brand-300 hover:bg-brand-500 '
 );
 
 const ScrollToTop = ({
