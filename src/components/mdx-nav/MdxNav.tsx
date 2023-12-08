@@ -80,7 +80,7 @@ const MdxNav = () => {
 
   return (
     <NavigationMenu.Root
-      className='relative z-[9999] flex justify-center bg-brand-50 text-sm child:grow'
+      className='relative  flex justify-center bg-brand-50 text-sm child:grow'
       orientation='vertical'
       aria-label='Content Navigation'
     >
