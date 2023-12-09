@@ -15,9 +15,9 @@
 
 @layer components {
   /* PAGE WRAPPER */
-  .mdx-page-wrapper {
+  /* .mdx-page-wrapper {
     @apply relative z-40 mb-20 grid;
-    grid-template-columns: 300px 1fr;
+    grid-template-columns: auto 1fr;
     grid-template-rows: auto 1fr auto;
     grid-auto-columns: minmax((0, fr));
     grid-auto-rows: 1fr;
@@ -29,27 +29,27 @@
 
   @media screen and (min-width: theme('screens.md')) {
     .mdx-page-wrapper {
-      grid-template-columns: 270px 1fr;
+      grid-template-columns: 190px 1fr;
       grid-template-rows: auto 1fr;
       grid-template-areas:
         'aside main'
         'aside main';
     }
-  }
+  } */
 
   /* ASIDE */
-  .mdx-aside-wrapper {
-    @apply sticky left-0 right-0 top-12 bg-white;
+  /* .mdx-aside-wrapper {
+    @apply sticky left-0 right-0 top-12 z-10 bg-white;
     @apply md:relative md:inset-0 md:mb-1 md:min-h-[calc(100svh-64px)];
     grid-area: aside;
-  }
+  } */
 
   /* MAIN*/
-  .mdx-main-wrapper {
+  /* .mdx-main-wrapper {
     @apply mb-2 bg-white;
     @apply md:mb-1;
     grid-area: main;
-  }
+  } */
 
   /* .mdx-main-wrapper div {
     & section,

@@ -9,11 +9,11 @@ import { cn } from '@/lib/utils';
 import { getScopedI18n } from '@/locales/server';
 
 const footerVariants = cva(
-  'footer bg-[#f4f8f8] text-xs flex items-center  w-full px-4 py-4 md:px-0',
+  'footer bg-[#f4f8f8] text-xs flex items-center  w-full px-4 py-4 md:px-0 border-b border-t border-dashed border-text-200 border-b-transparent',
   {
     variants: {
       variant: {
-        mdx: ' ',
+        mdx: 'max-h-[6rem]',
         list: '',
       },
     },
