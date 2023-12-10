@@ -13,6 +13,7 @@ import { FocusOn } from 'react-focus-on';
 import { Hamburger, HamburgerRef } from '@/components/header/hamburger';
 import { Overlay } from '@/components/ui/overlay';
 import { useEscapeKey } from '@/lib/hooks';
+import { useIsSidebarStore } from '@/lib/store';
 
 import Links from './Links';
 
@@ -24,6 +25,7 @@ const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(
     hamburgerRef.current?.isMenuOpen
   );
+  const { setIsOpen: setIsSidebarOpen } = useIsSidebarStore();
 
   const closeMenu = useCallback(() => {
     setIsMenuOpen(false);
@@ -37,8 +39,9 @@ const Nav = () => {
     if (window.innerWidth <= MEDIUM_BREAKPOINT) {
       return;
     }
+    setIsSidebarOpen(false);
     closeMenu();
-  }, [closeMenu]);
+  }, [closeMenu, setIsSidebarOpen]);
 
   // close menu on resize if on desktop
   useEffect(() => {
@@ -51,6 +54,7 @@ const Nav = () => {
         [...links].forEach(link => {
           link.removeAttribute('tabindex');
         });
+      setIsSidebarOpen(false);
       setIsMenuOpen(false);
       hamburgerRef.current?.closeMenu();
     };
@@ -60,7 +64,7 @@ const Nav = () => {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, []);
+  }, [setIsSidebarOpen]);
 
   const handleHamburgerClick = () => {
     hamburgerRef.current?.toggleMenu();

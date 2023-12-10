@@ -4,28 +4,25 @@ import { cva } from 'class-variance-authority';
 
 import { cn } from '@/lib/utils';
 
-const overlayVariants = cva(
-  'fixed z-40 transparent transition-all duration-650',
-  {
-    variants: {
-      variant: {
-        visible: 'bg-text-900/75 delay-367 z-40 md:delay-0 left-0 right-0',
-        hidden: 'transparent ',
-      },
-      from: {
-        right: 'left-[100%] right-0',
-        left: 'left-0 right-[100%]',
-      },
-      inset: {
-        menu: 'top-0 bottom-0',
-        sidebar: 'top-20 bottom-0',
-      },
+const overlayVariants = cva('fixed transparent transition-all duration-650', {
+  variants: {
+    variant: {
+      visible: 'bg-text-900/75 delay-367 z-40 md:delay-0 left-0 right-0',
+      hidden: '',
     },
-    defaultVariants: {
-      variant: 'hidden',
+    from: {
+      right: 'left-[100%] right-0',
+      left: 'left-0 right-[100%]',
     },
-  }
-);
+    inset: {
+      menu: 'top-0 bottom-0',
+      sidebar: 'top-20 bottom-0',
+    },
+  },
+  defaultVariants: {
+    variant: 'hidden',
+  },
+});
 
 export interface OverlayProps extends HTMLAttributes<HTMLDivElement> {
   isVisible: true | undefined;
