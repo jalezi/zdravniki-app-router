@@ -69,7 +69,7 @@ const Nav = () => {
 
   return (
     <>
-      <Overlay isVisible={isMenuOpen ? true : undefined} />
+      <Overlay isVisible={isMenuOpen ? true : undefined} inset='menu' />
       <FocusOn
         enabled={!!isMenuOpen}
         onEscapeKey={closeMenu}
