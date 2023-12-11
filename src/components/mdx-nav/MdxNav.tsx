@@ -93,7 +93,7 @@ const MdxNav = () => {
               className='transition-transform duration-367 ease-in group-data-[state=open]:-rotate-180'
             />
           </NavigationMenu.Trigger>
-          <NavigationMenu.Content className='max-h-[calc(100svh-10rem)] w-full overflow-auto '>
+          <NavigationMenu.Content className='max-h-[calc(100dvh-10rem)] w-full overflow-auto '>
             <ul className=' relative flex grow flex-col px-2 py-2'>
               {headingsData.map(headingData => (
                 <MdxHeading key={headingData.id} headingData={headingData} />

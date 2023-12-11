@@ -10,11 +10,11 @@ import { cn } from '@/lib/utils';
 import { Overlay } from '../ui/overlay';
 
 const overlayVariants = cva(
-  'fixed z-[41] bg-white transition-all duration-650 overflow-auto',
+  'fixed z-[41] bg-white transition-all duration-650  h-[calc(100dvh-5.5rem)] overflow-auto ',
   {
     variants: {
       device: {
-        mobile: 'left-0 right-[35%] overflow-auto',
+        mobile: 'left-0 right-[35%] ',
         md: undefined,
         lg: undefined,
       },
@@ -72,6 +72,9 @@ export default function Sidebar({
         )}
         {...props}
       >
+        <header className=''>
+          <h2 className='mx-2 mt-2 font-semibold'>Kazalo</h2>
+        </header>
         {children}
       </aside>
       {isForMobile ? (

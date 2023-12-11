@@ -19,7 +19,7 @@ export default async function Header({ className, ...props }: HeaderProps) {
   );
 
   return (
-    <header className={headerDefaultStyles} {...props}>
+    <header id='top-header' className={headerDefaultStyles} {...props}>
       <Link href={`/${locale}`} hrefLang={locale}>
         <span id='aria-logo' className='sr-only'>
           logo

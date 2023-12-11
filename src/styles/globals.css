@@ -11,6 +11,14 @@
   a {
     @apply focus-visible:outline-offset-2;
   }
+
+  details > summary {
+    list-style: none;
+  }
+
+  details summary::-webkit-details-marker {
+    display: none;
+  }
 }
 
 @layer components {
@@ -58,6 +66,14 @@
       animation-timeline: view();
     }
   } */
+
+  /* SIDEBAR  TOC*/
+  @supports (animation-timeline: view()) {
+    .mdx-scroll-fade-in-out {
+      @apply animate-fadeInLinear;
+      animation-timeline: view();
+    }
+  }
 
   /* FOOTER */
   .footer-wrapper {

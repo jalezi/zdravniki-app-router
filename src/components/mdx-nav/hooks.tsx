@@ -117,3 +117,43 @@ export const useHeadings = (
 
   return headingsMap.get('root')?.children;
 };
+
+export const useActiveHeading = () => {
+  const [activeHeading, setActiveHeading] = useState<
+    Element | null | undefined
+  >(undefined);
+
+  useEffect(() => {
+    const headings = Array.from(
+      document.querySelectorAll('h2, h3')
+    ) as HTMLElement[];
+
+    let activeHeading: HTMLElement | null = null;
+    for (const heading of headings) {
+      const { top, bottom } = heading.getBoundingClientRect();
+      if (top <= 184 && bottom <= 212) {
+        activeHeading = heading;
+      }
+    }
+
+    setActiveHeading(activeHeading);
+
+    const scrollHandler = () => {
+      let activeHeading: HTMLElement | null = null;
+      for (const heading of headings) {
+        const { top, bottom } = heading.getBoundingClientRect();
+        if (top <= 184 && bottom <= 212) {
+          activeHeading = heading;
+        }
+      }
+      setActiveHeading(activeHeading);
+    };
+
+    document.addEventListener('scroll', scrollHandler);
+    return () => {
+      document?.removeEventListener('scroll', scrollHandler);
+    };
+  }, []);
+
+  return activeHeading;
+};

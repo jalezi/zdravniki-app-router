@@ -30,7 +30,8 @@ const Nav = () => {
   const closeMenu = useCallback(() => {
     setIsMenuOpen(false);
     hamburgerRef.current?.closeMenu();
-  }, []);
+    setIsSidebarOpen(false);
+  }, [setIsSidebarOpen]);
 
   useEscapeKey(closeMenu);
 

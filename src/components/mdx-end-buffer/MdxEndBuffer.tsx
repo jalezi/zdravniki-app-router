@@ -26,10 +26,12 @@ const MdxEndBuffer = () => {
     const header = document.getElementById('top-header');
     const actions = document.getElementById('toc-actions-wrapper');
     const footer = document.getElementById('footer-wrapper');
+    const main = document.querySelector('main');
 
     const headerHeight = header?.clientHeight ?? 0;
     const actionsHeight = actions?.clientHeight ?? 0;
     const footerHeight = footer?.clientHeight ?? 0;
+    const mainHeight = main?.clientHeight ?? 0;
 
     const mainVieportHeight = viewportHeight - headerHeight - actionsHeight;
 
@@ -37,6 +39,11 @@ const MdxEndBuffer = () => {
     const remSize = parseInt(
       getComputedStyle(document.documentElement).fontSize
     );
+
+    if (mainHeight <= mainVieportHeight) {
+      ref.current?.style.setProperty('height', '0px');
+      return;
+    }
 
     if (lastElement?.clientHeight ?? 0 + footerHeight < mainVieportHeight) {
       ref.current?.style.setProperty(
