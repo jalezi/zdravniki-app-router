@@ -9,7 +9,9 @@ export default async function EmergencyInfo() {
       <span className=''>
         <AlertCircle className=' ' />
       </span>
-      <p className='text-sm'>{t('emergencyInfo')}</p>
+      <p className='text-sm'>
+        <a href='tel:112'>{t('emergencyInfo')}</a>
+      </p>
     </div>
   );
 }
