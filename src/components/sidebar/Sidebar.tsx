@@ -15,8 +15,8 @@ const overlayVariants = cva(
     variants: {
       device: {
         mobile: 'left-0 right-[35%] ',
-        md: undefined,
-        lg: undefined,
+        md: 'mdx-aside-grid md:block sticky top-24 mt-8 md:h-[calc(100dvh-6rem)]',
+        lg: 'mdx-aside-grid',
       },
       from: {
         right: 'left-[100%] right-0',
@@ -27,6 +27,7 @@ const overlayVariants = cva(
         sidebar: 'top-20 bottom-0',
       },
       hiddenOn: {
+        default: 'hidden',
         sm: 'sm:hidden',
         md: 'md:hidden',
       },
@@ -39,9 +40,9 @@ export interface SidebarProps
   extends PropsWithChildren<{}>,
     HTMLAttributes<HTMLDivElement> {
   device: 'mobile' | 'md' | 'lg';
-  from?: 'left' | 'right';
-  inset: 'sidebar';
-  hiddenOn: 'sm' | 'md';
+  from?: 'left' | 'right' | 'none';
+  inset?: 'sidebar';
+  hiddenOn?: 'sm' | 'md' | 'default';
 }
 
 export default function Sidebar({
@@ -73,7 +74,7 @@ export default function Sidebar({
         {...props}
       >
         <header className=''>
-          <h2 className='mx-2 mt-2 font-semibold'>Kazalo</h2>
+          <h2 className='mx-2 mt-2 font-semibold '>Kazalo</h2>
         </header>
         {children}
       </aside>
@@ -81,7 +82,7 @@ export default function Sidebar({
         <Overlay
           isVisible={isOpen ? true : undefined}
           from='left'
-          inset={inset}
+          inset={inset ?? 'sidebar'}
           className='z-40'
         />
       ) : (

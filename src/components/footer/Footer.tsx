@@ -2,11 +2,10 @@ import { HTMLAttributes } from 'react';
 
 import { VariantProps, cva } from 'class-variance-authority';
 
-import { LongDate } from '@/components/long-date';
-import { DOCTORS_TS_URL } from '@/lib/constants/url';
-import { getTimestamp } from '@/lib/get-timestamp';
 import { cn } from '@/lib/utils';
 import { getScopedI18n } from '@/locales/server';
+
+import Timestamp from '../timestamp/Timestamp';
 
 const footerVariants = cva(
   'footer bg-[#f4f8f8] text-xs flex items-center  w-full px-4 py-4 md:px-0 border-b border-t border-dashed border-text-200 border-b-transparent',
@@ -32,9 +31,7 @@ export default async function Footer({
   variant,
   ...props
 }: FooterProps) {
-  const timestamp = await getTimestamp(DOCTORS_TS_URL);
   const tFooter = await getScopedI18n('footer');
-  const tTimestamp = await getScopedI18n('timestamp');
 
   return (
     <footer className={cn(footerVariants({ variant, className }))} {...props}>
@@ -58,17 +55,7 @@ export default async function Footer({
             <abbr title={tFooter('gurs')}>GURS</abbr>
           </a>
         </p>
-        <p className='not-prose'>
-          {tFooter('lastChange')}:{' '}
-          <strong>
-            <LongDate
-              timestamp={timestamp.data}
-              timeDesignator={tTimestamp('at')}
-              noData={tTimestamp('noData')}
-              className='whitespace-nowrap'
-            />
-          </strong>
-        </p>
+        <Timestamp />
         <p className='not-prose'>
           © 2021-
           {new Date().getFullYear()} <strong>Sledilnik.org</strong>

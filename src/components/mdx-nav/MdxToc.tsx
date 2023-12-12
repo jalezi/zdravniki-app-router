@@ -81,7 +81,7 @@ export default function MdxToc() {
   return (
     <nav
       aria-label='Table Of Content'
-      className='relative   flex-col overflow-y-visible  py-4 text-sm'
+      className='relative   flex-col overflow-y-visible  py-4 text-sm '
     >
       <ul className='mx-2 flex flex-col gap-1'>
         {headingsData.map(headingsData => (
