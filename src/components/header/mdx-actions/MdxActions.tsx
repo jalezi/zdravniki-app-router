@@ -12,11 +12,11 @@ export default function MdxActions({ children }: { children?: ReactNode }) {
   const { toggle, isOpen } = useIsSidebarStore();
 
   return (
-    <div className='mx-auto -ml-2 flex max-w-7xl items-center px-4 child:text-sm'>
+    <div className='mx-auto -ml-2 flex h-8 max-w-7xl items-center px-4 child:text-sm md:ml-auto'>
       <div className='mr-auto flex items-center'>
         <button
           onClick={() => toggle()}
-          className='px-2 py-1 md:invisible'
+          className='px-2 py-1 md:hidden'
           aria-label='Expand Sidebar'
         >
           <PanelLeftOpen
@@ -27,15 +27,8 @@ export default function MdxActions({ children }: { children?: ReactNode }) {
             )}
           />
         </button>
-        <button
-          onClick={() => toggle()}
-          className='px-2 py-1 md:hidden'
-          aria-label='Expand Sidebar'
-        >
-          Kazalo &gt;
-        </button>
       </div>
-      <div className='ml-auto '>{children}</div>
+      <div className='ml-auto md:ml-0'>{children}</div>
     </div>
   );
 }

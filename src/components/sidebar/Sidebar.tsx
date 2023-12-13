@@ -15,7 +15,7 @@ const overlayVariants = cva(
     variants: {
       device: {
         mobile: 'left-0 right-[35%] ',
-        md: 'mdx-aside-grid md:block sticky top-24 mt-8 md:h-[calc(100dvh-6rem)]',
+        md: 'mdx-aside-grid md:block sticky top-24 mt-8 md:min-h-[calc(100dvh-10.25rem)] max-h-[calc(100dvh-6.25rem)] ',
         lg: 'mdx-aside-grid',
       },
       from: {

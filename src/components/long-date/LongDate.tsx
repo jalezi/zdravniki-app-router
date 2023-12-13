@@ -11,7 +11,7 @@ const LOCALE_MAP = {
 
 export interface LongDateProps extends HTMLAttributes<HTMLTimeElement> {
   timestamp: number | string | null;
-  timeDesignator?: string;
+  formatOptions: Intl.DateTimeFormatOptions['dateStyle'];
   noData?: string;
 }
 
@@ -22,13 +22,13 @@ export interface LongDateProps extends HTMLAttributes<HTMLTimeElement> {
  *
  * @param {Object} props - The properties passed to the function.
  * @param {number|string|null} props.timestamp - The timestamp to format in seconds. Can be a number, a string, or null.
- * @param {string} props.timeDesignator - The time designator to use.
+ * @param {Intl.DateTimeFormatOptions['dateStyle']} props.formatOptions - The format options for the date and time string.
  * @param {string} props.noData - The localized 'noData' string to return if the timestamp is null.
  * @returns {string | JSX.Element} A time element with the formatted date and time string.
  */
 export default async function LongDate({
   timestamp,
-  timeDesignator,
+  formatOptions,
   noData,
   className,
   ...props
@@ -45,25 +45,24 @@ export default async function LongDate({
   const localeDate = new Date(tsMilliseconds);
 
   const date = localeDate.toLocaleString(dateLocale, {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
+    dateStyle: formatOptions,
+    timeStyle: formatOptions,
   });
 
-  const time = localeDate.toLocaleString(dateLocale, {
-    hour: 'numeric',
-    minute: 'numeric',
-    hour12: false,
-  });
+  let i = date.lastIndexOf(':');
+  let dateTrimmedToMinutes = date.substring(0, i);
 
+  if (formatOptions === 'full') {
+    i = dateTrimmedToMinutes.lastIndexOf(':');
+    dateTrimmedToMinutes = dateTrimmedToMinutes.substring(0, i);
+  }
   const dateTime = localeDate.toLocaleString(dateLocale);
 
   const styles = cn(className);
 
   return (
     <time className={styles} dateTime={dateTime} {...props}>
-      {date} {timeDesignator} {time}
+      {dateTrimmedToMinutes}
     </time>
   );
 }

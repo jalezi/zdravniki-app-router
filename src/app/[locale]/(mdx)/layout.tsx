@@ -13,10 +13,10 @@ export default async function MdxLayout({ children }: { children: ReactNode }) {
     <>
       <div
         id='toc-actions-wrapper'
-        className='fixed left-0 right-0 top-12 z-40   min-h-[2rem]  bg-brand-50  md:top-16'
+        className='fixed left-0 top-12 z-40 min-h-[2rem]   w-full  bg-brand-50  md:top-16'
       >
         <MdxActions>
-          <Timestamp />
+          <Timestamp variant='mdx-actions' />
         </MdxActions>
       </div>
       <Sidebar device='mobile' inset='sidebar' from='left' hiddenOn='md'>
@@ -24,12 +24,12 @@ export default async function MdxLayout({ children }: { children: ReactNode }) {
       </Sidebar>
       <div
         id='mdx-page-wrapper'
-        className='mdx-page-wrapper-grid relative z-[35] mx-auto max-w-7xl bg-white'
+        className='mdx-page-wrapper-grid relative z-[35] mx-auto min-h-[calc(100dvh-8.25rem)] max-w-7xl bg-white md:min-h-[calc(100dvh-11.25rem)]'
       >
         <Sidebar device='md' from='none' hiddenOn='default'>
           <MdxToc />
         </Sidebar>
-        <main className='mdx-main-grid mx-2 mt-8 pt-4 md:mx-0 md:mr-2'>
+        <main className='mdx-main-grid mt-8 px-2 pt-4 md:mx-0 md:mr-2'>
           <div className='prose mx-auto mb-8 xl:hidden'>
             <EmergencyInfo />
           </div>

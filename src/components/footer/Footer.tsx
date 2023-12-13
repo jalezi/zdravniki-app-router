@@ -55,7 +55,7 @@ export default async function Footer({
             <abbr title={tFooter('gurs')}>GURS</abbr>
           </a>
         </p>
-        <Timestamp />
+        <Timestamp variant='footer' />
         <p className='not-prose'>
           © 2021-
           {new Date().getFullYear()} <strong>Sledilnik.org</strong>
