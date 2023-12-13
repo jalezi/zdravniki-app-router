@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 import { getCurrentLocale } from '@/locales/server';
 
 const LOCALE_MAP = {
-  en: 'en-US',
+  en: 'en-UK',
   sl: 'sl-SL',
   it: 'it-IT',
 } as const;
@@ -52,7 +52,7 @@ export default async function LongDate({
   let i = date.lastIndexOf(':');
   let dateTrimmedToMinutes = date.substring(0, i);
 
-  if (formatOptions === 'full') {
+  if (formatOptions === 'full' && locale !== 'sl') {
     i = dateTrimmedToMinutes.lastIndexOf(':');
     dateTrimmedToMinutes = dateTrimmedToMinutes.substring(0, i);
   }
