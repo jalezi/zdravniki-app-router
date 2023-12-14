@@ -8,7 +8,7 @@ export interface HeadingsProps
   extends HTMLAttributes<HTMLHeadingElement>,
     PropsWithChildren<{}> {}
 
-const headingVariants = cva('group/heading scroll-mt-24 md:scroll-mt-28');
+const headingVariants = cva('group/heading scroll-mt-48 md:scroll-mt-32');
 
 export const H1 = ({ children, className, ...props }: HeadingsProps) => {
   const styles = cn(headingVariants(), className);

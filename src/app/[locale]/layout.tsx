@@ -73,7 +73,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang={locale}>
       <body
         className={cx(
-          'min-h-[100svh] scroll-smooth bg-white font-sans text-text-500 antialiased',
+          'scroll-smooth bg-white font-sans text-text-500 antialiased',
           fontSans.variable
         )}
       >

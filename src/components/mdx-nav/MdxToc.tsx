@@ -27,10 +27,16 @@ const TocLink = ({ href, children }: NavigationLinkProps) => {
 
   const styles = cn(
     'inline-flex w-full border-l-2 border-text-100 py-2 pl-4 pr-2',
-    isActive && 'border-brand-600 bg-brand-200/30'
+    isActive && 'border-brand-600 bg-brand-600/10'
   );
+
   return (
-    <a href={href} className={styles} onClick={() => setIsOpen(false)}>
+    <a
+      href={href}
+      className={styles}
+      onClick={() => setIsOpen(false)}
+      data-state={isActive ? 'active' : 'inactive'}
+    >
       {children}
     </a>
   );
@@ -39,7 +45,7 @@ const TocLink = ({ href, children }: NavigationLinkProps) => {
 const TocGroup = ({ headingData }: { headingData: IMdxHeading }) => {
   if (headingData.hasChildren()) {
     return (
-      <li className=''>
+      <li>
         <details className='group/details' open>
           <summary className='cursor-pointer  bg-text-50 px-2 '>
             <div className=' mdx-scroll-fade-in-out  flex items-center'>

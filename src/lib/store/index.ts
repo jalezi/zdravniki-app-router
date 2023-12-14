@@ -1,1 +1,1 @@
-export { useIsSidebarStore } from './sidebar';
+export { useSidebarStore as useIsSidebarStore } from './sidebar';

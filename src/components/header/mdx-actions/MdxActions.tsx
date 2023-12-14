@@ -12,8 +12,8 @@ export default function MdxActions({ children }: { children?: ReactNode }) {
   const { toggle, isOpen } = useIsSidebarStore();
 
   return (
-    <div className='mx-auto -ml-2 flex h-8 max-w-7xl items-center px-4 child:text-sm md:ml-auto'>
-      <div className='mr-auto flex items-center'>
+    <div className='mx-auto flex h-8 max-w-7xl items-center  child:text-sm'>
+      <div className='-ml-2 mr-auto flex items-center md:hidden'>
         <button
           onClick={() => toggle()}
           className='px-2 py-1 md:hidden'

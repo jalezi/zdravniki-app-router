@@ -9,13 +9,13 @@ import { cn } from '@/lib/utils';
 
 import { Overlay } from '../ui/overlay';
 
-const overlayVariants = cva(
-  'fixed z-[41] bg-white transition-all duration-650  h-[calc(100dvh-5.5rem)] overflow-auto ',
+const sidebarVariants = cva(
+  'fixed z-[41] bg-white transition-all duration-650  max-h-[calc(100dvh-5rem)] md:max-h-[calc(100dvh-6rem)] overflow-auto ',
   {
     variants: {
       device: {
         mobile: 'left-0 right-[35%] ',
-        md: 'mdx-aside-grid md:block sticky top-24 mt-8 md:min-h-[calc(100dvh-10.25rem)] max-h-[calc(100dvh-6.25rem)] ',
+        md: 'mdx-aside-grid md:block sticky top-24 py-10  md:max-h-[calc(100dvh-6rem) bg-inherit]  ',
         lg: 'mdx-aside-grid',
       },
       from: {
@@ -28,7 +28,7 @@ const overlayVariants = cva(
       },
       hiddenOn: {
         default: 'hidden',
-        sm: 'sm:hidden',
+
         md: 'md:hidden',
       },
     },
@@ -42,7 +42,7 @@ export interface SidebarProps
   device: 'mobile' | 'md' | 'lg';
   from?: 'left' | 'right' | 'none';
   inset?: 'sidebar';
-  hiddenOn?: 'sm' | 'md' | 'default';
+  hiddenOn?: 'md' | 'default';
 }
 
 export default function Sidebar({
@@ -63,7 +63,7 @@ export default function Sidebar({
     <>
       <aside
         className={cn(
-          overlayVariants({
+          sidebarVariants({
             device: _device,
             from: isOpen ? undefined : from ?? 'right',
             inset,
@@ -73,9 +73,6 @@ export default function Sidebar({
         )}
         {...props}
       >
-        <header className=''>
-          <h2 className='mx-2 mt-2 font-semibold '>Kazalo</h2>
-        </header>
         {children}
       </aside>
       {isForMobile ? (

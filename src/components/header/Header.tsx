@@ -15,13 +15,13 @@ export default async function Header({ className, ...props }: HeaderProps) {
 
   const headerDefaultStyles = cn(
     className,
-    ' flex h-12 items-center mx-auto max-w-7xl  bg-brand-500 px-4 dark:bg-brand-500 md:h-16 isolate'
+    ' flex h-12 items-center mx-auto max-w-7xl  bg-brand-500  dark:bg-brand-500 md:h-16 isolate'
   );
 
   return (
     <div
       id='header-wrapper'
-      className='sticky left-0 top-0 z-50 bg-brand-500  '
+      className='fixed left-0 top-0 z-50 w-full bg-brand-500 px-4  '
     >
       <header id='top-header' className={headerDefaultStyles} {...props}>
         <Link href={`/${locale}`} hrefLang={locale}>

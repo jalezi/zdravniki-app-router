@@ -23,25 +23,30 @@
 
 @layer components {
   /* PAGE WRAPPER */
-  .mdx-page-wrapper-grid {
+  .mdx-main-wrapper-grid {
     display: grid;
     grid-auto-columns: minmax((0, fr));
     grid-auto-rows: 1fr;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
+    grid-template-rows: auto;
     gap: 0;
     grid-template-areas: 'main';
   }
 
   @media screen and (min-width: theme('screens.md')) {
-    .mdx-page-wrapper-grid {
+    .mdx-main-wrapper-grid {
       grid-template-columns: 16rem 1fr;
       gap: 0px 1em;
       grid-template-areas: 'aside main';
     }
   }
+  @media screen and (min-width: theme('screens.lg')) {
+    .mdx-main-wrapper-grid {
+      grid-template-columns: 20rem 1fr;
+    }
+  }
   @media screen and (min-width: theme('screens.xl')) {
-    .mdx-page-wrapper-grid {
+    .mdx-main-wrapper-grid {
       grid-template-columns: 20rem 1fr 20rem;
       grid-template-areas: 'aside main info';
     }
@@ -71,8 +76,6 @@
   }
 
   /* FOOTER */
-  .footer-wrapper {
-  }
 
   .footer {
     @apply relative;

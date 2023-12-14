@@ -118,6 +118,9 @@ export const useHeadings = (
   return headingsMap.get('root')?.children;
 };
 
+const TOP = 328;
+const BOTTOM = 360;
+
 export const useActiveHeading = () => {
   const [activeHeading, setActiveHeading] = useState<
     Element | null | undefined
@@ -131,7 +134,7 @@ export const useActiveHeading = () => {
     let activeHeading: HTMLElement | null = null;
     for (const heading of headings) {
       const { top, bottom } = heading.getBoundingClientRect();
-      if (top <= 184 && bottom <= 212) {
+      if (top <= TOP && bottom <= BOTTOM) {
         activeHeading = heading;
       }
     }
@@ -142,7 +145,7 @@ export const useActiveHeading = () => {
       let activeHeading: HTMLElement | null = null;
       for (const heading of headings) {
         const { top, bottom } = heading.getBoundingClientRect();
-        if (top <= 184 && bottom <= 212) {
+        if (top <= TOP && bottom <= 360) {
           activeHeading = heading;
         }
       }

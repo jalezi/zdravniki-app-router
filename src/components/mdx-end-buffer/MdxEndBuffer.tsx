@@ -25,7 +25,7 @@ const MdxEndBuffer = () => {
     const viewportHeight = window.innerHeight;
     const header = document.getElementById('top-header');
     const actions = document.getElementById('toc-actions-wrapper');
-    const footer = document.getElementById('footer-wrapper');
+    const footer = document.getElementById('footer');
     const main = document.querySelector('main');
 
     const headerHeight = header?.clientHeight ?? 0;
@@ -33,9 +33,9 @@ const MdxEndBuffer = () => {
     const footerHeight = footer?.clientHeight ?? 0;
     const mainHeight = main?.clientHeight ?? 0;
 
-    const mainVieportHeight = viewportHeight - headerHeight - actionsHeight;
+    const mainVieportHeight =
+      viewportHeight - headerHeight - actionsHeight - footerHeight;
 
-    // get document rem size
     const remSize = parseInt(
       getComputedStyle(document.documentElement).fontSize
     );
@@ -49,10 +49,7 @@ const MdxEndBuffer = () => {
       ref.current?.style.setProperty(
         'height',
         `${
-          mainVieportHeight -
-          footerHeight -
-          (lastElement?.clientHeight ?? 0) -
-          6.8 * remSize // todo need to figure out what elements, margins, etc is included in this calculation
+          mainVieportHeight - (lastElement?.clientHeight ?? 0) - 16 * remSize // todo need to figure out what elements, margins, etc is included in this calculation
         }px`
       );
     }
