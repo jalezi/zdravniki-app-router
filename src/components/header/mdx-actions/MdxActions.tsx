@@ -1,18 +1,20 @@
 'use client';
 
-import { ReactNode } from 'react';
+import { HTMLAttributes, PropsWithChildren } from 'react';
 
 import { PanelLeftOpen } from 'lucide-react';
 
 import { useIsSidebarStore } from '@/lib/store';
 import { cn } from '@/lib/utils';
 
-export interface MdxActionsProps {}
-export default function MdxActions({ children }: { children?: ReactNode }) {
+export interface MdxActionsProps
+  extends HTMLAttributes<HTMLDivElement>,
+    PropsWithChildren {}
+export default function MdxActions({ children }: MdxActionsProps) {
   const { toggle, isOpen } = useIsSidebarStore();
 
   return (
-    <div className='mx-auto flex h-8 max-w-7xl items-center  child:text-sm'>
+    <aside className='mx-auto flex h-8 max-w-7xl items-center  child:text-sm'>
       <div className='-ml-2 mr-auto flex items-center md:hidden'>
         <button
           onClick={() => toggle()}
@@ -29,6 +31,6 @@ export default function MdxActions({ children }: { children?: ReactNode }) {
         </button>
       </div>
       <div className='ml-auto md:ml-0'>{children}</div>
-    </div>
+    </aside>
   );
 }

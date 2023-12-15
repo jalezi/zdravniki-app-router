@@ -26,6 +26,7 @@ export default async function MdxLayout({ children }: { children: ReactNode }) {
           inset='sidebar'
           from='left'
           hiddenOn='md'
+          title='Table of Contents'
         >
           <header className='mt-8 xl:mt-0'>
             <h2 className='mx-2 mt-2 font-semibold '>{t('toc')}</h2>
@@ -45,7 +46,9 @@ export default async function MdxLayout({ children }: { children: ReactNode }) {
               from='none'
               hiddenOn='default'
             >
-              <EmergencyInfo className='xl:hidden' />
+              <div className='px-2'>
+                <EmergencyInfo className='xl:hidden' />
+              </div>
               <header className='mt-8 xl:mt-0'>
                 <h2 className='mx-2 mt-2 font-semibold '>{t('toc')}</h2>
               </header>
