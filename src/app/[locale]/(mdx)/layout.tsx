@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
 import { EmergencyInfo } from '@/components/emergency-info';
-import { Footer } from '@/components/footer';
+import MdxFooter from '@/components/footer/MdxFooter';
 import { MdxActions } from '@/components/header/mdx-actions';
 import { MdxEndBuffer } from '@/components/mdx-end-buffer';
 import { MdxToc } from '@/components/mdx-nav';
@@ -62,7 +62,7 @@ export default async function MdxLayout({ children }: { children: ReactNode }) {
             </aside>
           </div>
         </div>
-        <Footer id='footer' variant='mdx' />
+        <MdxFooter />
       </div>
     </>
   );

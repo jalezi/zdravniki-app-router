@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react';
 
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { FacebookIcon, GithubIcon, TwitterIcon } from '@/components/icons';
@@ -7,8 +8,7 @@ import { cn } from '@/lib/utils';
 import { useCurrentLocale, useScopedI18n } from '@/locales/client';
 
 import { LanguageSelector } from '../language-selector';
-import { NavLink } from '../link';
-import SocialLink from '../link/SocialLink';
+import { NavLink, SocialLink } from '../link';
 
 type LinksProps = {
   isMenuOpen: boolean | undefined;
@@ -32,6 +32,7 @@ const Links = forwardRef<HTMLDivElement, LinksProps>(
         <ul className='nav-links-main'>
           <li>
             <NavLink
+              as={Link}
               href={`/${locale}/`}
               tabIndex={isMenuOpen ? undefined : -1}
               onClick={closeMenu}
@@ -44,6 +45,7 @@ const Links = forwardRef<HTMLDivElement, LinksProps>(
           </li>
           <li>
             <NavLink
+              as={Link}
               href={`/${locale}/${t('faq.slug')}/`}
               tabIndex={isMenuOpen ? undefined : -1}
               onClick={closeMenu}
@@ -58,6 +60,7 @@ const Links = forwardRef<HTMLDivElement, LinksProps>(
           </li>
           <li>
             <NavLink
+              as={Link}
               href={`/${locale}/${t('about.slug')}/`}
               tabIndex={isMenuOpen ? undefined : -1}
               onClick={closeMenu}
@@ -72,6 +75,7 @@ const Links = forwardRef<HTMLDivElement, LinksProps>(
           </li>
           <li>
             <NavLink
+              as='a'
               href={`https://covid-19.sledilnik.org/${locale}/donate`}
               target='_blank'
               tabIndex={isMenuOpen ? undefined : -1}
@@ -82,6 +86,7 @@ const Links = forwardRef<HTMLDivElement, LinksProps>(
           </li>
           <li>
             <NavLink
+              as='a'
               href={`https://covid-19.sledilnik.org/${locale}`}
               target='_blank'
               tabIndex={isMenuOpen ? undefined : -1}
@@ -94,8 +99,9 @@ const Links = forwardRef<HTMLDivElement, LinksProps>(
         <ul className='nav-links-social'>
           <li>
             <SocialLink
+              variant='header'
               href='https://facebook.com/sledilnik'
-              label='Facebook'
+              aria-label='Facebook'
               icon={<FacebookIcon />}
               tabIndex={isMenuOpen ? undefined : -1}
               onClick={closeMenu}
@@ -103,8 +109,9 @@ const Links = forwardRef<HTMLDivElement, LinksProps>(
           </li>
           <li>
             <SocialLink
+              variant='header'
               href='https://twitter.com/sledilnik'
-              label='Twitter'
+              aria-label='Twitter'
               icon={<TwitterIcon />}
               tabIndex={isMenuOpen ? undefined : -1}
               onClick={closeMenu}
@@ -112,8 +119,9 @@ const Links = forwardRef<HTMLDivElement, LinksProps>(
           </li>
           <li>
             <SocialLink
+              variant='header'
               href='https://github.com/jalezi/'
-              label='Github'
+              aria-label='Github'
               icon={<GithubIcon />}
               tabIndex={isMenuOpen ? undefined : -1}
               onClick={closeMenu}
