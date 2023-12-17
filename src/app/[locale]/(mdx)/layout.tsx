@@ -18,7 +18,7 @@ export default async function MdxLayout({ children }: { children: ReactNode }) {
       >
         <div
           role='progressbar'
-          className='progress-bar fixed left-0 top-12 h-8 border-b-2 border-brand-500 md:top-16'
+          className='progress-bar fixed left-0 top-12 -z-10 h-8 border-b-2 border-brand-500 md:top-16'
         />
         <MdxActions>
           <div className='ml-auto md:ml-0'>
@@ -34,8 +34,10 @@ export default async function MdxLayout({ children }: { children: ReactNode }) {
           hiddenOn='md'
           title='Table of Contents'
         >
-          <header className='mt-8 xl:mt-0'>
-            <h2 className='mx-2 mt-2 font-semibold '>{t('toc')}</h2>
+          <header className='mt-16 xl:mt-0'>
+            <h2 className='mdx-scroll-fade-in-out mx-2 mt-2 font-semibold'>
+              {t('toc')}
+            </h2>
           </header>
           <MdxToc id='mobile-toc' />
         </Sidebar>
@@ -53,10 +55,12 @@ export default async function MdxLayout({ children }: { children: ReactNode }) {
               hiddenOn='default'
             >
               <div className='px-2'>
-                <EmergencyInfo className='xl:hidden' />
+                <EmergencyInfo className='mdx-scroll-fade-in-out xl:hidden' />
               </div>
               <header className='mt-8 xl:mt-0'>
-                <h2 className='mx-2 mt-2 font-semibold '>{t('toc')}</h2>
+                <h2 className='mdx-scroll-fade-in-out mx-2 mt-2 font-semibold'>
+                  {t('toc')}
+                </h2>
               </header>
               <MdxToc id='desktop-toc' />
             </Sidebar>
