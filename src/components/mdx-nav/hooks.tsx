@@ -134,7 +134,7 @@ export const useActiveHeading = () => {
     let activeHeading: HTMLElement | null = null;
     for (const heading of headings) {
       const { top, bottom } = heading.getBoundingClientRect();
-      if (top <= TOP && bottom <= BOTTOM) {
+      if (top > 128 && bottom <= BOTTOM) {
         activeHeading = heading;
       }
     }

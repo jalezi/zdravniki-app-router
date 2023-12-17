@@ -3,7 +3,6 @@ import { ReactNode } from 'react';
 import { EmergencyInfo } from '@/components/emergency-info';
 import MdxFooter from '@/components/footer/MdxFooter';
 import { MdxActions } from '@/components/header/mdx-actions';
-import { MdxEndBuffer } from '@/components/mdx-end-buffer';
 import { MdxToc } from '@/components/mdx-nav';
 import { Sidebar } from '@/components/sidebar';
 import Timestamp from '@/components/timestamp/Timestamp';
@@ -65,7 +64,6 @@ export default async function MdxLayout({ children }: { children: ReactNode }) {
               <article className='prose mx-auto  pb-4 prose-a:transition-all prose-a:duration-367 prose-li:marker:text-inherit  '>
                 {children}
               </article>
-              <MdxEndBuffer />
             </main>
             <aside className='mdx-info-grid sticky top-24 isolate hidden max-h-[calc(100dvh-5rem)] py-10 text-sm  md:max-h-[calc(100dvh-6rem)] xl:flex'>
               <EmergencyInfo />

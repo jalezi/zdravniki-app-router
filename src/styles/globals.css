@@ -29,6 +29,11 @@
     width: 100%;
   }
 
+  .prose section:last-child > section:last-child > *:last-child,
+  .prose section:last-child > dl:last-child > *:last-child {
+    @apply mb-32;
+  }
+
   /* PAGE WRAPPER */
   .mdx-main-wrapper-grid {
     display: grid;
@@ -74,7 +79,7 @@
     grid-area: info;
   }
 
-  /* SIDEBAR  TOC*/
+  /* SIDEBAR TOC */
   @supports (animation-timeline: view()) {
     .mdx-scroll-fade-in-out {
       @apply animate-fadeInLinear;
@@ -83,7 +88,6 @@
   }
 
   /* FOOTER */
-
   .footer {
     @apply relative;
   }
