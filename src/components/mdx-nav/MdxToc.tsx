@@ -2,6 +2,8 @@
 
 import { LinkHTMLAttributes, PropsWithChildren, useMemo } from 'react';
 
+import { useParams, usePathname } from 'next/navigation';
+
 import { ChevronDown } from 'lucide-react';
 
 import { useIsSidebarStore } from '@/lib/store';
@@ -46,7 +48,7 @@ const TocGroup = ({ headingData }: { headingData: IMdxHeading }) => {
   if (headingData.hasChildren()) {
     return (
       <li>
-        <details className='group/details' open>
+        <details className='group/details'>
           <summary className='cursor-pointer  bg-text-50 px-2 '>
             <div className=' mdx-scroll-fade-in-out  flex items-center'>
               {headingData.text}{' '}
@@ -73,7 +75,7 @@ const TocGroup = ({ headingData }: { headingData: IMdxHeading }) => {
   );
 };
 
-export default function MdxToc() {
+function MdxToc() {
   const headingsMap = useHeadings({ minLevel: 2, maxLevel: 3 });
 
   const headingsData = useMemo(
@@ -96,4 +98,10 @@ export default function MdxToc() {
       </ul>
     </nav>
   );
+}
+
+export default function FakeMdxToc() {
+  const pathName = usePathname();
+  const params = useParams();
+  return <MdxToc key={`${pathName}-${params.locale}`} />;
 }
