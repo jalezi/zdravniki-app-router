@@ -1,6 +1,11 @@
 'use client';
 
-import { LinkHTMLAttributes, PropsWithChildren, useMemo } from 'react';
+import {
+  HTMLAttributes,
+  LinkHTMLAttributes,
+  PropsWithChildren,
+  useMemo,
+} from 'react';
 
 import { useParams, usePathname } from 'next/navigation';
 
@@ -75,7 +80,9 @@ const TocGroup = ({ headingData }: { headingData: IMdxHeading }) => {
   );
 };
 
-function MdxToc() {
+export interface MdxTocProps extends HTMLAttributes<HTMLDivElement> {}
+
+function MdxToc(props: MdxTocProps) {
   const headingsMap = useHeadings({ minLevel: 2, maxLevel: 3 });
 
   const headingsData = useMemo(
@@ -90,6 +97,7 @@ function MdxToc() {
     <nav
       aria-label='Table Of Content'
       className='relative   flex-col overflow-y-visible  py-4 text-sm '
+      {...props}
     >
       <ul className='mx-2 flex flex-col gap-1'>
         {headingsData.map(headingsData => (
@@ -100,8 +108,8 @@ function MdxToc() {
   );
 }
 
-export default function FakeMdxToc() {
+export default function FakeMdxToc(props: MdxTocProps) {
   const pathName = usePathname();
   const params = useParams();
-  return <MdxToc key={`${pathName}-${params.locale}`} />;
+  return <MdxToc key={`${pathName}-${params.locale}`} {...props} />;
 }
