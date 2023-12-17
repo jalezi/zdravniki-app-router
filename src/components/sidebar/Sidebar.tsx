@@ -10,7 +10,7 @@ import { cn } from '@/lib/utils';
 import { Overlay } from '../ui/overlay';
 
 const sidebarVariants = cva(
-  'fixed z-[41] bg-white transition-all duration-650  max-h-[calc(100dvh-5rem)] md:max-h-[calc(100dvh-6rem)] overflow-auto ',
+  'fixed z-[41] bg-white transition-all duration-650  max-h-[calc(100dvh-5rem)]  overflow-auto ',
   {
     variants: {
       device: {
@@ -28,7 +28,6 @@ const sidebarVariants = cva(
       },
       hiddenOn: {
         default: 'hidden',
-
         md: 'md:hidden',
       },
     },
