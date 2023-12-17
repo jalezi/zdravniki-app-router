@@ -135,11 +135,17 @@ const config: Config = {
           'entry 0%': {
             opacity: '0',
           },
+          'entry 75%': {
+            opacity: '0',
+          },
           'entry 100%': {
             opacity: '1',
           },
           'exit 0%': {
             opacity: '1',
+          },
+          'exit 25%': {
+            opacity: '0',
           },
           'exit 100%': {
             opacity: '0',

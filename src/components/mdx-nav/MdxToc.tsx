@@ -54,8 +54,8 @@ const TocGroup = ({ headingData }: { headingData: IMdxHeading }) => {
     return (
       <li>
         <details className='group/details'>
-          <summary className='cursor-pointer  bg-text-50 px-2 '>
-            <div className=' mdx-scroll-fade-in-out  flex items-center'>
+          <summary className='mdx-scroll-fade-in-out cursor-pointer  bg-text-50 px-2 '>
+            <div className='   flex items-center'>
               {headingData.text}{' '}
               <ChevronDown
                 className='ml-auto py-2 transition-all duration-367 group-open/details:rotate-180'
@@ -96,7 +96,7 @@ function MdxToc(props: MdxTocProps) {
   return (
     <nav
       aria-label='Table Of Content'
-      className='relative   flex-col overflow-y-visible  py-4 text-sm '
+      className='relative flex-col overflow-y-visible py-4 text-sm '
       {...props}
     >
       <ul className='mx-2 flex flex-col gap-1'>
