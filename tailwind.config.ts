@@ -145,6 +145,10 @@ const config: Config = {
             opacity: '0',
           },
         },
+        'grow-width': {
+          from: { transform: 'scaleX(0)' },
+          to: { transform: 'scaleX(1)' },
+        },
       },
       animation: {
         'hamburger-close-1': 'hamburger-close-1 0.6s ease-out forwards',
@@ -161,6 +165,7 @@ const config: Config = {
         slideRightAndFade:
           'slideRightAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)',
         fadeInLinear: '367ms linear animate-in-and-out',
+        growWidth: 'grow-width auto linear',
       },
       transitionDuration: {
         '600': '600ms',

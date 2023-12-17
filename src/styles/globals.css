@@ -22,6 +22,13 @@
 }
 
 @layer components {
+  .progress-bar {
+    @apply animate-growWidth;
+    animation-timeline: scroll();
+    transform-origin: 0 50%;
+    width: 100%;
+  }
+
   /* PAGE WRAPPER */
   .mdx-main-wrapper-grid {
     display: grid;

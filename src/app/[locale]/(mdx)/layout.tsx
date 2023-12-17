@@ -15,11 +15,18 @@ export default async function MdxLayout({ children }: { children: ReactNode }) {
     <>
       <div
         id='toc-actions-wrapper'
-        className='fixed left-0 top-12 z-40 min-h-[2rem] w-full  bg-brand-50  px-4  md:top-16'
+        className='fixed left-0 top-12 z-40 min-h-[2rem] w-full bg-brand-50 px-4 md:top-16'
       >
+        <div
+          role='progressbar'
+          className='progress-bar fixed left-0 top-12 h-8 border-b-2 border-brand-500 md:top-16'
+        />
         <MdxActions>
-          <Timestamp variant='mdx-actions' />
+          <div className='ml-auto md:ml-0'>
+            <Timestamp variant='mdx-actions' />
+          </div>
         </MdxActions>
+
         <Sidebar
           id='mobile-toc'
           device='mobile'
@@ -31,7 +38,7 @@ export default async function MdxLayout({ children }: { children: ReactNode }) {
           <header className='mt-8 xl:mt-0'>
             <h2 className='mx-2 mt-2 font-semibold '>{t('toc')}</h2>
           </header>
-          <MdxToc />
+          <MdxToc id='mobile-toc' />
         </Sidebar>
       </div>
       <div className='flex min-h-[100dvh] flex-col justify-between'>
@@ -52,7 +59,7 @@ export default async function MdxLayout({ children }: { children: ReactNode }) {
               <header className='mt-8 xl:mt-0'>
                 <h2 className='mx-2 mt-2 font-semibold '>{t('toc')}</h2>
               </header>
-              <MdxToc />
+              <MdxToc id='desktop-toc' />
             </Sidebar>
             <main className='mdx-main-grid px-4'>
               <article className='prose mx-auto  pb-4 prose-a:transition-all prose-a:duration-367 prose-li:marker:text-inherit  '>

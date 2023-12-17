@@ -30,7 +30,7 @@ export default function MdxActions({ children }: MdxActionsProps) {
           />
         </button>
       </div>
-      <div className='ml-auto md:ml-0'>{children}</div>
+      {children}
     </aside>
   );
 }
