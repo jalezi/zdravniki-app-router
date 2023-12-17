@@ -18,12 +18,9 @@ export default function LanguageSelector() {
   const changeLocale = useChangeLocale();
 
   return (
-    <DropdownMenu.Root>
+    <DropdownMenu.Root onOpenChange={() => setOpen(prev => !prev)}>
       <DropdownMenu.Trigger asChild>
-        <button
-          className='flex items-center gap-1 rounded-md border border-text-500 px-1 py-2 text-sm font-semibold hover:text-text-500/70'
-          onClick={() => setOpen(prev => !prev)}
-        >
+        <button className='flex items-center gap-1 rounded-md border border-text-500 px-1 py-2 text-sm font-semibold hover:text-text-500/70'>
           <LanguageIcon />
           {locale.toLocaleUpperCase()}
           {open ? (
