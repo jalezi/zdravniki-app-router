@@ -1,6 +1,6 @@
 import { createI18nMiddleware } from 'next-international/middleware';
 
-import { I18N_CONFIG } from '../../rewrites.config.mjs';
+import { I18N_CONFIG } from '../../rewrites-redirects.config.mjs';
 
 export const I18nMiddleware = createI18nMiddleware(I18N_CONFIG);
 

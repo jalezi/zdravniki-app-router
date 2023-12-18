@@ -1,4 +1,4 @@
-import { REWRITES, REDIRECTS } from './rewrites.config.mjs';
+import { REWRITES, REDIRECTS } from './rewrites-redirects.config.mjs';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -40,7 +40,14 @@ const nextConfig = {
     return config;
   },
   async redirects() {
-    return REDIRECTS;
+    return [
+      ...REDIRECTS,
+      {
+        source: '/sl/gp',
+        destination: '/sl/druzinski-zdravnik',
+        permanent: true,
+      },
+    ];
   },
   async rewrites() {
     return {
