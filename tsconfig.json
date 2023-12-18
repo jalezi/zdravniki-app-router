@@ -36,7 +36,8 @@
         "**/*.tsx",
         ".next/types/**/*.ts",
         "postcss.config.js",
-        "content/**/*"
+        "content/**/*",
+        "rewrites.config.mjs"
     ],
     "exclude": [
         "node_modules"

@@ -1,3 +1,5 @@
+import { REWRITES, REDIRECTS } from './rewrites.config.mjs';
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // https://nextjs.org/docs/app/api-reference/next-config-js/logging
@@ -38,80 +40,14 @@ const nextConfig = {
     return config;
   },
   async redirects() {
-    return [
-      { source: '/sl/about', destination: '/sl/o-projektu', permanent: true },
-      {
-        source: '/sl/faq',
-        destination: '/sl/pogosta-vprasanja',
-        permanent: true,
-      },
-      {
-        source: '/sl/il-progetto',
-        destination: '/sl/o-projektu',
-        permanent: true,
-      },
-      {
-        source: '/sl/domande-frequenti',
-        destination: '/sl/pogosta-vprasanja',
-        permanent: true,
-      },
-      { source: '/it/about', destination: '/it/il-progetto', permanent: true },
-      {
-        source: '/it/faq',
-        destination: '/it/domande-frequenti',
-        permanent: true,
-      },
-      {
-        source: '/it/o-projektu',
-        destination: '/it/il-progetto',
-        permanent: true,
-      },
-      {
-        source: '/it/pogosta-vprasanja',
-        destination: '/it/domande-frequenti',
-        permanent: true,
-      },
-      { source: '/en/il-progetto', destination: '/en/about', permanent: true },
-      {
-        source: '/en/domande-frequenti',
-        destination: '/en/faq',
-        permanent: true,
-      },
-      {
-        source: '/en/o-projektu',
-        destination: '/en/about',
-        permanent: true,
-      },
-      {
-        source: '/en/pogosta-vprasanja',
-        destination: '/en/faq',
-        permanent: true,
-      },
-    ];
+    return REDIRECTS;
   },
   async rewrites() {
     return {
-      beforeFiles: [
-        // These rewrites are checked after headers/redirects
-        // and before all files including _next/public files which
-        // allows overriding page files
-        {
-          source: '/sl/o-projektu',
-          destination: '/sl/about',
-        },
-        {
-          source: '/sl/pogosta-vprasanja',
-          destination: '/sl/faq',
-        },
-        {
-          source: '/it/il-progetto',
-          destination: '/it/about',
-        },
-        {
-          source: '/it/domande-frequenti',
-          destination: '/it/faq',
-        },
-      ],
+      // These rewrites are checked after headers/redirects
+      // and before all files including _next/public files which
+      // allows overriding page files
+      beforeFiles: REWRITES,
     };
   },
 };
