@@ -1,10 +1,6 @@
 import { createI18nServer } from 'next-international/server';
 
-export const { getI18n, getScopedI18n, getStaticParams, getCurrentLocale } =
-  createI18nServer({
-    sl: () => import('./sl'),
-    en: () => import('./en'),
-    it: () => import('./it'),
-  });
+import { translations } from './config';
 
-export type Locales = ReturnType<typeof getCurrentLocale>;
+export const { getI18n, getScopedI18n, getStaticParams, getCurrentLocale } =
+  createI18nServer(translations);

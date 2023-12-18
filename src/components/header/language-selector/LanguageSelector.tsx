@@ -10,7 +10,7 @@ import {
 } from 'lucide-react';
 
 import { useChangeLocale, useCurrentLocale } from '@/locales/client';
-import { Locales } from '@/locales/server';
+import { Locales } from '@/locales/config';
 
 export default function LanguageSelector() {
   const [open, setOpen] = useState(false);

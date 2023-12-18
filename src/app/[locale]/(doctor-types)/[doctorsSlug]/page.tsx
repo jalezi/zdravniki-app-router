@@ -1,4 +1,4 @@
-import { Locales } from '@/locales/server';
+import { Locales } from '@/locales/config';
 
 type DoctorsPageProps = {
   params: {

@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-import { Locales } from '@/locales/server';
+import { Locales } from '@/locales/config';
 
 const basePath = path.join(process.cwd(), 'content');
 
