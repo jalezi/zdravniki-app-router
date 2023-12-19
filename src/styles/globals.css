@@ -23,6 +23,7 @@
 
 @layer components {
   .progress-bar {
+    --border-color: #26c5ed;
     @apply animate-growWidth;
     animation-timeline: scroll();
     transform-origin: 0 50%;

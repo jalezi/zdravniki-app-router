@@ -1,6 +1,6 @@
 'use client';
 
-import { HTMLAttributes, PropsWithChildren } from 'react';
+import { HTMLAttributes, PropsWithChildren, useEffect, useRef } from 'react';
 
 import { PanelLeftOpen } from 'lucide-react';
 
@@ -12,9 +12,67 @@ export interface MdxActionsProps
     PropsWithChildren {}
 export default function MdxActions({ children }: MdxActionsProps) {
   const { toggle, isOpen } = useIsSidebarStore();
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const progressBar = ref.current?.querySelector('[role=progressbar]');
+    if (!progressBar) return;
+
+    const viewportHeight = window.innerHeight;
+    const pageHeight = document.body.offsetHeight;
+
+    const handleResize = () => {
+      const viewportHeight = window.innerHeight;
+      const pageHeight = document.body.offsetHeight;
+
+      if (viewportHeight === pageHeight) {
+        // @ts-ignore
+        progressBar.style.borderColor = 'transparent';
+        progressBar.setAttribute('aria-hidden', 'true');
+      } else {
+        // @ts-ignore
+        progressBar.style.borderColor = 'var(--border-color)';
+        progressBar.removeAttribute('aria-hidden');
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    if (viewportHeight === pageHeight) {
+      // @ts-ignore
+      progressBar.style.borderColor = 'transparent';
+      progressBar.setAttribute('aria-hidden', 'true');
+    } else {
+      // @ts-ignore
+      progressBar.style.borderColor = 'var(--border-color)';
+      const scrollTop = window.scrollY;
+      const max = pageHeight - viewportHeight;
+      const value = ((scrollTop / max) * 100).toFixed();
+
+      progressBar.setAttribute('aria-valuenow', value);
+    }
+
+    const handleScroll = () => {
+      // set progress bar value
+      const scrollTop = window.scrollY;
+      const max = pageHeight - viewportHeight;
+      const value = ((scrollTop / max) * 100).toFixed();
+      progressBar?.setAttribute('aria-valuenow', value);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
-    <aside className='mx-auto flex h-8 max-w-7xl items-center  child:text-sm'>
+    <aside
+      ref={ref}
+      className='mx-auto flex h-8 max-w-7xl items-center  child:text-sm'
+    >
       <div className='-ml-2 mr-auto flex items-center md:hidden'>
         <button
           onClick={() => toggle()}
