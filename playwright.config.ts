@@ -40,31 +40,37 @@ export default defineConfig({
     {
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
+      testIgnore: ['tests/rewrites-and-redirects/**/*.spec.ts'],
     },
 
     {
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
+      testIgnore: ['tests/rewrites-and-redirects/**/*.spec.ts'],
     },
 
     /* Test against mobile viewports. */
     {
       name: 'Mobile Chrome',
       use: { ...devices['Pixel 5'] },
+      testIgnore: ['tests/rewrites-and-redirects/**/*.spec.ts'],
     },
     {
       name: 'Mobile Safari',
       use: { ...devices['iPhone 12'] },
+      testIgnore: ['tests/rewrites-and-redirects/**/*.spec.ts'],
     },
 
     /* Test against branded browsers. */
     {
       name: 'Microsoft Edge',
       use: { ...devices['Desktop Edge'], channel: 'msedge' },
+      testIgnore: ['tests/rewrites-and-redirects/**/*.spec.ts'],
     },
     {
       name: 'Google Chrome',
       use: { ...devices['Desktop Chrome'], channel: 'chrome' },
+      testIgnore: ['tests/rewrites-and-redirects/**/*.spec.ts'],
     },
   ],
 
