@@ -1,8 +1,8 @@
 export const navLinks = {
-  about: { label: 'O projektu', slug: 'o-projektu' },
+  about: { label: 'O projektu' },
   donate: { label: 'Podpri!' },
-  faq: { label: 'Pojasnila', slug: 'pogosta-vprasanja' },
-  home: { label: 'Imenik', slug: '' },
+  faq: { label: 'Pojasnila' },
+  home: { label: 'Imenik' },
   sledilnik: { label: 'sledilnik.org' },
   covid19: { label: 'Covid-19 Sledilnik' },
   climatologist: { label: 'Podnebnik' },

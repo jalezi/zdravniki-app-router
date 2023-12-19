@@ -4,6 +4,7 @@ import { HeartHandshake } from 'lucide-react';
 
 import { getCurrentLocale, getScopedI18n } from '@/locales/server';
 
+import { SEGMENTS_TRANSLATIONS } from '../../../rewrites-redirects.config.mjs';
 import { NavLink, SocialLink } from '../header/link';
 import {
   GithubIcon,
@@ -19,6 +20,9 @@ export default async function MdxFooter() {
   const tNavLinks = await getScopedI18n('navLinks');
   const tFooter = await getScopedI18n('footer');
 
+  const aboutSegment = SEGMENTS_TRANSLATIONS[locale].about;
+  const faqSegment = SEGMENTS_TRANSLATIONS[locale].faq;
+
   return (
     <footer className='bg-footer-100'>
       <div className='mx-auto grid max-w-7xl grid-cols-1 px-4 pb-4 md:grid-cols-2 lg:grid-cols-4'>
@@ -31,11 +35,7 @@ export default async function MdxFooter() {
           </div>
           <ul className='flex flex-col gap-2'>
             <li>
-              <NavLink
-                as={Link}
-                variant='footer'
-                href={`/${locale}/${tNavLinks('home.slug')}/`}
-              >
+              <NavLink as={Link} variant='footer' href={`/${locale}/`}>
                 {tNavLinks('home.label')}
               </NavLink>
             </li>
@@ -43,7 +43,7 @@ export default async function MdxFooter() {
               <NavLink
                 as={Link}
                 variant='footer'
-                href={`/${locale}/${tNavLinks('faq.slug')}/`}
+                href={`/${locale}/${faqSegment}/`}
               >
                 {tNavLinks('faq.label')}
               </NavLink>
@@ -52,7 +52,7 @@ export default async function MdxFooter() {
               <NavLink
                 as={Link}
                 variant='footer'
-                href={`/${locale}/${tNavLinks('about.slug')}/`}
+                href={`/${locale}/${aboutSegment}/`}
               >
                 {tNavLinks('about.label')}
               </NavLink>

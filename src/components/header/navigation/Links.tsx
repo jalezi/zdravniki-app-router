@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { FacebookIcon, GithubIcon, TwitterIcon } from '@/components/icons';
+import { SEGMENTS_TRANSLATIONS } from '@/lib/constants/segments';
 import { cn } from '@/lib/utils';
 import { useCurrentLocale, useScopedI18n } from '@/locales/client';
 
@@ -20,6 +21,9 @@ const Links = forwardRef<HTMLDivElement, LinksProps>(
     const locale = useCurrentLocale();
     const currentPathname = usePathname();
     const t = useScopedI18n('navLinks');
+
+    const aboutSegment = SEGMENTS_TRANSLATIONS[locale].about;
+    const faqSegment = SEGMENTS_TRANSLATIONS[locale].faq;
 
     const heading = cn(
       'flex h-12 items-center font-medium md:hidden transition-[visibility] duration-0 ease-linear',
@@ -46,11 +50,11 @@ const Links = forwardRef<HTMLDivElement, LinksProps>(
           <li>
             <NavLink
               as={Link}
-              href={`/${locale}/${t('faq.slug')}/`}
+              href={`/${locale}/${faqSegment}/`}
               tabIndex={isMenuOpen ? undefined : -1}
               onClick={closeMenu}
               className={
-                currentPathname === `/${locale}/${t('faq.slug')}/`
+                currentPathname === `/${locale}/${faqSegment}/`
                   ? 'active'
                   : undefined
               }
@@ -61,11 +65,11 @@ const Links = forwardRef<HTMLDivElement, LinksProps>(
           <li>
             <NavLink
               as={Link}
-              href={`/${locale}/${t('about.slug')}/`}
+              href={`/${locale}/${aboutSegment}/`}
               tabIndex={isMenuOpen ? undefined : -1}
               onClick={closeMenu}
               className={
-                currentPathname === `/${locale}/${t('about.slug')}/`
+                currentPathname === `/${locale}/${aboutSegment}/`
                   ? 'active'
                   : undefined
               }

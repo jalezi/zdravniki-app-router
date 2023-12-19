@@ -27,8 +27,8 @@ export const EN_SEGMENTS_TRANSLATIONS = {
 };
 
 export const IT_SEGMENTS_TRANSLATIONS = {
-  faq: 'faq',
-  about: 'about',
+  faq: 'domande-frequenti',
+  about: 'il-progetto',
   gp: 'medico-di-famiglia',
   ped: 'pediatra',
   gyn: 'ginecologo',
