@@ -20,3 +20,14 @@ export const urlSchema = z
   .transform(url => {
     return typeof url === 'string' ? new URL(url) : url;
   });
+
+export const doctorTypeParamSchema = z.enum([
+  'gp',
+  'gyn',
+  'ped',
+  'den',
+  'den-s',
+  'den-y',
+]);
+
+export type DrTypeParam = z.infer<typeof doctorTypeParamSchema>;
