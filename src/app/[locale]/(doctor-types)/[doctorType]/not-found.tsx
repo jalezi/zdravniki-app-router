@@ -20,16 +20,16 @@ export default async function NotFound() {
   const possibleSegments = SEGMENTS_TRANSLATIONS[locale];
 
   return (
-    <main className='relative mx-auto grid h-full w-screen place-items-center'>
-      <div className='relative px-8 py-16 '>
+    <main className='relative mx-auto flex h-full w-screen place-items-center'>
+      <div className=' relative z-10 flex h-full grow flex-col items-center justify-center bg-white/90 px-8 py-16'>
         <h1 className='mb-8 text-3xl font-semibold'>{title}</h1>
-        <div className='h-30 relative mx-auto h-auto w-40'>
-          <Image src={notFoundImage} alt={title} height={500} width={500} />
-        </div>
-        <div className='flex flex-col gap-2'>
+        <p className='mb-8'>{tNotFound('somethingWentWrong')}</p>
+        <div className='flex flex-col gap-2 '>
           <p>
             {tNotFound('resourceNotFound')}:{' '}
-            <span className='rounded-md bg-text-50 px-2 py-1'>{nextUrl}</span>
+            <span className='rounded-md bg-text-50 px-2 py-1 font-medium'>
+              {nextUrl}
+            </span>
           </p>
           <p>{tNotFound('possibleSegments')}: </p>
           <ul className='flex flex-col gap-2 px-4'>
@@ -37,7 +37,7 @@ export default async function NotFound() {
               <li key={segment}>
                 <Link
                   href={`/${segment}`}
-                  className='rounded-md bg-text-50 px-2 py-1 hover:opacity-70'
+                  className='rounded-md bg-text-50 px-2 py-1 font-medium hover:opacity-70'
                 >
                   /{locale}/{segment}
                 </Link>
@@ -45,6 +45,14 @@ export default async function NotFound() {
             ))}
           </ul>
         </div>
+      </div>
+      <div className='absolute bottom-0 left-0 top-0  h-full w-full'>
+        <Image
+          src={notFoundImage}
+          alt={title}
+          fill
+          className='-z-10 object-contain pt-4'
+        />
       </div>
     </main>
   );
