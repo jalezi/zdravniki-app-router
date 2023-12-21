@@ -2,7 +2,7 @@ import { headers } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import notFoundImage from '@/assets/images/doctor-404@2x.png';
+import notFoundImage from '@/assets/images/not-found.webp';
 import { getCurrentLocale, getScopedI18n } from '@/locales/server';
 
 import { SEGMENTS_TRANSLATIONS } from '../../../../../rewrites-redirects.config.mjs';
@@ -20,8 +20,8 @@ export default async function NotFound() {
   const possibleSegments = SEGMENTS_TRANSLATIONS[locale];
 
   return (
-    <main className='relative mx-auto flex h-full w-screen place-items-center'>
-      <div className=' relative z-10 flex h-full grow flex-col items-center justify-center bg-white/90 px-8 py-16'>
+    <main className='relative mx-auto flex min-h-[calc(100dvh-3rem)] w-screen md:min-h-[calc(100dvh-4rem)]'>
+      <div className='relative z-10 flex grow flex-col items-center justify-center bg-white/90 px-8 py-16'>
         <h1 className='mb-8 text-3xl font-semibold'>{title}</h1>
         <p className='mb-8'>{tNotFound('somethingWentWrong')}</p>
         <div className='flex flex-col gap-2 '>
@@ -46,12 +46,14 @@ export default async function NotFound() {
           </ul>
         </div>
       </div>
-      <div className='absolute bottom-0 left-0 top-0  h-full w-full'>
+      <div className='absolute bottom-0  left-0 top-0 h-full w-full'>
         <Image
           src={notFoundImage}
           alt={title}
           fill
-          className='-z-10 object-contain pt-4'
+          priority
+          className='-z-10  object-contain pt-4'
+          sizes='(max-width: 500px) 100vw, (max-width: 1024px) 50vw, 33vw'
         />
       </div>
     </main>
