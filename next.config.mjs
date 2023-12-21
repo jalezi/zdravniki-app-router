@@ -1,3 +1,5 @@
+import withPlaiceholder from '@plaiceholder/next';
+
 import { REWRITES, REDIRECTS } from './rewrites-redirects.config.mjs';
 
 /** @type {import('next').NextConfig} */
@@ -59,4 +61,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+export default withPlaiceholder(nextConfig);

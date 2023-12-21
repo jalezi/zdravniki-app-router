@@ -1,15 +1,26 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+
 import { headers } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
+
+import { getPlaiceholder } from 'plaiceholder';
 
 import notFoundImage from '@/assets/images/not-found.webp';
 import { getCurrentLocale, getScopedI18n } from '@/locales/server';
 
 import { SEGMENTS_TRANSLATIONS } from '../../../../../rewrites-redirects.config.mjs';
 
+const baseBasePath = path.join(process.cwd(), 'src', 'assets', 'images');
+const filePath = path.join(baseBasePath, 'not-found.webp');
+const file = await fs.readFile(filePath);
+
 export default async function NotFound() {
   const t = await getScopedI18n('seo');
   const tNotFound = await getScopedI18n('notFound');
+
+  const data = await getPlaiceholder(file);
 
   const locale = getCurrentLocale();
   const headersList = headers();
@@ -54,6 +65,8 @@ export default async function NotFound() {
           priority
           className='-z-10  object-contain pt-4'
           sizes='(max-width: 500px) 100vw, (max-width: 1024px) 50vw, 33vw'
+          placeholder='blur'
+          blurDataURL={data.base64}
         />
       </div>
     </main>
