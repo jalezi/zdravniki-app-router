@@ -13,7 +13,7 @@ export default async function NotFound() {
 
   const locale = getCurrentLocale();
   const headersList = headers();
-  const nextUrl = headersList.get('next-url');
+  const pathname = headersList.get('x-pathname');
 
   const title = t('title.pageNotFound');
 
@@ -28,7 +28,7 @@ export default async function NotFound() {
           <p>
             {tNotFound('resourceNotFound')}:{' '}
             <span className='rounded-md bg-text-50 px-2 py-1 font-medium'>
-              {nextUrl}
+              {pathname}
             </span>
           </p>
           <p>{tNotFound('possibleSegments')}: </p>
