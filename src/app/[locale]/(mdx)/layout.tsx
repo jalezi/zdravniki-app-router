@@ -44,9 +44,7 @@ export default async function MdxLayout({ children }: { children: ReactNode }) {
           title='Table of Contents'
         >
           <header className='mt-16 xl:mt-0'>
-            <h2 className='mdx-scroll-fade-in-out mx-2 mt-2 font-semibold'>
-              {t('toc')}
-            </h2>
+            <h2 className='mx-2 mt-2 font-semibold'>{t('toc')}</h2>
           </header>
           <MdxToc id='mobile-toc-nav' />
         </Sidebar>
@@ -65,12 +63,10 @@ export default async function MdxLayout({ children }: { children: ReactNode }) {
               title='Table of Contents'
             >
               <div className='px-2'>
-                <EmergencyInfo className='mdx-scroll-fade-in-out xl:hidden' />
+                <EmergencyInfo className=' xl:hidden' />
               </div>
               <header className='mt-8 xl:mt-0'>
-                <h2 className='mdx-scroll-fade-in-out mx-2 mt-2 font-semibold'>
-                  {t('toc')}
-                </h2>
+                <h2 className='mx-2 mt-2 font-semibold'>{t('toc')}</h2>
               </header>
               <MdxToc id='desktop-toc-nav' />
             </Sidebar>

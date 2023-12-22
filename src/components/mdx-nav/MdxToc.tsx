@@ -54,7 +54,7 @@ const TocGroup = ({ headingData }: { headingData: IMdxHeading }) => {
     return (
       <li>
         <details className='group/details'>
-          <summary className='mdx-scroll-fade-in-out cursor-pointer  bg-text-50 px-2 '>
+          <summary className='cursor-pointer  bg-text-50 px-2 '>
             <div className='   flex items-center'>
               {headingData.text}{' '}
               <ChevronDown
@@ -74,7 +74,7 @@ const TocGroup = ({ headingData }: { headingData: IMdxHeading }) => {
   }
 
   return (
-    <li className='mdx-scroll-fade-in-out  '>
+    <li>
       <TocLink href={`#${headingData.id}`}>{headingData.text}</TocLink>
     </li>
   );
