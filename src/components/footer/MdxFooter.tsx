@@ -1,3 +1,4 @@
+import { headers } from 'next/headers';
 import Link from 'next/link';
 
 import { HeartHandshake } from 'lucide-react';
@@ -23,6 +24,9 @@ export default async function MdxFooter() {
   const aboutSegment = SEGMENTS_TRANSLATIONS[locale].about;
   const faqSegment = SEGMENTS_TRANSLATIONS[locale].faq;
 
+  const headerList = headers();
+  const pathname = headerList.get('x-pathname');
+
   return (
     <footer className='bg-footer-100'>
       <div className='mx-auto grid max-w-7xl grid-cols-1 px-4 pb-4 md:grid-cols-2 lg:grid-cols-4'>
@@ -35,7 +39,12 @@ export default async function MdxFooter() {
           </div>
           <ul className='flex flex-col gap-2'>
             <li>
-              <NavLink as={Link} variant='footer' href={`/${locale}/`}>
+              <NavLink
+                as={Link}
+                variant='footer'
+                href={`/${locale}/`}
+                aria-current={pathname === `/${locale}/` ? 'page' : undefined}
+              >
                 {tNavLinks('home.label')}
               </NavLink>
             </li>
@@ -44,6 +53,9 @@ export default async function MdxFooter() {
                 as={Link}
                 variant='footer'
                 href={`/${locale}/${faqSegment}/`}
+                aria-current={
+                  pathname === `/${locale}/${faqSegment}/` ? 'page' : undefined
+                }
               >
                 {tNavLinks('faq.label')}
               </NavLink>
@@ -53,6 +65,11 @@ export default async function MdxFooter() {
                 as={Link}
                 variant='footer'
                 href={`/${locale}/${aboutSegment}/`}
+                aria-current={
+                  pathname === `/${locale}/${aboutSegment}/`
+                    ? 'page'
+                    : undefined
+                }
               >
                 {tNavLinks('about.label')}
               </NavLink>
@@ -70,6 +87,7 @@ export default async function MdxFooter() {
                 as='a'
                 href='https://covid-19.sledilnik.org/'
                 target='_blank'
+                rel='noopener'
               >
                 {tNavLinks('covid19.label')}
               </NavLink>
@@ -85,6 +103,7 @@ export default async function MdxFooter() {
                 variant='footer'
                 href='https://podnebnik.org/'
                 target='_blank'
+                rel='noopener'
               >
                 {tNavLinks('climatologist.label')}
               </NavLink>
@@ -102,6 +121,7 @@ export default async function MdxFooter() {
                 variant='footer'
                 href={`https://covid-19.sledilnik.org/${locale}/donate`}
                 target='_blank'
+                rel='noopener'
               >
                 <HeartHandshake size={20} strokeWidth={1.5} />{' '}
                 {tNavLinks('donate.label')}
@@ -153,6 +173,7 @@ export default async function MdxFooter() {
             variant='footer'
             className='text-sm'
             href='mailto:podpora-zdravniki@sledilnik.org'
+            rel='noopener'
           >
             podpora-zdravniki@sledilnik.org
           </NavLink>
@@ -161,6 +182,7 @@ export default async function MdxFooter() {
             variant='footer'
             className='text-sm'
             href='https://sledilnik.org/'
+            rel='noopener'
           >
             sledilnik.org
           </NavLink>

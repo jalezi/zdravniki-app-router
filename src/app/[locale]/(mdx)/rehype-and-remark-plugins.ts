@@ -8,7 +8,10 @@ import remarkGfm from 'remark-gfm';
 export const rehypePlugins = [
   rehypeSlug,
   rehypeAutolinkHeadings.bind(null, { behavior: 'prepend' }),
-  rehypeExternalLinks.bind(null, { target: '_blank', rel: 'nofollow' }),
+  rehypeExternalLinks.bind(null, {
+    target: '_blank',
+    rel: 'external nofollow noopener noreferrer',
+  }),
 
   // @ts-ignore
   rehypeRewrite.bind(null, {

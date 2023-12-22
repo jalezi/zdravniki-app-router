@@ -52,7 +52,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
 
   if (!rawContent) return null;
 
-  const { content, frontmatter } = await compileMDX<{
+  const { content } = await compileMDX<{
     title: string;
     description: string;
   }>({
@@ -68,10 +68,5 @@ export default async function AboutPage({ params }: AboutPageProps) {
     },
   });
 
-  return (
-    <>
-      <h1 className='sr-only'>{frontmatter.title}</h1>
-      <Suspense fallback={<div>Loading...</div>}> {content}</Suspense>
-    </>
-  );
+  return <Suspense fallback={<div>Loading...</div>}> {content}</Suspense>;
 }

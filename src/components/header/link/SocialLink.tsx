@@ -38,7 +38,7 @@ const SocialLink = ({
     <a
       href={href}
       target='_blank'
-      rel='noreferrer'
+      rel='noopener noreferrer'
       className={cn(socialLinkVariants({ variant, className }))}
       {...props}
     >

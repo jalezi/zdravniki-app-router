@@ -47,6 +47,9 @@ const Links = forwardRef<HTMLDivElement, LinksProps>(
               className={
                 currentPathname === `/${locale}/` ? 'active' : undefined
               }
+              aria-current={
+                currentPathname === `/${locale}/` ? 'page' : undefined
+              }
             >
               {t('home.label')}
             </NavLink>
@@ -60,6 +63,11 @@ const Links = forwardRef<HTMLDivElement, LinksProps>(
               className={
                 currentPathname === `/${locale}/${faqSegment}/`
                   ? 'active'
+                  : undefined
+              }
+              aria-current={
+                currentPathname === `/${locale}/${faqSegment}/`
+                  ? 'page'
                   : undefined
               }
             >
@@ -77,6 +85,11 @@ const Links = forwardRef<HTMLDivElement, LinksProps>(
                   ? 'active'
                   : undefined
               }
+              aria-current={
+                currentPathname === `/${locale}/${aboutSegment}/`
+                  ? 'page'
+                  : undefined
+              }
             >
               {t('about.label')}
             </NavLink>
@@ -88,6 +101,7 @@ const Links = forwardRef<HTMLDivElement, LinksProps>(
               target='_blank'
               tabIndex={isMenuOpen ? undefined : -1}
               onClick={closeMenu}
+              rel='noopener'
             >
               {t('donate.label')}
             </NavLink>
@@ -97,6 +111,7 @@ const Links = forwardRef<HTMLDivElement, LinksProps>(
               as='a'
               href={`https://covid-19.sledilnik.org/${locale}`}
               target='_blank'
+              rel='noopener'
               tabIndex={isMenuOpen ? undefined : -1}
               onClick={closeMenu}
             >
