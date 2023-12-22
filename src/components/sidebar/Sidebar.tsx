@@ -15,7 +15,7 @@ const sidebarVariants = cva(
     variants: {
       device: {
         mobile: 'left-0 right-[35%] ',
-        md: 'mdx-aside-grid md:block sticky top-24 py-10  md:max-h-[calc(100dvh-6rem) bg-inherit]  ',
+        md: 'mdx-aside-grid md:block sticky top-24  md:max-h-[calc(100dvh-6rem)]',
         lg: 'mdx-aside-grid',
       },
       from: {

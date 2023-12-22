@@ -72,6 +72,8 @@ export default function MdxActions({ children }: MdxActionsProps) {
     <aside
       ref={ref}
       className='mx-auto flex h-8 max-w-7xl items-center  child:text-sm'
+      title="Page's progress bar with mobile sidebar toggle button"
+      aria-label='Page progress bar with mobile sidebar toggle button'
     >
       <div className='-ml-2 mr-auto flex items-center md:hidden'>
         <button

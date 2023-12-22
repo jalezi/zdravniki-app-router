@@ -52,7 +52,7 @@ const TocLink = ({ href, children }: NavigationLinkProps) => {
 const TocGroup = ({ headingData }: { headingData: IMdxHeading }) => {
   if (headingData.hasChildren()) {
     return (
-      <li>
+      <li className='last-of-type:mb-8'>
         <details className='group/details'>
           <summary className='cursor-pointer  bg-text-50 px-2 '>
             <div className='   flex items-center'>
@@ -95,7 +95,6 @@ function MdxToc(props: MdxTocProps) {
 
   return (
     <nav
-      aria-label='Table Of Content'
       className='relative flex-col overflow-y-visible py-4 text-sm '
       {...props}
     >

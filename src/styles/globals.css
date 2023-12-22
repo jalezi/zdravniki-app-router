@@ -43,7 +43,7 @@
   /* PAGE WRAPPER */
   .mdx-main-wrapper-grid {
     display: grid;
-    grid-auto-columns: minmax((0, fr));
+    grid-auto-columns: minmax(0, 1fr);
     grid-auto-rows: 1fr;
     grid-template-columns: 1fr;
     grid-template-rows: auto;
@@ -209,5 +209,9 @@
     content: url(/assets/svg/hash.svg); /* tw class: content-[url(/assets/svg/icon-link.svg)] */
     @apply group-hover/heading:opacity-100; /* mdx headings have class group/heading */
     @apply fill-text-200 text-text-200;
+  }
+
+  .mask {
+    mask-image: linear-gradient(180deg, #000 0 calc(100% - 3rem), transparent);
   }
 }

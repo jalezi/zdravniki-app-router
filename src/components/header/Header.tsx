@@ -23,7 +23,12 @@ export default async function Header({ className, ...props }: HeaderProps) {
       id='header-wrapper'
       className='fixed left-0 top-0 z-50 w-full bg-brand-500 px-4  '
     >
-      <header id='top-header' className={headerDefaultStyles} {...props}>
+      <header
+        id='top-header'
+        aria-label='Top Level Header'
+        className={headerDefaultStyles}
+        {...props}
+      >
         <Link href={`/${locale}`} hrefLang={locale}>
           <span id='aria-logo' className='sr-only'>
             logo

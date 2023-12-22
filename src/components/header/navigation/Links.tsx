@@ -31,7 +31,11 @@ const Links = forwardRef<HTMLDivElement, LinksProps>(
     );
 
     return (
-      <nav ref={ref} className={cn('nav-main', isMenuOpen ? 'open' : '')}>
+      <nav
+        ref={ref}
+        aria-label='Main'
+        className={cn('nav-main', isMenuOpen ? 'open' : '')}
+      >
         <span className={heading}>{t('menu')}</span>
         <ul className='nav-links-main'>
           <li>
