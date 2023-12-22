@@ -1,24 +1,74 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, HTMLAttributes } from 'react';
 
-import { cva } from 'class-variance-authority';
+import { VariantProps, cva } from 'class-variance-authority';
 import { ChevronUp } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 import { useI18n } from '@/locales/client';
 
 const buttonVariants = cva(
-  'fixed -right-24 bottom-8 z-[45] transition-all duration-367 w-12 aspect-square rounded-full grid place-items-center bg-brand-300 hover:bg-brand-500 '
+  'transition-all duration-367 grid place-items-center',
+  {
+    variants: {
+      variant: {
+        icon: ' w-12 aspect-square rounded-full bg-brand-300 hover:bg-brand-500',
+        text: 'relative lowercase font-semibold hover:opacity-75 md:grid',
+      },
+      position: {
+        fixed: 'fixed bottom-8 z-[45]',
+        relative: 'relative',
+      },
+      notVisiblePosition: {
+        default: '',
+        right_24: '-right-24',
+        right_full: '-right-[100%]',
+      },
+      hiddenOn: {
+        default: 'hidden',
+        md: 'md:hidden',
+      },
+      visibleOn: {
+        default: 'grid',
+        md: 'md:grid',
+      },
+    },
+    defaultVariants: {
+      variant: 'icon',
+      position: 'fixed',
+      hiddenOn: 'default',
+      visibleOn: 'default',
+      notVisiblePosition: 'default',
+    },
+    compoundVariants: [
+      {
+        variant: 'text',
+        position: 'relative',
+        className: 'invisible',
+      },
+    ],
+  }
 );
+
+export interface ScrollToTopProps
+  extends HTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+  offset: number;
+  element?: HTMLElement | null;
+}
 
 const ScrollToTop = ({
   offset,
   element,
-}: {
-  offset: number;
-  element?: HTMLElement | null;
-}) => {
+  className,
+  variant,
+  position,
+  notVisiblePosition,
+  hiddenOn,
+  visibleOn,
+  ...props
+}: ScrollToTopProps) => {
   const t = useI18n();
   const [isVisible, setIsVisible] = useState(false);
 
@@ -52,13 +102,29 @@ const ScrollToTop = ({
     return () => scrollElement.removeEventListener('scroll', toggleVisibility);
   }, [toggleVisibility, element]);
 
+  const icon = !variant || variant === 'icon' ? <ChevronUp /> : null;
+  const text = variant === 'text' ? t('scrollToTop') : null;
+
   return (
     <button
       onClick={scrollToTop}
-      className={cn(buttonVariants(), isVisible && 'right-8')}
-      aria-label={t('scrollToTop')}
+      className={cn(
+        buttonVariants({
+          variant,
+          position,
+          notVisiblePosition,
+          hiddenOn,
+          visibleOn,
+          className,
+        }),
+        isVisible && icon && 'right-8',
+        isVisible && text && 'visible'
+      )}
+      aria-label={icon ? t('scrollToTop') : undefined}
+      {...props}
     >
-      <ChevronUp />
+      {icon}
+      {text}
     </button>
   );
 };

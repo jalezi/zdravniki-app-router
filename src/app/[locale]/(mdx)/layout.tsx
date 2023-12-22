@@ -4,6 +4,7 @@ import { EmergencyInfo } from '@/components/emergency-info';
 import MdxFooter from '@/components/footer/MdxFooter';
 import { MdxActions } from '@/components/header/mdx-actions';
 import { MdxToc } from '@/components/mdx-nav';
+import { ScrollToTop } from '@/components/scroll-to-top';
 import { Sidebar } from '@/components/sidebar';
 import Timestamp from '@/components/timestamp/Timestamp';
 import { getScopedI18n } from '@/locales/server';
@@ -20,6 +21,13 @@ export default async function MdxLayout({ children }: { children: ReactNode }) {
           <div className='ml-auto md:ml-0'>
             <Timestamp variant='mdx-actions' />
           </div>
+          <ScrollToTop
+            variant='text'
+            position='relative'
+            visibleOn='md'
+            offset={100}
+            className='ml-auto '
+          />
           <div
             role='progressbar'
             title="Page's progress bar"
@@ -78,6 +86,13 @@ export default async function MdxLayout({ children }: { children: ReactNode }) {
         </div>
         <MdxFooter />
       </div>
+      <ScrollToTop
+        variant='icon'
+        position='fixed'
+        hiddenOn='md'
+        offset={100}
+        notVisiblePosition='right_24'
+      />
     </>
   );
 }
