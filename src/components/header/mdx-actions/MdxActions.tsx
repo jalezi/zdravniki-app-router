@@ -10,7 +10,7 @@ import { cn } from '@/lib/utils';
 export interface MdxActionsProps
   extends HTMLAttributes<HTMLDivElement>,
     PropsWithChildren {}
-export default function MdxActions({ children }: MdxActionsProps) {
+export default function MdxActions({ children, ...props }: MdxActionsProps) {
   const { toggle, isOpen } = useIsSidebarStore();
   const ref = useRef<HTMLDivElement>(null);
 
@@ -72,8 +72,7 @@ export default function MdxActions({ children }: MdxActionsProps) {
     <aside
       ref={ref}
       className='mx-auto flex h-8 max-w-7xl items-center  child:text-sm'
-      title="Page's progress bar with mobile sidebar toggle button"
-      aria-label='Page progress bar with mobile sidebar toggle button'
+      {...props}
     >
       <div className='-ml-2 mr-auto flex items-center md:hidden'>
         <button

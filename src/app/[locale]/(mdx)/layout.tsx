@@ -50,7 +50,7 @@ export default async function MdxLayout({
         id='toc-actions-wrapper'
         className='fixed left-0 top-12 z-40 min-h-[2rem] w-full bg-brand-50 px-4 md:top-16'
       >
-        <MdxActions>
+        <MdxActions aria-label={t('mdxActions')} title={t('mdxActions')}>
           <div className='ml-auto md:ml-0'>
             <Timestamp variant='mdx-actions' />
           </div>
@@ -63,7 +63,7 @@ export default async function MdxLayout({
           />
           <div
             role='progressbar'
-            title="Page's progress bar"
+            title={t('progressBar')}
             className='progress-bar fixed left-0 top-12 -z-10 h-8 border-b-2 border-brand-500 md:top-16'
           />
           <div className='fixed left-0 top-12 -z-20 h-8 w-screen border-b-2 border-white md:top-16' />
@@ -77,8 +77,7 @@ export default async function MdxLayout({
           inset='sidebar'
           from='left'
           hiddenOn='md'
-          title='Mobile Sidebar'
-          aria-label='Mobile Sidebar'
+          aria-label={`${t('toc')} ${t('mobile')} ${t('sidebar')}`}
         >
           <header
             id='mobile-toc-header'
@@ -86,7 +85,10 @@ export default async function MdxLayout({
           >
             <h2 className='font-semibold'>{t('toc')}</h2>
           </header>
-          <MdxToc id='mobile-toc-nav' aria-label='Mobile TOC' />
+          <MdxToc
+            id='mobile-toc-nav'
+            aria-label={`${t('toc')} ${t('mobile')}`}
+          />
         </Sidebar>
         <div id='mdx-page-wrapper' className='flex   flex-col px-4'>
           <div
@@ -99,8 +101,7 @@ export default async function MdxLayout({
               from='none'
               hiddenOn='default'
               className='fill-mode-backwards'
-              title='Desktop Sidebar'
-              aria-label='Desktop Sidebar'
+              aria-label={`${t('toc')} ${t('desktop')} ${t('sidebar')}`}
             >
               <header className='sticky top-0 z-[500] flex flex-col gap-2 bg-inherit px-2 py-4'>
                 <EmergencyInfo className=' xl:hidden' />
@@ -108,8 +109,7 @@ export default async function MdxLayout({
               </header>
               <MdxToc
                 id='desktop-toc-nav'
-                title='Desktop TOC'
-                aria-label='Desktop TOC'
+                aria-label={`${t('toc')} ${t('desktop')}`}
               />
             </Sidebar>
             <div className='mdx-main-grid px-4'>
@@ -118,8 +118,7 @@ export default async function MdxLayout({
               </article>
             </div>
             <aside
-              title='Desktop Info'
-              aria-label='Desktop Info'
+              aria-label={`${t('infoAdditional')} ${t('sidebar')}`}
               className='mdx-info-grid sticky top-24 isolate hidden max-h-[calc(100dvh-5rem)] py-10 text-sm  md:max-h-[calc(100dvh-6rem)] xl:flex'
             >
               <EmergencyInfo />
