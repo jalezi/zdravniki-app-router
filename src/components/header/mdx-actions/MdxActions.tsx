@@ -25,7 +25,7 @@ export default function MdxActions({ children, ...props }: MdxActionsProps) {
       const viewportHeight = window.innerHeight;
       const pageHeight = document.body.offsetHeight;
 
-      if (viewportHeight === pageHeight) {
+      if (viewportHeight >= pageHeight) {
         // @ts-ignore
         progressBar.style.borderColor = 'transparent';
         progressBar.setAttribute('aria-hidden', 'true');
@@ -38,7 +38,7 @@ export default function MdxActions({ children, ...props }: MdxActionsProps) {
 
     window.addEventListener('resize', handleResize);
 
-    if (viewportHeight === pageHeight) {
+    if (viewportHeight >= pageHeight) {
       // @ts-ignore
       progressBar.style.borderColor = 'transparent';
       progressBar.setAttribute('aria-hidden', 'true');
