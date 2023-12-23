@@ -2,7 +2,7 @@
 
 import { HTMLAttributes, PropsWithChildren } from 'react';
 
-import { cva } from 'class-variance-authority';
+import { VariantProps, cva } from 'class-variance-authority';
 
 import { useIsSidebarStore } from '@/lib/store';
 import { cn } from '@/lib/utils';
@@ -15,8 +15,8 @@ const sidebarVariants = cva(
     variants: {
       device: {
         mobile: 'left-0 right-[35%] ',
-        md: 'mdx-aside-grid md:block sticky top-24  md:max-h-[calc(100dvh-6rem)]',
-        lg: 'mdx-aside-grid',
+        md: ' md:block sticky top-24 md:max-h-[calc(100dvh-6rem)]',
+        xl: ' xl:block sticky top-24 xl:max-h-[calc(100dvh-6rem)]',
       },
       from: {
         right: 'left-[100%] right-0',
@@ -37,12 +37,8 @@ const sidebarVariants = cva(
 
 export interface SidebarProps
   extends PropsWithChildren<{}>,
-    HTMLAttributes<HTMLDivElement> {
-  device: 'mobile' | 'md' | 'lg';
-  from?: 'left' | 'right' | 'none';
-  inset?: 'sidebar';
-  hiddenOn?: 'md' | 'default';
-}
+    HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof sidebarVariants> {}
 
 export default function Sidebar({
   device,

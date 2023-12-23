@@ -100,7 +100,7 @@ export default async function MdxLayout({
             device='md'
             from='none'
             hiddenOn='default'
-            className='fill-mode-backwards'
+            className='mdx-aside-grid fill-mode-backwards'
             aria-label={`${t('toc')} ${t('desktop')} ${t('sidebar')}`}
           >
             <header className='sticky top-0 z-10 flex flex-col gap-2 bg-inherit px-2 py-4'>
@@ -117,12 +117,18 @@ export default async function MdxLayout({
               {children}
             </article>
           </div>
-          <aside
+          <Sidebar
+            id='info-additional'
+            device='xl'
+            from='none'
+            hiddenOn='default'
             aria-label={`${t('infoAdditional')} ${t('sidebar')}`}
-            className='mdx-info-grid sticky top-24 isolate hidden max-h-[calc(100dvh-5rem)] py-10 text-sm  md:max-h-[calc(100dvh-6rem)] xl:flex'
+            className='mdx-info-grid'
           >
-            <EmergencyInfo />
-          </aside>
+            <header className='sticky top-0 z-10 flex flex-col gap-2 bg-inherit px-2 py-4'>
+              <EmergencyInfo />
+            </header>
+          </Sidebar>
         </div>
       </main>
       <MdxFooter />
