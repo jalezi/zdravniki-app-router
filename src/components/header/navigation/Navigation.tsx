@@ -33,39 +33,34 @@ const Nav = () => {
     setIsSidebarOpen(false);
   }, [setIsSidebarOpen]);
 
+  const handleResize = useCallback(() => {
+    if (window.innerWidth <= MEDIUM_BREAKPOINT) {
+      return;
+    }
+
+    // bit sure but i guess FocusOn is preventing the links from being focused
+    const links = navRef.current?.querySelectorAll('a');
+    links &&
+      [...links].forEach(link => {
+        link.removeAttribute('tabindex');
+      });
+    closeMenu();
+  }, [closeMenu]);
+
   useEscapeKey(closeMenu);
 
   // set isMenuOpen to false on desktop
   useLayoutEffect(() => {
-    if (window.innerWidth <= MEDIUM_BREAKPOINT) {
-      return;
-    }
-    setIsSidebarOpen(false);
-    closeMenu();
-  }, [closeMenu, setIsSidebarOpen]);
+    handleResize();
+  }, [handleResize]);
 
   // close menu on resize if on desktop
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth <= MEDIUM_BREAKPOINT) {
-        return;
-      }
-      const links = navRef.current?.querySelectorAll('a');
-      links &&
-        [...links].forEach(link => {
-          link.removeAttribute('tabindex');
-        });
-      setIsSidebarOpen(false);
-      setIsMenuOpen(false);
-      hamburgerRef.current?.closeMenu();
-    };
-
     window.addEventListener('resize', handleResize);
-
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, [setIsSidebarOpen]);
+  }, [handleResize]);
 
   const handleHamburgerClick = () => {
     hamburgerRef.current?.toggleMenu();
@@ -79,7 +74,7 @@ const Nav = () => {
         enabled={!!isMenuOpen}
         onEscapeKey={closeMenu}
         onClickOutside={closeMenu}
-        className='relative z-[9990] ml-auto'
+        className='relative z-[9990] ml-auto '
         returnFocus={true}
       >
         <Hamburger ref={hamburgerRef} onClick={handleHamburgerClick} />
