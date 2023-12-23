@@ -69,7 +69,7 @@ export default async function MdxLayout({
           <div className='fixed left-0 top-12 -z-20 h-8 w-screen border-b-2 border-white md:top-16' />
         </MdxActions>
       </div>
-      <main>
+      <main className='px-4 md:px-0'>
         {seoTitleKey ? <h1 className='sr-only'>{tSeo(seoTitleKey)}</h1> : null}
         <Sidebar
           id='mobile-toc'
