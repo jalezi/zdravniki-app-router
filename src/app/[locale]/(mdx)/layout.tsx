@@ -45,7 +45,7 @@ export default async function MdxLayout({
   const t = await getScopedI18n('mdx');
   const tSeo = await getScopedI18n('seo');
   return (
-    <>
+    <div className='flex min-h-[100dvh] flex-col justify-between '>
       <div
         id='toc-actions-wrapper'
         className='fixed left-0 top-12 z-40 min-h-[2rem] w-full bg-brand-50 px-4 md:top-16'
@@ -69,7 +69,7 @@ export default async function MdxLayout({
           <div className='fixed left-0 top-12 -z-20 h-8 w-screen border-b-2 border-white md:top-16' />
         </MdxActions>
       </div>
-      <main className='flex min-h-[100dvh] flex-col justify-between'>
+      <main>
         {seoTitleKey ? <h1 className='sr-only'>{tSeo(seoTitleKey)}</h1> : null}
         <Sidebar
           id='mobile-toc'
@@ -90,40 +90,39 @@ export default async function MdxLayout({
             aria-label={`${t('toc')} ${t('mobile')}`}
           />
         </Sidebar>
-        <div id='mdx-page-wrapper' className='flex   flex-col px-4'>
-          <div
-            id='mdx-main-wrapper'
-            className='mdx-main-wrapper-grid relative z-[35] mx-auto mt-20 max-w-7xl grow md:ml-0 md:mt-24 xl:ml-auto'
+
+        <div
+          id='mdx-main-content'
+          className='mdx-main-content-grid relative z-[35] mx-auto mt-20 max-w-7xl grow md:ml-0 md:mt-24 xl:ml-auto'
+        >
+          <Sidebar
+            id='desktop-toc'
+            device='md'
+            from='none'
+            hiddenOn='default'
+            className='fill-mode-backwards'
+            aria-label={`${t('toc')} ${t('desktop')} ${t('sidebar')}`}
           >
-            <Sidebar
-              id='desktop-toc'
-              device='md'
-              from='none'
-              hiddenOn='default'
-              className='fill-mode-backwards'
-              aria-label={`${t('toc')} ${t('desktop')} ${t('sidebar')}`}
-            >
-              <header className='sticky top-0 z-[500] flex flex-col gap-2 bg-inherit px-2 py-4'>
-                <EmergencyInfo className=' xl:hidden' />
-                <h2 className='font-semibold'>{t('toc')}</h2>
-              </header>
-              <MdxToc
-                id='desktop-toc-nav'
-                aria-label={`${t('toc')} ${t('desktop')}`}
-              />
-            </Sidebar>
-            <div className='mdx-main-grid px-4'>
-              <article className='prose mx-auto  pb-4 prose-a:transition-all prose-a:duration-367 prose-li:marker:text-inherit  '>
-                {children}
-              </article>
-            </div>
-            <aside
-              aria-label={`${t('infoAdditional')} ${t('sidebar')}`}
-              className='mdx-info-grid sticky top-24 isolate hidden max-h-[calc(100dvh-5rem)] py-10 text-sm  md:max-h-[calc(100dvh-6rem)] xl:flex'
-            >
-              <EmergencyInfo />
-            </aside>
+            <header className='sticky top-0 z-10 flex flex-col gap-2 bg-inherit px-2 py-4'>
+              <EmergencyInfo className=' xl:hidden' />
+              <h2 className='font-semibold'>{t('toc')}</h2>
+            </header>
+            <MdxToc
+              id='desktop-toc-nav'
+              aria-label={`${t('toc')} ${t('desktop')}`}
+            />
+          </Sidebar>
+          <div className='mdx-main-grid px-4'>
+            <article className='prose mx-auto  pb-4 prose-a:transition-all prose-a:duration-367 prose-li:marker:text-inherit  '>
+              {children}
+            </article>
           </div>
+          <aside
+            aria-label={`${t('infoAdditional')} ${t('sidebar')}`}
+            className='mdx-info-grid sticky top-24 isolate hidden max-h-[calc(100dvh-5rem)] py-10 text-sm  md:max-h-[calc(100dvh-6rem)] xl:flex'
+          >
+            <EmergencyInfo />
+          </aside>
         </div>
       </main>
       <MdxFooter />
@@ -134,6 +133,6 @@ export default async function MdxLayout({
         offset={100}
         notVisiblePosition='right_24'
       />
-    </>
+    </div>
   );
 }

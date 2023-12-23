@@ -41,7 +41,7 @@
   }
 
   /* PAGE WRAPPER */
-  .mdx-main-wrapper-grid {
+  .mdx-main-content-grid {
     display: grid;
     grid-auto-columns: minmax(0, 1fr);
     grid-auto-rows: 1fr;
@@ -52,19 +52,19 @@
   }
 
   @media screen and (min-width: theme('screens.md')) {
-    .mdx-main-wrapper-grid {
+    .mdx-main-content-grid {
       grid-template-columns: 16rem 1fr;
       gap: 0px 1em;
       grid-template-areas: 'aside main';
     }
   }
   @media screen and (min-width: theme('screens.lg')) {
-    .mdx-main-wrapper-grid {
+    .mdx-main-content-grid {
       grid-template-columns: 20rem 1fr;
     }
   }
   @media screen and (min-width: theme('screens.xl')) {
-    .mdx-main-wrapper-grid {
+    .mdx-main-content-grid {
       grid-template-columns: 20rem 1fr 20rem;
       grid-template-areas: 'aside main info';
     }
