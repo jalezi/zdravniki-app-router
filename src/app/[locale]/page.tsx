@@ -26,7 +26,7 @@ export default async function Home({
   const t = await getI18n();
 
   return (
-    <main className='mt-12 md:mt-16'>
+    <main id='content' className='mt-12 md:mt-16'>
       <h1>{t('test')}</h1>
     </main>
   );

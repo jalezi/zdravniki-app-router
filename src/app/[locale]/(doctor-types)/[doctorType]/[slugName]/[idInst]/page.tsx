@@ -9,7 +9,7 @@ type DoctorsPageProps = {
 
 export default function DoctorsPage({ params }: DoctorsPageProps) {
   return (
-    <main className='mt-12 md:mt-16'>
+    <main id='content' className='mt-12 md:mt-16'>
       <h1>DoctorsPage</h1>
       <code>{JSON.stringify(params)}</code>
     </main>

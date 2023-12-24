@@ -76,6 +76,7 @@ export default function MdxActions({ children, ...props }: MdxActionsProps) {
     >
       <div className='-ml-2 mr-auto flex items-center md:hidden'>
         <button
+          id='sidebar-toggle'
           onClick={() => toggle()}
           className='px-2 py-1 md:hidden'
           aria-label='Expand Sidebar'

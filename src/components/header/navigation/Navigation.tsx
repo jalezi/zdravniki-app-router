@@ -77,7 +77,11 @@ const Nav = () => {
         className='relative z-[9990] ml-auto '
         returnFocus={true}
       >
-        <Hamburger ref={hamburgerRef} onClick={handleHamburgerClick} />
+        <Hamburger
+          id='nav-main-toggler'
+          ref={hamburgerRef}
+          onClick={handleHamburgerClick}
+        />
         <Links ref={navRef} isMenuOpen={isMenuOpen} closeMenu={closeMenu} />
       </FocusOn>
     </>

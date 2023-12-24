@@ -46,7 +46,7 @@ export default async function DoctorsPage({ params }: DoctorsPageProps) {
   const doctorType = safeDoctorType.data;
 
   return (
-    <main className=''>
+    <main id='content'>
       <h1 className='sr-only'>{t(`title.${doctorType}`)}</h1>
       <code>{JSON.stringify(params)}</code>
     </main>

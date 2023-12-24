@@ -8,6 +8,7 @@ import { IBM_Plex_Sans as FontSans } from 'next/font/google';
 import { cx } from 'class-variance-authority';
 
 import { Header } from '@/components/header';
+import { SkipLinks } from '@/components/skip-links';
 import { getSiteUrl } from '@/lib';
 import { I18nProviderClient } from '@/locales/client';
 import { getCurrentLocale, getScopedI18n } from '@/locales/server';
@@ -78,6 +79,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         )}
       >
         <I18nProviderClient locale={locale}>
+          <SkipLinks />
           <Header />
           {children}
         </I18nProviderClient>

@@ -32,6 +32,7 @@ const Links = forwardRef<HTMLDivElement, LinksProps>(
 
     return (
       <nav
+        id='nav-main'
         ref={ref}
         aria-label='Main'
         className={cn('nav-main', isMenuOpen ? 'open' : '')}
@@ -151,7 +152,7 @@ const Links = forwardRef<HTMLDivElement, LinksProps>(
             />
           </li>
           <li className='ml-auto md:ml-2'>
-            <LanguageSelector />
+            <LanguageSelector id='lang-selector' />
           </li>
         </ul>
       </nav>
