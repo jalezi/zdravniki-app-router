@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { FacebookIcon, GithubIcon, TwitterIcon } from '@/components/icons';
-import { SEGMENTS_TRANSLATIONS } from '@/lib/constants/segments';
+import { ROUTES_TRANSLATIONS } from '@/lib/constants/segments';
 import { cn } from '@/lib/utils';
 import { useCurrentLocale, useScopedI18n } from '@/locales/client';
 
@@ -22,8 +22,8 @@ const Links = forwardRef<HTMLDivElement, LinksProps>(
     const currentPathname = usePathname();
     const t = useScopedI18n('navLinks');
 
-    const aboutSegment = SEGMENTS_TRANSLATIONS[locale].about;
-    const faqSegment = SEGMENTS_TRANSLATIONS[locale].faq;
+    const aboutSegment = ROUTES_TRANSLATIONS[locale].about;
+    const faqSegment = ROUTES_TRANSLATIONS[locale].faq;
 
     const heading = cn(
       'flex h-12 items-center font-medium md:hidden transition-[visibility] duration-0 ease-linear',

@@ -5,7 +5,7 @@ import { HeartHandshake } from 'lucide-react';
 
 import { getCurrentLocale, getScopedI18n } from '@/locales/server';
 
-import { SEGMENTS_TRANSLATIONS } from '../../../rewrites-redirects.config.mjs';
+import { ROUTES_TRANSLATIONS } from '../../../rewrites-redirects.config.mjs';
 import { NavLink, SocialLink } from '../header/link';
 import {
   GithubIcon,
@@ -21,8 +21,8 @@ export default async function MdxFooter() {
   const tNavLinks = await getScopedI18n('navLinks');
   const tFooter = await getScopedI18n('footer');
 
-  const aboutSegment = SEGMENTS_TRANSLATIONS[locale].about;
-  const faqSegment = SEGMENTS_TRANSLATIONS[locale].faq;
+  const aboutSegment = ROUTES_TRANSLATIONS[locale].about;
+  const faqSegment = ROUTES_TRANSLATIONS[locale].faq;
 
   const headerList = headers();
   const pathname = headerList.get('x-pathname');

@@ -1,10 +1,32 @@
+/**
+ * @typedef {Object} I18NConfig
+ * @property {["en", "it", "sl"]} locales
+ * @property {"sl"} defaultLocale
+ */
+
+/**
+ * @typedef {['faq','about','gp','ped','gyn','den','den-y','den-s',]} Routes
+ */
+
+/**
+ * @typedef {['faq', 'about' ]} StaticRoutes
+ */
+
+/**
+ * @typedef {[ 'gp', 'ped', 'gyn', 'den', 'den-y', 'den-s' ]} DynamicRoutes
+ */
+
+/**
+ * @typedef {['gp', 'ped', 'gyn', 'den', 'den-y', 'den-s']} NestedRoutes
+ */
+
 export const LOCALE_NAMES = {
   sl: 'Slovenščina',
   en: 'English',
   it: 'Italiano',
 };
 
-export const SL_SEGMENTS_TRANSLATIONS = {
+export const SL_ROUTES = {
   faq: 'pogosta-vprasanja',
   about: 'o-projektu',
   gp: 'druzinski-zdravnik',
@@ -15,7 +37,7 @@ export const SL_SEGMENTS_TRANSLATIONS = {
   'den-s': 'zobozdravnik-studenti',
 };
 
-export const EN_SEGMENTS_TRANSLATIONS = {
+export const EN_ROUTES = {
   faq: 'faq',
   about: 'about',
   gp: 'general-practitioner',
@@ -26,7 +48,7 @@ export const EN_SEGMENTS_TRANSLATIONS = {
   'den-s': 'dentist-students',
 };
 
-export const IT_SEGMENTS_TRANSLATIONS = {
+export const IT_ROUTES = {
   faq: 'domande-frequenti',
   about: 'il-progetto',
   gp: 'medico-di-famiglia',
@@ -37,19 +59,25 @@ export const IT_SEGMENTS_TRANSLATIONS = {
   'den-s': 'dentista-studenti',
 };
 
-export const SEGMENTS_TRANSLATIONS = {
-  sl: SL_SEGMENTS_TRANSLATIONS,
-  en: EN_SEGMENTS_TRANSLATIONS,
-  it: IT_SEGMENTS_TRANSLATIONS,
+export const ROUTES_TRANSLATIONS = {
+  sl: SL_ROUTES,
+  en: EN_ROUTES,
+  it: IT_ROUTES,
 };
 
+/**
+ * @type {I18NConfig}
+ */
 export const I18N_CONFIG = {
   locales: ['en', 'it', 'sl'],
   defaultLocale: 'sl',
 };
 
 // not counting locale first level segments
-export const SEGMENTS = [
+/**
+ * @type {Routes}
+ */
+export const ROUTES = [
   'faq',
   'about',
   'gp',
@@ -61,15 +89,23 @@ export const SEGMENTS = [
 ];
 
 // not counting locale first level segments with same folder name
-export const CANONICAL_SEGMENTS = ['faq', 'about'];
+/**
+ * @type {StaticRoutes}
+ */
+export const STATIC_ROUTES = ['faq', 'about'];
 
 // not counting locale first level segments with [doctorType] folder name
-export const NOT_CANONICAL_SEGMENTS = SEGMENTS.filter(
-  p => !CANONICAL_SEGMENTS.includes(p)
-);
+/**
+ * @type {DynamicRoutes}
+ */
+export const DYNAMIC_ROUTES = ROUTES.filter(p => !STATIC_ROUTES.includes(p));
 
 // not counting locale first level segments with nested segments with segments /[slugName]/[idInst]
-export const SEGMENTS_WITH_NESTED_SEGMENTS = [
+/**
+ * @type {NestedRoutes}
+ * @example /en/gp/:slugName/:idInst
+ */
+export const ROUTEST_WITH_NESTED_ROUTES = [
   'gp',
   'ped',
   'gyn',
@@ -79,14 +115,14 @@ export const SEGMENTS_WITH_NESTED_SEGMENTS = [
 ];
 
 const rewritePathname = (pathname, locale) => {
-  const localePathname = SEGMENTS_TRANSLATIONS[locale][pathname];
+  const localePathname = ROUTES_TRANSLATIONS[locale][pathname];
 
   const rewrite = {
     source: `/${locale}/${localePathname}`,
     destination: `/${locale}/${pathname}`,
   };
 
-  const nestedRewrite = SEGMENTS_WITH_NESTED_SEGMENTS.includes(pathname)
+  const nestedRewrite = ROUTEST_WITH_NESTED_ROUTES.includes(pathname)
     ? {
         source: `/${locale}/${localePathname}/:slugName/:idInst`,
         destination: `/${locale}/${pathname}/:slugName/:idInst`,
@@ -106,7 +142,7 @@ const rewritePathname = (pathname, locale) => {
  */
 export const REWRITES = I18N_CONFIG.locales
   .flatMap(locale =>
-    SEGMENTS.flatMap(pathname => {
+    ROUTES.flatMap(pathname => {
       return rewritePathname(pathname, locale);
     }).filter(Boolean)
   )
@@ -119,7 +155,7 @@ export const REWRITES = I18N_CONFIG.locales
   );
 
 export const redirectPathname = (pathname, otherLocalePathname, locale) => {
-  const localePathname = SEGMENTS_TRANSLATIONS[locale][pathname];
+  const localePathname = ROUTES_TRANSLATIONS[locale][pathname];
 
   const redirect = {
     source: `/${locale}/${otherLocalePathname}`,
@@ -127,7 +163,7 @@ export const redirectPathname = (pathname, otherLocalePathname, locale) => {
     permanent: true,
   };
 
-  const nestedRedirect = SEGMENTS_WITH_NESTED_SEGMENTS.includes(pathname)
+  const nestedRedirect = ROUTEST_WITH_NESTED_ROUTES.includes(pathname)
     ? {
         source: `/${locale}/${otherLocalePathname}/:slugName/:idInst`,
         destination: `/${locale}/${localePathname}/:slugName/:idInst`,
@@ -143,10 +179,10 @@ export const redirectPathname = (pathname, otherLocalePathname, locale) => {
  * @example /en/gp -> /en/general-practitioner
  * @example /en/gp/:slugName/:idInst -> /en/general-practitioner/:slugName/:idInst
  */
-const NOT_CANONICAL_REDIRECTS = Object.entries(SEGMENTS_TRANSLATIONS)
+const NOT_CANONICAL_REDIRECTS = Object.entries(ROUTES_TRANSLATIONS)
   .flatMap(([locale, paths]) => {
     return Object.entries(paths).flatMap(([pathname, localePathname]) => {
-      return CANONICAL_SEGMENTS.includes(pathname)
+      return STATIC_ROUTES.includes(pathname)
         ? null
         : [
             {
@@ -174,11 +210,11 @@ const NOT_CANONICAL_REDIRECTS = Object.entries(SEGMENTS_TRANSLATIONS)
 export const REDIRECTS = I18N_CONFIG.locales
   .flatMap(locale => {
     const otherLocales = I18N_CONFIG.locales.filter(l => l !== locale);
-    return SEGMENTS.flatMap(pathname => {
+    return ROUTES.flatMap(pathname => {
       return otherLocales
         .flatMap(otherLocale => {
           const otherLocalePathname =
-            SEGMENTS_TRANSLATIONS[otherLocale][pathname];
+            ROUTES_TRANSLATIONS[otherLocale][pathname];
           return redirectPathname(pathname, otherLocalePathname, locale);
         })
         .filter(Boolean);

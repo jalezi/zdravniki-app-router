@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { headers } from 'next/headers';
 import { notFound } from 'next/navigation';
 
 import { doctorTypeParamSchema } from '@/lib/schemas';
@@ -45,10 +46,18 @@ export default async function DoctorsPage({ params }: DoctorsPageProps) {
 
   const doctorType = safeDoctorType.data;
 
+  const headerList = headers();
+  const pathname = headerList.get('x-pathname');
+  const canonicalPathname = headerList.get('x-canonical-pathname');
+
   return (
     <main id='content'>
-      <h1 className='sr-only'>{t(`title.${doctorType}`)}</h1>
-      <code>{JSON.stringify(params)}</code>
+      <h1>{t(`title.${doctorType}`)}</h1>
+      <code>
+        <pre>{JSON.stringify(params, null, 2)}</pre>
+        <pre>{pathname}</pre>
+        <pre>{canonicalPathname}</pre>
+      </code>
     </main>
   );
 }

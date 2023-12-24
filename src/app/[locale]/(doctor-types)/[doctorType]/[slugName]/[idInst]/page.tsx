@@ -1,3 +1,5 @@
+import { headers } from 'next/headers';
+
 import { Locales } from '@/locales/config';
 
 type DoctorsPageProps = {
@@ -8,10 +10,18 @@ type DoctorsPageProps = {
 };
 
 export default function DoctorsPage({ params }: DoctorsPageProps) {
+  const headerList = headers();
+  const pathname = headerList.get('x-pathname');
+  const canonicalPathname = headerList.get('x-canonical-pathname');
+
   return (
-    <main id='content' className='mt-12 md:mt-16'>
-      <h1>DoctorsPage</h1>
-      <code>{JSON.stringify(params)}</code>
+    <main id='content'>
+      <h1>Doctor&apos;s Page</h1>
+      <code>
+        <pre>{JSON.stringify(params, null, 2)}</pre>
+        <pre>{pathname}</pre>
+        <pre>{canonicalPathname}</pre>
+      </code>
     </main>
   );
 }

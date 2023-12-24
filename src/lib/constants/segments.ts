@@ -1,1 +1,1 @@
-export { SEGMENTS_TRANSLATIONS } from '@/../rewrites-redirects.config.mjs';
+export { ROUTES_TRANSLATIONS } from '@/../rewrites-redirects.config.mjs';

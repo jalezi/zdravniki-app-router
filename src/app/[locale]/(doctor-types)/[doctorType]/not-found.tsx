@@ -10,7 +10,7 @@ import { getPlaiceholder } from 'plaiceholder';
 import notFoundImage from '@/assets/images/not-found.webp';
 import { getCurrentLocale, getScopedI18n } from '@/locales/server';
 
-import { SEGMENTS_TRANSLATIONS } from '../../../../../rewrites-redirects.config.mjs';
+import { ROUTES_TRANSLATIONS } from '../../../../../rewrites-redirects.config.mjs';
 
 const baseBasePath = path.join(process.cwd(), 'src', 'assets', 'images');
 const filePath = path.join(baseBasePath, 'not-found.webp');
@@ -28,7 +28,7 @@ export default async function NotFound() {
 
   const title = t('title.pageNotFound');
 
-  const possibleSegments = SEGMENTS_TRANSLATIONS[locale];
+  const possibleSegments = ROUTES_TRANSLATIONS[locale];
 
   return (
     <main className='relative mx-auto flex min-h-[calc(100dvh-3rem)] w-screen md:min-h-[calc(100dvh-4rem)]'>

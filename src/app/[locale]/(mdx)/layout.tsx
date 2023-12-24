@@ -9,7 +9,7 @@ import { MdxToc } from '@/components/mdx-nav';
 import { ScrollToTop } from '@/components/scroll-to-top';
 import { Sidebar } from '@/components/sidebar';
 import Timestamp from '@/components/timestamp/Timestamp';
-import { SEGMENTS_TRANSLATIONS } from '@/lib/constants/segments';
+import { ROUTES_TRANSLATIONS } from '@/lib/constants/segments';
 import { Locales } from '@/locales/config';
 import { getScopedI18n } from '@/locales/server';
 
@@ -29,7 +29,7 @@ export default async function MdxLayout({
     ?.replaceAll(locale, '')
     .replaceAll('/', '');
 
-  const localeSegments = SEGMENTS_TRANSLATIONS[locale];
+  const localeSegments = ROUTES_TRANSLATIONS[locale];
   let canonicalSegment: keyof typeof localeSegments | '' = '';
   for (const key in localeSegments) {
     if (localeSegments[key as keyof typeof localeSegments] === segment) {

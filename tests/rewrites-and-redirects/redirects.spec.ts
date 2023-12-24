@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-import { SEGMENTS_TRANSLATIONS } from '@/lib/constants/segments';
+import { ROUTES_TRANSLATIONS } from '@/lib/constants/segments';
 import { Locales } from '@/locales/config';
 
 const { describe } = test;
@@ -16,7 +16,7 @@ describe('Redirects', () => {
     // FAQ PAGES
     // SLOVENIAN FAQ PAGE
     describe('Slovenian faq page', () => {
-      const expectedSegment = SEGMENTS_TRANSLATIONS.sl.faq;
+      const expectedSegment = ROUTES_TRANSLATIONS.sl.faq;
       const expectedURL = getRedirectedURL('sl', expectedSegment);
       test('Should redirect /sl/faq to /sl/pogosta-vprasanja', async ({
         page,
@@ -37,7 +37,7 @@ describe('Redirects', () => {
 
     // ENGLISH FAQ PAGE
     describe('English faq page', () => {
-      const expectedSegment = SEGMENTS_TRANSLATIONS.en.faq;
+      const expectedSegment = ROUTES_TRANSLATIONS.en.faq;
       const expectedURL = getRedirectedURL('en', expectedSegment);
 
       test('Should redirect /en/pogosta-vprasanja to /en/faq', async ({
@@ -59,7 +59,7 @@ describe('Redirects', () => {
 
     // ITALIAN FAQ PAGE
     describe('Italian faq page', () => {
-      const expectedSegment = SEGMENTS_TRANSLATIONS.it.faq;
+      const expectedSegment = ROUTES_TRANSLATIONS.it.faq;
       const expectedURL = getRedirectedURL('it', expectedSegment);
       test('Should redirect /it/faq to /it/domande-frequenti', async ({
         page,
@@ -83,7 +83,7 @@ describe('Redirects', () => {
     // ABOUT PAGES
     // SLOVENIAN ABOUT PAGE
     describe('Slovenian about page', () => {
-      const expectedSegment = SEGMENTS_TRANSLATIONS.sl.about;
+      const expectedSegment = ROUTES_TRANSLATIONS.sl.about;
       const expectedURL = getRedirectedURL('sl', expectedSegment);
       test('Should redirect /sl/about to /sl/o-projektu', async ({ page }) => {
         await page.goto('localhost:3000/sl/about');
@@ -102,7 +102,7 @@ describe('Redirects', () => {
 
     // ENGLISH ABOUT PAGE
     describe('English about page', () => {
-      const expectedSegment = SEGMENTS_TRANSLATIONS.en.about;
+      const expectedSegment = ROUTES_TRANSLATIONS.en.about;
       const expectedURL = getRedirectedURL('en', expectedSegment);
       test('Should redirect /en/o-projektu to /en/about', async ({ page }) => {
         await page.goto('localhost:3000/en/o-projektu');
@@ -119,7 +119,7 @@ describe('Redirects', () => {
 
     // ITALIAN ABOUT PAGE
     describe('Italian about page', () => {
-      const expectedSegment = SEGMENTS_TRANSLATIONS.it.about;
+      const expectedSegment = ROUTES_TRANSLATIONS.it.about;
       const expectedURL = getRedirectedURL('it', expectedSegment);
       test('Should redirect /it/about to /it/il-progetto', async ({ page }) => {
         await page.goto('localhost:3000/it/about');
@@ -141,7 +141,7 @@ describe('Redirects', () => {
     // GP PAGES
     // SLOVENIAN GP PAGE
     describe('Slovenian gp page', () => {
-      const expectedSegment = SEGMENTS_TRANSLATIONS.sl.gp;
+      const expectedSegment = ROUTES_TRANSLATIONS.sl.gp;
       const expectedURL = getRedirectedURL('sl', expectedSegment);
       test('Should redirect /sl/gp to /sl/druzinski-zdravnik', async ({
         page,
@@ -170,7 +170,7 @@ describe('Redirects', () => {
 
     // ENGLISH GP PAGE
     describe('English gp page', () => {
-      const expectedSegment = SEGMENTS_TRANSLATIONS.en.gp;
+      const expectedSegment = ROUTES_TRANSLATIONS.en.gp;
       const expectedURL = getRedirectedURL('en', expectedSegment);
       test('Should redirect /en/gp to /en/general-practitioner', async ({
         page,
@@ -199,7 +199,7 @@ describe('Redirects', () => {
 
     // ITALIAN GP PAGE
     describe('Italian gp page to /it/medico-di-famiglia/', () => {
-      const expectedSegment = SEGMENTS_TRANSLATIONS.it.gp;
+      const expectedSegment = ROUTES_TRANSLATIONS.it.gp;
       const expectedURL = getRedirectedURL('it', expectedSegment);
       test('Should redirect /it/gp', async ({ page }) => {
         await page.goto('localhost:3000/it/gp');
@@ -229,7 +229,7 @@ describe('Redirects', () => {
     // PED PAGES
     // SLOVENIAN PED PAGE
     describe('Slovenian ped page', () => {
-      const expectedSegment = SEGMENTS_TRANSLATIONS.sl.ped;
+      const expectedSegment = ROUTES_TRANSLATIONS.sl.ped;
       const expectedURL = getRedirectedURL('sl', expectedSegment);
       test('Should redirect /sl/ped to /sl/pediater', async ({ page }) => {
         await page.goto('localhost:3000/sl/ped');
@@ -254,7 +254,7 @@ describe('Redirects', () => {
 
     // ENGLISH PED PAGE
     describe('English ped page', () => {
-      const expectedSegment = SEGMENTS_TRANSLATIONS.en.ped;
+      const expectedSegment = ROUTES_TRANSLATIONS.en.ped;
       const expectedURL = getRedirectedURL('en', expectedSegment);
       test('Should redirect /en/ped to /en/pediatrician', async ({ page }) => {
         await page.goto('localhost:3000/en/ped');
@@ -281,7 +281,7 @@ describe('Redirects', () => {
 
     // ITALIAN PED PAGE
     describe('Italian ped page', () => {
-      const expectedSegment = SEGMENTS_TRANSLATIONS.it.ped;
+      const expectedSegment = ROUTES_TRANSLATIONS.it.ped;
       const expectedURL = getRedirectedURL('it', expectedSegment);
       test('Should redirect /it/ped to /it/pediatra', async ({ page }) => {
         await page.goto('localhost:3000/it/ped');
@@ -309,7 +309,7 @@ describe('Redirects', () => {
     // GYN PAGES
     // SLOVENIAN GYN PAGE
     describe('Slovenian gyn page', () => {
-      const expectedSegment = SEGMENTS_TRANSLATIONS.sl.gyn;
+      const expectedSegment = ROUTES_TRANSLATIONS.sl.gyn;
       const expectedURL = getRedirectedURL('sl', expectedSegment);
       test('Should redirect /sl/gyn to /sl/ginekolog', async ({ page }) => {
         await page.goto('localhost:3000/sl/gyn');
@@ -336,7 +336,7 @@ describe('Redirects', () => {
 
     // ENGLISH GYN PAGE
     describe('English gyn page', () => {
-      const expectedSegment = SEGMENTS_TRANSLATIONS.en.gyn;
+      const expectedSegment = ROUTES_TRANSLATIONS.en.gyn;
       const expectedURL = getRedirectedURL('en', expectedSegment);
       test('Should redirect /en/gyn to /en/gynecologist', async ({ page }) => {
         await page.goto('localhost:3000/en/gyn');
@@ -363,7 +363,7 @@ describe('Redirects', () => {
 
     // ITALIAN GYN PAGE
     describe('Italian gyn page', () => {
-      const expectedSegment = SEGMENTS_TRANSLATIONS.it.gyn;
+      const expectedSegment = ROUTES_TRANSLATIONS.it.gyn;
       const expectedURL = getRedirectedURL('it', expectedSegment);
       test('Should redirect /it/gyn to /it/ginecologo', async ({ page }) => {
         await page.goto('localhost:3000/it/gyn');
@@ -393,7 +393,7 @@ describe('Redirects', () => {
     // DEN PAGE
     // SLOVENIAN DEN PAGE
     describe('Slovenian den page', () => {
-      const expectedSegment = SEGMENTS_TRANSLATIONS.sl.den;
+      const expectedSegment = ROUTES_TRANSLATIONS.sl.den;
       const expectedURL = getRedirectedURL('sl', expectedSegment);
       test('Should redirect /sl/den to /sl/zobozdravnik', async ({ page }) => {
         await page.goto('localhost:3000/sl/den');
@@ -420,7 +420,7 @@ describe('Redirects', () => {
 
     // ENGLISH DEN PAGE
     describe('English den page', () => {
-      const expectedSegment = SEGMENTS_TRANSLATIONS.en.den;
+      const expectedSegment = ROUTES_TRANSLATIONS.en.den;
       const expectedURL = getRedirectedURL('en', expectedSegment);
       test('Should redirect /en/den to /en/dentist', async ({ page }) => {
         await page.goto('localhost:3000/en/den');
@@ -443,7 +443,7 @@ describe('Redirects', () => {
 
     // ITALIAN DEN PAGE
     describe('Italian den page', () => {
-      const expectedSegment = SEGMENTS_TRANSLATIONS.it.den;
+      const expectedSegment = ROUTES_TRANSLATIONS.it.den;
       const expectedURL = getRedirectedURL('it', expectedSegment);
       test('Should redirect /it/den to /it/dentista', async ({ page }) => {
         await page.goto('localhost:3000/it/den');
@@ -471,7 +471,7 @@ describe('Redirects', () => {
     // DEN-S PAGE
     // SLOVENIAN DEN-S PAGE
     describe('Slovenian den student page', () => {
-      const expectedSegment = SEGMENTS_TRANSLATIONS.sl['den-s'];
+      const expectedSegment = ROUTES_TRANSLATIONS.sl['den-s'];
       const expectedURL = getRedirectedURL('sl', expectedSegment);
       test('Should redirect /sl/den-s to /sl/zobozdravnik-student', async ({
         page,
@@ -500,7 +500,7 @@ describe('Redirects', () => {
 
     // ENGLISH DEN-S PAGE
     describe('English den student page', () => {
-      const expectedSegment = SEGMENTS_TRANSLATIONS.en['den-s'];
+      const expectedSegment = ROUTES_TRANSLATIONS.en['den-s'];
       const expectedURL = getRedirectedURL('en', expectedSegment);
       test('Should redirect /en/den-s to /en/dentist-student', async ({
         page,
@@ -529,7 +529,7 @@ describe('Redirects', () => {
 
     // ITALIAN DEN-S PAGE
     describe('Italian den student page', () => {
-      const expectedSegment = SEGMENTS_TRANSLATIONS.it['den-s'];
+      const expectedSegment = ROUTES_TRANSLATIONS.it['den-s'];
       const expectedURL = getRedirectedURL('it', expectedSegment);
       test('Should redirect /it/den-s to /it/dentista-studenti', async ({
         page,
@@ -561,7 +561,7 @@ describe('Redirects', () => {
     // DEN-Y PAGE
     // SLOVENIAN DEN-Y PAGE
     describe('Slovenian den youth page', () => {
-      const expectedSegment = SEGMENTS_TRANSLATIONS.sl['den-y'];
+      const expectedSegment = ROUTES_TRANSLATIONS.sl['den-y'];
       const expectedURL = getRedirectedURL('sl', expectedSegment);
       test('Should redirect /sl/den-y to /sl/zobozdravnik-mladina', async ({
         page,
@@ -590,7 +590,7 @@ describe('Redirects', () => {
 
     // ENGLISH DEN-Y PAGE
     describe('English den youth page', () => {
-      const expectedSegment = SEGMENTS_TRANSLATIONS.en['den-y'];
+      const expectedSegment = ROUTES_TRANSLATIONS.en['den-y'];
       const expectedURL = getRedirectedURL('en', expectedSegment);
       test('Should redirect /en/den-y to /en/dentist-youth', async ({
         page,
@@ -619,7 +619,7 @@ describe('Redirects', () => {
 
     // ITALIAN DEN-Y PAGE
     describe('Italian den youth page', () => {
-      const expectedSegment = SEGMENTS_TRANSLATIONS.it['den-y'];
+      const expectedSegment = ROUTES_TRANSLATIONS.it['den-y'];
       const expectedURL = getRedirectedURL('it', expectedSegment);
       test('Should redirect /it/den-y to /it/dentista-giovani', async ({
         page,
