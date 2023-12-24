@@ -1,6 +1,6 @@
 'use-client';
 
-import { useState } from 'react';
+import { ButtonHTMLAttributes, useState } from 'react';
 
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import {
@@ -9,18 +9,34 @@ import {
   Languages as LanguageIcon,
 } from 'lucide-react';
 
+import { cn } from '@/lib/utils';
 import { useChangeLocale, useCurrentLocale } from '@/locales/client';
 import { Locales } from '@/locales/config';
 
-export default function LanguageSelector() {
+export interface LanguageSelectorProps
+  extends ButtonHTMLAttributes<HTMLButtonElement> {}
+
+/**
+ * Language selector component.
+ * Accepts all props of a button element.
+ */
+export default function LanguageSelector({
+  className,
+  ...props
+}: LanguageSelectorProps) {
   const [open, setOpen] = useState(false);
   const locale = useCurrentLocale();
   const changeLocale = useChangeLocale();
 
+  const buttonStyles = cn(
+    'flex items-center gap-1 rounded-md border border-text-500 px-1 py-2 text-sm font-semibold hover:text-text-500/70',
+    className
+  );
+
   return (
     <DropdownMenu.Root onOpenChange={() => setOpen(prev => !prev)}>
       <DropdownMenu.Trigger asChild>
-        <button className='flex items-center gap-1 rounded-md border border-text-500 px-1 py-2 text-sm font-semibold hover:text-text-500/70'>
+        <button className={buttonStyles} {...props}>
           <LanguageIcon />
           {locale.toLocaleUpperCase()}
           {open ? (
