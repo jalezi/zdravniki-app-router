@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { FacebookIcon, GithubIcon, TwitterIcon } from '@/components/icons';
-import { ROUTES_TRANSLATIONS } from '@/lib/constants/segments';
+import { DYNAMIC_ROUTES, ROUTES_TRANSLATIONS } from '@/lib/constants/segments';
 import { cn } from '@/lib/utils';
 import { useCurrentLocale, useScopedI18n } from '@/locales/client';
 
@@ -30,6 +30,18 @@ const Links = forwardRef<HTMLDivElement, LinksProps>(
       isMenuOpen ? 'visible' : 'invisible delay-500'
     );
 
+    const dynamicRoutesTranslations = [];
+    for (const key of DYNAMIC_ROUTES) {
+      const x = `/${locale}/${ROUTES_TRANSLATIONS[locale][key]}/`;
+      dynamicRoutesTranslations.push(x);
+    }
+
+    const isDynamicRouteActive = dynamicRoutesTranslations.some(route => {
+      return currentPathname.startsWith(route) && route !== '/';
+    });
+
+    const defaultRoute = `/${locale}/${ROUTES_TRANSLATIONS[locale].gp}/`;
+
     return (
       <nav
         id='nav-main'
@@ -42,15 +54,11 @@ const Links = forwardRef<HTMLDivElement, LinksProps>(
           <li>
             <NavLink
               as={Link}
-              href={`/${locale}/`}
+              href={defaultRoute}
               tabIndex={isMenuOpen ? undefined : -1}
               onClick={closeMenu}
-              className={
-                currentPathname === `/${locale}/` ? 'active' : undefined
-              }
-              aria-current={
-                currentPathname === `/${locale}/` ? 'page' : undefined
-              }
+              className={isDynamicRouteActive ? 'active' : undefined}
+              aria-current={isDynamicRouteActive ? 'page' : undefined}
             >
               {t('home.label')}
             </NavLink>
