@@ -3,9 +3,13 @@ import Link from 'next/link';
 
 import { HeartHandshake } from 'lucide-react';
 
+import { cn } from '@/lib/utils';
 import { getCurrentLocale, getScopedI18n } from '@/locales/server';
 
-import { ROUTES_TRANSLATIONS } from '../../../rewrites-redirects.config.mjs';
+import {
+  ROUTES,
+  ROUTES_TRANSLATIONS,
+} from '../../../rewrites-redirects.config.mjs';
 import { NavLink, SocialLink } from '../header/link';
 import {
   GithubIcon,
@@ -21,11 +25,33 @@ export default async function MdxFooter() {
   const tNavLinks = await getScopedI18n('navLinks');
   const tFooter = await getScopedI18n('footer');
 
-  const aboutSegment = ROUTES_TRANSLATIONS[locale].about;
-  const faqSegment = ROUTES_TRANSLATIONS[locale].faq;
-
   const headerList = headers();
   const pathname = headerList.get('x-pathname');
+
+  const localeLinksTranslations = ROUTES_TRANSLATIONS[locale];
+
+  const internalLinks = ROUTES.map(key => {
+    const label = tNavLinks(`${key}.label`);
+
+    const order = ['faq', 'about'].includes(key) ? 'order-last' : 'order-first';
+
+    return (
+      <li key={key} className={cn(order)}>
+        <NavLink
+          as={Link}
+          variant='footer'
+          href={`/${locale}/${localeLinksTranslations[key]}/`}
+          aria-current={
+            pathname === `/${locale}/${localeLinksTranslations[key]}/`
+              ? 'page'
+              : undefined
+          }
+        >
+          {label}
+        </NavLink>
+      </li>
+    );
+  });
 
   return (
     <footer className='bg-footer-100'>
@@ -33,49 +59,15 @@ export default async function MdxFooter() {
         <div className='border-t py-8 text-footer-800/80 lg:border-r lg:pl-8'>
           <Logo aria-labelledby='aria-logo' />
         </div>
-        <div className=' flex flex-col gap-4 border-t py-8 lg:border-r lg:pl-8'>
+        <nav
+          aria-label='Main in Footer'
+          className=' flex flex-col gap-4 border-t py-8 lg:border-r lg:pl-8'
+        >
           <div className='text-xs font-medium uppercase tracking-widest text-footer-900'>
             {tNavLinks('doctors.label')}
           </div>
-          <ul className='flex flex-col gap-2'>
-            <li>
-              <NavLink
-                as={Link}
-                variant='footer'
-                href={`/${locale}/`}
-                aria-current={pathname === `/${locale}/` ? 'page' : undefined}
-              >
-                {tNavLinks('home.label')}
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                as={Link}
-                variant='footer'
-                href={`/${locale}/${faqSegment}/`}
-                aria-current={
-                  pathname === `/${locale}/${faqSegment}/` ? 'page' : undefined
-                }
-              >
-                {tNavLinks('faq.label')}
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                as={Link}
-                variant='footer'
-                href={`/${locale}/${aboutSegment}/`}
-                aria-current={
-                  pathname === `/${locale}/${aboutSegment}/`
-                    ? 'page'
-                    : undefined
-                }
-              >
-                {tNavLinks('about.label')}
-              </NavLink>
-            </li>
-          </ul>
-        </div>
+          <ul className='flex flex-col gap-2'>{internalLinks}</ul>
+        </nav>
         <div className='flex flex-col gap-4 border-t py-8 lg:border-r lg:pl-8'>
           <div className='text-xs font-medium uppercase tracking-widest text-footer-900'>
             {tFooter('ourProjects')}

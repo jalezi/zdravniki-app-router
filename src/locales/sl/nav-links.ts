@@ -7,5 +7,11 @@ export const navLinks = {
   covid19: { label: 'Covid-19 Sledilnik' },
   climatologist: { label: 'Podnebnik' },
   doctors: { label: 'Zdravniki' },
+  gp: { label: 'Družinski zdravnik' },
+  ped: { label: 'Pediater' },
+  den: { label: 'Zobozdravnik' },
+  gyn: { label: 'Ginekolog' },
+  'den-s': { label: 'Zobozdravnik - Študenti' },
+  'den-y': { label: 'Zobozdravnik - Mladina' },
   menu: 'Meni',
 } as const;
