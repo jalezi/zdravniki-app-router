@@ -18,6 +18,9 @@ import {
   Logo,
   MediumIcon,
   YoutubeIcon,
+  PodnebnikIcon,
+  Covid19Icon,
+  LogoIcon,
 } from '../icons';
 
 export default async function MdxFooter() {
@@ -81,11 +84,15 @@ export default async function MdxFooter() {
                 target='_blank'
                 rel='noopener'
               >
+                <Covid19Icon className='text-xl' aria-hidden />
                 {tNavLinks('covid19.label')}
               </NavLink>
             </li>
             <li>
               <NavLink as={Link} variant='footer' href={`/${locale}/`}>
+                <span className='grid h-5 w-5 place-items-center'>
+                  <LogoIcon className='text-lg' aria-hidden />
+                </span>
                 {tNavLinks('doctors.label')}
               </NavLink>
             </li>
@@ -97,6 +104,7 @@ export default async function MdxFooter() {
                 target='_blank'
                 rel='noopener'
               >
+                <PodnebnikIcon className='text-xl' aria-hidden />
                 {tNavLinks('climatologist.label')}
               </NavLink>
             </li>
