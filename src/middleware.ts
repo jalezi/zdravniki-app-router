@@ -16,15 +16,10 @@ export function middleware(request: NextRequest) {
 
   let canonicalPathname = pathname;
   for (const key in localeSegments) {
-    if (
-      canonicalPathname.includes(
-        localeSegments[key as keyof typeof localeSegments]
-      )
-    ) {
-      canonicalPathname = canonicalPathname.replace(
-        localeSegments[key as keyof typeof localeSegments],
-        key
-      );
+    const segment = localeSegments[key as keyof typeof localeSegments];
+    if (canonicalPathname.startsWith(`/${locale}/${segment}/`)) {
+      canonicalPathname = canonicalPathname.replace(segment, key);
+      break;
     }
   }
 
