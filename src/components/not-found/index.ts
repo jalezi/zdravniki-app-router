@@ -1,0 +1,1 @@
+export { BaseNotFound } from './BaseNotFound';
