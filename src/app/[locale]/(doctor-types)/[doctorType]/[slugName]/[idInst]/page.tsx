@@ -9,7 +9,7 @@ type DoctorsPageProps = {
   };
 };
 
-export default function DoctorsPage({ params }: DoctorsPageProps) {
+export default function PersonalDoctorPage({ params }: DoctorsPageProps) {
   const headerList = headers();
   const pathname = headerList.get('x-pathname');
   const canonicalPathname = headerList.get('x-canonical-pathname');

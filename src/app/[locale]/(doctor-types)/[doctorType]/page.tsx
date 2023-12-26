@@ -35,7 +35,7 @@ type DoctorsPageProps = {
   };
 };
 
-export default async function DoctorsPage({ params }: DoctorsPageProps) {
+export default async function DoctorTypePage({ params }: DoctorsPageProps) {
   const t = await getScopedI18n('seo');
 
   const safeDoctorType = doctorTypeParamSchema.safeParse(params.doctorType);
