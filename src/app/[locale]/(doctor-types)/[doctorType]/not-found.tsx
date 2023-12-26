@@ -31,7 +31,7 @@ export default async function NotFound() {
   const possibleSegments = ROUTES_TRANSLATIONS[locale];
 
   return (
-    <main className='relative mx-auto flex min-h-[calc(100dvh-3rem)] w-screen md:min-h-[calc(100dvh-4rem)]'>
+    <main className='relative mx-auto flex min-h-[calc(100dvh-3rem)] md:min-h-[calc(100dvh-4rem)]'>
       <div className='relative z-10 flex grow flex-col items-center justify-center bg-white/90 px-8 py-16'>
         <h1 className='mb-8 text-3xl font-semibold'>{title}</h1>
         <p className='mb-8'>{tNotFound('somethingWentWrong')}</p>
@@ -57,7 +57,7 @@ export default async function NotFound() {
           </ul>
         </div>
       </div>
-      <div className='absolute bottom-0  left-0 top-0 h-full w-full'>
+      <div className='absolute bottom-0  left-0 right-0 top-0'>
         <Image
           src={notFoundImage}
           alt={title}
