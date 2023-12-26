@@ -1,7 +1,7 @@
 import { headers } from 'next/headers';
 import Link from 'next/link';
 
-import { HeartHandshake } from 'lucide-react';
+import { BookOpenText, HeartHandshake, ShieldQuestion } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 import { getCurrentLocale, getScopedI18n } from '@/locales/server';
@@ -21,7 +21,23 @@ import {
   PodnebnikIcon,
   Covid19Icon,
   LogoIcon,
+  StudentsIcon,
+  GynecologistIcon,
+  FamilyDrIcon,
+  KidsIcon,
+  DentistIcon,
 } from '../icons';
+
+const ROUTE_ICONS = {
+  faq: ShieldQuestion,
+  about: BookOpenText,
+  gp: FamilyDrIcon,
+  ped: KidsIcon,
+  den: DentistIcon,
+  'den-y': KidsIcon,
+  'den-s': StudentsIcon,
+  gyn: GynecologistIcon,
+};
 
 export default async function MdxFooter() {
   const locale = getCurrentLocale();
@@ -38,6 +54,8 @@ export default async function MdxFooter() {
 
     const order = ['faq', 'about'].includes(key) ? 'order-last' : 'order-first';
 
+    const Icon = ROUTE_ICONS[key];
+
     return (
       <li key={key} className={cn(order)}>
         <NavLink
@@ -50,6 +68,7 @@ export default async function MdxFooter() {
               : undefined
           }
         >
+          {Icon ? <Icon className='text-xl' /> : null}
           {label}
         </NavLink>
       </li>
