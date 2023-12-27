@@ -1,3 +1,5 @@
+import HTTPError from './errors/HTTPError';
+import ValidationError from './errors/ValidationError';
 import { urlSchema } from './schemas';
 
 export const getTimestamp = async (url: string | URL) => {
@@ -8,8 +10,18 @@ export const getTimestamp = async (url: string | URL) => {
     if (ts.ok) {
       return { data: await ts.text(), error: null };
     }
-    return { data: null, error: new Error('Could not fetch timestamp') };
+    return {
+      data: null,
+      error: new HTTPError({
+        message: 'Could not fetch timestamp',
+        code: ts.status,
+        context: { error: ts.statusText, url, status: ts.status },
+      }),
+    };
   }
 
-  throw new Error(`Invalid URL\n${safeUrl.error.message}`);
+  throw new ValidationError({
+    message: `Invalid URL\n${safeUrl.error.message}`,
+    context: { url, ...safeUrl.error },
+  });
 };
