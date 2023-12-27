@@ -36,3 +36,65 @@ export const doctorTypeParamSchema = z.enum([
 ]);
 
 export type DrTypeParam = z.infer<typeof doctorTypeParamSchema>;
+
+export const DoctorCsvTypeSchema = z.enum([
+  'gp',
+  'gp-x',
+  'gp-f',
+  'ped',
+  'ped-x',
+  'den',
+  'den-y',
+  'den-s',
+  'gyn',
+]);
+
+export type DoctorTypeCsv = z.infer<typeof DoctorCsvTypeSchema>;
+
+export const trimmedStringSchema = z
+  .string()
+  .transform(s => s.replace(/\s+/g, ' ').trim());
+
+export const doctorsCsvSchema = z.object({
+  accepts: z.string(),
+  accepts_override: z.string(),
+  address: z.string(),
+  availability: z.string(),
+  availability_override: z.string(),
+  city: z.string(),
+  date_override: z.string(),
+  doctor: z.string(),
+  email: z.string(),
+  id_inst: z.string(),
+  lat: z.string(),
+  load: z.string(),
+  lon: z.string(),
+  municipality: z.string(),
+  municipalityPart: z.string(),
+  note_override: z.string(),
+  orderform: z.string(),
+  phone: z.string(),
+  post: z.string(),
+  type: z.string(),
+  website: z.string(),
+});
+
+export type DoctorsCsv = z.infer<typeof doctorsCsvSchema>;
+
+export const institutionsCsvSchema = z.object({
+  address: z.string(),
+  city: z.string(),
+  id_inst: z.string(),
+  lat: z.string(),
+  lon: z.string(),
+  municipality: z.string(),
+  municipalityPart: z.string(),
+  name: z.string(),
+  phone: z.string(),
+  post: z.string(),
+  unit: z.string(),
+  website: z.string(),
+  zzzsSt: z.string(),
+});
+
+export type InstitutionsCsv = z.infer<typeof institutionsCsvSchema>;
