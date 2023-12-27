@@ -12,6 +12,7 @@ import { SkipLinks } from '@/components/skip-links';
 import { getSiteUrl } from '@/lib';
 import { I18nProviderClient } from '@/locales/client';
 import { getCurrentLocale, getScopedI18n } from '@/locales/server';
+import Provider from '@/trpc/Provider';
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -78,11 +79,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           fontSans.variable
         )}
       >
-        <I18nProviderClient locale={locale}>
-          <SkipLinks />
-          <Header />
-          {children}
-        </I18nProviderClient>
+        <Provider>
+          <I18nProviderClient locale={locale}>
+            <SkipLinks />
+            <Header />
+            {children}
+          </I18nProviderClient>
+        </Provider>
       </body>
     </html>
   );
