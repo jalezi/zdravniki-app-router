@@ -42,6 +42,7 @@
         "rehype-slug": "^6.0.0",
         "remark-gfm": "^3.0.1",
         "sharp": "^0.33.1",
+        "slugify": "^1.6.6",
         "tailwind-merge": "^2.2.0",
         "tailwindcss-animate": "^1.0.7",
         "zod": "^3.22.4",
