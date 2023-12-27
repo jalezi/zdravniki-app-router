@@ -21,6 +21,11 @@ export const urlSchema = z
     return typeof url === 'string' ? new URL(url) : url;
   });
 
+export const urlCsvSchema = urlSchema.refine(
+  val => val.pathname?.endsWith('.csv'),
+  { message: 'URL must end with .csv' }
+);
+
 export const doctorTypeParamSchema = z.enum([
   'gp',
   'gyn',
