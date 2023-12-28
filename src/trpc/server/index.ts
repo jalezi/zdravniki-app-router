@@ -1,9 +1,9 @@
+import { timestampsRouter } from './api/routers/timestamps';
 import { publicProcedure, router } from './trpc';
 
 export const appRouter = router({
-  test: publicProcedure.query(async () => {
-    return 'Hello World';
-  }),
+  healthcheck: publicProcedure.query(() => ({ ok: true })),
+  timestamps: timestampsRouter,
 });
 
 export type AppRouter = typeof appRouter;
