@@ -2,8 +2,6 @@ import slugify from 'slugify';
 
 import { Locales } from '@/locales/config';
 
-export { getSiteUrl } from './getSiteUrl';
-
 type SlugOptions = {
   replacement?: string;
   remove?: RegExp;
@@ -20,7 +18,7 @@ export const toSlug = function toSlug(
   return slugify(text, options);
 };
 
-export const createToSlugLocale = (locale?: Locales, options?: SlugOptions) => {
+const createToSlugLocale = (locale?: Locales, options?: SlugOptions) => {
   const _options = options ?? {
     lower: true,
     remove: /[*+~.()'"!:@]/g,

@@ -1,6 +1,6 @@
-import HTTPError from './errors/HTTPError';
-import ValidationError from './errors/ValidationError';
-import { urlSchema } from './schemas';
+import HTTPError from '../errors/HTTPError';
+import ValidationError from '../errors/ValidationError';
+import { urlSchema } from '../schemas';
 
 export const getTimestamp = async (url: string | URL) => {
   const safeUrl = urlSchema.safeParse(url);

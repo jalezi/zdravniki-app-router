@@ -1,7 +1,7 @@
-import { DOCTORS_CSV_URL, INSTITUTIONS_CSV_URL } from './constants/url';
-import HTTPError from './errors/HTTPError';
-import ValidationError from './errors/ValidationError';
-import { urlCsvSchema } from './schemas';
+import { DOCTORS_CSV_URL, INSTITUTIONS_CSV_URL } from '../constants/url';
+import HTTPError from '../errors/HTTPError';
+import ValidationError from '../errors/ValidationError';
+import { urlCsvSchema } from '../schemas';
 
 export const getCsv = async (url: string | URL, revalidate: number = 3600) => {
   const safeUrl = urlCsvSchema.safeParse(url);

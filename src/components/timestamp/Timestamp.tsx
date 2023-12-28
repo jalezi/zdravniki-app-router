@@ -1,8 +1,7 @@
 import { ReactNode } from 'react';
 
 import { DOCTORS_TS_URL } from '@/lib/constants/url';
-import { getTimestamp } from '@/lib/get-timestamp';
-import { cn } from '@/lib/utils';
+import { cn, getTimestamp } from '@/lib/utils';
 import { getScopedI18n } from '@/locales/server';
 
 import { LongDate } from '../long-date';

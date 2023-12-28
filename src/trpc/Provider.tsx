@@ -8,7 +8,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { httpBatchLink } from '@trpc/client';
 import superjson from 'superjson';
 
-import { getSiteUrl } from '@/lib';
+import { getSiteUrl } from '@/lib/utils';
 
 import { trpc } from './client';
 

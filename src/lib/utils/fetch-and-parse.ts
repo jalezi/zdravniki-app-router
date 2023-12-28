@@ -1,9 +1,6 @@
-import ValidationError from './errors/ValidationError';
 import { getDoctorsAndInstitutinsCsv } from './get-csv';
-import {
-  parseDoctorsCsv as parseDoctorsCsv,
-  parseInstitutionsCsv as parseInstitutionsCsv,
-} from './parse-csv';
+import { parseDoctorsCsv, parseInstitutionsCsv } from './parse-csv';
+import ValidationError from '../errors/ValidationError';
 
 export async function fetchAndParseDoctorsAndInstitutions(revalidate = 3600) {
   const { data, error } = await getDoctorsAndInstitutinsCsv(revalidate);

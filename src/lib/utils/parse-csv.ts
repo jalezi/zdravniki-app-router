@@ -1,6 +1,6 @@
 import Papa from 'papaparse';
 
-import { DoctorsCsv, InstitutionsCsv } from './schemas';
+import { DoctorsCsv, InstitutionsCsv } from '../schemas';
 
 import type { ParseConfig, ParseMeta, ParseError } from 'papaparse';
 

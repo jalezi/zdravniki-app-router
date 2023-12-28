@@ -5,7 +5,7 @@ import { Locales } from '@/locales/config';
 
 const basePath = path.join(process.cwd(), 'content');
 
-function getContentBySlug(
+export function getContentBySlug(
   slug: string,
   lang: Locales,
   ext: string = 'mdx'
@@ -23,5 +23,3 @@ function getContentBySlug(
     }
   }
 }
-
-export { getContentBySlug };

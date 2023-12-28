@@ -1,9 +1,8 @@
 import { headers } from 'next/headers';
 import { notFound } from 'next/navigation';
 
-import { toSlug } from '@/lib';
-import { fetchAndParseDoctorsAndInstitutions } from '@/lib/fetch-and-parse';
 import { DoctorsCsv } from '@/lib/schemas';
+import { toSlug, fetchAndParseDoctorsAndInstitutions } from '@/lib/utils';
 import { Locales } from '@/locales/config';
 
 type PersonalDoctorPageProps = {
