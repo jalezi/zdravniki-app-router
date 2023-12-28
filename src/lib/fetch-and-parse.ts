@@ -38,6 +38,6 @@ export async function fetchAndParseDoctorsAndInstitutions(revalidate = 3600) {
       doctors: parsedDoctors.data,
       institutions: parsedInstitutions.data,
     },
-    errors: errors.length > 0 ? errors : null,
+    errors: errors.length > 0 ? errors.flat() : null,
   };
 }
