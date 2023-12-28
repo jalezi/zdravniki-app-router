@@ -7,7 +7,11 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { httpBatchLink } from '@trpc/client';
 
+import { getSiteUrl } from '@/lib';
+
 import { trpc } from './client';
+
+const siteUrl = getSiteUrl();
 
 export default function Provider({ children }: { children: React.ReactNode }) {
   const [queryClient] = useState(() => new QueryClient({}));
@@ -15,7 +19,7 @@ export default function Provider({ children }: { children: React.ReactNode }) {
     trpc.createClient({
       links: [
         httpBatchLink({
-          url: 'http://localhost:3000/api/trpc',
+          url: `${siteUrl}/api/trpc`,
         }),
       ],
     })
