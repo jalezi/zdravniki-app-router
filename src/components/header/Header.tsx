@@ -1,5 +1,6 @@
 import { HTMLAttributes } from 'react';
 
+import { headers } from 'next/headers';
 import Link from 'next/link';
 
 import { Logo } from '@/components/icons';
@@ -8,10 +9,12 @@ import { getCurrentLocale } from '@/locales/server';
 
 import { Navigation } from './navigation';
 
-export interface HeaderProps extends HTMLAttributes<HTMLHeadElement> {}
+export interface HeaderProps extends HTMLAttributes<HTMLDivElement> {}
 
 export default async function Header({ className, ...props }: HeaderProps) {
   const locale = getCurrentLocale();
+  const headerList = headers();
+  const pathname = headerList.get('x-canonical-pathname');
 
   const headerDefaultStyles = cn(
     className,
@@ -29,7 +32,11 @@ export default async function Header({ className, ...props }: HeaderProps) {
         className={headerDefaultStyles}
         {...props}
       >
-        <Link href={`/${locale}`} hrefLang={locale}>
+        <Link
+          href={`/${locale}`}
+          hrefLang={locale}
+          aria-current={pathname === `/${locale}/` ? 'page' : undefined}
+        >
           <span id='aria-logo' className='sr-only'>
             logo
           </span>
