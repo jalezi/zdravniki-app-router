@@ -35,21 +35,24 @@ export const doctorTypeParamSchema = z.enum([
   'den-y',
 ]);
 
-export type DrTypeParam = z.infer<typeof doctorTypeParamSchema>;
+export type DoctorTypeParam = z.infer<typeof doctorTypeParamSchema>;
 
-export const DoctorCsvTypeSchema = z.enum([
-  'gp',
-  'gp-x',
-  'gp-f',
-  'ped',
-  'ped-x',
-  'den',
-  'den-y',
-  'den-s',
-  'gyn',
+export const doctorCsvTypeGpSchema = z.enum(['gp', 'gp-x', 'gp-f']);
+
+export const doctorCsvTypePedSchema = z.enum(['ped', 'ped-x']);
+
+export const doctorCsvTypeDenSchema = z.enum(['den', 'den-y', 'den-s']);
+
+export const doctorCsvTypeGynSchema = z.enum(['gyn']);
+
+export const doctorCsvTypeSchema = z.union([
+  doctorCsvTypeGpSchema,
+  doctorCsvTypePedSchema,
+  doctorCsvTypeDenSchema,
+  doctorCsvTypeGynSchema,
 ]);
 
-export type DoctorTypeCsv = z.infer<typeof DoctorCsvTypeSchema>;
+export type DoctorTypeCsv = z.infer<typeof doctorCsvTypeSchema>;
 
 export const trimmedStringSchema = z
   .string()
