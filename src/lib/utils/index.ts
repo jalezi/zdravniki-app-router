@@ -1,5 +1,6 @@
 export { cn } from './cn';
 export { fetchAndParseDoctorsAndInstitutions } from './fetch-and-parse';
+export * as filters from './filters';
 /*
  Module build failed: UnhandledSchemeError: Reading from "node:fs" is not handled by plugins (Unhandled scheme).
  Webpack supports "data:" and "file:" URIs by default.
@@ -9,6 +10,7 @@ export { fetchAndParseDoctorsAndInstitutions } from './fetch-and-parse';
 export { getCsv, getDoctorsAndInstitutinsCsv } from './get-csv';
 export { getSiteUrl } from './get-site-url';
 export { getTimestamp } from './get-timestamp';
+export { getStartAndEnd, getPageSlice } from './pagination';
 export {
   parseCsv,
   parseDoctorsCsv,

@@ -54,6 +54,12 @@ export const doctorCsvTypeSchema = z.union([
 
 export type DoctorTypeCsv = z.infer<typeof doctorCsvTypeSchema>;
 
+export const filterDoctorTypeParamSchema = doctorTypeParamSchema.or(
+  z.enum(['all'])
+);
+
+export type FilterDoctorTypeParam = z.infer<typeof filterDoctorTypeParamSchema>;
+
 export const trimmedStringSchema = z
   .string()
   .transform(s => s.replace(/\s+/g, ' ').trim());
@@ -101,3 +107,18 @@ export const institutionsCsvSchema = z.object({
 });
 
 export type InstitutionsCsv = z.infer<typeof institutionsCsvSchema>;
+
+export const pageNumberSchema = z.number().int().positive();
+
+export const pageSizeSchema = z.number().int().positive();
+
+export const pageNumberAndSizeSchema = z.object({
+  page: pageNumberSchema,
+  pageSize: pageSizeSchema,
+});
+
+export const doctorsQueryInputSchema = z.object({
+  type: filterDoctorTypeParamSchema.optional().default('all'),
+  page: pageNumberSchema.optional().default(1),
+  pageSize: pageSizeSchema.min(25).max(50).default(25),
+});

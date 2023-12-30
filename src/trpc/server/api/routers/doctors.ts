@@ -1,29 +1,19 @@
-import { z } from 'zod';
-
 import ValidationError from '@/lib/errors/ValidationError';
+import { doctorsQueryInputSchema } from '@/lib/schemas';
 import {
-  doctorCsvTypeGpSchema,
-  doctorCsvTypePedSchema,
-  doctorTypeParamSchema,
-} from '@/lib/schemas';
-import { fetchAndParseDoctorsAndInstitutions, getSiteUrl } from '@/lib/utils';
+  fetchAndParseDoctorsAndInstitutions,
+  getSiteUrl,
+  getStartAndEnd,
+  filters,
+} from '@/lib/utils';
 
 import { RouterOutputs } from '../..';
 import { publicProcedure, router } from '../../trpc';
 
-const inputTypeSchema = doctorTypeParamSchema.or(z.enum(['all']));
-const transformedGpSchema = doctorCsvTypeGpSchema.transform(() => 'gp');
-const transformedPedSchema = doctorCsvTypePedSchema.transform(() => 'ped');
-export const doctorsGetPageIntputSchema = z.object({
-  type: inputTypeSchema.optional().default('all'),
-  page: z.number().min(1).optional().default(1),
-  pageSize: z.number().min(25).max(50).default(25),
-});
-
 export const doctorsRouter = router({
   getPage: publicProcedure
     .input(
-      doctorsGetPageIntputSchema.default({ type: 'all', page: 1, pageSize: 25 })
+      doctorsQueryInputSchema.default({ type: 'all', page: 1, pageSize: 25 })
     )
     .query(async ({ input }) => {
       const { data, errors } = await fetchAndParseDoctorsAndInstitutions();
@@ -35,36 +25,16 @@ export const doctorsRouter = router({
         const { doctors, institutions } = data;
         const { type, page, pageSize } = input;
 
-        const filteredDoctors =
-          type === 'all'
-            ? doctors
-            : doctors.filter(doctor => {
-                if (type === 'gp') {
-                  return transformedGpSchema.safeParse(doctor.type).success;
-                }
+        const { paginatedDoctors, uniqueInstitutions, total } =
+          filters.getPaginatedDoctorsWithUniqueInstitutions(
+            doctors,
+            institutions,
+            input
+          );
 
-                if (type === 'ped') {
-                  return transformedPedSchema.safeParse(doctor.type).success;
-                }
-
-                return doctor.type === type;
-              });
-
-        const start = (page - 1) * pageSize;
-        const end = start + pageSize;
-
-        const paginatedDoctors = filteredDoctors.slice(start, end);
-        const uniqueInstIds = new Set();
-        for (const doctor of paginatedDoctors) {
-          uniqueInstIds.add(doctor.id_inst);
-        }
-
-        const uniqueInstitutions = institutions.filter(inst =>
-          uniqueInstIds.has(inst.id_inst)
-        );
-
+        const { end } = getStartAndEnd(page, pageSize);
         const prevPage = page > 1 ? page - 1 : null;
-        const nextPage = end < filteredDoctors.length ? page + 1 : null;
+        const nextPage = end < total ? page + 1 : null;
 
         const createPageUrl = (_page: number | null) => {
           if (_page === null) {
@@ -91,7 +61,7 @@ export const doctorsRouter = router({
             pageSize,
             prevPage: prev,
             nextPage: next,
-            total: filteredDoctors.length,
+            total,
           },
           error: null,
           success: true,
