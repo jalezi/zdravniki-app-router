@@ -119,6 +119,13 @@ export const pageNumberAndSizeSchema = z.object({
 
 export const doctorsQueryInputSchema = z.object({
   type: filterDoctorTypeParamSchema.optional().default('all'),
-  page: pageNumberSchema.optional().default(1),
-  pageSize: pageSizeSchema.min(25).max(50).default(25),
+  page: pageNumberSchema
+    .optional()
+    .default(1)
+    .or(z.coerce.number().int().positive().optional().default(1)),
+  pageSize: pageSizeSchema
+    .min(25)
+    .max(50)
+    .default(25)
+    .or(z.coerce.number().int().min(25).max(50).default(25)),
 });
