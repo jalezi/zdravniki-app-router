@@ -12,14 +12,21 @@ export const PARSE_OPTIONS = {
 export function parseCsv<T>(
   csv: string,
   options: ParseConfig = PARSE_OPTIONS
-): { data: T[] | null; errors: ParseError[] | null; meta: ParseMeta } {
+):
+  | {
+      data: T[];
+      errors: null;
+      meta: ParseMeta;
+      success: true;
+    }
+  | { data: null; errors: ParseError[]; meta: ParseMeta; success: false } {
   const { data, errors, meta } = Papa.parse(csv, options);
 
-  if (errors.length) {
-    return { data: null, errors, meta };
+  if (errors.length > 0) {
+    return { data: null, errors, meta, success: false };
   }
 
-  return { data, errors: null, meta };
+  return { data, errors: null, meta, success: true };
 }
 
 export const drCSVHeader = [
