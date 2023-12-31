@@ -52,20 +52,20 @@ export const getDoctorsAndInstitutinsCsv = async (
 
   const [doctors, institutions] = await Promise.all(promises);
 
-  if (doctors?.data && institutions?.data) {
+  if (!doctors || !institutions || !doctors.success || !institutions.success) {
     return {
-      data: { doctors: doctors.data, institutions: institutions.data },
-      error: null,
-      success: true,
+      data: null,
+      error: new ValidationError({
+        message: 'Something went wrong during fetching CSVs',
+        context: { doctors, institutions },
+      }),
+      success: false,
     };
   }
 
   return {
-    data: null,
-    error: new ValidationError({
-      message: 'Something went wrong during fetching CSVs',
-      context: { doctors, institutions },
-    }),
-    success: false,
+    data: { doctors: doctors.data, institutions: institutions.data },
+    error: null,
+    success: true,
   };
 };
