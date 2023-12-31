@@ -89,5 +89,7 @@ export function getPaginatedDoctorsWithUniqueInstitutions(
     paginatedDoctors,
     uniqueInstitutions,
     total: filteredDoctors.length,
+    start,
+    end,
   };
 }
