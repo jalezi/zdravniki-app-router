@@ -117,15 +117,41 @@ export const pageNumberAndSizeSchema = z.object({
   pageSize: pageSizeSchema,
 });
 
+const DEFAULT_DOCTOR_TYPE = 'all';
+const DEFAULT_PAGE_NUMBER = 1;
+const DEFAULT_PAGE_SIZE = 25;
+const MIN_PAGE_SIZE = 25;
+const MAX_PAGE_SIZE = 50;
+
+export const DEFAULT_SEARCH_PARAMS = {
+  type: DEFAULT_DOCTOR_TYPE,
+  page: DEFAULT_PAGE_NUMBER,
+  pageSize: DEFAULT_PAGE_SIZE,
+} as const;
+
+export const MIN_MAX_PAGE_SIZE = {
+  min: MIN_PAGE_SIZE,
+  max: MAX_PAGE_SIZE,
+} as const;
+
 export const doctorsQueryInputSchema = z.object({
-  type: filterDoctorTypeParamSchema.optional().default('all'),
+  type: filterDoctorTypeParamSchema.optional().default(DEFAULT_DOCTOR_TYPE),
   page: pageNumberSchema
     .optional()
-    .default(1)
-    .or(z.coerce.number().int().positive().optional().default(1)),
+    .default(DEFAULT_PAGE_NUMBER)
+    .or(
+      z.coerce.number().int().positive().optional().default(DEFAULT_PAGE_NUMBER)
+    ),
   pageSize: pageSizeSchema
-    .min(25)
-    .max(50)
-    .default(25)
-    .or(z.coerce.number().int().min(25).max(50).default(25)),
+    .min(MIN_PAGE_SIZE)
+    .max(MAX_PAGE_SIZE)
+    .default(DEFAULT_PAGE_SIZE)
+    .or(
+      z.coerce
+        .number()
+        .int()
+        .min(MIN_PAGE_SIZE)
+        .max(MAX_PAGE_SIZE)
+        .default(DEFAULT_PAGE_SIZE)
+    ),
 });
