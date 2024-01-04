@@ -57,7 +57,11 @@ export const getDoctorsAndInstitutinsCsv = async (
       data: null,
       error: new ValidationError({
         message: 'Something went wrong during fetching CSVs',
-        context: { doctors, institutions },
+        context: {
+          doctors,
+          institutions,
+          errors: [doctors?.error, institutions?.error].filter(Boolean),
+        },
       }),
       success: false,
     };
