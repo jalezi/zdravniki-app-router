@@ -1,4 +1,5 @@
 import { getStartAndEnd } from './pagination';
+import ValidationError from '../errors/ValidationError';
 import {
   DoctorTypeCsv,
   DoctorsCsv,
@@ -6,10 +7,31 @@ import {
   InstitutionsCsv,
   doctorCsvTypeGpSchema,
   doctorCsvTypePedSchema,
+  doctorCsvTypeSchema,
 } from '../schemas';
 
-const transformedGpSchema = doctorCsvTypeGpSchema.transform(() => 'gp');
-const transformedPedSchema = doctorCsvTypePedSchema.transform(() => 'ped');
+const transformedGpSchema = doctorCsvTypeGpSchema.transform(
+  () => 'gp' as const
+);
+const transformedPedSchema = doctorCsvTypePedSchema.transform(
+  () => 'ped' as const
+);
+
+export const exhaustiveMatchGuard = (_: never) => {
+  throw new ValidationError({ message: 'Should not have been here' });
+};
+
+const transformedDoctorCsvTypeSchema = doctorCsvTypeSchema.transform(val => {
+  if (val.startsWith('gp')) {
+    return transformedGpSchema.parse(val);
+  }
+
+  if (val.startsWith('ped')) {
+    return transformedPedSchema.parse(val);
+  }
+
+  return val as Exclude<DoctorTypeCsv, 'gp-x' | 'gp-f' | 'ped-x'>;
+});
 
 export function createByCanonicalType(type: DoctorTypeCsv) {
   return (doctor: DoctorsCsv) => {
@@ -37,11 +59,7 @@ export function filterDoctors(
 
   const byCanonicalType = createByCanonicalType(type);
 
-  return doctors.filter(doctor => {
-    const isType = byCanonicalType(doctor);
-
-    return isType;
-  });
+  return doctors.filter(doctor => byCanonicalType(doctor));
 }
 
 export function getUniqueInstitutions(doctors: DoctorsCsv[]) {
@@ -68,6 +86,39 @@ export function getInstitutionsMap(
   }
 
   return uniqueInstitutions;
+}
+
+export function groupDoctorsByType(
+  doctors: DoctorsCsv[]
+): Map<FilterDoctorTypeParam, DoctorsCsv[]> {
+  const groupedDoctors = new Map<FilterDoctorTypeParam, DoctorsCsv[]>();
+
+  groupedDoctors.set('all', doctors);
+
+  for (const doctor of doctors) {
+    const safeParsedType = transformedDoctorCsvTypeSchema.safeParse(
+      doctor.type
+    );
+
+    if (!safeParsedType.success) {
+      const error = new ValidationError({
+        message: `Invalid doctor type: ${doctor.type}`,
+        context: { doctor, error: safeParsedType.error },
+      });
+      console.error(error);
+      continue;
+    }
+
+    const type = safeParsedType.data;
+
+    if (!groupedDoctors.has(type)) {
+      groupedDoctors.set(type, []);
+    }
+
+    groupedDoctors.get(type)?.push(doctor);
+  }
+
+  return groupedDoctors;
 }
 
 export function getPaginatedDoctorsWithUniqueInstitutions(
