@@ -1,4 +1,5 @@
 export { cn } from './cn';
+export * as doctorUtils from './doctor';
 export { fetchAndParseDoctorsAndInstitutions } from './fetch-and-parse';
 export * as filters from './filters';
 /*

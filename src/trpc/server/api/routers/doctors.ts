@@ -29,13 +29,15 @@ export const doctorsRouter = router({
       }
 
       const { doctors, institutions } = data;
-      const { type, page, pageSize } = input;
+      const { type, page, pageSize: p } = input;
+
+      const pageSize = Number(p);
 
       const { paginatedDoctors, uniqueInstitutions, total, end } =
         filters.getPaginatedDoctorsWithUniqueInstitutions(
           doctors,
           institutions,
-          input
+          { ...input, pageSize }
         );
 
       const prevPage = page > 1 ? page - 1 : null;

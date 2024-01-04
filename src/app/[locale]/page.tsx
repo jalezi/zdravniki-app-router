@@ -4,7 +4,11 @@ import { setStaticParamsLocale } from 'next-international/server';
 
 import { DoctorTypeListSection as Section } from '@/components/cards';
 import MdxFooter from '@/components/footer/MdxFooter';
-import { fetchAndParseDoctorsAndInstitutions, toSlug } from '@/lib/utils';
+import {
+  doctorUtils,
+  fetchAndParseDoctorsAndInstitutions,
+  toSlug,
+} from '@/lib/utils';
 import { getInstitutionsMap, groupDoctorsByType } from '@/lib/utils/filters';
 import { getI18n, getScopedI18n, getStaticParams } from '@/locales/server';
 
@@ -69,15 +73,7 @@ export default async function Home({
                   const doctorHref = `/${doctor.type}/${doctorSlugify}/${doctor.id_inst}/`;
                   const inst = uniqueInstitutions.get(doctor.id_inst);
                   return (
-                    <li
-                      key={
-                        toSlug(doctor.doctor) +
-                        '-' +
-                        doctor.id_inst +
-                        '-' +
-                        doctor.type
-                      }
-                    >
+                    <li key={doctorUtils.getDoctorFakeId(doctor)}>
                       <a href={doctorHref}>{doctor.doctor} </a>
                       {inst ? <p>{inst.name}</p> : null}
                     </li>

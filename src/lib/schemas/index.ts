@@ -108,20 +108,10 @@ export const institutionsCsvSchema = z.object({
 
 export type InstitutionsCsv = z.infer<typeof institutionsCsvSchema>;
 
-export const pageNumberSchema = z.number().int().positive();
-
-export const pageSizeSchema = z.number().int().positive();
-
-export const pageNumberAndSizeSchema = z.object({
-  page: pageNumberSchema,
-  pageSize: pageSizeSchema,
-});
-
 const DEFAULT_DOCTOR_TYPE = 'all';
 const DEFAULT_PAGE_NUMBER = 1;
-const DEFAULT_PAGE_SIZE = 25;
-const MIN_PAGE_SIZE = 25;
-const MAX_PAGE_SIZE = 50;
+const DEFAULT_PAGE_SIZE = 24;
+export const ALLOWED_PAGE_SIZES = ['24', '48'] as const;
 
 export const DEFAULT_SEARCH_PARAMS = {
   type: DEFAULT_DOCTOR_TYPE,
@@ -129,10 +119,19 @@ export const DEFAULT_SEARCH_PARAMS = {
   pageSize: DEFAULT_PAGE_SIZE,
 } as const;
 
-export const MIN_MAX_PAGE_SIZE = {
-  min: MIN_PAGE_SIZE,
-  max: MAX_PAGE_SIZE,
-} as const;
+export const pageNumberSchema = z.number().int().positive();
+
+export const pageSizeSchema = z
+  .enum(ALLOWED_PAGE_SIZES)
+  .or(z.number())
+  .refine(val => ALLOWED_PAGE_SIZES.includes(val.toString()), {
+    message: 'Invalid page size',
+  });
+
+export const pageNumberAndSizeSchema = z.object({
+  page: pageNumberSchema,
+  pageSize: pageSizeSchema,
+});
 
 export const doctorsQueryInputSchema = z.object({
   type: filterDoctorTypeParamSchema.optional().default(DEFAULT_DOCTOR_TYPE),
@@ -142,16 +141,5 @@ export const doctorsQueryInputSchema = z.object({
     .or(
       z.coerce.number().int().positive().optional().default(DEFAULT_PAGE_NUMBER)
     ),
-  pageSize: pageSizeSchema
-    .min(MIN_PAGE_SIZE)
-    .max(MAX_PAGE_SIZE)
-    .default(DEFAULT_PAGE_SIZE)
-    .or(
-      z.coerce
-        .number()
-        .int()
-        .min(MIN_PAGE_SIZE)
-        .max(MAX_PAGE_SIZE)
-        .default(DEFAULT_PAGE_SIZE)
-    ),
+  pageSize: pageSizeSchema.default(DEFAULT_PAGE_SIZE),
 });
