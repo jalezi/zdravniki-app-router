@@ -4,11 +4,8 @@ import { setStaticParamsLocale } from 'next-international/server';
 
 import { DoctorTypeListSection as Section } from '@/components/cards';
 import MdxFooter from '@/components/footer/MdxFooter';
-import {
-  doctorUtils,
-  fetchAndParseDoctorsAndInstitutions,
-  toSlug,
-} from '@/lib/utils';
+import ValidationError from '@/lib/errors/ValidationError';
+import { doctorUtils, fetchAndParseDoctorsAndInstitutions } from '@/lib/utils';
 import { getInstitutionsMap, groupDoctorsByType } from '@/lib/utils/filters';
 import { getI18n, getScopedI18n, getStaticParams } from '@/locales/server';
 
@@ -67,15 +64,19 @@ export default async function Home({
           <Section>
             <div>
               <h2>{parsedSearchParams.type.toLocaleUpperCase()}</h2>
-              <ul>
+              <ul className='flex flex-col gap-2'>
                 {doctorsByType.map(doctor => {
-                  const doctorSlugify = toSlug(doctor.doctor);
-                  const doctorHref = `/${doctor.type}/${doctorSlugify}/${doctor.id_inst}/`;
+                  const href = doctorUtils.getHref(doctor);
                   const inst = uniqueInstitutions.get(doctor.id_inst);
+                  const address = doctorUtils.getAddress(doctor, inst);
+                  const key = doctorUtils.getFakeId(doctor);
                   return (
-                    <li key={doctorUtils.getDoctorFakeId(doctor)}>
-                      <a href={doctorHref}>{doctor.doctor} </a>
+                    <li key={key}>
+                      <a href={href}>{doctor.doctor} </a>
                       {inst ? <p>{inst.name}</p> : null}
+                      {address instanceof ValidationError ? null : (
+                        <p>{address.fullAddress}</p>
+                      )}
                     </li>
                   );
                 })}

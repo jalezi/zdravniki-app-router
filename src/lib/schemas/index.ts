@@ -143,3 +143,42 @@ export const doctorsQueryInputSchema = z.object({
     ),
   pageSize: pageSizeSchema.default(DEFAULT_PAGE_SIZE),
 });
+
+export const addressSchema = z
+  .object({
+    address: trimmedStringSchema,
+    city: trimmedStringSchema,
+    post: trimmedStringSchema,
+    municipality: trimmedStringSchema,
+    municipalityPart: trimmedStringSchema,
+  })
+  .transform(({ address, city, post, municipality, municipalityPart }, ctx) => {
+    if (!post || !address)
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'Missing address or post',
+      });
+
+    const [postalCode, ...postalName] = post?.split(' ') ?? ['', ''];
+
+    return {
+      street: address,
+      city,
+      post,
+      postalCode: Number(postalCode),
+      postalName: postalName.join(' '),
+      municipality,
+      municipalityPart,
+      fullAddress: `${address}, ${post}`,
+      searchAddress: `${address}, ${city} ${post} ${municipality} ${municipalityPart}`,
+    };
+  });
+// .default({
+//   address: '',
+//   city: '',
+//   post: '',
+//   municipality: '',
+//   municipalityPart: '',
+// });
+
+export type Address = z.infer<typeof addressSchema>;
