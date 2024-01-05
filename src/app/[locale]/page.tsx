@@ -2,9 +2,11 @@ import { Metadata } from 'next';
 
 import { setStaticParamsLocale } from 'next-international/server';
 
-import { DoctorTypeListSection as Section } from '@/components/cards';
+import {
+  DoctorCard,
+  DoctorTypeListSection as Section,
+} from '@/components/cards';
 import MdxFooter from '@/components/footer/MdxFooter';
-import ValidationError from '@/lib/errors/ValidationError';
 import { doctorUtils, fetchAndParseDoctorsAndInstitutions } from '@/lib/utils';
 import { getInstitutionsMap, groupDoctorsByType } from '@/lib/utils/filters';
 import { getI18n, getScopedI18n, getStaticParams } from '@/locales/server';
@@ -65,18 +67,21 @@ export default async function Home({
             <div>
               <h2>{parsedSearchParams.type.toLocaleUpperCase()}</h2>
               <ul className='flex flex-col gap-2'>
-                {doctorsByType.map(doctor => {
+                {doctorsByType.slice(0, 10).map(doctor => {
                   const href = doctorUtils.getHref(doctor);
                   const inst = uniqueInstitutions.get(doctor.id_inst);
-                  const address = doctorUtils.getAddress(doctor, inst);
+                  const institutionName = inst?.name ?? '';
+                  const fullAddress =
+                    doctorUtils.getAddress(doctor, inst)?.fullAddress ?? '';
                   const key = doctorUtils.getFakeId(doctor);
                   return (
                     <li key={key}>
-                      <a href={href}>{doctor.doctor} </a>
-                      {inst ? <p>{inst.name}</p> : null}
-                      {address instanceof ValidationError ? null : (
-                        <p>{address.fullAddress}</p>
-                      )}
+                      <DoctorCard
+                        doctor={doctor.doctor}
+                        fullAddress={fullAddress}
+                        href={href}
+                        institutionName={institutionName}
+                      />
                     </li>
                   );
                 })}

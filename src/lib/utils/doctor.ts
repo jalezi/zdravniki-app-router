@@ -16,7 +16,7 @@ export function getHref(doctor: DoctorsCsv) {
   return `/${doctor.type}/${toSlug(doctor.doctor)}/${doctor.id_inst}/`;
 }
 
-export function getAddress(
+export function makeAddress(
   doctor: DoctorsCsv,
   institution?: InstitutionsCsv | null
 ) {
@@ -40,4 +40,17 @@ export function getAddress(
     message: 'No address found',
     context: { doctor, institution, errors },
   });
+}
+
+export function getAddress(
+  doctor: DoctorsCsv,
+  institution?: InstitutionsCsv | null
+) {
+  const address = makeAddress(doctor, institution);
+
+  if (address instanceof ValidationError) {
+    return null;
+  }
+
+  return address;
 }

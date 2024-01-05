@@ -215,4 +215,48 @@
   .mask {
     mask-image: linear-gradient(180deg, #000 0 calc(100% - 3rem), transparent);
   }
+
+  /* DOCTOR */
+
+  .doctor-card-container {
+    container-type: inline-size;
+    container-name: doctor-card-container;
+
+    & > .doctor-card {
+      @apply relative flex flex-col overflow-hidden rounded-2xl  child:p-4;
+
+      & > .doctor-card__map {
+        @apply relative h-48  !p-0;
+      }
+
+      & > .doctor-card__content {
+        @apply grow;
+      }
+    }
+  }
+
+  @container doctor-card-container (min-width: 40rem) {
+    .doctor-card-container > .doctor-card {
+      @apply flex-row;
+
+      & > .doctor-card__map {
+        @apply h-auto min-h-48 w-1/3 !p-0;
+      }
+
+      & > .doctor-card__content {
+        @apply w-2/3;
+      }
+    }
+  }
+  @container doctor-card-container (min-width: 60rem) {
+    .doctor-card-container > .doctor-card {
+      & > .doctor-card__map {
+        @apply w-1/2;
+      }
+
+      & > .doctor-card__content {
+        @apply w-1/2;
+      }
+    }
+  }
 }
