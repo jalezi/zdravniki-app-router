@@ -182,3 +182,6 @@ export const addressSchema = z
 // });
 
 export type Address = z.infer<typeof addressSchema>;
+
+export const acceptsNewPatientsSchema = z.enum(['y', 'n']);
+export type AcceptsNewPatients = z.infer<typeof acceptsNewPatientsSchema>;

@@ -68,20 +68,20 @@ export default async function Home({
               <h2>{parsedSearchParams.type.toLocaleUpperCase()}</h2>
               <ul className='flex flex-col gap-2'>
                 {doctorsByType.slice(0, 10).map(doctor => {
-                  const href = doctorUtils.getHref(doctor);
-                  const inst = uniqueInstitutions.get(doctor.id_inst);
-                  const institutionName = inst?.name ?? '';
-                  const fullAddress =
-                    doctorUtils.getAddress(doctor, inst)?.fullAddress ?? '';
-                  const key = doctorUtils.getFakeId(doctor);
+                  const props = doctorUtils.getDoctor(
+                    doctor,
+                    uniqueInstitutions
+                  );
+
+                  if (!props) {
+                    return null; // TODO handle this later
+                  }
+
+                  const { key, ...drProps } = props;
+
                   return (
                     <li key={key}>
-                      <DoctorCard
-                        doctor={doctor.doctor}
-                        fullAddress={fullAddress}
-                        href={href}
-                        institutionName={institutionName}
-                      />
+                      <DoctorCard {...drProps} />
                     </li>
                   );
                 })}

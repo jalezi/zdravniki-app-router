@@ -88,6 +88,8 @@ export function getInstitutionsMap(
   return uniqueInstitutions;
 }
 
+export type InstitutionsMap = ReturnType<typeof getInstitutionsMap>;
+
 export function groupDoctorsByType(
   doctors: DoctorsCsv[]
 ): Map<FilterDoctorTypeParam, DoctorsCsv[]> {

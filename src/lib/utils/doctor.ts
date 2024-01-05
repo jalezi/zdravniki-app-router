@@ -1,7 +1,72 @@
-import { DoctorsCsv, InstitutionsCsv, addressSchema } from '@/lib/schemas';
+import { LatLngTuple } from 'leaflet';
+
+import {
+  DoctorsCsv,
+  InstitutionsCsv,
+  acceptsNewPatientsSchema,
+  addressSchema,
+  doctorCsvTypeSchema,
+} from '@/lib/schemas';
 
 import { toSlug } from './slugify';
 import ValidationError from '../errors/ValidationError';
+
+import type { InstitutionsMap } from './filters';
+
+export function getDoctor(doctor: DoctorsCsv, institutions: InstitutionsMap) {
+  const key = getFakeId(doctor);
+  const href = getHref(doctor);
+  const inst = institutions.get(doctor.id_inst);
+  const institutionName = inst?.name;
+  const fullAddress = getAddress(doctor, inst)?.fullAddress;
+  const type = getDoctorType(doctor);
+  const safeAcceptsNewPatients = acceptsNewPatientsSchema.safeParse(
+    doctor.accepts
+  );
+
+  const geoLocation = getGeoLocation(doctor, inst);
+
+  if (
+    !type ||
+    !institutionName ||
+    !fullAddress ||
+    !safeAcceptsNewPatients.success ||
+    !geoLocation
+  ) {
+    const context = {
+      key,
+      type: doctor.type,
+      institutionName: inst?.name ? inst.name : 'No institution found',
+      address: doctor.address || inst ? inst : 'No address found',
+      accepts: safeAcceptsNewPatients.success
+        ? safeAcceptsNewPatients.data
+        : safeAcceptsNewPatients.error,
+      geoLocation: {
+        doctor: [doctor.lat, doctor.lon],
+        institution: [inst?.lat, inst?.lon],
+      },
+    };
+
+    console.log(
+      new ValidationError({
+        message: 'Invalid doctor data',
+        context,
+      })
+    );
+    return null;
+  }
+
+  return {
+    key,
+    acceptsNewPatients: safeAcceptsNewPatients.data,
+    href,
+    type,
+    name: doctor.doctor,
+    institutionName,
+    address: fullAddress,
+    geoLocation,
+  } as const;
+}
 
 /**
  * Generates a fake ID for a doctor based on the provided data.
@@ -9,7 +74,7 @@ import ValidationError from '../errors/ValidationError';
  * @returns The generated fake ID.
  */
 export function getFakeId(doctor: DoctorsCsv) {
-  return getHref(doctor).replaceAll('/', '-');
+  return getHref(doctor).slice(1, -1).replaceAll('/', '-');
 }
 
 export function getHref(doctor: DoctorsCsv) {
@@ -53,4 +118,26 @@ export function getAddress(
   }
 
   return address;
+}
+
+export function getDoctorType(doctor: DoctorsCsv) {
+  const safeType = doctorCsvTypeSchema.safeParse(doctor.type);
+  if (safeType.success) {
+    return safeType.data;
+  }
+  return null;
+}
+
+export function getGeoLocation(
+  doctor: DoctorsCsv,
+  institution?: InstitutionsCsv
+) {
+  const lat = parseFloat(doctor.lat) || parseFloat(institution?.lat ?? '');
+  const lon = parseFloat(doctor.lon) || parseFloat(institution?.lon ?? '');
+
+  if (isNaN(lat) || isNaN(lon)) {
+    return null;
+  }
+
+  return [lat, lon] as LatLngTuple;
 }
