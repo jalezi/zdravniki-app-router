@@ -42,14 +42,7 @@ const nextConfig = {
     return config;
   },
   async redirects() {
-    return [
-      ...REDIRECTS,
-      {
-        source: '/sl/gp',
-        destination: '/sl/druzinski-zdravnik',
-        permanent: true,
-      },
-    ];
+    return [...REDIRECTS];
   },
   async rewrites() {
     return {
