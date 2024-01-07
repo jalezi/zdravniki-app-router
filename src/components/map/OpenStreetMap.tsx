@@ -1,12 +1,11 @@
 'use client';
 
-import { PropsWithChildren, useState } from 'react';
+import { PropsWithChildren } from 'react';
 
 import { AttributionControl, MapContainer, TileLayer } from 'react-leaflet';
 
 import { MAP } from '@/lib/constants';
 
-import type { Map as LeafletMap } from 'leaflet';
 import type { MapContainerProps } from 'react-leaflet';
 
 import 'leaflet/dist/leaflet.css';
@@ -15,19 +14,12 @@ import 'leaflet-defaulticon-compatibility';
 
 export interface OpenStreetMapProps
   extends MapContainerProps,
-    PropsWithChildren {
-  setMap?: (map: LeafletMap | null) => void;
-  map?: LeafletMap | null;
-}
+    PropsWithChildren {}
 
 export default function OpenStreetMap({
   children,
-  setMap,
-  map,
   ...props
 }: OpenStreetMapProps) {
-  const [_map, _setMap] = useState<LeafletMap | null>(map ?? null);
-
   return (
     <MapContainer
       attributionControl={false}
@@ -35,8 +27,8 @@ export default function OpenStreetMap({
       zoom={MAP.ZOOM}
       minZoom={MAP.MIN_ZOOM}
       maxZoom={MAP.MAX_ZOOM}
-      ref={setMap ?? _setMap}
       {...props}
+      className='custom-leaflet'
     >
       <AttributionControl prefix='' />
       <TileLayer
