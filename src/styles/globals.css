@@ -221,16 +221,18 @@
   .doctor-card-container {
     container-type: inline-size;
     container-name: doctor-card-container;
+    max-width: 60rem;
+    @apply mx-auto;
 
     & > .doctor-card {
-      @apply relative flex flex-col overflow-hidden rounded-2xl  child:p-4;
+      @apply relative flex flex-col overflow-hidden rounded-2xl;
 
       & > .doctor-card__map {
-        @apply relative h-48  !p-0;
+        @apply relative h-48;
       }
 
       & > .doctor-card__content {
-        @apply grow;
+        @apply grow p-4;
       }
     }
   }
@@ -240,22 +242,11 @@
       @apply flex-row;
 
       & > .doctor-card__map {
-        @apply h-auto min-h-48 w-1/3 !p-0;
+        @apply h-auto min-h-48 w-2/5 min-w-64 max-w-96;
       }
 
       & > .doctor-card__content {
-        @apply w-2/3;
-      }
-    }
-  }
-  @container doctor-card-container (min-width: 60rem) {
-    .doctor-card-container > .doctor-card {
-      & > .doctor-card__map {
-        @apply w-1/2;
-      }
-
-      & > .doctor-card__content {
-        @apply w-1/2;
+        @apply w-3/5;
       }
     }
   }

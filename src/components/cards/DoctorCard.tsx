@@ -1,13 +1,37 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 import Link from 'next/link';
 
 import { LatLngTuple } from 'leaflet';
+import { getPlaiceholder } from 'plaiceholder';
 
+import fakeImageMap from '@/assets/images/fake-map-512-16-9.jpeg';
 import { AcceptsNewPatients, DoctorTypeCsv } from '@/lib/schemas';
+
+const baseBasePath = path.join(process.cwd(), 'src', 'assets', 'images');
+const filePath = path.join(baseBasePath, 'fake-map-512-16-9.jpeg');
+const file = await fs.readFile(filePath);
+
+const data = await getPlaiceholder(file);
 
 const DoctorMap = dynamic(() => import('../map').then(mod => mod.DoctorMap), {
   ssr: false,
-  loading: () => <div className='doctor-card__map child:h-full ' />,
+  loading: () => {
+    return (
+      <div className='doctor-card__map child:h-full '>
+        <Image
+          src={fakeImageMap}
+          alt='fake map'
+          placeholder='blur'
+          blurDataURL={data.base64}
+          priority
+        />
+      </div>
+    );
+  },
 });
 
 export interface BasicInfoProps {
