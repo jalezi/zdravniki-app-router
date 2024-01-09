@@ -1,3 +1,5 @@
+import { DoctorIconsMap } from '@/types';
+
 import { icons } from './import-svg';
 
 export type { IconName } from './import-svg';
@@ -19,7 +21,7 @@ export const DentistIcon = icons.DentistIcon;
 export const ExtraClinicIcon = icons.ExtraClinicIcon;
 export const FloatingClinicIcon = icons.FloatingClinicIcon;
 
-export const DOCTOR_ICONS = {
+export const DOCTOR_ICONS: DoctorIconsMap = {
   den: DentistIcon,
   gp: FamilyDrIcon,
   gyn: GynecologistIcon,
@@ -28,4 +30,4 @@ export const DOCTOR_ICONS = {
   s: StudentsIcon,
   f: FloatingClinicIcon,
   x: ExtraClinicIcon,
-} as const;
+};
