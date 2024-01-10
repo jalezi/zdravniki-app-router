@@ -9,29 +9,35 @@ import { Icons } from '../../icons';
 import type { IconName } from '../../icons';
 import type { VariantProps } from 'class-variance-authority';
 
-const rootVariants = cva('inline-flex items-center px-1 tracking-wide', {
-  variants: {
-    variant: {
-      default: 'rounded',
-      left: 'rounded-l',
-      right: 'rounded-r',
+const rootVariants = cva(
+  'inline-flex items-center gap-1 px-1 py-1 tracking-wide',
+  {
+    variants: {
+      variant: {
+        default: 'rounded',
+        left: 'rounded-l',
+        right: 'rounded-r',
+      },
+      colors: {
+        default: 'bg-text-50/70 text-text-900/80 ',
+        subtype: 'bg-text-200/40 text-text-900/80',
+        clinic: 'bg-brand-200/80 text-brand-900/80',
+      },
     },
-    colors: {
-      default: 'bg-text-50/70 text-text-900/80 ',
-      subtype: 'bg-text-200/40 text-text-900/80',
-      clinic: 'bg-brand-200/80 text-brand-900/80',
+    defaultVariants: {
+      variant: 'default',
+      colors: 'default',
     },
-  },
-  defaultVariants: {
-    variant: 'default',
-    colors: 'default',
-  },
-});
+  }
+);
+
+export interface ChipPrimitivesVariantsProps
+  extends VariantProps<typeof rootVariants> {}
 
 export interface RootProps
   extends HTMLAttributes<HTMLSpanElement>,
     PropsWithChildren,
-    VariantProps<typeof rootVariants> {}
+    ChipPrimitivesVariantsProps {}
 
 const Root = function ({
   children,
@@ -56,7 +62,7 @@ export interface IconProps extends HTMLAttributes<HTMLSpanElement> {
 const Icon = function ({ iconName, className, ...props }: IconProps) {
   const SVGIcon = Icons[iconName];
 
-  const styles = cn('grid aspect-square min-w-6 place-items-center', className);
+  const styles = cn('grid aspect-square place-items-center', className);
 
   return (
     <span {...props} className={styles}>
@@ -80,10 +86,10 @@ const Text = function ({
   );
 };
 
-export const Chip = {
+export const Primitives = {
   Root,
   Icon,
   Text,
 };
 
-export default Chip;
+export default Primitives;

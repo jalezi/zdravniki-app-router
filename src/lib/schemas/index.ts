@@ -185,3 +185,52 @@ export type Address = z.infer<typeof addressSchema>;
 
 export const acceptsNewPatientsSchema = z.enum(['y', 'n']);
 export type AcceptsNewPatients = z.infer<typeof acceptsNewPatientsSchema>;
+
+export const extractDoctorCsvBaseTypeSchema = doctorCsvTypeSchema.transform(
+  (val, ctx) => {
+    if (val.startsWith('gp')) {
+      return 'gp' as const;
+    }
+    if (val.startsWith('den')) {
+      return 'den' as const;
+    }
+
+    if (val.startsWith('ped')) {
+      return 'ped' as const;
+    }
+
+    if (val.startsWith('gyn')) {
+      return 'gyn' as const;
+    }
+
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: `Invalid type: ${val}`,
+      params: { val },
+      fatal: true,
+    });
+
+    return z.NEVER;
+  }
+);
+
+export const extractDoctorCsvSubtypeSchema = doctorCsvTypeSchema.transform(
+  (val, ctx) => {
+    if (val.endsWith('-y')) {
+      return 'y' as const;
+    }
+
+    if (val.endsWith('-s')) {
+      return 's' as const;
+    }
+
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: `Invalid type: ${val}`,
+      params: { val },
+      fatal: true,
+    });
+
+    return z.NEVER;
+  }
+);

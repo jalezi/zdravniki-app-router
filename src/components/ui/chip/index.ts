@@ -1,6 +1,5 @@
-export type {
-  RootProps as ChipRootProps,
-  IconProps as ChipIconProps,
-} from './Chip';
+export * as Chips from './Chips';
+export { default as ChipPrimitives } from './Primitives';
 
-export { default as Chip } from './Chip';
+export type * as ChipTypes from './Chips';
+export type * as ChipPrimitiveTypes from './Primitives';
