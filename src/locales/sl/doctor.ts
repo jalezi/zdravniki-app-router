@@ -1,9 +1,25 @@
 export const doctor = {
   type: {
-    gp: 'družinski zdravnik',
-    gyn: 'ginekolog',
-    ped: 'pediater',
-    den: 'zobozdravnik',
+    gp: {
+      description: 'Splošna ambulanta dejavnosti družinske medicine',
+      title: 'Družinski zdravnik',
+      label: 'družinski zdravnik',
+    },
+    gyn: {
+      description: 'Ginekološka ambulanta',
+      title: 'Ginekolog',
+      label: 'ginekolog',
+    },
+    ped: {
+      description: 'Ambulanta za otroke',
+      title: 'Pediatra',
+      label: 'pediater',
+    },
+    den: {
+      description: 'Zobozdravstvena ambulanta',
+      title: 'Zobozdravnik',
+      label: 'zobozdravnik',
+    },
   },
   subtype: {
     y: {

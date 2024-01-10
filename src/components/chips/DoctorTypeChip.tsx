@@ -34,7 +34,7 @@ export default async function DoctorTypeChip({ type }: DoctorTypeChipProps) {
     const iconName = DOCTOR_ICONS[baseType].name;
 
     const props: ChipProps = {
-      text: t(`type.${baseType}`),
+      text: t(`type.${baseType}.label`),
       icon: iconName,
       variant: 'default',
       colors: 'default',
@@ -52,7 +52,7 @@ export default async function DoctorTypeChip({ type }: DoctorTypeChipProps) {
 
     const props: DoubleChipProps = {
       icons: [baseTypeIconName, subtypeIconName],
-      texts: [t(`type.${baseType}`), t(`subtype.${subtype}.label`)],
+      texts: [t(`type.${baseType}.label`), t(`subtype.${subtype}.label`)],
       colors: ['default', 'subtype'],
     };
 

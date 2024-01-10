@@ -1,9 +1,25 @@
 export const doctor = {
   type: {
-    gp: 'general practitioner',
-    gyn: 'gynecologist',
-    ped: 'pediatrician',
-    den: 'dentist',
+    gp: {
+      description: 'General practitioner',
+      title: 'General practitioner',
+      label: 'general practitioner',
+    },
+    gyn: {
+      description: 'Gynecologist',
+      title: 'Gynecologist',
+      label: 'gynecologist',
+    },
+    ped: {
+      description: 'Pediatrician',
+      title: 'Pediatrician',
+      label: 'pediatrician',
+    },
+    den: {
+      description: 'Dentist',
+      title: 'Dentist',
+      label: 'dentist',
+    },
   },
   subtype: {
     y: {
@@ -19,15 +35,15 @@ export const doctor = {
   },
   clinic: {
     f: {
-      description: 'Infirmary for patients without doctors',
-      title: 'Infirmary for patients without doctors',
-      label: 'infirmary for patients without doctors',
+      description: 'Infirmary for patients without doctor',
+      title: 'Infirmary for patients without doctor',
+      label: 'patients without doctor',
     },
     x: {
       description:
         'In clinics for better accessibility, insured persons who do not have a personal doctor (GP or Pediatrician) can choose their personal doctor (in case there is no available doctor or if the chosen personal doctor is permanently absent).',
       title: 'Clinic for better accessibility',
-      label: 'clinic for better accessibility',
+      label: 'better accessibility',
     },
   },
 } as const;
