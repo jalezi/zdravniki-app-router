@@ -234,3 +234,24 @@ export const extractDoctorCsvSubtypeSchema = doctorCsvTypeSchema.transform(
     return z.NEVER;
   }
 );
+
+export const extractDoctorCsvClinicSchema = doctorCsvTypeSchema.transform(
+  (val, ctx) => {
+    if (val.endsWith('-f')) {
+      return 'f' as const;
+    }
+
+    if (val.endsWith('-x')) {
+      return 'x' as const;
+    }
+
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: `Invalid type: ${val}`,
+      params: { val },
+      fatal: true,
+    });
+
+    return z.NEVER;
+  }
+);
