@@ -30,5 +30,5 @@ export const DOCTOR_ICONS: DoctorIconsMap = {
   x: { name: 'ExtraClinicIcon', component: ExtraClinicIcon },
   f: { name: 'FloatingClinicIcon', component: FloatingClinicIcon },
   s: { name: 'StudentsIcon', component: StudentsIcon },
-  y: { name: 'PodnebnikIcon', component: PodnebnikIcon },
+  y: { name: 'KidsIcon', component: KidsIcon },
 };
