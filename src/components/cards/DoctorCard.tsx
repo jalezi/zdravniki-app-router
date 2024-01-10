@@ -17,8 +17,8 @@ import {
 } from '@/lib/schemas';
 import { getScopedI18n } from '@/locales/server';
 
-import { Chip } from '../chip';
 import { DOCTOR_ICONS } from '../icons';
+import { Chip } from '../ui/chip';
 
 const baseBasePath = path.join(process.cwd(), 'src', 'assets', 'images');
 const filePath = path.join(baseBasePath, 'fake-map-512-16-9.jpeg');

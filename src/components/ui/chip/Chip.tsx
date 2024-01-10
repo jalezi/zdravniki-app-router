@@ -4,9 +4,9 @@ import { cva } from 'class-variance-authority';
 
 import { cn } from '@/lib/utils';
 
-import { Icons } from '../icons';
+import { Icons } from '../../icons';
 
-import type { IconName } from '../icons';
+import type { IconName } from '../../icons';
 import type { VariantProps } from 'class-variance-authority';
 
 const rootVariants = cva('inline-flex items-center px-1 tracking-wide', {
