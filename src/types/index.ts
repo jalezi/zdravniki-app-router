@@ -1,5 +1,6 @@
 import type { FC, SVGProps } from 'react';
 
+import { IconName } from '@/components/icons';
 import { DoctorTypeCsv } from '@/lib/schemas';
 import { Locales } from '@/locales/config';
 
@@ -21,5 +22,5 @@ export type DoctorSuffixType = ExtracSuffix<DoctorTypeCsv>;
 
 export type DoctorIconsMap = Record<
   DoctorBaseType | DoctorSuffixType,
-  SVGComponent
+  { name: IconName; component: SVGComponent }
 >;

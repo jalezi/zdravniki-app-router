@@ -2,6 +2,7 @@ import { DoctorIconsMap } from '@/types';
 
 import { icons } from './import-svg';
 
+export { icons as Icons } from './import-svg';
 export type { IconName } from './import-svg';
 
 export const Logo = icons.Logo;
@@ -22,12 +23,12 @@ export const ExtraClinicIcon = icons.ExtraClinicIcon;
 export const FloatingClinicIcon = icons.FloatingClinicIcon;
 
 export const DOCTOR_ICONS: DoctorIconsMap = {
-  den: DentistIcon,
-  gp: FamilyDrIcon,
-  gyn: GynecologistIcon,
-  ped: KidsIcon,
-  y: KidsIcon,
-  s: StudentsIcon,
-  f: FloatingClinicIcon,
-  x: ExtraClinicIcon,
+  den: { name: 'DentistIcon', component: DentistIcon },
+  gp: { name: 'FamilyDrIcon', component: FamilyDrIcon },
+  gyn: { name: 'GynecologistIcon', component: GynecologistIcon },
+  ped: { name: 'KidsIcon', component: KidsIcon },
+  x: { name: 'ExtraClinicIcon', component: ExtraClinicIcon },
+  f: { name: 'FloatingClinicIcon', component: FloatingClinicIcon },
+  s: { name: 'StudentsIcon', component: StudentsIcon },
+  y: { name: 'PodnebnikIcon', component: PodnebnikIcon },
 };
