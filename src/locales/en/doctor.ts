@@ -46,4 +46,16 @@ export const doctor = {
       label: 'better accessibility',
     },
   },
+  accepts: {
+    y: {
+      description: 'Accepts new patients',
+      title: 'Accepts new patients',
+      label: 'accepting',
+    },
+    n: {
+      description: 'Does not accept new patients',
+      title: 'Does not accept new patients',
+      label: 'not accepting',
+    },
+  },
 } as const;

@@ -46,4 +46,16 @@ export const doctor = {
       label: 'boljša dostopnost',
     },
   },
+  accepts: {
+    y: {
+      description: 'Sprejema nove paciente',
+      title: 'Sprejema nove paciente',
+      label: 'sprejema',
+    },
+    n: {
+      description: 'Ne sprejema novih pacientov',
+      title: 'Ne sprejema novih pacientov',
+      label: 'ne sprejema',
+    },
+  },
 } as const;
