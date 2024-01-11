@@ -10,18 +10,21 @@ import type { IconName } from '../../icons';
 import type { VariantProps } from 'class-variance-authority';
 
 const rootVariants = cva(
-  'inline-flex items-center gap-1 px-1 py-1 tracking-wide',
+  'inline-flex items-center gap-1 px-2 py-1 tracking-wide border border-transparent',
   {
     variants: {
       variant: {
         default: 'rounded',
         left: 'rounded-l',
         right: 'rounded-r',
+        accepts: 'rounded uppercase',
       },
       colors: {
         default: 'bg-text-50/70 text-text-900/80 ',
         subtype: 'bg-text-200/40 text-text-900/80',
         clinic: 'bg-brand-200/80 text-brand-900/80',
+        success: 'bg-green-500 text-white',
+        error: 'bg-red-500 text-white',
       },
     },
     defaultVariants: {
