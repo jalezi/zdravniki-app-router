@@ -1,3 +1,5 @@
+import BanIcon from '@/assets/svg/icon-ban-2.svg';
+import CheckCircleIcon from '@/assets/svg/icon-check-circle.svg';
 import ExtraClinicIcon from '@/assets/svg/icon-clinic.svg';
 import Covid19Icon from '@/assets/svg/icon-covid19.svg';
 import DentistIcon from '@/assets/svg/icon-dentist.svg';
@@ -16,6 +18,8 @@ import Logo from '@/assets/svg/zdravniki-sledilnik-logo.svg';
 import type { SVGComponent } from '@/types';
 
 export const icons = {
+  BanIcon: BanIcon as SVGComponent,
+  CheckCircleIcon: CheckCircleIcon as SVGComponent,
   Logo: Logo as SVGComponent,
   LogoIcon: FamilyDrIcon as SVGComponent,
   FamilyDrIcon: FamilyDrIcon as SVGComponent,
