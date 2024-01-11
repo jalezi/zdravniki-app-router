@@ -2,27 +2,31 @@ import { HTMLAttributes } from 'react';
 
 import { IconName } from '@/components/icons';
 
-import { ChipPrimitivesVariantsProps } from './Primitives';
+import { ChipRootPrimitiveVariantsProps } from './Primitives';
 
 import { ChipPrimitives } from '.';
 
-export interface ChipProps extends ChipPrimitivesVariantsProps {
+export interface ChipProps extends ChipRootPrimitiveVariantsProps {
   icon: IconName;
   text: string;
   iconPosition?: 'start' | 'end';
+  iconSize?: ChipRootPrimitiveVariantsProps['size'];
 }
 
 export const Chip = function Chip({
   icon,
   text,
   iconPosition = 'start',
+  iconSize,
   ...rootChipProps
 }: ChipProps) {
+  const iconComponent = <ChipPrimitives.Icon iconName={icon} size={iconSize} />;
+
   return (
     <ChipPrimitives.Root {...rootChipProps}>
-      {iconPosition === 'start' && <ChipPrimitives.Icon iconName={icon} />}
+      {iconPosition === 'start' ? iconComponent : null}
       <ChipPrimitives.Text>{text}</ChipPrimitives.Text>
-      {iconPosition === 'end' && <ChipPrimitives.Icon iconName={icon} />}
+      {iconPosition === 'end' ? iconComponent : null}
     </ChipPrimitives.Root>
   );
 };
@@ -31,8 +35,8 @@ export interface DoubleChipProps extends HTMLAttributes<HTMLSpanElement> {
   icons: [IconName, IconName];
   texts: [string, string];
   colors: [
-    ChipPrimitivesVariantsProps['colors'],
-    ChipPrimitivesVariantsProps['colors'],
+    ChipRootPrimitiveVariantsProps['colors'],
+    ChipRootPrimitiveVariantsProps['colors'],
   ];
 }
 

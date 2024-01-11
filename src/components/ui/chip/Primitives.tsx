@@ -43,13 +43,13 @@ const rootVariants = cva(
   }
 );
 
-export interface ChipPrimitivesVariantsProps
+export interface ChipRootPrimitiveVariantsProps
   extends VariantProps<typeof rootVariants> {}
 
 export interface RootProps
   extends HTMLAttributes<HTMLSpanElement>,
     PropsWithChildren,
-    ChipPrimitivesVariantsProps {}
+    ChipRootPrimitiveVariantsProps {}
 
 const Root = function ({
   children,
@@ -68,14 +68,35 @@ const Root = function ({
   );
 };
 
-export interface IconProps extends HTMLAttributes<HTMLSpanElement> {
+const iconVariants = cva('grid aspect-square place-items-center', {
+  variants: {
+    size: {
+      xxs: 'text-[0.625rem]',
+      xs: 'text-xs',
+      sm: 'text-sm',
+      base: 'text-base',
+      lg: 'text-lg',
+      xl: 'text-xl',
+    },
+  },
+  defaultVariants: {
+    size: 'base',
+  },
+});
+
+export interface IconRootPrimitiveVariantsProps
+  extends VariantProps<typeof iconVariants> {}
+
+export interface IconProps
+  extends HTMLAttributes<HTMLSpanElement>,
+    IconRootPrimitiveVariantsProps {
   iconName: IconName;
 }
 
-const Icon = function ({ iconName, className, ...props }: IconProps) {
+const Icon = function ({ iconName, size, className, ...props }: IconProps) {
   const SVGIcon = Icons[iconName];
 
-  const styles = cn('grid aspect-square place-items-center', className);
+  const styles = cn(iconVariants({ size, className }));
 
   return (
     <span {...props} className={styles}>
