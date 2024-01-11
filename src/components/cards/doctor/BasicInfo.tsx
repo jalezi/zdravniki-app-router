@@ -1,7 +1,7 @@
-import Link from 'next/link';
-
 import { DoctorClinicChip, DoctorTypeChip } from '@/components/chips';
 import { DoctorTypeCsv } from '@/lib/schemas';
+
+import Name from './Name';
 
 export interface BasicInfoProps {
   name: string;
@@ -20,9 +20,7 @@ export default function BasicInfo({
 }: BasicInfoProps) {
   return (
     <div className='doctor-card__basic-info'>
-      <Link href={href}>
-        <h2 className='text-xl font-bold'>{name}</h2>
-      </Link>
+      <Name as='h2' href={href} name={name} />
       <div className='flex flex-wrap gap-2'>
         <DoctorTypeChip type={type} />
         <DoctorClinicChip type={type} />

@@ -10,7 +10,7 @@ import { getPlaiceholder } from 'plaiceholder';
 import fakeImageMap from '@/assets/images/fake-map-512-16-9.jpeg';
 import { AcceptsNewPatients, DoctorTypeCsv } from '@/lib/schemas';
 
-import { BasicInfo } from './doctor';
+import Doctor from './doctor';
 import { AcceptsChip } from '../chips';
 
 const baseBasePath = path.join(process.cwd(), 'src', 'assets', 'images');
@@ -60,7 +60,7 @@ export default async function DoctorCard({
       <div className='doctor-card'>
         <DoctorMap center={geoLocation} />
         <div className='doctor-card__content flex flex-col gap-1'>
-          <BasicInfo
+          <Doctor.BasicInfo
             name={name}
             address={address}
             href={href}

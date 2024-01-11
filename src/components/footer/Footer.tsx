@@ -1,11 +1,13 @@
 import { HTMLAttributes } from 'react';
 
-import { VariantProps, cva } from 'class-variance-authority';
+import { cva } from 'class-variance-authority';
 
 import { cn } from '@/lib/utils';
 import { getScopedI18n } from '@/locales/server';
 
 import Timestamp from '../timestamp/Timestamp';
+
+import type { VariantProps } from 'class-variance-authority';
 
 const footerVariants = cva(
   'footer bg-footer-100 text-xs flex items-center  w-full px-4 py-4 md:px-0 border-b border-t border-dashed border-text-200 border-b-transparent',

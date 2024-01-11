@@ -7,7 +7,7 @@ import { Construction } from 'lucide-react';
 import { setStaticParamsLocale } from 'next-international/server';
 import { compileMDX } from 'next-mdx-remote/rsc';
 
-import { components } from '@/components/ui/mdx-headings';
+import { components } from '@/components/ui/headings';
 import { getContentBySlug } from '@/lib/utils/get-content';
 import { getStaticParams } from '@/locales/server';
 import { BaseParams } from '@/types';
