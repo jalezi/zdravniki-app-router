@@ -3,7 +3,6 @@ import path from 'node:path';
 
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import Link from 'next/link';
 
 import { LatLngTuple } from 'leaflet';
 import { getPlaiceholder } from 'plaiceholder';
@@ -11,7 +10,8 @@ import { getPlaiceholder } from 'plaiceholder';
 import fakeImageMap from '@/assets/images/fake-map-512-16-9.jpeg';
 import { AcceptsNewPatients, DoctorTypeCsv } from '@/lib/schemas';
 
-import { AcceptsChip, DoctorClinicChip, DoctorTypeChip } from '../chips';
+import { BasicInfo } from './doctor';
+import { AcceptsChip } from '../chips';
 
 const baseBasePath = path.join(process.cwd(), 'src', 'assets', 'images');
 const filePath = path.join(baseBasePath, 'fake-map-512-16-9.jpeg');
@@ -36,32 +36,6 @@ const DoctorMap = dynamic(() => import('../map').then(mod => mod.DoctorMap), {
   },
 });
 
-export interface BasicInfoProps {
-  name: string;
-  address: string;
-  href: string;
-  institutionName: string;
-}
-
-export function BasicInfo({
-  name,
-  address,
-  href,
-  institutionName,
-}: BasicInfoProps) {
-  return (
-    <div className='doctor-card__basic-info'>
-      <Link href={href}>
-        <h2 className='text-xl font-bold'>{name}</h2>
-      </Link>
-      <address className='text-xs not-italic'>
-        <p className=' font-bold uppercase'>{institutionName}</p>
-        <p className='text-text-400'>{address}</p>
-      </address>
-    </div>
-  );
-}
-
 export interface DoctorCardProps {
   acceptsNewPatients: AcceptsNewPatients;
   name: string;
@@ -85,18 +59,17 @@ export default async function DoctorCard({
     <div className='doctor-card-container'>
       <div className='doctor-card'>
         <DoctorMap center={geoLocation} />
-        <div className='doctor-card__content'>
-          <div className='flex flex-wrap gap-2'>
-            <DoctorTypeChip type={type} />
-            <DoctorClinicChip type={type} />
-          </div>
-          <AcceptsChip accepts={acceptsNewPatients} />
+        <div className='doctor-card__content flex flex-col gap-1'>
           <BasicInfo
             name={name}
             address={address}
             href={href}
             institutionName={institutionName}
+            type={type}
           />
+          <div>
+            <AcceptsChip accepts={acceptsNewPatients} />
+          </div>
         </div>
       </div>
     </div>
