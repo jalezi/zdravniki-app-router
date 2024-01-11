@@ -12,6 +12,7 @@ export interface AcceptsChipProps {
 
 export default async function AcceptsChip({ accepts }: AcceptsChipProps) {
   const t = await getScopedI18n('doctor');
+  console.log(accepts);
 
   const props: ChipProps = {
     text: t(`accepts.${accepts}.label`),

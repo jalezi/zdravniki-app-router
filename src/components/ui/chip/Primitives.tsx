@@ -23,8 +23,8 @@ const rootVariants = cva(
         default: 'bg-text-50/70 text-text-900/80 ',
         subtype: 'bg-text-200/40 text-text-900/80',
         clinic: 'bg-brand-200/80 text-brand-900/80',
-        success: 'bg-green-500 text-white',
-        error: 'bg-red-500 text-white',
+        success: 'bg-green-700 text-white',
+        error: 'bg-red-700 text-white',
       },
       size: {
         xxs: 'text-[0.625rem]',

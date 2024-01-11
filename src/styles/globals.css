@@ -257,3 +257,7 @@
 .leaflet-tile-pane {
   filter: hue-rotate(40deg) saturate(0.4) contrast(0.6) brightness(1.2) !important;
 }
+
+.leaflet-control-attribution.leaflet-control a {
+  @apply text-accent-500;
+}
