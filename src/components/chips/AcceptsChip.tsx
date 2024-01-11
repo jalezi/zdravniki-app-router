@@ -18,6 +18,7 @@ export default async function AcceptsChip({ accepts }: AcceptsChipProps) {
     icon: ACCEPTS_NEW_PATIENTS_ICONS[accepts].name,
     variant: 'accepts',
     colors: accepts === 'y' ? 'success' : 'error',
+    size: 'xxs',
   };
   return <Chips.Chip {...props} />;
 }

@@ -10,14 +10,14 @@ import type { IconName } from '../../icons';
 import type { VariantProps } from 'class-variance-authority';
 
 const rootVariants = cva(
-  'inline-flex items-center gap-1 px-2 py-1 tracking-wide border border-transparent',
+  'inline-flex items-center gap-1 text-xs px-2 py-1 tracking-wide border border-transparent',
   {
     variants: {
       variant: {
         default: 'rounded',
         left: 'rounded-l',
         right: 'rounded-r',
-        accepts: 'rounded uppercase',
+        accepts: 'rounded uppercase font-semibold',
       },
       colors: {
         default: 'bg-text-50/70 text-text-900/80 ',
@@ -26,10 +26,19 @@ const rootVariants = cva(
         success: 'bg-green-500 text-white',
         error: 'bg-red-500 text-white',
       },
+      size: {
+        xxs: 'text-[0.625rem]',
+        xs: 'text-xs',
+        sm: 'text-sm',
+        base: 'text-base',
+        lg: 'text-lg',
+        xl: 'text-xl',
+      },
     },
     defaultVariants: {
       variant: 'default',
       colors: 'default',
+      size: 'xs',
     },
   }
 );
@@ -46,10 +55,11 @@ const Root = function ({
   children,
   variant,
   colors,
+  size,
   className,
   ...props
 }: RootProps) {
-  const styles = cn(rootVariants({ variant, colors, className }));
+  const styles = cn(rootVariants({ variant, colors, size, className }));
 
   return (
     <span className={styles} {...props}>
@@ -81,7 +91,7 @@ const Text = function ({
   className,
   ...props
 }: HTMLAttributes<HTMLSpanElement>) {
-  const styes = cn('text-xs', className);
+  const styes = cn(className);
   return (
     <span className={styes} {...props}>
       {children}
