@@ -10,7 +10,7 @@ import type { IconName } from '../../icons';
 import type { VariantProps } from 'class-variance-authority';
 
 const rootVariants = cva(
-  'inline-flex items-center gap-1 text-xs px-2 py-1 tracking-wide border border-transparent',
+  'inline-flex items-center gap-1 px-2 py-1 tracking-wide border border-transparent',
   {
     variants: {
       variant: {
@@ -27,7 +27,7 @@ const rootVariants = cva(
         error: 'bg-red-700 text-white',
       },
       size: {
-        xxs: 'text-[0.625rem]',
+        xxs: 'text-[0.625rem] leading-3',
         xs: 'text-xs',
         sm: 'text-sm',
         base: 'text-base',

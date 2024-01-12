@@ -21,8 +21,9 @@ export function getDoctor(doctor: DoctorsCsv, institutions: InstitutionsMap) {
   const fullAddress = getAddress(doctor, inst)?.fullAddress;
   const type = getDoctorType(doctor);
   const safeAcceptsNewPatients = acceptsNewPatientsSchema.safeParse(
-    doctor.accepts
+    doctor.accepts_override ? doctor.accepts_override : doctor.accepts
   );
+  const availability = getAvailability(doctor);
 
   const geoLocation = getGeoLocation(doctor, inst);
 
@@ -31,7 +32,8 @@ export function getDoctor(doctor: DoctorsCsv, institutions: InstitutionsMap) {
     !institutionName ||
     !fullAddress ||
     !safeAcceptsNewPatients.success ||
-    !geoLocation
+    !geoLocation ||
+    availability === null
   ) {
     const context = {
       key,
@@ -45,6 +47,7 @@ export function getDoctor(doctor: DoctorsCsv, institutions: InstitutionsMap) {
         doctor: [doctor.lat, doctor.lon],
         institution: [inst?.lat, inst?.lon],
       },
+      availability,
     };
 
     console.log(
@@ -65,6 +68,7 @@ export function getDoctor(doctor: DoctorsCsv, institutions: InstitutionsMap) {
     institutionName,
     address: fullAddress,
     geoLocation,
+    availability,
   } as const;
 }
 
@@ -140,4 +144,18 @@ export function getGeoLocation(
   }
 
   return [lat, lon] as LatLngTuple;
+}
+
+export function getAvailability(doctor: DoctorsCsv) {
+  const availability = parseFloat(
+    doctor.availability_override
+      ? doctor.availability_override
+      : doctor.availability
+  );
+
+  if (isNaN(availability)) {
+    return null;
+  }
+
+  return availability;
 }

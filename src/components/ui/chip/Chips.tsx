@@ -6,7 +6,9 @@ import { ChipRootPrimitiveVariantsProps } from './Primitives';
 
 import { ChipPrimitives } from '.';
 
-export interface ChipProps extends ChipRootPrimitiveVariantsProps {
+export interface ChipProps
+  extends HTMLAttributes<HTMLSpanElement>,
+    ChipRootPrimitiveVariantsProps {
   icon: IconName;
   text: string;
   iconPosition?: 'start' | 'end';

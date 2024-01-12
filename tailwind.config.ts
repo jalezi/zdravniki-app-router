@@ -156,7 +156,8 @@ const config: Config = {
           to: { transform: 'scaleX(1)' },
         },
         'circle-chart-fill': {
-          '0%': { strokeDasharray: '0 100' },
+          from: { strokeDasharray: '0 100' },
+          to: { strokeDasharray: `var(--circle-chart-value) 100` }, // need to decide how to pass this value
         },
       },
       animation: {

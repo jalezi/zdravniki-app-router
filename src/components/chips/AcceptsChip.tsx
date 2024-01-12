@@ -8,17 +8,24 @@ type ChipProps = ChipTypes.ChipProps;
 
 export interface AcceptsChipProps {
   accepts: AcceptsNewPatients;
+  className?: string;
+  size?: ChipTypes.ChipProps['size'];
+  iconSize?: ChipTypes.ChipProps['iconSize'];
 }
 
-export default async function AcceptsChip({ accepts }: AcceptsChipProps) {
+export default async function AcceptsChip({
+  accepts,
+  ...props
+}: AcceptsChipProps) {
   const t = await getScopedI18n('doctor');
 
-  const props: ChipProps = {
+  const AcceptsChipProps: ChipProps = {
     text: t(`accepts.${accepts}.label`),
     icon: ACCEPTS_NEW_PATIENTS_ICONS[accepts].name,
     variant: 'accepts',
     colors: accepts === 'y' ? 'success' : 'error',
     size: 'xs',
+    ...props,
   };
-  return <Chips.Chip {...props} />;
+  return <Chips.Chip {...AcceptsChipProps} />;
 }
