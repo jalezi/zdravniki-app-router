@@ -155,6 +155,9 @@ const config: Config = {
           from: { transform: 'scaleX(0)' },
           to: { transform: 'scaleX(1)' },
         },
+        'circle-chart-fill': {
+          '0%': { strokeDasharray: '0 100' },
+        },
       },
       animation: {
         'hamburger-close-1': 'hamburger-close-1 0.6s ease-out forwards',
@@ -172,6 +175,7 @@ const config: Config = {
           'slideRightAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)',
         fadeInLinear: '367ms linear animate-in-and-out',
         growWidth: 'grow-width auto linear',
+        circleChartFill: 'circle-chart-fill 1s ease-out forwards',
       },
       transitionDuration: {
         '600': '600ms',
