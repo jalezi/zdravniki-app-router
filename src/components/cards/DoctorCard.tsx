@@ -9,6 +9,7 @@ import { getPlaiceholder } from 'plaiceholder';
 
 import fakeImageMap from '@/assets/images/fake-map-512-16-9.jpeg';
 import { AcceptsNewPatients, DoctorTypeCsv } from '@/lib/schemas';
+import { getScopedI18n } from '@/locales/server';
 
 import Doctor from './doctor';
 import { AcceptsChip } from '../chips';
@@ -57,6 +58,8 @@ export default async function DoctorCard({
   geoLocation,
   availability,
 }: DoctorCardProps) {
+  const t = await getScopedI18n('doctor');
+  const acceptsText = t(`accepts.${acceptsNewPatients}.label`);
   return (
     <div className='doctor-card-container'>
       <div className='doctor-card'>
@@ -72,6 +75,7 @@ export default async function DoctorCard({
           <div className='flex flex-wrap gap-2'>
             <AcceptsChip
               accepts={acceptsNewPatients}
+              text={acceptsText}
               className='place-self-center'
             />
             <Doctor.Availability availability={availability} />
