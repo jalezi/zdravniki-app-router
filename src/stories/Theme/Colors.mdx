@@ -1,0 +1,76 @@
+import { Meta, ColorPalette, ColorItem  } from "@storybook/blocks"
+import colors from 'tailwindcss/colors';
+
+import themeConfig from "@/../tailwind.config"
+
+export const extendedColors = themeConfig?.theme?.extend?.colors
+
+<Meta title="Theme/Colors"/>
+
+# Color Pallete
+
+## Custom Colors
+
+<ColorPalette>
+{Object.keys(extendedColors).map((key) => {
+  const color = extendedColors[key]
+
+  if ([ "inherit",'transparent', 'current' ].includes(key)) {
+    return null
+  }
+
+  if (typeof color === 'string') {
+    return (
+      <ColorItem
+        key={key}
+        title={key}
+        colors={[color]}
+      />
+    )
+  }
+
+  return (
+    <ColorItem
+      key={key}
+      title={key}
+
+      colors={color}
+    />
+  )
+})}
+</ColorPalette>
+
+## [Tailwind Colors](https://tailwindcss.com/docs/customizing-colors#color-palette-reference)
+
+All available tailwind colors.
+
+<ColorPalette>
+{Object.keys(colors).map((key) => {
+  const color = colors[key]
+
+  if ([ "inherit",'transparent', 'current' ].includes(key)) {
+    return null
+  }
+
+  if (typeof color === 'string') {
+    return (
+      <ColorItem
+        key={key}
+        title={key}
+        colors={[color]}
+      />
+    )
+  }
+
+  return (
+    <ColorItem
+      key={key}
+      title={key}
+
+      colors={color}
+    />
+  )
+})}
+
+
+</ColorPalette>

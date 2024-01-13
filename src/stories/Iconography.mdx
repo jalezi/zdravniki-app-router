@@ -1,0 +1,24 @@
+import { Meta, Title, IconGallery, IconItem, } from '@storybook/blocks';
+
+import {Icons} from '@/components/icons';
+
+<Meta title="Iconography" />
+
+<Title>Iconography</Title>
+
+All icons' names ends with "Icon" and are exported from `@/components/icons` as a named export.
+
+<IconGallery style={{marginTop: "1rem", gap: "0.5rem"}}>
+  {Object.entries(Icons).map(([iconName, icon]) => {
+
+    if (iconName === "Logo") return null
+
+    const Component = icon;
+
+    return (
+      <IconItem  key={iconName} name={iconName.replace("Icon", "")}>
+          <Component/>
+      </IconItem>
+    );})}
+
+</IconGallery>
