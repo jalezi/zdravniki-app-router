@@ -24,7 +24,7 @@ export default function Availability({ availability }: AvailabilityProps) {
         aria-valuenow={undefined}
         aria-valuemin={undefined}
         aria-valuemax={undefined}
-        arian-hidden
+        aria-hidden='true'
       />
       {secondAvailabilityValue ? (
         <CircleChart
@@ -36,7 +36,7 @@ export default function Availability({ availability }: AvailabilityProps) {
           aria-valuenow={undefined}
           aria-valuemin={undefined}
           aria-valuemax={undefined}
-          aria-hidden
+          aria-hidden='true'
         />
       ) : null}
     </span>
