@@ -1,5 +1,3 @@
-import { AcceptsNewPatientsIconsMap, DoctorIconsMap } from '@/types';
-
 import { icons } from './import-svg';
 
 export { icons as Icons } from './import-svg';
@@ -24,7 +22,7 @@ export const DentistIcon = icons.DentistIcon;
 export const ExtraClinicIcon = icons.ExtraClinicIcon;
 export const FloatingClinicIcon = icons.FloatingClinicIcon;
 
-export const DOCTOR_ICONS: DoctorIconsMap = {
+export const DOCTOR_ICONS = {
   den: { name: 'DentistIcon', component: DentistIcon },
   gp: { name: 'FamilyDrIcon', component: FamilyDrIcon },
   gyn: { name: 'GynecologistIcon', component: GynecologistIcon },
@@ -33,9 +31,9 @@ export const DOCTOR_ICONS: DoctorIconsMap = {
   f: { name: 'FloatingClinicIcon', component: FloatingClinicIcon },
   s: { name: 'StudentsIcon', component: StudentsIcon },
   y: { name: 'KidsIcon', component: KidsIcon },
-};
+} as const;
 
-export const ACCEPTS_NEW_PATIENTS_ICONS: AcceptsNewPatientsIconsMap = {
+export const ACCEPTS_NEW_PATIENTS_ICONS = {
   y: { name: 'CheckCircleIcon', component: CheckCircleIcon },
   n: { name: 'BanIcon', component: BanIcon },
-};
+} as const;
