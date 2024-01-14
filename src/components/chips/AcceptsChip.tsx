@@ -10,7 +10,7 @@ export interface AcceptsChipProps {
   className?: string;
   size?: ChipTypes.ChipProps['size'];
   iconSize?: ChipTypes.ChipProps['iconSize'];
-  text: string;
+  label: string;
 }
 
 export default function AcceptsChip({

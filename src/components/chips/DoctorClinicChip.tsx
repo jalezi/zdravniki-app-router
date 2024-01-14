@@ -21,7 +21,7 @@ export default async function DoctorClinicChip({
     const clinicType = safeClinicType.data;
     const clinicTypeIconName = DOCTOR_ICONS[clinicType].name;
     const props: ChipProps = {
-      text: t(`clinic.${clinicType}.label`),
+      label: t(`clinic.${clinicType}.label`),
       icon: clinicTypeIconName,
       variant: 'default',
       colors: 'clinic',

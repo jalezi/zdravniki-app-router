@@ -42,7 +42,7 @@ const meta = {
       },
     },
 
-    text: {
+    label: {
       control: 'text',
       description: 'The text to display',
       table: {
@@ -86,13 +86,13 @@ type Story = StoryObj<typeof meta>;
 export const Accepts: Story = {
   args: {
     accepts: 'y',
-    text: 'Accepts',
+    label: 'Accepts',
   },
 };
 
 export const DoesNotAccept: Story = {
   args: {
     accepts: 'n',
-    text: 'Not accepting',
+    label: 'Not accepting',
   },
 };

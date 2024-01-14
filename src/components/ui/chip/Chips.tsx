@@ -11,7 +11,7 @@ export type ChipIconName = Exclude<IconName, 'Logo'>;
 export interface ChipProps
   extends HTMLAttributes<HTMLSpanElement>,
     ChipRootPrimitiveVariantsProps {
-  text: string;
+  label: string;
   icon?: ChipIconName;
   iconPosition?: 'start' | 'end';
   iconSize?: ChipRootPrimitiveVariantsProps['size'];
@@ -19,7 +19,7 @@ export interface ChipProps
 
 export const Chip = function Chip({
   icon,
-  text,
+  label,
   iconPosition = 'start',
   iconSize,
   size,
@@ -35,7 +35,7 @@ export const Chip = function Chip({
   return (
     <ChipPrimitives.Root size={_size} {...rootChipProps}>
       {iconPosition === 'start' ? iconComponent : null}
-      <ChipPrimitives.Text>{text}</ChipPrimitives.Text>
+      <ChipPrimitives.Text>{label}</ChipPrimitives.Text>
       {iconPosition === 'end' ? iconComponent : null}
     </ChipPrimitives.Root>
   );
@@ -63,13 +63,13 @@ export const DoubleChip = function DoubleChip({
   return (
     <span className='inline-flex items-center' {...props}>
       <Chip
-        text={baseTypeText}
+        label={baseTypeText}
         icon={baseTypeIconName}
         variant='left'
         colors={leftColors}
       />
       <Chip
-        text={subtypeText}
+        label={subtypeText}
         icon={subtypeIconName}
         variant='right'
         colors={rightColors}

@@ -75,7 +75,7 @@ export default async function DoctorCard({
           <div className='flex flex-wrap gap-2'>
             <AcceptsChip
               accepts={acceptsNewPatients}
-              text={acceptsText}
+              label={acceptsText}
               className='place-self-center'
             />
             <Doctor.Availability availability={availability} />

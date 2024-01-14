@@ -49,7 +49,7 @@ const meta = {
       options: Object.keys(icons).filter(icon => icon !== 'Logo'),
       description: 'The icon to display',
     },
-    text: {
+    label: {
       control: 'text',
       description: 'The text to display',
     },
@@ -76,27 +76,27 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    text: 'Chip',
+    label: 'Chip',
   },
 };
 
 export const Accepts: Story = {
   args: {
-    text: 'Uppercase',
+    label: 'Uppercase',
     variant: 'accepts',
   },
 };
 
 export const Left: Story = {
   args: {
-    text: 'No right rounded corners',
+    label: 'No right rounded corners',
     variant: 'left',
   },
 };
 
 export const Right: Story = {
   args: {
-    text: 'No left rounded corners',
+    label: 'No left rounded corners',
     variant: 'right',
     iconPosition: 'end',
   },
@@ -104,35 +104,35 @@ export const Right: Story = {
 
 export const Clinic: Story = {
   args: {
-    text: 'Clinic',
+    label: 'Clinic',
     colors: 'clinic',
   },
 };
 
 export const Success: Story = {
   args: {
-    text: 'Success',
+    label: 'Success',
     colors: 'success',
   },
 };
 
 export const Error: Story = {
   args: {
-    text: 'Error',
+    label: 'Error',
     colors: 'error',
   },
 };
 
 export const Subtype: Story = {
   args: {
-    text: 'Subtype background',
+    label: 'Subtype background',
     colors: 'subtype',
   },
 };
 
 export const IconStart: Story = {
   args: {
-    text: 'Icon on the left',
+    label: 'Icon on the left',
     icon: 'LogoIcon',
     iconPosition: 'start',
   },
@@ -140,7 +140,7 @@ export const IconStart: Story = {
 
 export const IconEnd: Story = {
   args: {
-    text: 'Icon on the right',
+    label: 'Icon on the right',
     icon: 'LogoIcon',
     iconPosition: 'end',
   },
@@ -148,7 +148,7 @@ export const IconEnd: Story = {
 
 export const IconXL: Story = {
   args: {
-    text: 'XL Icon',
+    label: 'XL Icon',
     icon: 'LogoIcon',
     size: 'xl',
   },
@@ -156,7 +156,7 @@ export const IconXL: Story = {
 
 export const IconLG: Story = {
   args: {
-    text: 'LG Icon',
+    label: 'LG Icon',
     icon: 'LogoIcon',
     size: 'lg',
   },
@@ -164,7 +164,7 @@ export const IconLG: Story = {
 
 export const IconBase: Story = {
   args: {
-    text: 'Base Icon',
+    label: 'Base Icon',
     icon: 'LogoIcon',
     size: 'base',
   },
@@ -172,7 +172,7 @@ export const IconBase: Story = {
 
 export const IconSM: Story = {
   args: {
-    text: 'SM Icon',
+    label: 'SM Icon',
     icon: 'LogoIcon',
     iconSize: 'sm',
   },
@@ -180,7 +180,7 @@ export const IconSM: Story = {
 
 export const IconXS: Story = {
   args: {
-    text: 'XS Icon',
+    label: 'XS Icon',
     icon: 'LogoIcon',
     size: 'xs',
   },
@@ -188,7 +188,7 @@ export const IconXS: Story = {
 
 export const DifferentSizes: Story = {
   args: {
-    text: 'Different sizes',
+    label: 'Different sizes',
     icon: 'LogoIcon',
     size: 'xxs',
     iconSize: 'xl',
