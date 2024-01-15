@@ -2,13 +2,22 @@ import { URL } from 'url';
 
 import { z } from 'zod';
 
-import { TIME } from '@/lib/constants';
-import { DOCTORS_TS_URL, INSTITUTIONS_TS_URL } from '@/lib/constants/url';
+import { NEXT_FETCH_OPTIONS, TIME, URL as DATA_URL } from '@/lib/constants';
 import { fetchTimestamp } from '@/lib/utils';
 
 import { publicProcedure, router } from '../../trpc';
 
 const timestampSchema = z.number().int().positive();
+
+const doctorsTags = [
+  NEXT_FETCH_OPTIONS.TAGS.DOCTORS,
+  NEXT_FETCH_OPTIONS.TAGS.TIMESTAMP,
+];
+
+const institutionsTags = [
+  NEXT_FETCH_OPTIONS.TAGS.INSTITUTIONS,
+  NEXT_FETCH_OPTIONS.TAGS.TIMESTAMP,
+];
 
 const getTimestamp = async (
   url: URL | string,
@@ -34,14 +43,15 @@ const getTimestamp = async (
 
 export const timestampsRouter = router({
   getAll: publicProcedure.query(async () => {
-    const drPromise = getTimestamp(DOCTORS_TS_URL, TIME.ONE_HOUR_IN_SECONDS, [
-      'doctors',
-      'timestamp',
-    ]);
-    const instPromise = getTimestamp(
-      INSTITUTIONS_TS_URL,
+    const drPromise = getTimestamp(
+      DATA_URL.DOCTORS_TS_URL,
       TIME.ONE_HOUR_IN_SECONDS,
-      ['institutions', 'timestamp']
+      doctorsTags
+    );
+    const instPromise = getTimestamp(
+      DATA_URL.INSTITUTIONS_TS_URL,
+      TIME.ONE_HOUR_IN_SECONDS,
+      institutionsTags
     );
 
     const [doctors, institutions] = await Promise.all([drPromise, instPromise]);
@@ -49,15 +59,17 @@ export const timestampsRouter = router({
     return { doctors, institutions };
   }),
   getDoctors: publicProcedure.query(async () => {
-    return await getTimestamp(DOCTORS_TS_URL, TIME.ONE_HOUR_IN_SECONDS, [
-      'doctors',
-      'timestamp',
-    ]);
+    return await getTimestamp(
+      DATA_URL.DOCTORS_TS_URL,
+      TIME.ONE_HOUR_IN_SECONDS,
+      doctorsTags
+    );
   }),
   getInstitutions: publicProcedure.query(async () => {
-    return await getTimestamp(INSTITUTIONS_TS_URL, TIME.ONE_HOUR_IN_SECONDS, [
-      'institutions',
-      'timestamp',
-    ]);
+    return await getTimestamp(
+      DATA_URL.INSTITUTIONS_TS_URL,
+      TIME.ONE_HOUR_IN_SECONDS,
+      institutionsTags
+    );
   }),
 });

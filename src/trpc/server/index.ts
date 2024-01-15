@@ -8,6 +8,7 @@ export const appRouter = router({
   doctors: doctorsRouter,
   healthcheck: publicProcedure.query(() => ({ ok: true })),
   timestamps: timestampsRouter,
+  random: publicProcedure.query(() => Math.random()),
 });
 
 export type AppRouter = typeof appRouter;

@@ -1,4 +1,4 @@
-import { TIME } from '../constants';
+import { TIME, NEXT_FETCH_OPTIONS } from '../constants';
 import { DOCTORS_CSV_URL, INSTITUTIONS_CSV_URL } from '../constants/url';
 import HTTPError from '../errors/HTTPError';
 import ValidationError from '../errors/ValidationError';
@@ -47,9 +47,17 @@ export const fetchDoctorsAndInstitutinsCsv = async (
     }
   | { data: null; error: ValidationError; success: false }
 > => {
+  const doctorsTags = [
+    NEXT_FETCH_OPTIONS.TAGS.DOCTORS,
+    NEXT_FETCH_OPTIONS.TAGS.CSV,
+  ];
+  const institutionsTags = [
+    NEXT_FETCH_OPTIONS.TAGS.INSTITUTIONS,
+    NEXT_FETCH_OPTIONS.TAGS.CSV,
+  ];
   const promises = [
-    fetchCsv(DOCTORS_CSV_URL, revalidate, ['doctors', 'csv']),
-    fetchCsv(INSTITUTIONS_CSV_URL, revalidate, ['institutions', 'csv']),
+    fetchCsv(DOCTORS_CSV_URL, revalidate, doctorsTags),
+    fetchCsv(INSTITUTIONS_CSV_URL, revalidate, institutionsTags),
   ];
 
   const [doctors, institutions] = await Promise.all(promises);

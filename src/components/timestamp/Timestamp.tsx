@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import { TIME } from '@/lib/constants';
+import { TIME, NEXT_FETCH_OPTIONS } from '@/lib/constants';
 import { DOCTORS_TS_URL } from '@/lib/constants/url';
 import { cn, fetchTimestamp } from '@/lib/utils';
 import { getScopedI18n } from '@/locales/server';
@@ -16,7 +16,7 @@ export default async function Timestamp({ variant, text }: TimestampProps) {
   const timestamp = await fetchTimestamp(
     DOCTORS_TS_URL,
     TIME.ONE_HOUR_IN_SECONDS,
-    ['doctor', 'timestamp']
+    [NEXT_FETCH_OPTIONS.TAGS.DOCTORS, NEXT_FETCH_OPTIONS.TAGS.TIMESTAMP]
   );
   const tFooter = await getScopedI18n('footer');
   const tTimestamp = await getScopedI18n('timestamp');
