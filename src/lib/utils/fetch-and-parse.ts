@@ -2,10 +2,11 @@ import { ParseError } from 'papaparse';
 
 import { getDoctorsAndInstitutinsCsv } from './get-csv';
 import { parseDoctorsCsv, parseInstitutionsCsv } from './parse-csv';
+import { TIME } from '../constants';
 import ValidationError from '../errors/ValidationError';
 
 export async function fetchAndParseDoctorsAndInstitutions(
-  revalidate = 3600
+  revalidate = TIME.ONE_HOUR_IN_SECONDS
 ): Promise<
   | { data: null; errors: ValidationError[]; success: false }
   | { data: null; errors: ParseError[]; success: false }

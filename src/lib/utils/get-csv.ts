@@ -1,3 +1,4 @@
+import { TIME } from '../constants';
 import { DOCTORS_CSV_URL, INSTITUTIONS_CSV_URL } from '../constants/url';
 import HTTPError from '../errors/HTTPError';
 import ValidationError from '../errors/ValidationError';
@@ -5,7 +6,7 @@ import { urlCsvSchema } from '../schemas';
 
 export const getCsv = async (
   url: string | URL,
-  revalidate: number = 3600
+  revalidate: number = TIME.ONE_HOUR_IN_SECONDS
 ): Promise<
   | { data: string; error: null; success: true }
   | { data: null; error: HTTPError; success: false }
@@ -36,7 +37,7 @@ export const getCsv = async (
 };
 
 export const getDoctorsAndInstitutinsCsv = async (
-  revalidate: number = 3600
+  revalidate: number = TIME.ONE_HOUR_IN_SECONDS
 ): Promise<
   | {
       data: { doctors: string; institutions: string };
