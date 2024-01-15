@@ -1,9 +1,13 @@
 import { headers } from 'next/headers';
 import { notFound } from 'next/navigation';
 
+import { TIME } from '@/lib/constants';
 import { DoctorsCsv } from '@/lib/schemas';
 import { toSlug, fetchAndParseDoctorsAndInstitutions } from '@/lib/utils';
 import { Locales } from '@/locales/config';
+
+export const dynamic = 'force-static';
+export const revalidate = TIME.ONE_HOUR_IN_SECONDS;
 
 type PersonalDoctorPageProps = {
   params: {
@@ -27,7 +31,7 @@ export default async function PersonalDoctorPage({
 
   const doctors: DoctorsCsv[] =
     data?.doctors && data?.institutions && !errors
-      ? data?.doctors.filter(
+      ? data?.doctors?.filter(
           doctor =>
             doctor.type === doctorType &&
             toSlug(doctor.doctor) === slugName &&

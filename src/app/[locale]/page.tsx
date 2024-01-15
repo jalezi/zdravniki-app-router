@@ -7,11 +7,15 @@ import {
   DoctorTypeListSection as Section,
 } from '@/components/cards';
 import MdxFooter from '@/components/footer/MdxFooter';
+import { TIME } from '@/lib/constants';
 import { doctorUtils, fetchAndParseDoctorsAndInstitutions } from '@/lib/utils';
 import { getInstitutionsMap, groupDoctorsByType } from '@/lib/utils/filters';
 import { getI18n, getScopedI18n, getStaticParams } from '@/locales/server';
 
 import { defaultsSearchParamsSchema } from './utils';
+
+export const dynamic = 'force-static';
+export const revalidate = TIME.ONE_HOUR_IN_SECONDS;
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getScopedI18n('seo');

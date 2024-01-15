@@ -2,9 +2,29 @@ import { Metadata } from 'next';
 import { headers } from 'next/headers';
 import { notFound } from 'next/navigation';
 
+import { setStaticParamsLocale } from 'next-international/server';
+
+import { TIME } from '@/lib/constants';
 import { doctorTypeParamSchema } from '@/lib/schemas';
-import { Locales } from '@/locales/config';
+import { LOCALES, Locales } from '@/locales/config';
 import { getScopedI18n } from '@/locales/server';
+
+import {
+  ROUTEST_WITH_NESTED_ROUTES,
+  ROUTES_TRANSLATIONS,
+} from 'rewrites-redirects.config.mjs';
+
+export const dynamic = 'force-static';
+export const revalidate = TIME.ONE_HOUR_IN_SECONDS;
+
+export async function generateStaticParams() {
+  return LOCALES.flatMap(locale =>
+    ROUTEST_WITH_NESTED_ROUTES.map(route => ({
+      locale,
+      doctorType: ROUTES_TRANSLATIONS['sl'][route],
+    }))
+  );
+}
 
 export async function generateMetadata({
   params,
@@ -36,6 +56,7 @@ type DoctorsPageProps = {
 };
 
 export default async function DoctorTypePage({ params }: DoctorsPageProps) {
+  setStaticParamsLocale(params.locale);
   const t = await getScopedI18n('seo');
 
   const safeDoctorType = doctorTypeParamSchema.safeParse(params.doctorType);
