@@ -4,7 +4,7 @@ import HTTPError from '../errors/HTTPError';
 import ValidationError from '../errors/ValidationError';
 import { urlCsvSchema } from '../schemas';
 
-export const getCsv = async (
+export const fetchCsv = async (
   url: string | URL,
   revalidate: number = TIME.ONE_HOUR_IN_SECONDS,
   tags?: string[]
@@ -37,7 +37,7 @@ export const getCsv = async (
   });
 };
 
-export const getDoctorsAndInstitutinsCsv = async (
+export const fetchDoctorsAndInstitutinsCsv = async (
   revalidate: number = TIME.ONE_HOUR_IN_SECONDS
 ): Promise<
   | {
@@ -48,8 +48,8 @@ export const getDoctorsAndInstitutinsCsv = async (
   | { data: null; error: ValidationError; success: false }
 > => {
   const promises = [
-    getCsv(DOCTORS_CSV_URL, revalidate, ['doctors', 'csv']),
-    getCsv(INSTITUTIONS_CSV_URL, revalidate, ['institutions', 'csv']),
+    fetchCsv(DOCTORS_CSV_URL, revalidate, ['doctors', 'csv']),
+    fetchCsv(INSTITUTIONS_CSV_URL, revalidate, ['institutions', 'csv']),
   ];
 
   const [doctors, institutions] = await Promise.all(promises);

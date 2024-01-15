@@ -8,7 +8,7 @@ export * as filters from './filters';
  You may need an additional plugin to handle "node:" URIs.
  */
 // export { getContentBySlug } from './get-content';
-export { getCsv, getDoctorsAndInstitutinsCsv } from './get-csv';
+export { fetchCsv, fetchDoctorsAndInstitutinsCsv } from './fetch-csv';
 export { getSiteUrl } from './get-site-url';
 export { fetchTimestamp } from './fetch-timestamp';
 export { getStartAndEnd, getPageSlice } from './pagination';

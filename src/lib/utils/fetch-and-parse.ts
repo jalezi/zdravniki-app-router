@@ -1,6 +1,6 @@
 import { ParseError } from 'papaparse';
 
-import { getDoctorsAndInstitutinsCsv } from './get-csv';
+import { fetchDoctorsAndInstitutinsCsv } from './fetch-csv';
 import { parseDoctorsCsv, parseInstitutionsCsv } from './parse-csv';
 import { TIME } from '../constants';
 import ValidationError from '../errors/ValidationError';
@@ -20,7 +20,7 @@ export async function fetchAndParseDoctorsAndInstitutions(
     }
 > {
   const { data, error, success } =
-    await getDoctorsAndInstitutinsCsv(revalidate);
+    await fetchDoctorsAndInstitutinsCsv(revalidate);
   if (success === false) {
     return { data, errors: [error], success };
   }
