@@ -4,14 +4,14 @@ import { z } from 'zod';
 
 import { TIME } from '@/lib/constants';
 import { DOCTORS_TS_URL, INSTITUTIONS_TS_URL } from '@/lib/constants/url';
-import { getTimestamp } from '@/lib/utils';
+import { fetchTimestamp } from '@/lib/utils';
 
 import { publicProcedure, router } from '../../trpc';
 
 const timestampSchema = z.number().int().positive();
 
-const fetchTimestamp = async (url: URL | string) => {
-  const { data, error, success } = await getTimestamp(url);
+const getTimestamp = async (url: URL | string) => {
+  const { data, error, success } = await fetchTimestamp(url);
 
   if (!success) {
     console.error(error);
@@ -30,17 +30,17 @@ const fetchTimestamp = async (url: URL | string) => {
 
 export const timestampsRouter = router({
   getAll: publicProcedure.query(async () => {
-    const drPromise = fetchTimestamp(DOCTORS_TS_URL);
-    const instPromise = fetchTimestamp(INSTITUTIONS_TS_URL);
+    const drPromise = getTimestamp(DOCTORS_TS_URL);
+    const instPromise = getTimestamp(INSTITUTIONS_TS_URL);
 
     const [doctors, institutions] = await Promise.all([drPromise, instPromise]);
 
     return { doctors, institutions };
   }),
   getDoctors: publicProcedure.query(async () => {
-    return await fetchTimestamp(DOCTORS_TS_URL);
+    return await getTimestamp(DOCTORS_TS_URL);
   }),
   getInstitutions: publicProcedure.query(async () => {
-    return await fetchTimestamp(INSTITUTIONS_TS_URL);
+    return await getTimestamp(INSTITUTIONS_TS_URL);
   }),
 });

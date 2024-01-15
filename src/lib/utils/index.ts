@@ -10,7 +10,7 @@ export * as filters from './filters';
 // export { getContentBySlug } from './get-content';
 export { getCsv, getDoctorsAndInstitutinsCsv } from './get-csv';
 export { getSiteUrl } from './get-site-url';
-export { getTimestamp } from './get-timestamp';
+export { fetchTimestamp } from './fetch-timestamp';
 export { getStartAndEnd, getPageSlice } from './pagination';
 export {
   parseCsv,

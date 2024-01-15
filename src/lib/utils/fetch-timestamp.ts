@@ -3,7 +3,7 @@ import HTTPError from '../errors/HTTPError';
 import ValidationError from '../errors/ValidationError';
 import { urlSchema } from '../schemas';
 
-export const getTimestamp = async (
+export const fetchTimestamp = async (
   url: string | URL,
   revalidate: number = TIME.ONE_HOUR_IN_SECONDS,
   tags?: string[]

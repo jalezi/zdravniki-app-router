@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
 import { DOCTORS_TS_URL } from '@/lib/constants/url';
-import { cn, getTimestamp } from '@/lib/utils';
+import { cn, fetchTimestamp } from '@/lib/utils';
 import { getScopedI18n } from '@/locales/server';
 
 import { LongDate } from '../long-date';
@@ -12,7 +12,7 @@ export interface TimestampProps {
 }
 
 export default async function Timestamp({ variant, text }: TimestampProps) {
-  const timestamp = await getTimestamp(DOCTORS_TS_URL);
+  const timestamp = await fetchTimestamp(DOCTORS_TS_URL);
   const tFooter = await getScopedI18n('footer');
   const tTimestamp = await getScopedI18n('timestamp');
 
