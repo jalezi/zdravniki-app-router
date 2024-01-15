@@ -10,8 +10,12 @@ import { publicProcedure, router } from '../../trpc';
 
 const timestampSchema = z.number().int().positive();
 
-const getTimestamp = async (url: URL | string) => {
-  const { data, error, success } = await fetchTimestamp(url);
+const getTimestamp = async (
+  url: URL | string,
+  revalidate: number = TIME.ONE_HOUR_IN_SECONDS,
+  tags?: string[]
+) => {
+  const { data, error, success } = await fetchTimestamp(url, revalidate, tags);
 
   if (!success) {
     console.error(error);
@@ -30,17 +34,30 @@ const getTimestamp = async (url: URL | string) => {
 
 export const timestampsRouter = router({
   getAll: publicProcedure.query(async () => {
-    const drPromise = getTimestamp(DOCTORS_TS_URL);
-    const instPromise = getTimestamp(INSTITUTIONS_TS_URL);
+    const drPromise = getTimestamp(DOCTORS_TS_URL, TIME.ONE_HOUR_IN_SECONDS, [
+      'doctors',
+      'timestamp',
+    ]);
+    const instPromise = getTimestamp(
+      INSTITUTIONS_TS_URL,
+      TIME.ONE_HOUR_IN_SECONDS,
+      ['institutions', 'timestamp']
+    );
 
     const [doctors, institutions] = await Promise.all([drPromise, instPromise]);
 
     return { doctors, institutions };
   }),
   getDoctors: publicProcedure.query(async () => {
-    return await getTimestamp(DOCTORS_TS_URL);
+    return await getTimestamp(DOCTORS_TS_URL, TIME.ONE_HOUR_IN_SECONDS, [
+      'doctors',
+      'timestamp',
+    ]);
   }),
   getInstitutions: publicProcedure.query(async () => {
-    return await getTimestamp(INSTITUTIONS_TS_URL);
+    return await getTimestamp(INSTITUTIONS_TS_URL, TIME.ONE_HOUR_IN_SECONDS, [
+      'institutions',
+      'timestamp',
+    ]);
   }),
 });
