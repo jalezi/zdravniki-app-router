@@ -4,30 +4,23 @@ import { z } from 'zod';
 
 import { TIME } from '@/lib/constants';
 import { DOCTORS_TS_URL, INSTITUTIONS_TS_URL } from '@/lib/constants/url';
-import { urlSchema } from '@/lib/schemas';
+import { getTimestamp } from '@/lib/utils';
 
 import { publicProcedure, router } from '../../trpc';
 
 const timestampSchema = z.number().int().positive();
 
 const fetchTimestamp = async (url: URL | string) => {
-  const safeUrl = urlSchema.safeParse(url);
+  const { data, error, success } = await getTimestamp(url);
 
-  if (!safeUrl.success) {
-    console.error(safeUrl.error);
-    return { data: null, error: safeUrl.error, success: false };
+  if (!success) {
+    console.error(error);
+    return { data: null, error, success };
   }
-
-  const response = await fetch(safeUrl.data);
-  if (!response.ok) {
-    console.error(response.statusText);
-    return { data: null, error: response.statusText, success: false };
-  }
-  const result = await response.json();
 
   const safeParsedTS = timestampSchema
     .transform(val => val * TIME.ONE_SECOND_IN_MILLISECONDS)
-    .safeParse(result);
+    .safeParse(data);
   if (!safeParsedTS.success) {
     console.error(safeParsedTS.error);
     return { data: null, error: safeParsedTS.error, success: false };

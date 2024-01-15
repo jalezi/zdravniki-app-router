@@ -15,7 +15,7 @@ export const getTimestamp = async (
       next: { revalidate, tags },
     });
     if (ts.ok) {
-      return { data: await ts.text(), error: null };
+      return { data: await ts.text(), error: null, success: true };
     }
     return {
       data: null,
@@ -24,6 +24,7 @@ export const getTimestamp = async (
         code: ts.status,
         context: { error: ts.statusText, url, status: ts.status },
       }),
+      success: false,
     };
   }
 
