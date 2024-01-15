@@ -6,7 +6,8 @@ import { urlCsvSchema } from '../schemas';
 
 export const getCsv = async (
   url: string | URL,
-  revalidate: number = TIME.ONE_HOUR_IN_SECONDS
+  revalidate: number = TIME.ONE_HOUR_IN_SECONDS,
+  tags?: string[]
 ): Promise<
   | { data: string; error: null; success: true }
   | { data: null; error: HTTPError; success: false }
@@ -14,7 +15,7 @@ export const getCsv = async (
   const safeUrl = urlCsvSchema.safeParse(url);
 
   if (safeUrl.success) {
-    const csv = await fetch(safeUrl.data, { next: { revalidate } });
+    const csv = await fetch(safeUrl.data, { next: { revalidate, tags } });
     if (csv.ok) {
       return { data: await csv.text(), error: null, success: true };
     }
@@ -47,8 +48,8 @@ export const getDoctorsAndInstitutinsCsv = async (
   | { data: null; error: ValidationError; success: false }
 > => {
   const promises = [
-    getCsv(DOCTORS_CSV_URL, revalidate),
-    getCsv(INSTITUTIONS_CSV_URL, revalidate),
+    getCsv(DOCTORS_CSV_URL, revalidate, ['doctors', 'csv']),
+    getCsv(INSTITUTIONS_CSV_URL, revalidate, ['institutions', 'csv']),
   ];
 
   const [doctors, institutions] = await Promise.all(promises);
