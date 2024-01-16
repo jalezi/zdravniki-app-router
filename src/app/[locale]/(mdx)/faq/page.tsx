@@ -15,7 +15,6 @@ import { BaseParams } from '@/types';
 
 import { remarkPlugins, rehypePlugins } from '../rehype-and-remark-plugins';
 
-export const dynamic = 'force-static';
 export const revalidate = TIME.ONE_DAY_IN_SECONDS;
 
 export async function generateMetadata({

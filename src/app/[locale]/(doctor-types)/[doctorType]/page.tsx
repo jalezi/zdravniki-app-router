@@ -14,7 +14,6 @@ import {
   ROUTES_TRANSLATIONS,
 } from 'rewrites-redirects.config.mjs';
 
-export const dynamic = 'force-static';
 export const revalidate = TIME.ONE_HOUR_IN_SECONDS;
 
 export async function generateStaticParams() {

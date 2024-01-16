@@ -8,7 +8,6 @@ import { DoctorsCsv } from '@/lib/schemas';
 import { toSlug, fetchAndParseDoctorsAndInstitutions } from '@/lib/utils';
 import { Locales } from '@/locales/config';
 
-export const dynamic = 'force-static';
 export const revalidate = TIME.ONE_HOUR_IN_SECONDS;
 
 type PersonalDoctorPageProps = {

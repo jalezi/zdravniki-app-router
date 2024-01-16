@@ -14,7 +14,6 @@ import { getI18n, getScopedI18n, getStaticParams } from '@/locales/server';
 
 import { defaultsSearchParamsSchema } from './utils';
 
-export const dynamic = 'force-static';
 export const revalidate = TIME.ONE_HOUR_IN_SECONDS;
 
 export async function generateMetadata(): Promise<Metadata> {
