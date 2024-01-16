@@ -6,6 +6,7 @@ import { notFound } from './not-found';
 import { seo } from './seo';
 import { skipLinks } from './skip-links';
 import { timestamp } from './timestamp';
+import { zzzs } from './zzzs';
 export default {
   doctor,
   footer,
@@ -17,4 +18,5 @@ export default {
   test: 'Ciao, mondo!',
   timestamp,
   scrollToTop: 'Torna su',
+  zzzs,
 } as const;
