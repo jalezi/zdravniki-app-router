@@ -108,7 +108,12 @@ export default async function MdxFooter() {
               </NavLink>
             </li>
             <li>
-              <NavLink as={Link} variant='footer' href={`/${locale}/`}>
+              <NavLink
+                as={Link}
+                variant='footer'
+                href={`/${locale}/`}
+                aria-current={pathname === `/${locale}/` ? 'page' : undefined}
+              >
                 <span className='grid h-5 w-5 place-items-center'>
                   <LogoIcon className='text-lg' aria-hidden />
                 </span>
