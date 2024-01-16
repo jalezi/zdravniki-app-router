@@ -4,6 +4,15 @@ import { REWRITES, REDIRECTS } from './rewrites-redirects.config.mjs';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  async headers() {
+    return [
+      {
+        source: '/:slug*',
+
+        headers: [{ key: 'x-matched-path', value: '/:slug*' }],
+      },
+    ];
+  },
   // https://nextjs.org/docs/app/api-reference/next-config-js/logging
   logging: {
     fetches: {
