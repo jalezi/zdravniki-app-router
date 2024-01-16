@@ -1,6 +1,8 @@
 import { headers } from 'next/headers';
 import { notFound } from 'next/navigation';
 
+import { setStaticParamsLocale } from 'next-international/server';
+
 import { TIME } from '@/lib/constants';
 import { DoctorsCsv } from '@/lib/schemas';
 import { toSlug, fetchAndParseDoctorsAndInstitutions } from '@/lib/utils';
@@ -21,6 +23,8 @@ type PersonalDoctorPageProps = {
 export default async function PersonalDoctorPage({
   params,
 }: PersonalDoctorPageProps) {
+  setStaticParamsLocale(params.locale);
+
   const headerList = headers();
   const pathname = headerList.get('x-pathname');
   const canonicalPathname = headerList.get('x-canonical-pathname');
@@ -62,8 +66,8 @@ export default async function PersonalDoctorPage({
       <h1>{doctor.doctor}</h1>
       <code>
         <pre>{JSON.stringify(params, null, 2)}</pre>
-        <pre>{pathname}</pre>
-        <pre>{canonicalPathname}</pre>
+        <pre>{JSON.stringify({ pathname }, null, 2)}</pre>
+        <pre>{JSON.stringify({ canonicalPathname }, null, 2)}</pre>
         <pre>{JSON.stringify(doctor, null, 2)}</pre>
         <pre>{JSON.stringify(institution, null, 2)}</pre>
       </code>
