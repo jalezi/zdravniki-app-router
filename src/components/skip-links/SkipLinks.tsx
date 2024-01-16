@@ -1,21 +1,21 @@
-'use client';
-import { usePathname } from 'next/navigation';
+import { headers } from 'next/headers';
 
-import { useCurrentLocale, useScopedI18n } from '@/locales/client';
+import { getCurrentLocale, getScopedI18n } from '@/locales/server';
 
 import { ROUTES_TRANSLATIONS } from 'rewrites-redirects.config.mjs';
 
 import SkipLink from './SkipLink';
 
-export default function SkipLinks() {
-  const t = useScopedI18n('skipLinks');
-  const locale = useCurrentLocale();
+export default async function SkipLinks() {
+  const t = await getScopedI18n('skipLinks');
+  const locale = getCurrentLocale();
   const pathnameTranslations = ROUTES_TRANSLATIONS[locale];
-  const canonicalPathname = usePathname();
+  const pathname = headers().get('x-pathname');
+
   const hasToc =
-    canonicalPathname &&
+    pathname &&
     [pathnameTranslations.about, pathnameTranslations.faq].some(path =>
-      canonicalPathname.includes(path)
+      pathname.includes(path)
     );
 
   return (
