@@ -65,45 +65,45 @@ export const trimmedStringSchema = z
   .transform(s => s.replace(/\s+/g, ' ').trim());
 
 export const doctorsCsvSchema = z.object({
-  accepts: z.string(),
-  accepts_override: z.string(),
-  address: z.string(),
-  availability: z.string(),
-  availability_override: z.string(),
-  city: z.string(),
-  date_override: z.string(),
-  doctor: z.string(),
-  email: z.string(),
-  id_inst: z.string(),
-  lat: z.string(),
-  load: z.string(),
-  lon: z.string(),
-  municipality: z.string(),
-  municipalityPart: z.string(),
-  note_override: z.string(),
-  orderform: z.string(),
-  phone: z.string(),
-  post: z.string(),
-  type: z.string(),
-  website: z.string(),
+  accepts: trimmedStringSchema,
+  accepts_override: trimmedStringSchema,
+  address: trimmedStringSchema,
+  availability: trimmedStringSchema,
+  availability_override: trimmedStringSchema,
+  city: trimmedStringSchema,
+  date_override: trimmedStringSchema,
+  doctor: trimmedStringSchema,
+  email: trimmedStringSchema,
+  id_inst: trimmedStringSchema,
+  lat: trimmedStringSchema,
+  load: trimmedStringSchema,
+  lon: trimmedStringSchema,
+  municipality: trimmedStringSchema,
+  municipalityPart: trimmedStringSchema,
+  note_override: trimmedStringSchema,
+  orderform: trimmedStringSchema,
+  phone: trimmedStringSchema,
+  post: trimmedStringSchema,
+  type: trimmedStringSchema,
+  website: trimmedStringSchema,
 });
 
 export type DoctorsCsv = z.infer<typeof doctorsCsvSchema>;
 
 export const institutionsCsvSchema = z.object({
-  address: z.string(),
-  city: z.string(),
-  id_inst: z.string(),
-  lat: z.string(),
-  lon: z.string(),
-  municipality: z.string(),
-  municipalityPart: z.string(),
-  name: z.string(),
-  phone: z.string(),
-  post: z.string(),
-  unit: z.string(),
-  website: z.string(),
-  zzzsSt: z.string(),
+  address: trimmedStringSchema,
+  city: trimmedStringSchema,
+  id_inst: trimmedStringSchema,
+  lat: trimmedStringSchema,
+  lon: trimmedStringSchema,
+  municipality: trimmedStringSchema,
+  municipalityPart: trimmedStringSchema,
+  name: trimmedStringSchema,
+  phone: trimmedStringSchema,
+  post: trimmedStringSchema,
+  unit: trimmedStringSchema,
+  website: trimmedStringSchema,
+  zzzsSt: trimmedStringSchema,
 });
 
 export type InstitutionsCsv = z.infer<typeof institutionsCsvSchema>;
@@ -216,6 +216,15 @@ export const extractDoctorCsvBaseTypeSchema = doctorCsvTypeSchema.transform(
 
 export const extractDoctorCsvSubtypeSchema = doctorCsvTypeSchema.transform(
   (val, ctx) => {
+    const safeType = doctorCsvTypeSchema.safeParse(val);
+
+    if (!safeType.success) {
+      safeType.error.issues.forEach(issue => {
+        ctx.addIssue(issue);
+      });
+      return z.NEVER;
+    }
+
     if (val.endsWith('-y')) {
       return 'y' as const;
     }
@@ -257,3 +266,11 @@ export const extractDoctorCsvClinicSchema = doctorCsvTypeSchema.transform(
 );
 
 export const stringToNumberSchema = z.coerce.number();
+
+function createArraySchema<T extends z.ZodTypeAny>(schema: T): z.ZodArray<T> {
+  return z.array(schema);
+}
+
+export const emailsSchema = createArraySchema(z.string().email());
+export const phonesSchema = createArraySchema(z.string().regex(/^\d+$/));
+export const websitesSchema = createArraySchema(urlSchema);

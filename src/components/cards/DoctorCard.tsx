@@ -79,7 +79,9 @@ export default async function DoctorCard({
               acceptsText={acceptsText}
               load={load}
             />
-            <Doctor.Availability availability={availability} />
+            {availability >= 0 ? (
+              <Doctor.Availability availability={availability} />
+            ) : null}
           </div>
         </div>
       </div>

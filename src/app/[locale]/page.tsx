@@ -8,6 +8,7 @@ import {
 } from '@/components/cards';
 import MdxFooter from '@/components/footer/MdxFooter';
 import { TIME } from '@/lib/constants';
+import { doctorsCsvSchema } from '@/lib/schemas';
 import { doctorUtils, fetchAndParseDoctorsAndInstitutions } from '@/lib/utils';
 import { getInstitutionsMap, groupDoctorsByType } from '@/lib/utils/filters';
 import { getI18n, getScopedI18n, getStaticParams } from '@/locales/server';
@@ -70,9 +71,15 @@ export default async function Home({
             <div>
               <h2>{parsedSearchParams.type.toLocaleUpperCase()}</h2>
               <ul className='flex flex-col gap-2'>
-                {doctorsByType.slice(0, 10).map(doctor => {
+                {doctorsByType.slice(30, 40).map(doctor => {
+                  const safeDoctor = doctorsCsvSchema.safeParse(doctor);
+
+                  if (!safeDoctor.success) {
+                    return null;
+                  }
+
                   const props = doctorUtils.getDoctor(
-                    doctor,
+                    safeDoctor.data,
                     uniqueInstitutions
                   );
 
