@@ -11,8 +11,7 @@ import fakeImageMap from '@/assets/images/fake-map-512-16-9.jpeg';
 import { AcceptsNewPatients, DoctorTypeCsv } from '@/lib/schemas';
 import { getScopedI18n } from '@/locales/server';
 
-import Doctor from './doctor';
-import { AcceptsChip } from '../chips';
+import Doctor, { Accepts } from './doctor';
 
 const baseBasePath = path.join(process.cwd(), 'src', 'assets', 'images');
 const filePath = path.join(baseBasePath, 'fake-map-512-16-9.jpeg');
@@ -46,6 +45,7 @@ export interface DoctorCardProps {
   institutionName: string;
   geoLocation: LatLngTuple;
   availability: number;
+  load: number;
 }
 
 export default async function DoctorCard({
@@ -57,6 +57,7 @@ export default async function DoctorCard({
   acceptsNewPatients,
   geoLocation,
   availability,
+  load,
 }: DoctorCardProps) {
   const t = await getScopedI18n('doctor');
   const acceptsText = t(`accepts.${acceptsNewPatients}.label`);
@@ -73,10 +74,10 @@ export default async function DoctorCard({
             type={type}
           />
           <div className='flex flex-wrap gap-2'>
-            <AcceptsChip
-              accepts={acceptsNewPatients}
-              label={acceptsText}
-              className='place-self-center'
+            <Accepts
+              acceptsNewPatients={acceptsNewPatients}
+              acceptsText={acceptsText}
+              load={load}
             />
             <Doctor.Availability availability={availability} />
           </div>

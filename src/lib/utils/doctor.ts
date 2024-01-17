@@ -6,6 +6,7 @@ import {
   acceptsNewPatientsSchema,
   addressSchema,
   doctorCsvTypeSchema,
+  stringToNumberSchema,
 } from '@/lib/schemas';
 
 import { toSlug } from './slugify';
@@ -24,6 +25,7 @@ export function getDoctor(doctor: DoctorsCsv, institutions: InstitutionsMap) {
     doctor.accepts_override ? doctor.accepts_override : doctor.accepts
   );
   const availability = getAvailability(doctor);
+  const safeLoad = stringToNumberSchema.safeParse(doctor.load);
 
   const geoLocation = getGeoLocation(doctor, inst);
 
@@ -33,7 +35,8 @@ export function getDoctor(doctor: DoctorsCsv, institutions: InstitutionsMap) {
     !fullAddress ||
     !safeAcceptsNewPatients.success ||
     !geoLocation ||
-    availability === null
+    availability === null ||
+    !safeLoad.success
   ) {
     const context = {
       key,
@@ -48,6 +51,7 @@ export function getDoctor(doctor: DoctorsCsv, institutions: InstitutionsMap) {
         institution: [inst?.lat, inst?.lon],
       },
       availability,
+      load: doctor.load,
     };
 
     console.log(
@@ -69,6 +73,7 @@ export function getDoctor(doctor: DoctorsCsv, institutions: InstitutionsMap) {
     address: fullAddress,
     geoLocation,
     availability,
+    load: safeLoad.data,
   } as const;
 }
 

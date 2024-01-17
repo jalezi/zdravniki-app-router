@@ -255,3 +255,5 @@ export const extractDoctorCsvClinicSchema = doctorCsvTypeSchema.transform(
     return z.NEVER;
   }
 );
+
+export const stringToNumberSchema = z.coerce.number();
