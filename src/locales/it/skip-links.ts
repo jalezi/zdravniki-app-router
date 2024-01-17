@@ -10,4 +10,4 @@ export const skipLinks = {
   viewToggler: 'Vai al commutatore di visualizzazione',
   toc: 'Vai alla tabella dei contenuti',
   tocToggler: 'Vai al commutatore della tabella dei contenuti',
-};
+} as const;

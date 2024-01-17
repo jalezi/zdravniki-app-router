@@ -10,4 +10,4 @@ export const skipLinks = {
   viewToggler: 'Go to view toggler',
   toc: 'Go to table of contents',
   tocToggler: 'Go to table of contents toggler',
-};
+} as const;

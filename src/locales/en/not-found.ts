@@ -4,4 +4,4 @@ export const notFound = {
   somethingWentWrong: 'Oops, something went wrong 😞.',
   resourceNotFound: 'Could not find resource',
   possibleSegments: 'Possible segments',
-};
+} as const;

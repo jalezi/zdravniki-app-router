@@ -10,4 +10,4 @@ export const footer = {
     'links#few': 'povezave',
     'links#other': 'povezav',
   },
-};
+} as const;

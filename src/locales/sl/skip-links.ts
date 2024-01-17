@@ -10,4 +10,4 @@ export const skipLinks = {
   viewToggler: 'Preskoči na preklopnik pogleda',
   toc: 'Preskoči na kazalo vsebine',
   tocToggler: 'Preskoči na preklopnik kazala vsebine',
-};
+} as const;

@@ -8,4 +8,4 @@ export const mdx = {
   desktop: 'Desktop',
   infoAdditional: 'Additional Information',
   mdxActions: 'Progress bar with button to open sidebar on mobile devices',
-};
+} as const;

@@ -10,4 +10,4 @@ export const footer = {
     'links#few': 'collegamenti',
     'links#other': 'collegamenti',
   },
-};
+} as const;

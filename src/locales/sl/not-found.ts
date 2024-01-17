@@ -4,4 +4,4 @@ export const notFound = {
   somethingWentWrong: 'Ups, nekaj se je zalomilo 😞',
   resourceNotFound: 'Ni mogoče najti vira',
   possibleSegments: 'Možni segmenti',
-};
+} as const;

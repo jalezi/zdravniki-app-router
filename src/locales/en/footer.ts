@@ -10,4 +10,4 @@ export const footer = {
     'links#few': 'links',
     'links#other': 'links',
   },
-};
+} as const;

@@ -9,4 +9,4 @@ export const mdx = {
   infoAdditional: 'Dodatne informacije',
   mdxActions:
     'Vrstica napredka z gumbom za odprtje stranske vrstice na mobilnih napravah',
-};
+} as const;

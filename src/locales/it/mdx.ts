@@ -9,4 +9,4 @@ export const mdx = {
   infoAdditional: 'Informazioni aggiuntive',
   mdxActions:
     'Barra di avanzamento con pulsante per aprire la barra laterale sui dispositivi mobili',
-};
+} as const;
