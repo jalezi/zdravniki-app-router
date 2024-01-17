@@ -1,13 +1,8 @@
 import { HTMLAttributes } from 'react';
 
 import { cn } from '@/lib/utils';
+import { LOCALE_LANG_CODES_MAP } from '@/lib/utils/format';
 import { getCurrentLocale } from '@/locales/server';
-
-const LOCALE_MAP = {
-  en: 'en-UK',
-  sl: 'sl-SL',
-  it: 'it-IT',
-} as const;
 
 export interface LongDateProps extends HTMLAttributes<HTMLTimeElement> {
   timestamp: number | string | null;
@@ -39,7 +34,7 @@ export default async function LongDate({
     return noData;
   }
 
-  const dateLocale = LOCALE_MAP[locale];
+  const dateLocale = LOCALE_LANG_CODES_MAP[locale];
 
   const tsMilliseconds = +timestamp * 1000;
   const localeDate = new Date(tsMilliseconds);
