@@ -7,8 +7,8 @@ export type { AvailabilityProps } from './Availability';
 export { default as BasicInfo } from './BasicInfo';
 export type { BasicInfoProps } from './BasicInfo';
 
-export { default as Email } from './Email';
-export type { EmailProps } from './Email';
+export { default as ContactLink } from './ContactLink';
+export type { ContactLinkProps as EmailProps } from './ContactLink';
 
 export { default as Name } from './Name';
 export type { NameProps } from './Name';
@@ -16,14 +16,14 @@ export type { NameProps } from './Name';
 import Accepts from './Accepts';
 import Availability from './Availability';
 import BasicInfo from './BasicInfo';
-import Email from './Email';
+import ContactLink from './ContactLink';
 import Name from './Name';
 
 const Doctor = {
   Accepts,
   Availability,
   BasicInfo,
-  Email,
+  ContactLink,
   Name,
 };
 

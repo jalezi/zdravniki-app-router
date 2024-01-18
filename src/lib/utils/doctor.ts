@@ -10,6 +10,7 @@ import {
   emailSchema,
   extractDoctorCsvClinicSchema,
   institutionsCsvSchema,
+  phoneSchema,
   stringToNumberSchema,
 } from '@/lib/schemas';
 
@@ -78,6 +79,21 @@ export function makeDoctorForWeb(
       ? doctor.email.split(',').map(email => emailSchema.parse(email.trim()))
       : null;
 
+    const phone = (doctor.phone || institution.phone)
+      ?.trim()
+      .replaceAll(' ', '')
+      .replaceAll('-', '')
+      .replaceAll('/', '')
+      .replaceAll('(', '')
+      .replaceAll(')', '');
+
+    const phones = phone
+      ? phone
+          .split(',')
+          .filter(Boolean)
+          .map(phone => phoneSchema.parse(phone.trim()))
+      : null;
+
     return {
       key,
       acceptsNewPatients,
@@ -92,7 +108,8 @@ export function makeDoctorForWeb(
       note,
       date,
       emails,
-    };
+      phones,
+    } as const;
   } catch (error) {
     throw new ValidationError({
       message: 'Invalid doctor data',

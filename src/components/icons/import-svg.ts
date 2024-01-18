@@ -11,6 +11,7 @@ import FloatingClinicIcon from '@/assets/svg/icon-gp-floating.svg';
 import GynecologistIcon from '@/assets/svg/icon-gynecologist.svg';
 import KidsIcon from '@/assets/svg/icon-kids.svg';
 import MediumIcon from '@/assets/svg/icon-medium.svg';
+import PhoneIcon from '@/assets/svg/icon-phone.svg';
 import PodnebnikIcon from '@/assets/svg/icon-podnebnik.svg';
 import StudentsIcon from '@/assets/svg/icon-students.svg';
 import TwitterIcon from '@/assets/svg/icon-tw.svg';
@@ -38,6 +39,7 @@ export const icons = {
   DentistIcon: DentistIcon as SVGComponent,
   ExtraClinicIcon: ExtraClinicIcon as SVGComponent,
   FloatingClinicIcon: FloatingClinicIcon as SVGComponent,
+  PhoneIcon: PhoneIcon as SVGComponent,
 };
 
 export type IconName = keyof typeof icons;

@@ -13,6 +13,7 @@ import {
   DateSchema,
   DoctorTypeCsv,
   Emails,
+  Phones,
 } from '@/lib/schemas';
 import { getScopedI18n } from '@/locales/server';
 
@@ -54,6 +55,7 @@ export interface DoctorCardProps {
   note: string | null;
   date: DateSchema | null;
   emails: Emails | null;
+  phones: Phones | null;
 }
 
 export default async function DoctorCard({
@@ -69,6 +71,7 @@ export default async function DoctorCard({
   note,
   date,
   emails,
+  phones,
 }: DoctorCardProps) {
   const t = await getScopedI18n('doctor');
   const acceptsText = t(`accepts.${acceptsNewPatients}.label`);
@@ -99,7 +102,21 @@ export default async function DoctorCard({
           <address className='text-sm not-italic'>
             {emails
               ? emails.map((email, index) => (
-                  <Doctor.Email key={`${email}_${index}`} email={email} />
+                  <Doctor.ContactLink
+                    key={`${email}_${index}`}
+                    as='email'
+                    href={email}
+                  />
+                ))
+              : null}
+            {emails && phones ? <br /> : null}
+            {phones
+              ? phones.map((phone, index) => (
+                  <Doctor.ContactLink
+                    key={`${phone}_${index}`}
+                    as='phone'
+                    href={phone}
+                  />
                 ))
               : null}
           </address>
