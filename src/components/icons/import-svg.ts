@@ -3,6 +3,7 @@ import CheckCircleIcon from '@/assets/svg/icon-check-circle.svg';
 import ExtraClinicIcon from '@/assets/svg/icon-clinic.svg';
 import Covid19Icon from '@/assets/svg/icon-covid19.svg';
 import DentistIcon from '@/assets/svg/icon-dentist.svg';
+import EmailIcon from '@/assets/svg/icon-email.svg';
 import FamilyDrIcon from '@/assets/svg/icon-family-dr.svg';
 import FacebookIcon from '@/assets/svg/icon-fb.svg';
 import GithubIcon from '@/assets/svg/icon-github.svg';
@@ -20,6 +21,7 @@ import type { SVGComponent } from '@/types';
 export const icons = {
   BanIcon: BanIcon as SVGComponent,
   CheckCircleIcon: CheckCircleIcon as SVGComponent,
+  EmailIcon: EmailIcon as SVGComponent,
   Logo: Logo as SVGComponent,
   LogoIcon: FamilyDrIcon as SVGComponent,
   FamilyDrIcon: FamilyDrIcon as SVGComponent,

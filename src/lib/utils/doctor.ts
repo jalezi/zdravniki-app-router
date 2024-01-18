@@ -7,6 +7,7 @@ import {
   addressSchema,
   dateSchema,
   doctorCsvTypeSchema,
+  emailSchema,
   extractDoctorCsvClinicSchema,
   institutionsCsvSchema,
   stringToNumberSchema,
@@ -73,6 +74,9 @@ export function makeDoctorForWeb(
     const load = stringToNumberSchema.parse(doctor.load);
     const note = overides.note ? overides.note : null;
     const date = overides.date ? dateSchema.parse(overides.date) : null;
+    const emails = doctor.email
+      ? doctor.email.split(',').map(email => emailSchema.parse(email.trim()))
+      : null;
 
     return {
       key,
@@ -87,6 +91,7 @@ export function makeDoctorForWeb(
       load,
       note,
       date,
+      emails,
     };
   } catch (error) {
     throw new ValidationError({

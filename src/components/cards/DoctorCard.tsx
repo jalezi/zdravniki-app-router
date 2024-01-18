@@ -8,7 +8,12 @@ import { LatLngTuple } from 'leaflet';
 import { getPlaiceholder } from 'plaiceholder';
 
 import fakeImageMap from '@/assets/images/fake-map-512-16-9.jpeg';
-import { AcceptsNewPatients, DateSchema, DoctorTypeCsv } from '@/lib/schemas';
+import {
+  AcceptsNewPatients,
+  DateSchema,
+  DoctorTypeCsv,
+  Emails,
+} from '@/lib/schemas';
 import { getScopedI18n } from '@/locales/server';
 
 import Doctor, { Accepts } from './doctor';
@@ -48,6 +53,7 @@ export interface DoctorCardProps {
   load: number;
   note: string | null;
   date: DateSchema | null;
+  emails: Emails | null;
 }
 
 export default async function DoctorCard({
@@ -62,12 +68,13 @@ export default async function DoctorCard({
   load,
   note,
   date,
+  emails,
 }: DoctorCardProps) {
   const t = await getScopedI18n('doctor');
   const acceptsText = t(`accepts.${acceptsNewPatients}.label`);
   return (
     <div className='doctor-card-container'>
-      <div className='doctor-card'>
+      <article className='doctor-card'>
         <DoctorMap center={geoLocation} />
         <div className='doctor-card__content flex flex-col gap-1'>
           <Doctor.BasicInfo
@@ -89,8 +96,15 @@ export default async function DoctorCard({
               <Doctor.Availability availability={availability} />
             ) : null}
           </div>
+          <address className='text-sm not-italic'>
+            {emails
+              ? emails.map((email, index) => (
+                  <Doctor.Email key={`${email}_${index}`} email={email} />
+                ))
+              : null}
+          </address>
         </div>
-      </div>
+      </article>
     </div>
   );
 }
