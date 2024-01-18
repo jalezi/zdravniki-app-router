@@ -42,14 +42,16 @@ export default async function BasicInfo({
         href={href}
         name={name}
         nameSrOnly={`, ${institutionName}${translatedType}${translatedSubtype}`}
+        translate='no'
       />
       <div className='flex flex-wrap gap-2'>
         <DoctorTypeChip type={type} />
         <DoctorClinicChip type={type} />
       </div>
-      <address className='text-xs not-italic'>
-        <p className=' font-bold uppercase'>{institutionName}</p>
-        <p className='text-text-400'>{address}</p>
+      <address className='text-xs not-italic' translate='no'>
+        <span className='font-bold uppercase'>{institutionName}</span>
+        <br />
+        <span className='text-text-400'>{address}</span>
       </address>
     </div>
   );
