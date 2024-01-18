@@ -5,6 +5,7 @@ import {
   InstitutionsCsv,
   acceptsNewPatientsSchema,
   addressSchema,
+  dateSchema,
   doctorCsvTypeSchema,
   extractDoctorCsvClinicSchema,
   institutionsCsvSchema,
@@ -48,16 +49,30 @@ export function makeDoctorForWeb(
   doctor: DoctorsCsv,
   institution: InstitutionsCsv
 ) {
+  const overides = {
+    hasOveride:
+      doctor.accepts_override ||
+      doctor.availability_override ||
+      doctor.note_override ||
+      doctor.date_override,
+    accepts: doctor.accepts_override,
+    availability: doctor.availability_override,
+    note: doctor.note_override,
+    date: doctor.date_override,
+  };
+
   try {
     const key = getFakeId(doctor);
     const href = getHref(doctor);
     const fullAddress = getAddress(doctor, institution)?.fullAddress;
     const type = getDoctorType(doctor);
     const acceptsNewPatients = acceptsNewPatientsSchema.parse(
-      doctor.accepts_override ? doctor.accepts_override : doctor.accepts
+      overides.accepts || doctor.accepts
     );
     const availability = getAvailability(doctor);
     const load = stringToNumberSchema.parse(doctor.load);
+    const note = overides.note ? overides.note : null;
+    const date = overides.date ? dateSchema.parse(overides.date) : null;
 
     return {
       key,
@@ -70,6 +85,8 @@ export function makeDoctorForWeb(
       geoLocation: getGeoLocation(doctor, institution),
       availability,
       load,
+      note,
+      date,
     };
   } catch (error) {
     throw new ValidationError({

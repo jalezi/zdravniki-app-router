@@ -58,4 +58,7 @@ export const doctor = {
       label: 'non accetta',
     },
   },
+  info: {
+    changedOn: 'Modificato il',
+  },
 } as const;

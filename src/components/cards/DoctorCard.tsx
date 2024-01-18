@@ -8,7 +8,7 @@ import { LatLngTuple } from 'leaflet';
 import { getPlaiceholder } from 'plaiceholder';
 
 import fakeImageMap from '@/assets/images/fake-map-512-16-9.jpeg';
-import { AcceptsNewPatients, DoctorTypeCsv } from '@/lib/schemas';
+import { AcceptsNewPatients, DateSchema, DoctorTypeCsv } from '@/lib/schemas';
 import { getScopedI18n } from '@/locales/server';
 
 import Doctor, { Accepts } from './doctor';
@@ -46,6 +46,8 @@ export interface DoctorCardProps {
   geoLocation: LatLngTuple;
   availability: number;
   load: number;
+  note: string | null;
+  date: DateSchema | null;
 }
 
 export default async function DoctorCard({
@@ -58,6 +60,8 @@ export default async function DoctorCard({
   geoLocation,
   availability,
   load,
+  note,
+  date,
 }: DoctorCardProps) {
   const t = await getScopedI18n('doctor');
   const acceptsText = t(`accepts.${acceptsNewPatients}.label`);
@@ -78,6 +82,8 @@ export default async function DoctorCard({
               acceptsNewPatients={acceptsNewPatients}
               acceptsText={acceptsText}
               load={load}
+              date={date}
+              note={note}
             />
             {availability >= 0 ? (
               <Doctor.Availability availability={availability} />

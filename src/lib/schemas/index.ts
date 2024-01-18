@@ -274,3 +274,6 @@ function createArraySchema<T extends z.ZodTypeAny>(schema: T): z.ZodArray<T> {
 export const emailsSchema = createArraySchema(z.string().email());
 export const phonesSchema = createArraySchema(z.string().regex(/^\d+$/));
 export const websitesSchema = createArraySchema(urlSchema);
+
+export const dateSchema = z.coerce.date();
+export type DateSchema = z.infer<typeof dateSchema>;
