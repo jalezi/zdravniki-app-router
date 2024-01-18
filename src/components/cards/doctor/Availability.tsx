@@ -14,11 +14,11 @@ export default function Availability({ availability }: AvailabilityProps) {
   return (
     <Tooltip content={<AvailabilityContent percentage={availability} />}>
       <span
-        role='progressbar'
+        role='meter'
         aria-valuenow={availability}
         className='relative inline-block h-[1.625rem] w-[1.625rem] cursor-help place-self-center'
         aria-valuemin={0}
-        aria-label="Doctor's availability"
+        aria-label="Doctor's availability in percentage"
       >
         <CircleChart
           value={firstAvailabilityValue}
