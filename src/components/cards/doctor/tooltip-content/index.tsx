@@ -1,8 +1,7 @@
+import { Divider } from '@/components/ui/divider';
 import { DateSchema } from '@/lib/schemas';
 import { format } from '@/lib/utils';
 import { getCurrentLocale, getScopedI18n } from '@/locales/server';
-
-import { TooltipContentPrimitives } from './Primitives';
 
 export interface AcceptsContentProps {
   load: number;
@@ -29,30 +28,26 @@ export const AcceptsContent = async function AcceptsContent({
   const hasOverride = note || date;
 
   return (
-    <TooltipContentPrimitives.Root variant='flexCol'>
-      <TooltipContentPrimitives.Header align='center'>
-        {t('headQuotient')}
-      </TooltipContentPrimitives.Header>
-      <TooltipContentPrimitives.P size='xl' align='center'>
-        {formatedLoad}
-      </TooltipContentPrimitives.P>
-      <TooltipContentPrimitives.Divider />
+    <>
+      <header className='text-center'>{t('headQuotient')}</header>
+      <p className='text-center text-lg'>{formatedLoad}</p>
       {hasOverride ? (
-        <TooltipContentPrimitives.Footer className=''>
-          {note ? (
-            <TooltipContentPrimitives.P>{note}</TooltipContentPrimitives.P>
-          ) : null}
-          {date ? (
-            <TooltipContentPrimitives.P>
-              {tInfo('changedOn')}:{' '}
-              <time dateTime={date.toISOString().slice(0, 10)}>
-                {date.toLocaleDateString(locale)}
-              </time>
-            </TooltipContentPrimitives.P>
-          ) : null}
-        </TooltipContentPrimitives.Footer>
+        <>
+          <Divider />
+          <footer>
+            {note ? <p>{note}</p> : null}
+            {date ? (
+              <p>
+                {tInfo('changedOn')}:{' '}
+                <time dateTime={date.toISOString().slice(0, 10)}>
+                  {date.toLocaleDateString(locale)}
+                </time>
+              </p>
+            ) : null}
+          </footer>
+        </>
       ) : null}
-    </TooltipContentPrimitives.Root>
+    </>
   );
 };
 
@@ -72,14 +67,12 @@ export const AvailabilityContent = async function AvailabilityContent({
   const t = await getScopedI18n('zzzs');
   const title = format.formatPercent(percentage, 'sl');
   return (
-    <TooltipContentPrimitives.Root variant='flexCol'>
-      <TooltipContentPrimitives.Header className=''>
+    <>
+      <header className=''>
         {t('doctorAvailabilityWithPercent', { number: title })}
-      </TooltipContentPrimitives.Header>
-      <TooltipContentPrimitives.Divider />
-      <TooltipContentPrimitives.P className=''>
-        {t('doctorAvailabilityDescription')}
-      </TooltipContentPrimitives.P>
-    </TooltipContentPrimitives.Root>
+      </header>
+      <Divider />
+      <p>{t('doctorAvailabilityDescription')}</p>
+    </>
   );
 };

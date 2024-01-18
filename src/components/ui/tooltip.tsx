@@ -7,19 +7,37 @@ import { VariantProps, cva } from 'class-variance-authority';
 
 import { cn } from '@/lib/utils';
 
-const tooltipVariants = cva('select-none will-change-[transform,opacity]', {
+const tooltipVariants = cva(
+  'select-none px-4 py-2 text-xs font-medium max-w-72 will-change-[transform,opacity]',
+  {
+    variants: {
+      variant: {
+        default: 'rounded bg-text-400  text-white',
+        success: 'rounded bg-green-700 text-white',
+        error: 'rounded bg-red-700 text-white ',
+      },
+      animation: {
+        default:
+          'data-[state=delayed-open]:data-[side=bottom]:animate-slideUpAndFade data-[state=delayed-open]:data-[side=left]:animate-slideRightAndFade data-[state=delayed-open]:data-[side=right]:animate-slideLeftAndFade data-[state=delayed-open]:data-[side=top]:animate-slideDownAndFade',
+      },
+    },
+    defaultVariants: {
+      variant: 'default',
+      animation: 'default',
+    },
+  }
+);
+
+const arrowVariants = cva('', {
   variants: {
     variant: {
-      default: 'rounded bg-text-700 px-4 py-2 text-white ',
-    },
-    animation: {
-      default:
-        'data-[state=delayed-open]:data-[side=bottom]:animate-slideUpAndFade data-[state=delayed-open]:data-[side=left]:animate-slideRightAndFade data-[state=delayed-open]:data-[side=right]:animate-slideLeftAndFade data-[state=delayed-open]:data-[side=top]:animate-slideDownAndFade',
+      default: 'fill-text-400',
+      success: 'fill-green-700',
+      error: 'fill-red-700',
     },
   },
   defaultVariants: {
     variant: 'default',
-    animation: 'default',
   },
 });
 
@@ -45,7 +63,7 @@ export default function Tooltip({
           sideOffset={5}
         >
           {content}
-          <TooltipRadix.Arrow className='fill-text-700' />
+          <TooltipRadix.Arrow className={cn(arrowVariants({ variant }))} />
         </TooltipRadix.Content>
       </TooltipRadix.Portal>
     </TooltipRadix.Root>
