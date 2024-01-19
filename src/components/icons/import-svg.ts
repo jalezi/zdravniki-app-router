@@ -1,4 +1,5 @@
 import BanIcon from '@/assets/svg/icon-ban-2.svg';
+import BookingIcon from '@/assets/svg/icon-booking.svg';
 import CheckCircleIcon from '@/assets/svg/icon-check-circle.svg';
 import ExtraClinicIcon from '@/assets/svg/icon-clinic.svg';
 import Covid19Icon from '@/assets/svg/icon-covid19.svg';
@@ -22,6 +23,7 @@ import type { SVGComponent } from '@/types';
 
 export const icons = {
   BanIcon: BanIcon as SVGComponent,
+  BookingIcon: BookingIcon as SVGComponent,
   CheckCircleIcon: CheckCircleIcon as SVGComponent,
   EmailIcon: EmailIcon as SVGComponent,
   Logo: Logo as SVGComponent,

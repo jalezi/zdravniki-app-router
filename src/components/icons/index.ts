@@ -4,6 +4,7 @@ export { icons as Icons } from './import-svg';
 export type { IconName } from './import-svg';
 
 export const BanIcon = icons.BanIcon;
+export const BookingIcon = icons.BookingIcon;
 export const CheckCircleIcon = icons.CheckCircleIcon;
 export const EmailIcon = icons.EmailIcon;
 export const Logo = icons.Logo;
