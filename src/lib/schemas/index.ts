@@ -275,7 +275,10 @@ export const emailSchema = z.string().email();
 export const emailsSchema = createArraySchema(emailSchema);
 export type Emails = z.infer<typeof emailsSchema>;
 
-export const phoneSchema = z.string().regex(/^\+?\d+$/);
+export const phoneSchema = z.string().regex(/^\+?[\d()/\-\s]*$/);
+export const phoneReplaceSpecialCharsSchema = phoneSchema.transform(val => {
+  return val.replace(/[()\-/]/g, '');
+});
 export const phonesSchema = createArraySchema(phoneSchema);
 export type Phones = z.infer<typeof phonesSchema>;
 

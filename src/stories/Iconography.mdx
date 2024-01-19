@@ -2,6 +2,8 @@ import { Meta, Title, IconGallery, IconItem, } from '@storybook/blocks';
 
 import {Icons} from '@/components/icons';
 
+export const sortedIcons = Object.entries(Icons).sort((a, b) => a[0] < b[0] ? -1 : 1);
+
 <Meta title="Iconography" />
 
 <Title>Iconography</Title>
@@ -9,7 +11,7 @@ import {Icons} from '@/components/icons';
 All icons' names ends with "Icon" and are exported from `@/components/icons` as a named export.
 
 <IconGallery style={{marginTop: "1rem", gap: "0.5rem"}}>
-  {Object.entries(Icons).map(([iconName, icon]) => {
+  {sortedIcons.map(([iconName, icon]) => {
 
     if (iconName === "Logo") return null
 

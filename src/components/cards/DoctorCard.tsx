@@ -107,11 +107,13 @@ export default async function DoctorCard({
             ) : null}
           </div>
           <address className='text-sm not-italic'>
-            {email ? <ContactLink as='email' href={email} /> : null}
+            {email ? <ContactLink as='email' contactValue={email} /> : null}
             {email && phone ? <br /> : null}
-            {phone ? <ContactLink as='phone' href={phone} /> : null}
+            {phone ? <ContactLink as='phone' contactValue={phone} /> : null}
             {website && (email || phone) ? <br /> : null}
-            {website ? <ContactLink as='website' href={website} /> : null}
+            {website ? (
+              <ContactLink as='website' contactValue={website} />
+            ) : null}
           </address>
         </div>
       </article>
