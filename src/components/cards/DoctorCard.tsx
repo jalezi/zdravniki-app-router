@@ -8,17 +8,10 @@ import { LatLngTuple } from 'leaflet';
 import { getPlaiceholder } from 'plaiceholder';
 
 import fakeImageMap from '@/assets/images/fake-map-512-16-9.jpeg';
-import {
-  AcceptsNewPatients,
-  DateSchema,
-  DoctorTypeCsv,
-  Emails,
-  Phones,
-  Websites,
-} from '@/lib/schemas';
+import { AcceptsNewPatients, DateSchema, DoctorTypeCsv } from '@/lib/schemas';
 import { getScopedI18n } from '@/locales/server';
 
-import Doctor, { Accepts } from './doctor';
+import Doctor, { Accepts, ContactLink } from './doctor';
 
 const baseBasePath = path.join(process.cwd(), 'src', 'assets', 'images');
 const filePath = path.join(baseBasePath, 'fake-map-512-16-9.jpeg');
@@ -55,9 +48,9 @@ export interface DoctorCardProps {
   load: number;
   note: string | null;
   date: DateSchema | null;
-  emails: Emails | null;
-  phones: Phones | null;
-  websites: Websites | null;
+  email: string;
+  phone: string;
+  website: string;
 }
 
 export default async function DoctorCard({
@@ -72,9 +65,9 @@ export default async function DoctorCard({
   load,
   note,
   date,
-  emails,
-  phones,
-  websites,
+  email,
+  phone,
+  website,
 }: DoctorCardProps) {
   const t = await getScopedI18n('doctor');
   const acceptsText = t(`accepts.${acceptsNewPatients}.label`);
@@ -103,35 +96,11 @@ export default async function DoctorCard({
             ) : null}
           </div>
           <address className='text-sm not-italic'>
-            {emails
-              ? emails.map((email, index) => (
-                  <Doctor.ContactLink
-                    key={`${email}_${index}`}
-                    as='email'
-                    href={email}
-                  />
-                ))
-              : null}
-            {emails && phones ? <br /> : null}
-            {phones
-              ? phones.map((phone, index) => (
-                  <Doctor.ContactLink
-                    key={`${phone}_${index}`}
-                    as='phone'
-                    href={phone}
-                  />
-                ))
-              : null}
-            {phones && websites ? <br /> : null}
-            {websites
-              ? websites.map((website, index) => (
-                  <Doctor.ContactLink
-                    key={`${website.toString()}_${index}`}
-                    as='website'
-                    href={website}
-                  />
-                ))
-              : null}
+            {email ? <ContactLink as='email' href={email} /> : null}
+            {email && phone ? <br /> : null}
+            {phone ? <ContactLink as='phone' href={phone} /> : null}
+            {website && (email || phone) ? <br /> : null}
+            {website ? <ContactLink as='website' href={website} /> : null}
           </address>
         </div>
       </article>
