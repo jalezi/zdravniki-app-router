@@ -1,6 +1,6 @@
 import { LatLngTuple } from 'leaflet';
 
-import { ValidationError } from '@/lib/errors';
+import { BadDoctorError, ValidationError } from '@/lib/errors';
 import {
   DoctorsCsv,
   InstitutionsCsv,
@@ -19,12 +19,13 @@ import type { InstitutionsMap } from './filters';
 
 export function getInstitution(id: string, institutions: InstitutionsMap) {
   if (!institutions.has(id)) {
-    throw new ValidationError({
-      message: `Invalid institution ID: ${id}`,
+    throw new BadDoctorError({
+      message: `Institution with ID: ${id} does not exist`,
       context: {
-        inst_id: id,
         exitingInstIds: institutions.keys(),
       },
+      properties: ['id_inst'],
+      doctorInstId: id,
     });
   }
 
@@ -35,7 +36,7 @@ export function getInstitution(id: string, institutions: InstitutionsMap) {
     throw new ValidationError({
       message: 'Invalid institution data',
       context: {
-        key: id,
+        id,
         institution,
         errors: safeInstitution.error,
       },
@@ -50,11 +51,7 @@ export function makeDoctorForWeb(
   institution: InstitutionsCsv
 ) {
   const overides = {
-    hasOveride:
-      doctor.accepts_override ||
-      doctor.availability_override ||
-      doctor.note_override ||
-      doctor.date_override,
+    hasOveride: !!doctor.date_override,
     accepts: doctor.accepts_override,
     availability: doctor.availability_override,
     note: doctor.note_override,
@@ -62,36 +59,31 @@ export function makeDoctorForWeb(
   };
 
   try {
-    const key = getFakeId(doctor);
-    const href = getHref(doctor);
-    const fullAddress = getAddress(doctor, institution)?.fullAddress;
-    const type = getDoctorType(doctor);
-    const acceptsNewPatients = acceptsNewPatientsSchema.parse(
-      overides.accepts || doctor.accepts
-    );
-    const availability = getAvailability(doctor);
+    const addressObj = getAddress(doctor, institution);
     const load = stringToNumberSchema.parse(doctor.load);
-    const note = overides.note ? overides.note : null;
-    const date = overides.date ? dateSchema.parse(overides.date) : null;
 
     return {
-      key,
-      acceptsNewPatients,
-      href,
-      type,
+      key: getFakeId(doctor),
+      acceptsNewPatients: getAcceptsNewPatients(doctor),
+      href: getHref(doctor),
+      type: getDoctorType(doctor),
       name: doctor.doctor,
       institutionName: institution.name,
-      address: fullAddress,
+      address: addressObj.fullAddress,
       geoLocation: getGeoLocation(doctor, institution),
-      availability,
+      availability: getAvailability(doctor),
       load,
-      note,
-      date,
+      note: overides.note || null,
+      date: overides.date ? dateSchema.parse(overides.date) : null,
       email: doctor.email,
       phone: doctor.phone || institution.phone,
       website: doctor.website || institution.website,
     } as const;
   } catch (error) {
+    if (error instanceof BadDoctorError) {
+      throw error;
+    }
+
     throw new ValidationError({
       message: 'Invalid doctor data',
       context: { doctor, institution, error },
@@ -104,7 +96,7 @@ export function getDoctor(doctor: DoctorsCsv, institutions: InstitutionsMap) {
     const institution = getInstitution(doctor.id_inst, institutions);
     return makeDoctorForWeb(doctor, institution);
   } catch (error) {
-    console.log(error);
+    console.warn(error);
     return null;
   }
 }
@@ -122,7 +114,7 @@ export function getHref(doctor: DoctorsCsv) {
   return `/${doctor.type}/${toSlug(doctor.doctor)}/${doctor.id_inst}/`;
 }
 
-export function makeAddress(doctor: DoctorsCsv, institution: InstitutionsCsv) {
+export function getAddress(doctor: DoctorsCsv, institution: InstitutionsCsv) {
   const doctorAddress = addressSchema.safeParse(doctor);
 
   if (doctorAddress.success) {
@@ -139,20 +131,14 @@ export function makeAddress(doctor: DoctorsCsv, institution: InstitutionsCsv) {
     Boolean
   );
 
-  return new ValidationError({
+  throw new BadDoctorError({
     message: 'No address found',
-    context: { doctor, institution, errors },
+    context: { errors },
+    doctorId: getFakeId(doctor),
+    doctorType: doctor.type,
+    doctorInstId: doctor.id_inst,
+    properties: ['address'],
   });
-}
-
-export function getAddress(doctor: DoctorsCsv, institution: InstitutionsCsv) {
-  const address = makeAddress(doctor, institution);
-
-  if (address instanceof ValidationError) {
-    throw address;
-  }
-
-  return address;
 }
 
 export function getDoctorType(doctor: DoctorsCsv) {
@@ -160,9 +146,36 @@ export function getDoctorType(doctor: DoctorsCsv) {
   if (safeType.success) {
     return safeType.data;
   }
-  throw new ValidationError({
+  throw new BadDoctorError({
     message: `Invalid doctor type: ${doctor.type}`,
-    context: { doctor, error: safeType.error },
+    context: { error: safeType.error },
+    doctorId: getFakeId(doctor),
+    doctorType: doctor.type,
+    doctorInstId: doctor.id_inst,
+    properties: ['type'],
+  });
+}
+
+export function getAcceptsNewPatients(doctor: DoctorsCsv) {
+  const acceptsNewPatients = acceptsNewPatientsSchema.safeParse(
+    doctor.accepts_override || doctor.accepts
+  );
+
+  if (acceptsNewPatients.success) {
+    return acceptsNewPatients.data;
+  }
+
+  throw new BadDoctorError({
+    message: `Invalid accepts: ${doctor.accepts}`,
+    context: {
+      error: acceptsNewPatients.error,
+      accepts: doctor.accepts,
+      accepts_override: doctor.accepts_override,
+    },
+    doctorId: getFakeId(doctor),
+    doctorType: doctor.type,
+    doctorInstId: doctor.id_inst,
+    properties: ['accepts'],
   });
 }
 
@@ -174,9 +187,16 @@ export function getGeoLocation(
   const lon = parseFloat(doctor.lon) || parseFloat(institution?.lon ?? '');
 
   if (isNaN(lat) || isNaN(lon)) {
-    throw new ValidationError({
+    throw new BadDoctorError({
       message: 'Invalid geo location',
-      context: { doctor, institution },
+      context: {
+        doctor: [doctor.lat, doctor.lon],
+        institution: [institution?.lat, institution?.lon],
+      },
+      doctorId: getFakeId(doctor),
+      doctorType: doctor.type,
+      doctorInstId: doctor.id_inst,
+      properties: ['lat', 'lon'],
     });
   }
 
@@ -186,6 +206,7 @@ export function getGeoLocation(
 export function getAvailability(doctor: DoctorsCsv) {
   const safeClinic = extractDoctorCsvClinicSchema.safeParse(doctor.type);
 
+  // extra and floating clinics have no availability
   if (safeClinic.success) {
     return -1;
   }
@@ -197,9 +218,16 @@ export function getAvailability(doctor: DoctorsCsv) {
   );
 
   if (isNaN(availability)) {
-    throw new ValidationError({
+    throw new BadDoctorError({
       message: `Invalid availability: ${availability}`,
-      context: { doctor },
+      context: {
+        availability: doctor.availability,
+        availability_override: doctor.availability_override,
+      },
+      doctorId: getFakeId(doctor),
+      doctorType: doctor.type,
+      doctorInstId: doctor.id_inst,
+      properties: ['availability'],
     });
   }
 
