@@ -1,7 +1,6 @@
 import { TIME, NEXT_FETCH_OPTIONS } from '../constants';
 import { DOCTORS_CSV_URL, INSTITUTIONS_CSV_URL } from '../constants/url';
-import HTTPError from '../errors/HTTPError';
-import ValidationError from '../errors/ValidationError';
+import { HTTPError, ValidationError } from '../errors';
 import { urlCsvSchema } from '../schemas';
 
 export const fetchCsv = async (

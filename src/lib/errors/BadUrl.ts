@@ -1,6 +1,6 @@
 import ValidationError from './ValidationError';
 
-export default class BadUrl extends ValidationError {
+export default class BadUrlError extends ValidationError {
   private readonly _url: string;
 
   constructor(params?: {
@@ -18,7 +18,7 @@ export default class BadUrl extends ValidationError {
 
     this._url = url || '';
 
-    Object.setPrototypeOf(this, BadUrl.prototype);
+    Object.setPrototypeOf(this, BadUrlError.prototype);
   }
 
   get url() {

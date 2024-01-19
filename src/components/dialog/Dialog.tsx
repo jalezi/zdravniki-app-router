@@ -10,7 +10,7 @@ import {
 } from 'react';
 
 import { Timer } from '@/components/timer';
-import ValidationError from '@/lib/errors/ValidationError';
+import { ValidationError } from '@/lib/errors';
 
 interface DialogProps
   extends HTMLAttributes<HTMLDialogElement>,

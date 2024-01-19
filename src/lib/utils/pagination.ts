@@ -1,4 +1,5 @@
-import ValidationError from '../errors/ValidationError';
+import { ValidationError } from '@/lib/errors';
+
 import { pageNumberAndSizeSchema } from '../schemas';
 
 export function getStartAndEnd(

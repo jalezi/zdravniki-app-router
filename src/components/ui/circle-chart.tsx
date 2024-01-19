@@ -3,7 +3,7 @@ import { HTMLAttributes } from 'react';
 import { VariantProps, cva } from 'class-variance-authority';
 import { z } from 'zod';
 
-import ValidationError from '@/lib/errors/ValidationError';
+import { ValidationError } from '@/lib/errors';
 import { cn } from '@/lib/utils';
 
 const circleChartVariants = cva('w-[1em] h-[1em]', {

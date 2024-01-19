@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import ValidationError from '../errors/ValidationError';
+import { ValidationError } from '@/lib/errors';
 
 export const timestampSchema = z
   .number()

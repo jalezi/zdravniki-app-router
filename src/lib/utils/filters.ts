@@ -1,5 +1,6 @@
+import { ValidationError } from '@/lib/errors';
+
 import { getStartAndEnd } from './pagination';
-import ValidationError from '../errors/ValidationError';
 import {
   DoctorTypeCsv,
   DoctorsCsv,

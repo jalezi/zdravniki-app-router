@@ -1,5 +1,6 @@
 import { LatLngTuple } from 'leaflet';
 
+import { ValidationError } from '@/lib/errors';
 import {
   DoctorsCsv,
   InstitutionsCsv,
@@ -13,7 +14,6 @@ import {
 } from '@/lib/schemas';
 
 import { toSlug } from './slugify';
-import ValidationError from '../errors/ValidationError';
 
 import type { InstitutionsMap } from './filters';
 

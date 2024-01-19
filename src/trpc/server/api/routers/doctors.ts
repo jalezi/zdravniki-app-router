@@ -1,4 +1,4 @@
-import ValidationError from '@/lib/errors/ValidationError';
+import { ValidationError } from '@/lib/errors';
 import { doctorsQueryInputSchema } from '@/lib/schemas';
 import {
   fetchAndParseDoctorsAndInstitutions,

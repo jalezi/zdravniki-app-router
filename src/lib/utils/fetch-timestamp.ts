@@ -1,6 +1,6 @@
+import { HTTPError, ValidationError } from '@/lib/errors';
+
 import { TIME } from '../constants';
-import HTTPError from '../errors/HTTPError';
-import ValidationError from '../errors/ValidationError';
 import { urlSchema } from '../schemas';
 
 export const fetchTimestamp = async (
