@@ -46,8 +46,8 @@ export interface DoctorCardProps {
   geoLocation: LatLngTuple;
   availability: number;
   load: number;
-  note: string | null;
-  date: DateSchema | null;
+  noteOverride: string | null;
+  dateOverride: DateSchema | null;
   email: string;
   phone: string;
   website: string;
@@ -63,8 +63,8 @@ export default async function DoctorCard({
   geoLocation,
   availability,
   load,
-  note,
-  date,
+  noteOverride,
+  dateOverride,
   email,
   phone,
   website,
@@ -88,8 +88,8 @@ export default async function DoctorCard({
               acceptsNewPatients={acceptsNewPatients}
               acceptsText={acceptsText}
               load={load}
-              date={date}
-              note={note}
+              date={dateOverride}
+              note={noteOverride}
             />
             {availability >= 0 ? (
               <Doctor.Availability availability={availability} />

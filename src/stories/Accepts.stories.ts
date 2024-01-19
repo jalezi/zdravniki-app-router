@@ -31,6 +31,14 @@ const meta = {
       control: 'number',
       description: 'The doctor load.',
     },
+    date: {
+      control: 'date',
+      description: 'The date.',
+    },
+    note: {
+      control: 'text',
+      description: 'The note.',
+    },
   },
 } satisfies Meta<typeof AcceptsComponent>;
 
@@ -43,5 +51,7 @@ export const Accepts: Story = {
     acceptsNewPatients: 'y',
     acceptsText: 'Accepting',
     load: 2123.22,
+    date: new Date(),
+    note: 'Some note',
   },
 };
