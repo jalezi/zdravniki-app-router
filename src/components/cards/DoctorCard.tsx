@@ -14,6 +14,7 @@ import {
   DoctorTypeCsv,
   Emails,
   Phones,
+  Websites,
 } from '@/lib/schemas';
 import { getScopedI18n } from '@/locales/server';
 
@@ -56,6 +57,7 @@ export interface DoctorCardProps {
   date: DateSchema | null;
   emails: Emails | null;
   phones: Phones | null;
+  websites: Websites | null;
 }
 
 export default async function DoctorCard({
@@ -72,6 +74,7 @@ export default async function DoctorCard({
   date,
   emails,
   phones,
+  websites,
 }: DoctorCardProps) {
   const t = await getScopedI18n('doctor');
   const acceptsText = t(`accepts.${acceptsNewPatients}.label`);
@@ -116,6 +119,16 @@ export default async function DoctorCard({
                     key={`${phone}_${index}`}
                     as='phone'
                     href={phone}
+                  />
+                ))
+              : null}
+            {phones && websites ? <br /> : null}
+            {websites
+              ? websites.map((website, index) => (
+                  <Doctor.ContactLink
+                    key={`${website.toString()}_${index}`}
+                    as='website'
+                    href={website}
                   />
                 ))
               : null}

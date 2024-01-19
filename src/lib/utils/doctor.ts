@@ -12,6 +12,7 @@ import {
   institutionsCsvSchema,
   phoneSchema,
   stringToNumberSchema,
+  urlSchema,
 } from '@/lib/schemas';
 
 import { toSlug } from './slugify';
@@ -94,6 +95,27 @@ export function makeDoctorForWeb(
           .map(phone => phoneSchema.parse(phone.trim()))
       : null;
 
+    const website = (doctor.website || institution.website)?.trim();
+
+    const websites = website
+      .split(',')
+      .filter(Boolean)
+      .map(website => {
+        const safe = urlSchema.safeParse(website.trim());
+        if (safe.success) {
+          return safe.data;
+        }
+        return new ValidationError({
+          message: 'Invalid website',
+          context: {
+            website,
+            error: safe.error,
+            doctor: doctor.doctor,
+            id_inst: doctor.id_inst,
+          },
+        });
+      });
+
     return {
       key,
       acceptsNewPatients,
@@ -109,6 +131,7 @@ export function makeDoctorForWeb(
       date,
       emails,
       phones,
+      websites: websites.length === 0 ? null : websites,
     } as const;
   } catch (error) {
     throw new ValidationError({

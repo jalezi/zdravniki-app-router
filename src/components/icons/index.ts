@@ -23,6 +23,7 @@ export const DentistIcon = icons.DentistIcon;
 export const ExtraClinicIcon = icons.ExtraClinicIcon;
 export const FloatingClinicIcon = icons.FloatingClinicIcon;
 export const PhoneIcon = icons.PhoneIcon;
+export const LinkIcon = icons.LinkIcon;
 
 export const DOCTOR_ICONS = {
   den: { name: 'DentistIcon', component: DentistIcon },

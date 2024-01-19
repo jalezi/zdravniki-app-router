@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+import ValidationError from '../errors/ValidationError';
+
 export const timestampSchema = z
   .number()
   .int()
@@ -280,6 +282,7 @@ export const phonesSchema = createArraySchema(phoneSchema);
 export type Phones = z.infer<typeof phonesSchema>;
 
 export const websitesSchema = createArraySchema(urlSchema);
+export type Websites = (z.infer<typeof urlSchema> | ValidationError)[];
 
 export const dateSchema = z.coerce.date();
 export type DateSchema = z.infer<typeof dateSchema>;
