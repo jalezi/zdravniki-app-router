@@ -3,11 +3,19 @@ import { DateSchema } from '@/lib/schemas';
 import { format } from '@/lib/utils';
 import { getCurrentLocale, getScopedI18n } from '@/locales/server';
 
-export interface AcceptsContentProps {
+export type OverrideNote =
+  | {
+      date?: null;
+      note?: null;
+    }
+  | {
+      date: DateSchema;
+      note: string;
+    };
+
+export type AcceptsContentProps = {
   load: number;
-  date: DateSchema | null;
-  note: string | null;
-}
+} & OverrideNote;
 
 /**
  *

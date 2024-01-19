@@ -71,6 +71,18 @@ export default async function DoctorCard({
 }: DoctorCardProps) {
   const t = await getScopedI18n('doctor');
   const acceptsText = t(`accepts.${acceptsNewPatients}.label`);
+
+  const acceptsOverrideProps =
+    dateOverride && noteOverride
+      ? {
+          date: dateOverride,
+          note: noteOverride,
+        }
+      : {
+          date: null,
+          note: null,
+        };
+
   return (
     <div className='doctor-card-container'>
       <article className='doctor-card'>
@@ -88,8 +100,7 @@ export default async function DoctorCard({
               acceptsNewPatients={acceptsNewPatients}
               acceptsText={acceptsText}
               load={load}
-              date={dateOverride}
-              note={noteOverride}
+              {...acceptsOverrideProps}
             />
             {availability >= 0 ? (
               <Doctor.Availability availability={availability} />
