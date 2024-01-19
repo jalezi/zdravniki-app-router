@@ -31,7 +31,7 @@ export type ContactLinkProps = HTMLAttributes<HTMLAnchorElement> & {
   contactValue: string;
 };
 
-export default function ContactLink({ as, contactValue }: ContactLinkProps) {
+export default function Contacts({ as, contactValue }: ContactLinkProps) {
   const Icon = CONTACT_ICONS_MAP[as];
   const hrefPrefix = HREF_PREFIX_MAP[as];
   const schema = CONTACT_SCHEMA_MAP[as];

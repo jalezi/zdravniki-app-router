@@ -1,10 +1,10 @@
-import ContactLink from '@/components/cards/doctor/ContactLink';
+import Contacts from '@/components/cards/doctor/Contacts';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'ui/ContactLink',
-  component: ContactLink,
+  component: Contacts,
 
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
@@ -42,7 +42,7 @@ const meta = {
         'A comma-separated list of email addresses, phone numbers or website address.',
     },
   },
-} satisfies Meta<typeof ContactLink>;
+} satisfies Meta<typeof Contacts>;
 
 export default meta;
 

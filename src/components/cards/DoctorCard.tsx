@@ -11,7 +11,7 @@ import fakeImageMap from '@/assets/images/fake-map-512-16-9.jpeg';
 import { AcceptsNewPatients, DateSchema, DoctorTypeCsv } from '@/lib/schemas';
 import { getScopedI18n } from '@/locales/server';
 
-import Doctor, { Accepts, ContactLink } from './doctor';
+import Doctor, { Accepts, Contacts } from './doctor';
 
 const baseBasePath = path.join(process.cwd(), 'src', 'assets', 'images');
 const filePath = path.join(baseBasePath, 'fake-map-512-16-9.jpeg');
@@ -107,13 +107,11 @@ export default async function DoctorCard({
             ) : null}
           </div>
           <address className='text-sm not-italic'>
-            {email ? <ContactLink as='email' contactValue={email} /> : null}
+            {email ? <Contacts as='email' contactValue={email} /> : null}
             {email && phone ? <br /> : null}
-            {phone ? <ContactLink as='phone' contactValue={phone} /> : null}
+            {phone ? <Contacts as='phone' contactValue={phone} /> : null}
             {website && (email || phone) ? <br /> : null}
-            {website ? (
-              <ContactLink as='website' contactValue={website} />
-            ) : null}
+            {website ? <Contacts as='website' contactValue={website} /> : null}
           </address>
         </div>
       </article>
