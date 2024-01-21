@@ -51,6 +51,7 @@ export interface DoctorCardProps {
   email: string;
   phone: string;
   website: string;
+  orderform: string;
 }
 
 export default async function DoctorCard({
@@ -68,6 +69,7 @@ export default async function DoctorCard({
   email,
   phone,
   website,
+  orderform,
 }: DoctorCardProps) {
   const t = await getScopedI18n('doctor');
   const acceptsText = t(`accepts.${acceptsNewPatients}.label`);
@@ -112,6 +114,10 @@ export default async function DoctorCard({
             {phone ? <Contacts as='phone' contactValue={phone} /> : null}
             {website && (email || phone) ? <br /> : null}
             {website ? <Contacts as='website' contactValue={website} /> : null}
+            {orderform && (email || phone || website) ? <br /> : null}
+            {orderform ? (
+              <Contacts as='orderform' contactValue={orderform} />
+            ) : null}
           </address>
         </div>
       </article>

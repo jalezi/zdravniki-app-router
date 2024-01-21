@@ -60,5 +60,6 @@ export const doctor = {
   },
   info: {
     changedOn: 'Popravek od',
+    orderformText: 'naročanje',
   },
 } as const;

@@ -78,6 +78,7 @@ export function makeDoctorForWeb(
       email: doctor.email,
       phone: doctor.phone || institution.phone,
       website: doctor.website || institution.website,
+      orderform: doctor.orderform,
     } as const;
   } catch (error) {
     if (error instanceof BadDoctorError) {

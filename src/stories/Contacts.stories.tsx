@@ -3,7 +3,7 @@ import Contacts from '@/components/cards/doctor/Contacts';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-  title: 'ui/ContactLink',
+  title: 'ui/Contacts',
   component: Contacts,
 
   parameters: {

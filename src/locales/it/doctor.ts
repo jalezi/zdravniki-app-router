@@ -60,5 +60,6 @@ export const doctor = {
   },
   info: {
     changedOn: 'Modificato il',
+    orderformText: 'prenotazione',
   },
 } as const;
