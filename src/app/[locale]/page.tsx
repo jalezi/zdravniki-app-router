@@ -70,8 +70,8 @@ export default async function Home({
           <Section>
             <div>
               <h2>{parsedSearchParams.type.toLocaleUpperCase()}</h2>
-              <ul className='flex flex-col gap-2'>
-                {doctorsByType.slice(30, 40).map(doctor => {
+              <ul className='grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 '>
+                {doctorsByType.slice(0, 48).map(doctor => {
                   const safeDoctor = doctorsCsvSchema.safeParse(doctor);
 
                   if (!safeDoctor.success) {

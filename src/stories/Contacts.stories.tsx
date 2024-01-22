@@ -3,7 +3,7 @@ import Contacts from '@/components/cards/doctor/Contacts';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
-  title: 'ui/Contacts',
+  title: 'Cards/Doctor/Contacts',
   component: Contacts,
 
   parameters: {
@@ -49,25 +49,26 @@ export default meta;
 export const Email: StoryObj<typeof meta> = {
   args: {
     as: 'email',
-    contactValue: 'example@example.com',
+    contactValue: 'example@example.com, example@example',
   },
 };
 
-export const BadEmail: StoryObj<typeof meta> = {
-  args: {
-    as: 'email',
-    contactValue: 'example@example',
-  },
-};
 export const Phone: StoryObj<typeof meta> = {
   args: {
     as: 'phone',
-    contactValue: '+38612345678',
+    contactValue: '+38612345678, Krka: 07232332',
   },
 };
 export const Website: StoryObj<typeof meta> = {
   args: {
     as: 'website',
-    contactValue: 'https://example.com',
+    contactValue: 'https://example.com, www.example.com',
+  },
+};
+
+export const Orderform: StoryObj<typeof meta> = {
+  args: {
+    as: 'orderform',
+    contactValue: 'https://example.com, example@example.com',
   },
 };

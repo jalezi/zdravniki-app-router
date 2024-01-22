@@ -240,42 +240,9 @@ export function isExtraOrFloatingClinic(doctorType: DoctorsCsv['type']) {
   return safeClinic.success;
 }
 
-// const emails = doctor.email
-//   ? doctor.email.split(',').map(email => emailSchema.parse(email.trim()))
-//   : null;
-
-// const phone = (doctor.phone || institution.phone)
-//   ?.trim()
-//   .replaceAll(' ', '')
-//   .replaceAll('-', '')
-//   .replaceAll('/', '')
-//   .replaceAll('(', '')
-//   .replaceAll(')', '');
-
-// const phones = phone
-//   ? phone
-//       .split(',')
-//       .filter(Boolean)
-//       .map(phone => phoneSchema.parse(phone.trim()))
-//   : null;
-
-// const website = (doctor.website || institution.website)?.trim();
-
-// const websites = website
-//   .split(',')
-//   .filter(Boolean)
-//   .map(website => {
-//     const safe = urlSchema.safeParse(website.trim());
-//     if (safe.success) {
-//       return safe.data;
-//     }
-//     return new ValidationError({
-//       message: 'Invalid website',
-//       context: {
-//         website,
-//         error: safe.error,
-//         doctor: doctor.doctor,
-//         id_inst: doctor.id_inst,
-//       },
-//     });
-//   });
+export function splitBySeparator(value: string, separator: ',' | ';' = ',') {
+  return value
+    .split(separator)
+    .map(val => val.trim())
+    .filter(val => val.length > 0);
+}

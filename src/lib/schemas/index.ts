@@ -16,6 +16,23 @@ export type Timestamp = z.infer<typeof timestampSchema>;
 export const urlSchema = z
   .string()
   .url()
+  .refine(val => {
+    try {
+      new URL(val);
+      return true;
+    } catch (err) {
+      if (val.startsWith('www.')) {
+        try {
+          new URL(`http://${val}`);
+          return true;
+        } catch (err) {
+          return false;
+        }
+      }
+    }
+
+    return false;
+  })
   .or(z.instanceof(URL))
   .transform(url => {
     return typeof url === 'string' ? new URL(url) : url;
@@ -271,16 +288,74 @@ function createArraySchema<T extends z.ZodTypeAny>(schema: T): z.ZodArray<T> {
   return z.array(schema);
 }
 
-export const emailSchema = z.string().email();
+export const emailSchema = z
+  .string()
+  .email()
+  .or(
+    z.instanceof(URL).refine(
+      val => {
+        if (val.protocol !== 'mailto:') {
+          return false;
+        }
+
+        const email = val.pathname;
+        const safeEmail = z.string().email().safeParse(email);
+        if (safeEmail.success) {
+          return true;
+        }
+        return false;
+      },
+      { message: 'Invalid email' }
+    )
+  )
+  .transform(val => {
+    if (typeof val === 'string') {
+      return new URL(`mailto:${val}`);
+    }
+    return val;
+  });
 export const emailsSchema = createArraySchema(emailSchema);
 export type Emails = z.infer<typeof emailsSchema>;
 
-export const phoneSchema = z.string().regex(/^\+?[\d()/\-\s]*$/);
-export const phoneReplaceSpecialCharsSchema = phoneSchema.transform(val => {
-  return val.replace(/[()\-/]/g, '');
-});
+export const phoneRegex = /^\+?[\d()/\-\s]*$/;
+
+export const phoneSchema = z
+  .string()
+  .regex(phoneRegex)
+  .or(
+    z.instanceof(URL).refine(
+      val => {
+        if (val.protocol !== 'tel:') {
+          return false;
+        }
+
+        const phone = val.pathname;
+        const safePhone = z.string().regex(phoneRegex).safeParse(phone);
+        if (safePhone.success) {
+          return true;
+        }
+        return false;
+      },
+      { message: 'Invalid phone' }
+    )
+  )
+  .transform(val => {
+    if (typeof val === 'string') {
+      return new URL(`tel:${val}`);
+    }
+    return val;
+  });
+
 export const phonesSchema = createArraySchema(phoneSchema);
 export type Phones = z.infer<typeof phonesSchema>;
+
+const websiteProtocolSchema = z.enum(['http:', 'https:']);
+export const websiteSchema = urlSchema.refine(
+  val => {
+    return websiteProtocolSchema.safeParse(val.protocol).success;
+  },
+  { message: 'Invalid website' }
+);
 
 export const websitesSchema = createArraySchema(urlSchema);
 
