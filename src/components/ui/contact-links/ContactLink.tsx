@@ -49,7 +49,9 @@ const BadUrl = function BadUrl({
       className='inline-flex  cursor-help items-center gap-2 line-through'
       title={url}
     >
-      <Icon />{' '}
+      <span className='text-lg'>
+        <Icon />
+      </span>{' '}
       <span className='max-w-[10ch] overflow-hidden text-ellipsis whitespace-nowrap'>
         {url}
       </span>

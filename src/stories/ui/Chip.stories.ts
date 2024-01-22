@@ -7,7 +7,7 @@ type Colors = NonNullable<ChipProps['colors']>;
 type Variant = NonNullable<ChipProps['variant']>;
 
 const meta = {
-  title: 'Atoms/Chip',
+  title: 'ui/Chips/Chip',
   component: Chip,
   parameters: {
     layout: 'centered',

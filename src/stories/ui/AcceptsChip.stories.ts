@@ -15,7 +15,7 @@ import AcceptsChip from '@/components/chips/AcceptsChip';
 // ];
 
 const meta = {
-  title: 'Chips/AcceptsChip',
+  title: 'ui/Chips/AcceptsChip',
   component: AcceptsChip,
   parameters: {
     layout: 'centered',

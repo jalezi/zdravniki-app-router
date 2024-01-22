@@ -46,27 +46,27 @@ const meta = {
 
 export default meta;
 
-export const Email: StoryObj<typeof meta> = {
+export const Emails: StoryObj<typeof meta> = {
   args: {
     as: 'email',
     contactValue: 'example@example.com, example@example',
   },
 };
 
-export const Phone: StoryObj<typeof meta> = {
+export const Phones: StoryObj<typeof meta> = {
   args: {
     as: 'phone',
     contactValue: '+38612345678, Krka: 07232332',
   },
 };
-export const Website: StoryObj<typeof meta> = {
+export const Websites: StoryObj<typeof meta> = {
   args: {
     as: 'website',
     contactValue: 'https://example.com, www.example.com',
   },
 };
 
-export const Orderform: StoryObj<typeof meta> = {
+export const Orderforms: StoryObj<typeof meta> = {
   args: {
     as: 'orderform',
     contactValue: 'https://example.com, example@example.com',
