@@ -71,7 +71,7 @@ export default async function Home({
             <div>
               <h2>{parsedSearchParams.type.toLocaleUpperCase()}</h2>
               <ul className='grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 '>
-                {doctorsByType.slice(0, 48).map(doctor => {
+                {doctorsByType.slice(0, 24).map(doctor => {
                   const safeDoctor = doctorsCsvSchema.safeParse(doctor);
 
                   if (!safeDoctor.success) {

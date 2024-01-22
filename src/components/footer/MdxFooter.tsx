@@ -21,22 +21,18 @@ import {
   PodnebnikIcon,
   Covid19Icon,
   LogoIcon,
-  StudentsIcon,
-  GynecologistIcon,
-  FamilyDrIcon,
-  KidsIcon,
-  DentistIcon,
+  DOCTOR_ICONS,
 } from '../icons';
 
 const ROUTE_ICONS = {
   faq: ShieldQuestion,
   about: BookOpenText,
-  gp: FamilyDrIcon,
-  ped: KidsIcon,
-  den: DentistIcon,
-  'den-y': KidsIcon,
-  'den-s': StudentsIcon,
-  gyn: GynecologistIcon,
+  gp: DOCTOR_ICONS.gp.component,
+  ped: DOCTOR_ICONS.ped.component,
+  den: DOCTOR_ICONS.den.component,
+  'den-y': DOCTOR_ICONS.y.component,
+  'den-s': DOCTOR_ICONS.s.component,
+  gyn: DOCTOR_ICONS.gyn.component,
 };
 
 export default async function MdxFooter() {

@@ -3,6 +3,7 @@ import { icons } from './import-svg';
 export { icons as Icons } from './import-svg';
 export type { IconName } from './import-svg';
 
+export const BabyIcon = icons.BabyIcon;
 export const BanIcon = icons.BanIcon;
 export const BookingIcon = icons.BookingIcon;
 export const CheckCircleIcon = icons.CheckCircleIcon;
@@ -30,7 +31,7 @@ export const DOCTOR_ICONS = {
   den: { name: 'DentistIcon', component: DentistIcon },
   gp: { name: 'FamilyDrIcon', component: FamilyDrIcon },
   gyn: { name: 'GynecologistIcon', component: GynecologistIcon },
-  ped: { name: 'KidsIcon', component: KidsIcon },
+  ped: { name: 'BabyIcon', component: BabyIcon },
   x: { name: 'ExtraClinicIcon', component: ExtraClinicIcon },
   f: { name: 'FloatingClinicIcon', component: FloatingClinicIcon },
   s: { name: 'StudentsIcon', component: StudentsIcon },

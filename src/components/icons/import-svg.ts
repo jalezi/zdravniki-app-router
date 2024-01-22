@@ -1,3 +1,4 @@
+import BabyIcon from '@/assets/svg/icon-baby.svg';
 import BanIcon from '@/assets/svg/icon-ban-2.svg';
 import BookingIcon from '@/assets/svg/icon-booking.svg';
 import CheckCircleIcon from '@/assets/svg/icon-check-circle.svg';
@@ -22,6 +23,7 @@ import Logo from '@/assets/svg/zdravniki-sledilnik-logo.svg';
 import type { SVGComponent } from '@/types';
 
 export const icons = {
+  BabyIcon: BabyIcon as SVGComponent,
   BanIcon: BanIcon as SVGComponent,
   BookingIcon: BookingIcon as SVGComponent,
   CheckCircleIcon: CheckCircleIcon as SVGComponent,
