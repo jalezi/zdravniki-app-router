@@ -23,6 +23,7 @@ export default function Contacts({
 }: ContactLinkProps) {
   const ContactLink = LINK_COMPONENTS_MAP[as];
 
+  // could be a problem for websites with comma/semicolon in the pathname
   const hasComma = contactValue.includes(',');
   const hasSemicolon = contactValue.includes(';');
 
