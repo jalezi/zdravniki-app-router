@@ -9,11 +9,16 @@ import {
 import MdxFooter from '@/components/footer/MdxFooter';
 import { TIME } from '@/lib/constants';
 import { doctorsCsvSchema } from '@/lib/schemas';
-import { doctorUtils, fetchAndParseDoctorsAndInstitutions } from '@/lib/utils';
+import {
+  doctorUtils,
+  fetchAndParseDoctorsAndInstitutions,
+  getStartAndEnd,
+} from '@/lib/utils';
 import { getInstitutionsMap, groupDoctorsByType } from '@/lib/utils/filters';
 import { getI18n, getScopedI18n, getStaticParams } from '@/locales/server';
 
-import { defaultsSearchParamsSchema } from './utils';
+import Form from './form';
+import { defaultsSearchParamsSchema, redirectWithSearchParams } from './utils';
 
 export const revalidate = TIME.ONE_HOUR_IN_SECONDS;
 
@@ -50,7 +55,9 @@ export default async function Home({
   const { doctors, institutions } = data;
 
   const parsedParams = defaultsSearchParamsSchema.safeParse({
-    ...searchParams,
+    type: searchParams.type,
+    page: searchParams.page,
+    pageSize: searchParams.pageSize,
   });
 
   const parsedSearchParams = parsedParams.success
@@ -59,19 +66,45 @@ export default async function Home({
 
   const doctorGroupsByType = groupDoctorsByType(doctors);
   const doctorsByType = doctorGroupsByType.get(parsedSearchParams.type) ?? [];
-  const uniqueInstitutions = getInstitutionsMap(doctorsByType, institutions);
+
+  const length = doctorsByType.length;
+  const maxPage = Math.floor(length / +parsedSearchParams.pageSize) + 1;
+
+  if (+parsedSearchParams.page > maxPage) {
+    parsedSearchParams.page = maxPage;
+    redirectWithSearchParams(parsedSearchParams, locale);
+    return null;
+  }
+
+  const { start, end } = getStartAndEnd(
+    parsedSearchParams.page,
+    +parsedSearchParams.pageSize
+  );
+
+  const filteredDoctors = doctorsByType.slice(start, end);
+  const uniqueInstitutions = getInstitutionsMap(filteredDoctors, institutions);
+
+  const lengths = {
+    all: doctors.length,
+    gp: doctorGroupsByType.get('gp')?.length ?? 0,
+    ped: doctorGroupsByType.get('ped')?.length ?? 0,
+    gyn: doctorGroupsByType.get('gyn')?.length ?? 0,
+    den: doctorGroupsByType.get('den')?.length ?? 0,
+    'den-y': doctorGroupsByType.get('den-y')?.length ?? 0,
+    'den-s': doctorGroupsByType.get('den-s')?.length ?? 0,
+  } as const;
 
   return (
     <>
       <main id='content' className='mx-auto mt-12 max-w-7xl px-4 py-4 md:mt-16'>
         <h1 className='sr-only'>{t('test')}</h1>
-
+        <Form lengths={lengths} {...parsedSearchParams} />
         <div className='flex flex-col gap-4'>
           <Section>
             <div>
               <h2>{parsedSearchParams.type.toLocaleUpperCase()}</h2>
               <ul className='grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 '>
-                {doctorsByType.slice(0, 24).map(doctor => {
+                {filteredDoctors.map(doctor => {
                   const safeDoctor = doctorsCsvSchema.safeParse(doctor);
 
                   if (!safeDoctor.success) {

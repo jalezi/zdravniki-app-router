@@ -140,7 +140,8 @@ export const pageNumberSchema = z.number().int().positive();
 
 export const pageSizeSchema = z
   .enum(ALLOWED_PAGE_SIZES)
-  .or(z.number())
+  .or(z.number().min(24).max(24))
+  .or(z.number().min(48).max(48))
   .refine(val => ALLOWED_PAGE_SIZES.includes(val.toString()), {
     message: 'Invalid page size',
   });

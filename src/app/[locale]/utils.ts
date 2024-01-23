@@ -9,8 +9,10 @@ export const defaultsSearchParamsSchema = doctorsQueryInputSchema.default(
   DEFAULT_SEARCH_PARAMS
 );
 
+export type DefaultsSearchParams = z.infer<typeof defaultsSearchParamsSchema>;
+
 export function redirectWithSearchParams(
-  params: z.infer<typeof defaultsSearchParamsSchema>,
+  params: DefaultsSearchParams,
   locale: string
 ) {
   const url = new URL('/', getSiteUrl());
