@@ -7,6 +7,7 @@ import {
   DoctorTypeListSection as Section,
 } from '@/components/cards';
 import MdxFooter from '@/components/footer/MdxFooter';
+import Pagination from '@/components/pagination/Pagination';
 import { TIME } from '@/lib/constants';
 import { doctorsCsvSchema } from '@/lib/schemas';
 import {
@@ -70,8 +71,16 @@ export default async function Home({
   const length = doctorsByType.length;
   const maxPage = Math.floor(length / +parsedSearchParams.pageSize) + 1;
 
-  if (+parsedSearchParams.page > maxPage) {
-    parsedSearchParams.page = maxPage;
+  if (+parsedSearchParams.page > maxPage || !parsedParams.success) {
+    if (+parsedSearchParams.page > maxPage) {
+      console.warn("Page doesn't exist, redirecting to last page");
+      parsedSearchParams.page = maxPage;
+    }
+
+    if (!parsedParams.success) {
+      console.warn('Invalid params, redirecting to default params');
+    }
+
     redirectWithSearchParams(parsedSearchParams, locale);
     return null;
   }
@@ -99,37 +108,42 @@ export default async function Home({
       <main id='content' className='mx-auto mt-12 max-w-7xl px-4 py-4 md:mt-16'>
         <h1 className='sr-only'>{t('test')}</h1>
         <Form lengths={lengths} {...parsedSearchParams} />
+
         <div className='flex flex-col gap-4'>
+          <Pagination
+            length={lengths[parsedSearchParams.type]}
+            page={parsedSearchParams.page}
+            pageSize={+parsedSearchParams.pageSize}
+            doctorType={parsedSearchParams.type}
+            className='self-center'
+          />
           <Section>
-            <div>
-              <h2>{parsedSearchParams.type.toLocaleUpperCase()}</h2>
-              <ul className='grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 '>
-                {filteredDoctors.map(doctor => {
-                  const safeDoctor = doctorsCsvSchema.safeParse(doctor);
+            <ul className='grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 '>
+              {filteredDoctors.map(doctor => {
+                const safeDoctor = doctorsCsvSchema.safeParse(doctor);
 
-                  if (!safeDoctor.success) {
-                    return null;
-                  }
+                if (!safeDoctor.success) {
+                  return null;
+                }
 
-                  const props = doctorUtils.getDoctor(
-                    safeDoctor.data,
-                    uniqueInstitutions
-                  );
+                const props = doctorUtils.getDoctor(
+                  safeDoctor.data,
+                  uniqueInstitutions
+                );
 
-                  if (!props) {
-                    return null; // TODO handle this later
-                  }
+                if (!props) {
+                  return null; // TODO handle this later
+                }
 
-                  const { key, ...drProps } = props;
+                const { key, ...drProps } = props;
 
-                  return (
-                    <li key={key}>
-                      <DoctorCard {...drProps} />
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
+                return (
+                  <li key={key}>
+                    <DoctorCard {...drProps} />
+                  </li>
+                );
+              })}
+            </ul>
           </Section>
         </div>
       </main>

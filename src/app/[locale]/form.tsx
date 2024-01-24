@@ -72,17 +72,15 @@ export default function SearchForm({
           ))}
         </select>
       </label>
-      <label htmlFor='page' className='inline-flex items-center gap-1 px-2'>
-        page
-        <input
-          type='number'
-          name='page'
-          id='page'
-          min={1}
-          max={Math.floor(length / +pageSize) + 1}
-          defaultValue={page}
-        />
-      </label>
+      <input
+        type='number'
+        name='page'
+        id='page'
+        min={1}
+        max={Math.floor(length / +pageSize) + 1}
+        defaultValue={page}
+        hidden
+      />
       <label htmlFor='pageSize'>
         page size
         <select
@@ -95,7 +93,7 @@ export default function SearchForm({
           <option value='48'>48</option>
         </select>
       </label>
-      <input type='submit' />
+      <input type='submit' className='cursor-pointer' />
     </form>
   );
 }
