@@ -103,6 +103,16 @@ export default async function Home({
     'den-s': doctorGroupsByType.get('den-s')?.length ?? 0,
   } as const;
 
+  const pagination = (
+    <Pagination
+      length={lengths[parsedSearchParams.type]}
+      page={parsedSearchParams.page}
+      pageSize={+parsedSearchParams.pageSize}
+      doctorType={parsedSearchParams.type}
+      className='self-center'
+    />
+  );
+
   return (
     <>
       <main id='content' className='mx-auto mt-12 max-w-7xl px-4 py-4 md:mt-16'>
@@ -110,13 +120,7 @@ export default async function Home({
         <Form lengths={lengths} {...parsedSearchParams} />
 
         <div className='flex flex-col gap-4'>
-          <Pagination
-            length={lengths[parsedSearchParams.type]}
-            page={parsedSearchParams.page}
-            pageSize={+parsedSearchParams.pageSize}
-            doctorType={parsedSearchParams.type}
-            className='self-center'
-          />
+          {pagination}
           <Section>
             <ul className='grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 '>
               {filteredDoctors.map(doctor => {
@@ -145,6 +149,7 @@ export default async function Home({
               })}
             </ul>
           </Section>
+          {pagination}
         </div>
       </main>
       <MdxFooter />

@@ -21,7 +21,7 @@ const paginationLinkVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-brand-500 hover:bg-brand-800',
+        default: 'bg-brand-500 hover:scale-110',
         active: 'bg-brand-800 pointer-events-none',
       },
     },
@@ -78,12 +78,17 @@ const Pagination = function Pagination({
 
   const pages = Array.from({ length: maxPage }, (_, i) => i + 1);
 
-  const show = [
-    ...new Set([
-      ...pages.slice(currentPage - 3, currentPage),
-      ...pages.slice(currentPage - 1, currentPage + 2),
-    ]),
-  ];
+  let startOfSlice = currentPage - 3 < 0 ? 0 : currentPage - 3;
+  let endOfSlice = startOfSlice + 5 > maxPage ? maxPage : startOfSlice + 5;
+
+  // Adjust startOfSlice and endOfSlice if we're near the start or end of the pages array
+  if (startOfSlice === 0) {
+    endOfSlice = 5 > maxPage ? maxPage : 5;
+  } else if (endOfSlice === maxPage) {
+    startOfSlice = maxPage - 5 < 0 ? 0 : maxPage - 5;
+  }
+
+  const show = [...new Set([...pages.slice(startOfSlice, endOfSlice)])];
 
   const previousPage = currentPage === 1 ? 1 : currentPage - 1;
   const nextPage = currentPage === maxPage ? maxPage : currentPage + 1;
