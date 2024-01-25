@@ -4,14 +4,19 @@ import path from 'node:path';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 
-import { LatLngTuple } from 'leaflet';
 import { getPlaiceholder } from 'plaiceholder';
 
 import fakeImageMap from '@/assets/images/fake-map-512-16-9.jpeg';
-import { AcceptsNewPatients, DateSchema, DoctorTypeCsv } from '@/lib/schemas';
+import type {
+  AcceptsNewPatients,
+  DateSchema,
+  DoctorTypeCsv,
+} from '@/lib/schemas';
 import { getScopedI18n } from '@/locales/server';
 
 import Doctor, { Accepts, Contacts } from './doctor';
+
+import type { LatLngTuple } from 'leaflet';
 
 const baseBasePath = path.join(process.cwd(), 'src', 'assets', 'images');
 const filePath = path.join(baseBasePath, 'fake-map-512-16-9.jpeg');

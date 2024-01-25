@@ -2,10 +2,7 @@ import { Metadata } from 'next';
 
 import { setStaticParamsLocale } from 'next-international/server';
 
-import {
-  DoctorCard,
-  DoctorTypeListSection as Section,
-} from '@/components/cards';
+import { DoctorCard } from '@/components/cards';
 import MdxFooter from '@/components/footer/MdxFooter';
 import Pagination from '@/components/pagination/Pagination';
 import { TIME } from '@/lib/constants';
@@ -119,38 +116,36 @@ export default async function Home({
         <h1 className='sr-only'>{t('test')}</h1>
         <Form lengths={lengths} {...parsedSearchParams} />
 
-        <div className='flex flex-col gap-4'>
+        <section className='flex flex-col gap-4'>
           {pagination}
-          <Section>
-            <ul className='grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 '>
-              {filteredDoctors.map(doctor => {
-                const safeDoctor = doctorsCsvSchema.safeParse(doctor);
+          <ul className='grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 '>
+            {filteredDoctors.map(doctor => {
+              const safeDoctor = doctorsCsvSchema.safeParse(doctor);
 
-                if (!safeDoctor.success) {
-                  return null;
-                }
+              if (!safeDoctor.success) {
+                return null;
+              }
 
-                const props = doctorUtils.getDoctor(
-                  safeDoctor.data,
-                  uniqueInstitutions
-                );
+              const props = doctorUtils.getDoctor(
+                safeDoctor.data,
+                uniqueInstitutions
+              );
 
-                if (!props) {
-                  return null; // TODO handle this later
-                }
+              if (!props) {
+                return null; // TODO handle this later
+              }
 
-                const { key, ...drProps } = props;
+              const { key, ...drProps } = props;
 
-                return (
-                  <li key={key}>
-                    <DoctorCard {...drProps} />
-                  </li>
-                );
-              })}
-            </ul>
-          </Section>
+              return (
+                <li key={key}>
+                  <DoctorCard {...drProps} />
+                </li>
+              );
+            })}
+          </ul>
           {pagination}
-        </div>
+        </section>
       </main>
       <MdxFooter />
     </>
