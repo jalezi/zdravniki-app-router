@@ -4,7 +4,7 @@ import { useCallback, useRef, useState } from 'react';
 
 import { useFormState, useFormStatus } from 'react-dom';
 
-import { FilterDoctorTypeParam } from '@/lib/schemas';
+import { ALLOWED_PAGE_SIZES, FilterDoctorTypeParam } from '@/lib/schemas';
 import { cn } from '@/lib/utils';
 
 import { handleFormSubmit } from './actions';
@@ -109,8 +109,11 @@ export default function SearchForm({
           defaultValue={pageSize}
           onChange={onChange}
         >
-          <option value='24'>24</option>
-          <option value='48'>48</option>
+          {ALLOWED_PAGE_SIZES.map(size => (
+            <option key={size} value={size}>
+              {size}
+            </option>
+          ))}
         </select>
       </label>
       <SubmitButton />

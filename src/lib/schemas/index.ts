@@ -127,8 +127,8 @@ export type InstitutionsCsv = z.infer<typeof institutionsCsvSchema>;
 
 const DEFAULT_DOCTOR_TYPE = 'all';
 const DEFAULT_PAGE_NUMBER = 1;
-const DEFAULT_PAGE_SIZE = 24;
-export const ALLOWED_PAGE_SIZES = ['24', '48'] as const;
+const DEFAULT_PAGE_SIZE = 12;
+export const ALLOWED_PAGE_SIZES = ['12', '24'] as const;
 
 export const DEFAULT_SEARCH_PARAMS = {
   type: DEFAULT_DOCTOR_TYPE,
@@ -140,8 +140,8 @@ export const pageNumberSchema = z.number().int().positive();
 
 export const pageSizeSchema = z
   .enum(ALLOWED_PAGE_SIZES)
+  .or(z.number().min(12).max(12))
   .or(z.number().min(24).max(24))
-  .or(z.number().min(48).max(48))
   .refine(val => ALLOWED_PAGE_SIZES.includes(val.toString()), {
     message: 'Invalid page size',
   });
