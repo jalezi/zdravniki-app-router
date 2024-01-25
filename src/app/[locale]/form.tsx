@@ -2,10 +2,28 @@
 
 import { useCallback, useRef, useState } from 'react';
 
+import { useFormState, useFormStatus } from 'react-dom';
+
 import { FilterDoctorTypeParam } from '@/lib/schemas';
+import { cn } from '@/lib/utils';
 
 import { handleFormSubmit } from './actions';
 import { DefaultsSearchParams } from './utils';
+
+const SubmitButton = () => {
+  const { pending } = useFormStatus();
+
+  const styles = cn('cursor-pointer', pending && 'opacity-50');
+
+  return (
+    <input
+      type='submit'
+      className={styles}
+      aria-disabled={pending}
+      value={pending ? 'Submitting...' : 'Submit'}
+    />
+  );
+};
 
 const OPTIONS: FilterDoctorTypeParam[] = [
   'all',
@@ -30,6 +48,8 @@ export default function SearchForm({
 }) {
   const [length, setLength] = useState(lengths[type]);
   const ref = useRef<HTMLFormElement>(null);
+
+  const [, formAction] = useFormState(handleFormSubmit, { message: '' });
 
   const onChange = useCallback(() => {
     const form = ref.current;
@@ -61,7 +81,7 @@ export default function SearchForm({
   }, [lengths]);
 
   return (
-    <form ref={ref} action={handleFormSubmit}>
+    <form ref={ref} action={formAction}>
       <label htmlFor='type' className='inline-flex items-center gap-1 px-2'>
         type
         <select name='type' id='type' defaultValue={type} onChange={onChange}>
@@ -93,7 +113,7 @@ export default function SearchForm({
           <option value='48'>48</option>
         </select>
       </label>
-      <input type='submit' className='cursor-pointer' />
+      <SubmitButton />
     </form>
   );
 }
