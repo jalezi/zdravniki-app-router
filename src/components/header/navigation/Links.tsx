@@ -1,6 +1,5 @@
 import React, { forwardRef } from 'react';
 
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { FacebookIcon, GithubIcon, TwitterIcon } from '@/components/icons';
@@ -9,7 +8,7 @@ import { cn } from '@/lib/utils';
 import { useCurrentLocale, useScopedI18n } from '@/locales/client';
 
 import { LanguageSelector } from '../language-selector';
-import { NavLink, SocialLink } from '../link';
+import { ExternalLink, InternalLink, SocialLink } from '../link';
 
 type LinksProps = {
   isMenuOpen: boolean | undefined;
@@ -52,8 +51,7 @@ const Links = forwardRef<HTMLDivElement, LinksProps>(
         <span className={heading}>{t('menu')}</span>
         <ul className='nav-links-main'>
           <li>
-            <NavLink
-              as={Link}
+            <InternalLink
               href={defaultRoute}
               tabIndex={isMenuOpen ? undefined : -1}
               onClick={closeMenu}
@@ -61,11 +59,10 @@ const Links = forwardRef<HTMLDivElement, LinksProps>(
               aria-current={isDynamicRouteActive ? 'page' : undefined}
             >
               {t('home.label')}
-            </NavLink>
+            </InternalLink>
           </li>
           <li>
-            <NavLink
-              as={Link}
+            <InternalLink
               href={`/${locale}/${faqSegment}/`}
               tabIndex={isMenuOpen ? undefined : -1}
               onClick={closeMenu}
@@ -81,11 +78,10 @@ const Links = forwardRef<HTMLDivElement, LinksProps>(
               }
             >
               {t('faq.label')}
-            </NavLink>
+            </InternalLink>
           </li>
           <li>
-            <NavLink
-              as={Link}
+            <InternalLink
               href={`/${locale}/${aboutSegment}/`}
               tabIndex={isMenuOpen ? undefined : -1}
               onClick={closeMenu}
@@ -101,11 +97,10 @@ const Links = forwardRef<HTMLDivElement, LinksProps>(
               }
             >
               {t('about.label')}
-            </NavLink>
+            </InternalLink>
           </li>
           <li>
-            <NavLink
-              as='a'
+            <ExternalLink
               href={`https://covid-19.sledilnik.org/${locale}/donate`}
               target='_blank'
               tabIndex={isMenuOpen ? undefined : -1}
@@ -113,11 +108,10 @@ const Links = forwardRef<HTMLDivElement, LinksProps>(
               rel='noopener'
             >
               {t('donate.label')}
-            </NavLink>
+            </ExternalLink>
           </li>
           <li>
-            <NavLink
-              as='a'
+            <ExternalLink
               href={`https://covid-19.sledilnik.org/${locale}`}
               target='_blank'
               rel='noopener'
@@ -125,7 +119,7 @@ const Links = forwardRef<HTMLDivElement, LinksProps>(
               onClick={closeMenu}
             >
               {t('sledilnik.label')}
-            </NavLink>
+            </ExternalLink>
           </li>
         </ul>
         <ul className='nav-links-social'>

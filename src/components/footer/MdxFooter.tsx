@@ -1,8 +1,6 @@
-import { headers } from 'next/headers';
-import Link from 'next/link';
-
 import { BookOpenText, HeartHandshake, ShieldQuestion } from 'lucide-react';
 
+import { ExternalLink, InternalLink } from '@/components/links';
 import { cn } from '@/lib/utils';
 import { getCurrentLocale, getScopedI18n } from '@/locales/server';
 
@@ -10,7 +8,7 @@ import {
   ROUTES,
   ROUTES_TRANSLATIONS,
 } from '../../../rewrites-redirects.config.mjs';
-import { NavLink, SocialLink } from '../header/link';
+import { SocialLink } from '../header/link';
 import {
   GithubIcon,
   FacebookIcon,
@@ -40,9 +38,6 @@ export default async function MdxFooter() {
   const tNavLinks = await getScopedI18n('navLinks');
   const tFooter = await getScopedI18n('footer');
 
-  const headerList = headers();
-  const pathname = headerList.get('x-pathname');
-
   const localeLinksTranslations = ROUTES_TRANSLATIONS[locale];
 
   const internalLinks = ROUTES.map(key => {
@@ -54,19 +49,13 @@ export default async function MdxFooter() {
 
     return (
       <li key={key} className={cn(order)}>
-        <NavLink
-          as={Link}
+        <InternalLink
           variant='footer'
           href={`/${locale}/${localeLinksTranslations[key]}/`}
-          aria-current={
-            pathname === `/${locale}/${localeLinksTranslations[key]}/`
-              ? 'page'
-              : undefined
-          }
         >
           {Icon ? <Icon className='text-xl' /> : null}
           {label}
-        </NavLink>
+        </InternalLink>
       </li>
     );
   });
@@ -92,33 +81,26 @@ export default async function MdxFooter() {
           </div>
           <ul className='flex flex-col gap-2'>
             <li>
-              <NavLink
+              <ExternalLink
                 variant='footer'
-                as='a'
                 href='https://covid-19.sledilnik.org/'
                 target='_blank'
                 rel='noopener'
               >
                 <Covid19Icon className='text-xl' aria-hidden />
                 {tNavLinks('covid19.label')}
-              </NavLink>
+              </ExternalLink>
             </li>
             <li>
-              <NavLink
-                as={Link}
-                variant='footer'
-                href={`/${locale}/`}
-                aria-current={pathname === `/${locale}/` ? 'page' : undefined}
-              >
+              <InternalLink variant='footer' href={`/${locale}/`}>
                 <span className='grid h-5 w-5 place-items-center'>
                   <LogoIcon className='text-lg' aria-hidden />
                 </span>
                 {tNavLinks('doctors.label')}
-              </NavLink>
+              </InternalLink>
             </li>
             <li>
-              <NavLink
-                as='a'
+              <ExternalLink
                 variant='footer'
                 href='https://podnebnik.org/'
                 target='_blank'
@@ -126,7 +108,7 @@ export default async function MdxFooter() {
               >
                 <PodnebnikIcon className='text-xl' aria-hidden />
                 {tNavLinks('climatologist.label')}
-              </NavLink>
+              </ExternalLink>
             </li>
           </ul>
         </div>
@@ -136,8 +118,7 @@ export default async function MdxFooter() {
           </div>
           <ul className='flex flex-col gap-2'>
             <li>
-              <NavLink
-                as='a'
+              <ExternalLink
                 variant='footer'
                 href={`https://covid-19.sledilnik.org/${locale}/donate`}
                 target='_blank'
@@ -145,7 +126,7 @@ export default async function MdxFooter() {
               >
                 <HeartHandshake size={20} strokeWidth={1.5} />{' '}
                 {tNavLinks('donate.label')}
-              </NavLink>
+              </ExternalLink>
             </li>
             <li>
               <SocialLink href='https://medium.com/podnebnik' variant='footer'>
@@ -188,24 +169,22 @@ export default async function MdxFooter() {
           © 2020-2023 Znanstveno društvo Sledilnik
         </div>
         <div className='flex gap-8 border-t border-dashed py-4 md:border-none'>
-          <NavLink
-            as='a'
+          <ExternalLink
             variant='footer'
             className='text-sm'
             href='mailto:podpora-zdravniki@sledilnik.org'
             rel='noopener'
           >
             podpora-zdravniki@sledilnik.org
-          </NavLink>
-          <NavLink
-            as='a'
+          </ExternalLink>
+          <ExternalLink
             variant='footer'
             className='text-sm'
             href='https://sledilnik.org/'
             rel='noopener'
           >
             sledilnik.org
-          </NavLink>
+          </ExternalLink>
         </div>
       </div>
     </footer>
