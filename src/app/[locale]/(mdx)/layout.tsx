@@ -17,8 +17,7 @@ export interface MdxLayoutProps {
   params: { locale: Locales };
 }
 
-export default async function MdxLayout({ children, params }: MdxLayoutProps) {
-  console.log({ params });
+export default async function MdxLayout({ children }: MdxLayoutProps) {
   const t = await getScopedI18n('mdx');
   return (
     <div className='flex min-h-[100dvh] flex-col justify-between '>
