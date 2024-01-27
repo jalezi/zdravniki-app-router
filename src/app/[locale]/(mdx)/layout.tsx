@@ -1,7 +1,5 @@
 import { ReactNode } from 'react';
 
-import { headers } from 'next/headers';
-
 import { EmergencyInfo } from '@/components/emergency-info';
 import MdxFooter from '@/components/footer/MdxFooter';
 import { MdxActions } from '@/components/header/mdx-actions';
@@ -9,41 +7,19 @@ import { MdxToc } from '@/components/mdx-nav';
 import { ScrollToTop } from '@/components/scroll-to-top';
 import { Sidebar } from '@/components/sidebar';
 import Timestamp from '@/components/timestamp/Timestamp';
-import { ROUTES_TRANSLATIONS } from '@/lib/constants/segments';
 import { Locales } from '@/locales/config';
 import { getScopedI18n } from '@/locales/server';
+
+import { SrOnlyHeading } from './Heading';
 
 export interface MdxLayoutProps {
   children: ReactNode;
   params: { locale: Locales };
 }
 
-export default async function MdxLayout({
-  children,
-  params: { locale },
-}: MdxLayoutProps) {
-  const headerList = headers();
-
-  const segment = headerList
-    .get('x-pathname')
-    ?.replaceAll(locale, '')
-    .replaceAll('/', '');
-
-  const localeSegments = ROUTES_TRANSLATIONS[locale];
-  let canonicalSegment: keyof typeof localeSegments | '' = '';
-  for (const key in localeSegments) {
-    if (localeSegments[key as keyof typeof localeSegments] === segment) {
-      canonicalSegment = key as keyof typeof localeSegments;
-      break;
-    }
-  }
-
-  const seoTitleKey = canonicalSegment
-    ? (`title.${canonicalSegment}` as const)
-    : '';
-
+export default async function MdxLayout({ children, params }: MdxLayoutProps) {
+  console.log({ params });
   const t = await getScopedI18n('mdx');
-  const tSeo = await getScopedI18n('seo');
   return (
     <div className='flex min-h-[100dvh] flex-col justify-between '>
       <div
@@ -70,7 +46,7 @@ export default async function MdxLayout({
         </MdxActions>
       </div>
       <main id='content' className='px-4 md:px-0'>
-        {seoTitleKey ? <h1 className='sr-only'>{tSeo(seoTitleKey)}</h1> : null}
+        <SrOnlyHeading as='h1' />
         <Sidebar
           id='mobile-toc'
           device='mobile'

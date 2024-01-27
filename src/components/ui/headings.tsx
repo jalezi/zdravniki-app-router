@@ -6,9 +6,9 @@ import { cn } from '@/lib/utils';
 
 import type { VariantProps } from 'class-variance-authority';
 
-const headingVariants = cva('', {
+const headingVariants = cva('scroll-mt-48 md:scroll-mt-32', {
   variants: {
-    variant: { mdx: 'group/heading scroll-mt-48 md:scroll-mt-32' },
+    variant: { mdx: 'group/heading', srOnly: 'sr-only' },
   },
   defaultVariants: {
     variant: 'mdx',
@@ -85,10 +85,12 @@ export const components = {
 
 export interface HeadingProps
   extends HTMLAttributes<HTMLHeadingElement>,
+    VariantProps<typeof headingVariants>,
     PropsWithChildren {
   as: keyof typeof components;
 }
 
+// todo rename "as" prop to "component"
 export function Heading({ as, children, ...props }: HeadingProps) {
   const Component = components[as];
   return <Component {...props}>{children}</Component>;

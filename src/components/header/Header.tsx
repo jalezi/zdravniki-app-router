@@ -1,20 +1,16 @@
 import { HTMLAttributes } from 'react';
 
-import { headers } from 'next/headers';
-import Link from 'next/link';
-
 import { Logo } from '@/components/icons';
 import { cn } from '@/lib/utils';
 import { getCurrentLocale } from '@/locales/server';
 
 import { Navigation } from './navigation';
+import { InternalLink } from '../links';
 
 export interface HeaderProps extends HTMLAttributes<HTMLDivElement> {}
 
 export default async function Header({ className, ...props }: HeaderProps) {
   const locale = getCurrentLocale();
-  const headerList = headers();
-  const pathname = headerList.get('x-canonical-pathname');
 
   const headerDefaultStyles = cn(
     className,
@@ -32,16 +28,12 @@ export default async function Header({ className, ...props }: HeaderProps) {
         className={headerDefaultStyles}
         {...props}
       >
-        <Link
-          href={`/${locale}`}
-          hrefLang={locale}
-          aria-current={pathname === `/${locale}/` ? 'page' : undefined}
-        >
+        <InternalLink variant='logo' href={`/${locale}/`} hrefLang={locale}>
           <span id='aria-logo' className='sr-only'>
             logo
           </span>
           <Logo className='text-sm' aria-labelledby='aria-logo' />
-        </Link>
+        </InternalLink>
         <Navigation />
       </header>
     </div>
