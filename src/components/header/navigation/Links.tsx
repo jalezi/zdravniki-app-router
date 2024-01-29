@@ -25,7 +25,6 @@ const Links = forwardRef<HTMLDivElement, LinksProps>(
 
     const aboutSegment = ROUTES_TRANSLATIONS[locale].about;
     const isAboutActive = ROUTE_TRANSLATIONS_LISTS.about.some(route => {
-      console.log(route, currentPathname);
       return currentPathname.startsWith(`/${locale}/${route}`) && route !== '/';
     });
     const faqSegment = ROUTES_TRANSLATIONS[locale].faq;

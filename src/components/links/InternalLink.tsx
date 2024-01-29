@@ -28,7 +28,6 @@ export const InternalLink = function InternalLink({
 }: InternalLinkProps) {
   const pathname = usePathname();
   const isActive = pathname === href || pathname === canonicalHref;
-  console.log({ ariaCurrent, isActive, href, canonicalHref, pathname });
 
   return (
     <Link
