@@ -23,16 +23,18 @@ export const InternalLink = function InternalLink({
   className,
   canonicalHref,
   children,
+  ['aria-current']: ariaCurrent,
   ...props
 }: InternalLinkProps) {
   const pathname = usePathname();
   const isActive = pathname === href || pathname === canonicalHref;
+  console.log({ ariaCurrent, isActive, href, canonicalHref, pathname });
 
   return (
     <Link
       href={href}
       className={cn(linkVariants({ variant, className }))}
-      aria-current={isActive ? 'page' : undefined}
+      aria-current={ariaCurrent ? ariaCurrent : isActive ? 'page' : undefined}
       {...props}
     >
       {children}

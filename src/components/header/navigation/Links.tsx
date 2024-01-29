@@ -25,6 +25,7 @@ const Links = forwardRef<HTMLDivElement, LinksProps>(
 
     const aboutSegment = ROUTES_TRANSLATIONS[locale].about;
     const isAboutActive = ROUTE_TRANSLATIONS_LISTS.about.some(route => {
+      console.log(route, currentPathname);
       return currentPathname.startsWith(`/${locale}/${route}`) && route !== '/';
     });
     const faqSegment = ROUTES_TRANSLATIONS[locale].faq;
@@ -76,6 +77,7 @@ const Links = forwardRef<HTMLDivElement, LinksProps>(
               tabIndex={isMenuOpen ? undefined : -1}
               onClick={closeMenu}
               className={isFaqActive ? 'active' : undefined}
+              aria-current={isFaqActive ? 'page' : undefined}
             >
               {t('faq.label')}
             </InternalLink>
@@ -87,6 +89,7 @@ const Links = forwardRef<HTMLDivElement, LinksProps>(
               tabIndex={isMenuOpen ? undefined : -1}
               onClick={closeMenu}
               className={isAboutActive ? 'active' : undefined}
+              aria-current={isAboutActive ? 'page' : undefined}
             >
               {t('about.label')}
             </InternalLink>
