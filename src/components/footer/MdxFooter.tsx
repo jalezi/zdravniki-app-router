@@ -52,6 +52,7 @@ export default async function MdxFooter() {
         <InternalLink
           variant='footer'
           href={`/${locale}/${localeLinksTranslations[key]}/`}
+          canonicalHref={`/${locale}/${key}/`}
         >
           {Icon ? <Icon className='text-xl' /> : null}
           {label}

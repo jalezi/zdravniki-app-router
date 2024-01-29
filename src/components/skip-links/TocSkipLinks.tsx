@@ -2,23 +2,25 @@
 
 import { usePathname } from 'next/navigation';
 
-import { useCurrentLocale, useScopedI18n } from '@/locales/client';
-
-import { ROUTES_TRANSLATIONS } from 'rewrites-redirects.config.mjs';
+import { useScopedI18n } from '@/locales/client';
 
 import SkipLink from './SkipLink';
 
+const SEGMENTS = {
+  faq: 'faq',
+  'pogosta-vprasanja': 'faq',
+  'domande-frequenti': 'faq',
+  about: 'about',
+  'o-projektu': 'about',
+  'il-progetto': 'about',
+} as const;
+
 export const TocSkipLinks = function TocSkipLinks() {
   const t = useScopedI18n('skipLinks');
-  const locale = useCurrentLocale();
-  const pathnameTranslations = ROUTES_TRANSLATIONS[locale];
   const pathname = usePathname();
 
   const hasToc =
-    pathname &&
-    [pathnameTranslations.about, pathnameTranslations.faq].some(path =>
-      pathname.includes(path)
-    );
+    pathname && Object.keys(SEGMENTS).some(path => pathname.includes(path));
 
   if (!hasToc) return null;
 

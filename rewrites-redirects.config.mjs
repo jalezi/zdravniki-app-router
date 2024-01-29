@@ -20,12 +20,23 @@
  * @typedef {['gp', 'ped', 'gyn', 'den', 'den-y', 'den-s']} NestedRoutes
  */
 
+/**
+ * @typedef {Record<Routes[number], string} RouteTranslation
+ */
+
+/**
+ * @typedef {Record<Routes[number], string[]} RouteTranslations
+ */
+
 export const LOCALE_NAMES = {
   sl: 'Slovenščina',
   en: 'English',
   it: 'Italiano',
 };
 
+/**
+ * @type {RouteTranslation>}
+ */
 export const SL_ROUTES = {
   faq: 'pogosta-vprasanja',
   about: 'o-projektu',
@@ -37,6 +48,9 @@ export const SL_ROUTES = {
   'den-s': 'zobozdravnik-studenti',
 };
 
+/**
+ * @type {RouteTranslation}
+ */
 export const EN_ROUTES = {
   faq: 'faq',
   about: 'about',
@@ -48,6 +62,9 @@ export const EN_ROUTES = {
   'den-s': 'dentist-students',
 };
 
+/**
+ * @type {RouteTranslation}
+ */
 export const IT_ROUTES = {
   faq: 'domande-frequenti',
   about: 'il-progetto',
@@ -87,6 +104,17 @@ export const ROUTES = [
   'den-y',
   'den-s',
 ];
+
+/**
+ * @type {RouteTranslations}
+ *
+ */
+const _ROUTE_TRANSLATIONS_LISTS_ACC = {};
+
+export const ROUTE_TRANSLATIONS_LISTS = ROUTES.reduce((acc, route) => {
+  acc[route] = [EN_ROUTES[route], SL_ROUTES[route], IT_ROUTES[route]];
+  return acc;
+}, _ROUTE_TRANSLATIONS_LISTS_ACC);
 
 // not counting locale first level segments with same folder name
 /**

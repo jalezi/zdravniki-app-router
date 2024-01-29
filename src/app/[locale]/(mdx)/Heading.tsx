@@ -4,36 +4,36 @@ import { usePathname } from 'next/navigation';
 
 import { Heading } from '@/components/ui/headings';
 import type { HeadingProps } from '@/components/ui/headings';
-import { ROUTES_TRANSLATIONS } from '@/lib/constants/segments';
 import { useCurrentLocale, useScopedI18n } from '@/locales/client';
+
+const SEGMENTS = {
+  faq: 'faq',
+  'pogosta-vprasanja': 'faq',
+  'domande-frequenti': 'faq',
+  about: 'about',
+  'o-projektu': 'about',
+  'il-progetto': 'about',
+} as const;
 
 export const SrOnlyHeading = function SrOnlyHeading(props: HeadingProps) {
   const t = useScopedI18n('seo');
   const locale = useCurrentLocale();
   const pathname = usePathname();
 
-  const segment = pathname?.replaceAll(locale, '').replaceAll('/', '');
+  const segment = pathname
+    ?.replaceAll(locale, '')
+    .replaceAll('/', '') as keyof typeof SEGMENTS;
 
-  const localeSegments = ROUTES_TRANSLATIONS[locale];
-  let canonicalSegment: keyof typeof localeSegments | '' = '';
-  for (const key in localeSegments) {
-    if (localeSegments[key as keyof typeof localeSegments] === segment) {
-      canonicalSegment = key as keyof typeof localeSegments;
-      break;
-    }
-  }
+  const canonicalSegment: (typeof SEGMENTS)[keyof typeof SEGMENTS] =
+    SEGMENTS[segment];
 
-  const seoTitleKey = canonicalSegment
-    ? (`title.${canonicalSegment}` as const)
-    : '';
+  const seoTitleKey = `title.${canonicalSegment}` as const;
 
-  if (!seoTitleKey) {
-    return null;
-  }
+  const seoTitle = t(seoTitleKey);
 
   return (
     <Heading variant='srOnly' {...props}>
-      {t(seoTitleKey)}
+      {seoTitle}
     </Heading>
   );
 };

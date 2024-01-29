@@ -108,7 +108,17 @@ function MdxToc(props: MdxTocProps) {
 }
 
 export default function FakeMdxToc(props: MdxTocProps) {
-  const pathName = usePathname();
   const params = useParams();
-  return <MdxToc key={`${pathName}-${params.locale}`} {...props} />;
+  const pathname = usePathname();
+  const isFaq =
+    pathname.includes('faq') ||
+    pathname.includes('pogosta-vprasanja') ||
+    pathname.includes('domande-frequenti');
+  const isAbout =
+    pathname.includes('about') ||
+    pathname.includes('o-projektu') ||
+    pathname.includes('il-progetto');
+
+  const segmentKey = isFaq ? 'faq' : isAbout ? 'about' : 'default';
+  return <MdxToc key={`${segmentKey}-${params.locale}`} {...props} />;
 }

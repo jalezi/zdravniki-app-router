@@ -7,6 +7,8 @@ import { DYNAMIC_ROUTES, ROUTES_TRANSLATIONS } from '@/lib/constants/segments';
 import { cn } from '@/lib/utils';
 import { useCurrentLocale, useScopedI18n } from '@/locales/client';
 
+import { ROUTE_TRANSLATIONS_LISTS } from 'rewrites-redirects.config.mjs';
+
 import { LanguageSelector } from '../language-selector';
 import { ExternalLink, InternalLink, SocialLink } from '../link';
 
@@ -22,7 +24,13 @@ const Links = forwardRef<HTMLDivElement, LinksProps>(
     const t = useScopedI18n('navLinks');
 
     const aboutSegment = ROUTES_TRANSLATIONS[locale].about;
+    const isAboutActive = ROUTE_TRANSLATIONS_LISTS.about.some(route => {
+      return currentPathname.startsWith(`/${locale}/${route}`) && route !== '/';
+    });
     const faqSegment = ROUTES_TRANSLATIONS[locale].faq;
+    const isFaqActive = ROUTE_TRANSLATIONS_LISTS.faq.some(route => {
+      return currentPathname.startsWith(`/${locale}/${route}`) && route !== '/';
+    });
 
     const heading = cn(
       'flex h-12 items-center font-medium md:hidden transition-[visibility] duration-0 ease-linear',
@@ -64,18 +72,10 @@ const Links = forwardRef<HTMLDivElement, LinksProps>(
           <li>
             <InternalLink
               href={`/${locale}/${faqSegment}/`}
+              canonicalHref={`/${locale}/faq/`}
               tabIndex={isMenuOpen ? undefined : -1}
               onClick={closeMenu}
-              className={
-                currentPathname === `/${locale}/${faqSegment}/`
-                  ? 'active'
-                  : undefined
-              }
-              aria-current={
-                currentPathname === `/${locale}/${faqSegment}/`
-                  ? 'page'
-                  : undefined
-              }
+              className={isFaqActive ? 'active' : undefined}
             >
               {t('faq.label')}
             </InternalLink>
@@ -83,18 +83,10 @@ const Links = forwardRef<HTMLDivElement, LinksProps>(
           <li>
             <InternalLink
               href={`/${locale}/${aboutSegment}/`}
+              canonicalHref={`/${locale}/about/`}
               tabIndex={isMenuOpen ? undefined : -1}
               onClick={closeMenu}
-              className={
-                currentPathname === `/${locale}/${aboutSegment}/`
-                  ? 'active'
-                  : undefined
-              }
-              aria-current={
-                currentPathname === `/${locale}/${aboutSegment}/`
-                  ? 'page'
-                  : undefined
-              }
+              className={isAboutActive ? 'active' : undefined}
             >
               {t('about.label')}
             </InternalLink>
