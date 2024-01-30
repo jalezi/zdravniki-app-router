@@ -22,7 +22,7 @@ const paginationLinkVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-brand-500 hover:scale-110',
+        default: 'bg-brand-500 hover:scale-110 focus-visible:scale-110',
         active: 'bg-brand-800 pointer-events-none',
       },
     },
