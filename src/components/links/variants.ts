@@ -6,7 +6,7 @@ export const linkVariants = cva('', {
       logo: '',
       header: 'nav-link',
       footer:
-        'inline-flex items-center gap-2 text-base text-footer-900  transition-colors hover:text-footer-500',
+        'flex items-center gap-2 text-base text-footer-900  transition-colors hover:text-footer-500',
     },
   },
   defaultVariants: {
