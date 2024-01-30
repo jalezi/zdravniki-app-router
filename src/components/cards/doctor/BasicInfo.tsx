@@ -6,6 +6,7 @@ import {
 } from '@/lib/schemas';
 import { getScopedI18n } from '@/locales/server';
 
+import AddressItem from './AddressItem';
 import Name from './Name';
 
 export interface BasicInfoProps {
@@ -36,22 +37,26 @@ export default async function BasicInfo({
     : '';
 
   return (
-    <div className='doctor-card__basic-info'>
+    <div className='child:py-1'>
       <Name
         as='h2'
         href={href}
         name={name}
         nameSrOnly={`, ${institutionName}${translatedType}${translatedSubtype}`}
         translate='no'
+        className=''
       />
       <div className='flex flex-wrap gap-2'>
         <DoctorTypeChip type={type} />
         <DoctorClinicChip type={type} />
       </div>
-      <address className='text-xs not-italic' translate='no'>
-        <span className='font-bold uppercase'>{institutionName}</span>
-        <br />
-        <span className='text-text-400'>{address}</span>
+      <address
+        className='cursor-help text-xs not-italic'
+        translate='no'
+        title={`${institutionName}, ${address}`}
+      >
+        <AddressItem variant='name' clamped text={institutionName} />
+        <AddressItem variant='address' clamped text={address} />
       </address>
     </div>
   );

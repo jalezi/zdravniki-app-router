@@ -13,7 +13,11 @@ export type { ContactLinkProps as EmailProps } from './Contacts';
 export { default as Name } from './Name';
 export type { NameProps } from './Name';
 
+export { default as AddressItem } from './AddressItem';
+export type { AddressItemProps } from './AddressItem';
+
 import Accepts from './Accepts';
+import AddressItem from './AddressItem';
 import Availability from './Availability';
 import BasicInfo from './BasicInfo';
 import Contacts from './Contacts';
@@ -21,6 +25,7 @@ import Name from './Name';
 
 const Doctor = {
   Accepts,
+  AddressItem,
   Availability,
   BasicInfo,
   Contacts,
