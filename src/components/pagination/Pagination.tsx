@@ -112,7 +112,7 @@ const Pagination = function Pagination({
       >
         <ChevronLeft size={ICON_SIZE} />
       </Link>
-      {currentPage > 1 ? (
+      {currentPage > 3 ? (
         <span>
           <MoreHorizontal size={ICON_SIZE} />
         </span>
@@ -135,7 +135,7 @@ const Pagination = function Pagination({
           </PaginationLink>
         );
       })}
-      {currentPage < maxPage ? (
+      {currentPage < maxPage - 2 ? (
         <span>
           <MoreHorizontal size={ICON_SIZE} />
         </span>
