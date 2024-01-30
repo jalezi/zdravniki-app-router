@@ -1,14 +1,15 @@
 'use client';
 
-import { ReactNode } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 
+import * as PopoverRadix from '@radix-ui/react-popover';
 import * as TooltipRadix from '@radix-ui/react-tooltip';
 import { VariantProps, cva } from 'class-variance-authority';
 
 import { cn } from '@/lib/utils';
 
 const tooltipVariants = cva(
-  'select-none px-4 py-2 text-xs font-medium max-w-72 will-change-[transform,opacity]',
+  'select-none px-4 py-2 text-xs font-medium max-w-72 will-change-[transform,opacity] focus-within:outline-none focus:outline-none',
   {
     variants: {
       variant: {
@@ -54,6 +55,30 @@ export default function Tooltip({
   variant,
   animation,
 }: TooltipProps) {
+  const [isMobileDevice, setIsMobileDevice] = useState(false);
+  useEffect(() => {
+    if ('ontouchstart' in document.documentElement) {
+      setIsMobileDevice(true);
+    }
+  }, []);
+
+  if (isMobileDevice) {
+    return (
+      <PopoverRadix.Root>
+        <PopoverRadix.Trigger asChild>{children}</PopoverRadix.Trigger>
+        <PopoverRadix.Portal>
+          <PopoverRadix.Content
+            className={cn(tooltipVariants({ variant, animation, className }))}
+            sideOffset={5}
+          >
+            {content}
+            <PopoverRadix.Arrow className={cn(arrowVariants({ variant }))} />
+          </PopoverRadix.Content>
+        </PopoverRadix.Portal>
+      </PopoverRadix.Root>
+    );
+  }
+
   return (
     <TooltipRadix.Root>
       <TooltipRadix.Trigger asChild>{children}</TooltipRadix.Trigger>
