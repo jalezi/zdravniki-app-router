@@ -1,9 +1,9 @@
 import { HTMLAttributes } from 'react';
 
-import { AlertCircle } from 'lucide-react';
-
 import { cn } from '@/lib/utils';
 import { getScopedI18n } from '@/locales/server';
+
+import { AlertCircleIcon } from '../icons';
 
 export interface EmergencyInfoProps extends HTMLAttributes<HTMLDivElement> {}
 
@@ -17,7 +17,7 @@ export default async function EmergencyInfo({ className }: EmergencyInfoProps) {
       )}
     >
       <span className=''>
-        <AlertCircle className=' ' />
+        <AlertCircleIcon className=' ' />
       </span>
       <p className='text-sm'>
         <a href='tel:112'>{t('emergencyInfo')}</a>

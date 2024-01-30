@@ -6,15 +6,16 @@ import Link, { LinkProps } from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { VariantProps, cva } from 'class-variance-authority';
-import {
-  ChevronLeft,
-  ChevronRight,
-  ChevronFirst,
-  ChevronLast,
-  MoreHorizontal,
-} from 'lucide-react';
 
 import { cn } from '@/lib/utils';
+
+import {
+  ChevronFirstIcon,
+  ChevronLastIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  MoreHorizontalIcon,
+} from '../icons';
 
 const paginationLinkVariants = cva(
   'rounded-full inline-flex items-center justify-center leading-none min-w-[4ch] p-[0.375rem] aspect-square text-sm transition-all text-white ',
@@ -63,8 +64,6 @@ export interface PaginationProps
   doctorType: string;
 }
 
-const ICON_SIZE = 16;
-
 const Pagination = function Pagination({
   length,
   page: currentPage,
@@ -103,18 +102,18 @@ const Pagination = function Pagination({
         aria-label='First page'
         title='Go to the first page'
       >
-        <ChevronFirst size={ICON_SIZE} />
+        <ChevronFirstIcon />
       </Link>
       <Link
         href={`${pathname}?type=${doctorType}&page=${previousPage}&pageSize=${pageSize}`}
         aria-label='Previous page'
         title='Go to the previous page'
       >
-        <ChevronLeft size={ICON_SIZE} />
+        <ChevronLeftIcon />
       </Link>
       {currentPage > 3 ? (
         <span>
-          <MoreHorizontal size={ICON_SIZE} />
+          <MoreHorizontalIcon />
         </span>
       ) : null}
       {show.map(page => {
@@ -137,7 +136,7 @@ const Pagination = function Pagination({
       })}
       {currentPage < maxPage - 2 ? (
         <span>
-          <MoreHorizontal size={ICON_SIZE} />
+          <MoreHorizontalIcon />
         </span>
       ) : null}
       <Link
@@ -145,14 +144,14 @@ const Pagination = function Pagination({
         aria-label='Next page'
         title='Go to the next page'
       >
-        <ChevronRight size={ICON_SIZE} />
+        <ChevronRightIcon />
       </Link>
       <Link
         href={`${pathname}?type=${doctorType}&page=${maxPage}&pageSize=${pageSize}`}
         aria-label='Last page'
         title='Go to the last page'
       >
-        <ChevronLast size={ICON_SIZE} />
+        <ChevronLastIcon />
       </Link>
     </div>
   );

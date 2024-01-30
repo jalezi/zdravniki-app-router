@@ -1,10 +1,12 @@
 'use client';
 
+import dynamic from 'next/dynamic';
+
 import { Marker } from 'react-leaflet';
 
-import OpenStreetMap from './OpenStreetMap';
-
 import type { OpenStreetMapProps } from './OpenStreetMap';
+
+const OpenStreetMap = dynamic(() => import('./OpenStreetMap'), { ssr: false });
 
 export interface DoctorMapProps
   extends Exclude<OpenStreetMapProps, 'map' | 'setMap'> {}

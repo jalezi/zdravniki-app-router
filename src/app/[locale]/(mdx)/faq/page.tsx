@@ -3,10 +3,10 @@ import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
-import { Construction } from 'lucide-react';
 import { setStaticParamsLocale } from 'next-international/server';
 import { compileMDX } from 'next-mdx-remote/rsc';
 
+import { ConstructionIcon } from '@/components/icons';
 import { components } from '@/components/ui/headings';
 import { TIME } from '@/lib/constants';
 import { getContentBySlug } from '@/lib/utils/get-content';
@@ -60,7 +60,7 @@ export default async function FaqPage({ params }: FaqPageProps) {
     description: string;
   }>({
     source: rawContent,
-    components: { Link, Construction, ...components },
+    components: { Link, ConstructionIcon, ...components },
     options: {
       parseFrontmatter: true,
       mdxOptions: {

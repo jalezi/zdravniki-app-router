@@ -1,8 +1,17 @@
+import AlertCircleIcon from '@/assets/svg/icon-alert-circle.svg';
 import BabyIcon from '@/assets/svg/icon-baby.svg';
 import BanIcon from '@/assets/svg/icon-ban-2.svg';
+import BookOpenTextIcon from '@/assets/svg/icon-book-open-text.svg';
 import BookingIcon from '@/assets/svg/icon-booking.svg';
 import CheckCircleIcon from '@/assets/svg/icon-check-circle.svg';
+import ChevronDownIcon from '@/assets/svg/icon-chevron-down.svg';
+import ChevronFirstIcon from '@/assets/svg/icon-chevron-first.svg';
+import ChevronLastIcon from '@/assets/svg/icon-chevron-last.svg';
+import ChevronLeftIcon from '@/assets/svg/icon-chevron-left.svg';
+import ChevronRightIcon from '@/assets/svg/icon-chevron-right.svg';
+import ChevronUpIcon from '@/assets/svg/icon-chevron-up.svg';
 import ExtraClinicIcon from '@/assets/svg/icon-clinic.svg';
+import ConstructionIcon from '@/assets/svg/icon-construction.svg';
 import Covid19Icon from '@/assets/svg/icon-covid19.svg';
 import DentistIcon from '@/assets/svg/icon-dentist.svg';
 import EmailIcon from '@/assets/svg/icon-email.svg';
@@ -11,11 +20,16 @@ import FacebookIcon from '@/assets/svg/icon-fb.svg';
 import GithubIcon from '@/assets/svg/icon-github.svg';
 import FloatingClinicIcon from '@/assets/svg/icon-gp-floating.svg';
 import GynecologistIcon from '@/assets/svg/icon-gynecologist.svg';
+import HeartHandshakeIcon from '@/assets/svg/icon-heart-handshake.svg';
 import KidsIcon from '@/assets/svg/icon-kids.svg';
+import LanguagesIcon from '@/assets/svg/icon-languages.svg';
 import LinkIcon from '@/assets/svg/icon-link.svg';
 import MediumIcon from '@/assets/svg/icon-medium.svg';
+import MoreHorizontalIcon from '@/assets/svg/icon-more-horizontal.svg';
+import PanelLeftOpenIcon from '@/assets/svg/icon-panel-left-open.svg';
 import PhoneIcon from '@/assets/svg/icon-phone.svg';
 import PodnebnikIcon from '@/assets/svg/icon-podnebnik.svg';
+import ShieldQuestionIcon from '@/assets/svg/icon-shield-question.svg';
 import StudentsIcon from '@/assets/svg/icon-students.svg';
 import TwitterIcon from '@/assets/svg/icon-tw.svg';
 import YoutubeIcon from '@/assets/svg/icon-youtube.svg';
@@ -23,29 +37,43 @@ import Logo from '@/assets/svg/zdravniki-sledilnik-logo.svg';
 import type { SVGComponent } from '@/types';
 
 export const icons = {
+  AlertCircleIcon: AlertCircleIcon as SVGComponent,
   BabyIcon: BabyIcon as SVGComponent,
   BanIcon: BanIcon as SVGComponent,
   BookingIcon: BookingIcon as SVGComponent,
+  BookOpenTextIcon: BookOpenTextIcon as SVGComponent,
   CheckCircleIcon: CheckCircleIcon as SVGComponent,
+  ChevronDownIcon: ChevronDownIcon as SVGComponent,
+  ChevronFirstIcon: ChevronFirstIcon as SVGComponent,
+  ChevronLastIcon: ChevronLastIcon as SVGComponent,
+  ChevronLeftIcon: ChevronLeftIcon as SVGComponent,
+  ChevronRightIcon: ChevronRightIcon as SVGComponent,
+  ChevronUpIcon: ChevronUpIcon as SVGComponent,
+  ConstructionIcon: ConstructionIcon as SVGComponent,
+  Covid19Icon: Covid19Icon as SVGComponent,
+  DentistIcon: DentistIcon as SVGComponent,
   EmailIcon: EmailIcon as SVGComponent,
+  ExtraClinicIcon: ExtraClinicIcon as SVGComponent,
+  FacebookIcon: FacebookIcon as SVGComponent,
+  FamilyDrIcon: FamilyDrIcon as SVGComponent,
+  FloatingClinicIcon: FloatingClinicIcon as SVGComponent,
+  GithubIcon: GithubIcon as SVGComponent,
+  GynecologistIcon: GynecologistIcon as SVGComponent,
+  HeartHandshakeIcon: HeartHandshakeIcon as SVGComponent,
+  KidsIcon: KidsIcon as SVGComponent,
+  LanguagesIcon: LanguagesIcon as SVGComponent,
+  LinkIcon: LinkIcon as SVGComponent,
   Logo: Logo as SVGComponent,
   LogoIcon: FamilyDrIcon as SVGComponent,
-  FamilyDrIcon: FamilyDrIcon as SVGComponent,
-  FacebookIcon: FacebookIcon as SVGComponent,
-  GithubIcon: GithubIcon as SVGComponent,
   MediumIcon: MediumIcon as SVGComponent,
+  MoreHorizontalIcon: MoreHorizontalIcon as SVGComponent,
+  PanelLeftOpenIcon: PanelLeftOpenIcon as SVGComponent,
+  PhoneIcon: PhoneIcon as SVGComponent,
+  PodnebnikIcon: PodnebnikIcon as SVGComponent,
+  ShieldQuestionIcon: ShieldQuestionIcon as SVGComponent,
+  StudentsIcon: StudentsIcon as SVGComponent,
   TwitterIcon: TwitterIcon as SVGComponent,
   YoutubeIcon: YoutubeIcon as SVGComponent,
-  Covid19Icon: Covid19Icon as SVGComponent,
-  PodnebnikIcon: PodnebnikIcon as SVGComponent,
-  StudentsIcon: StudentsIcon as SVGComponent,
-  GynecologistIcon: GynecologistIcon as SVGComponent,
-  KidsIcon: KidsIcon as SVGComponent,
-  DentistIcon: DentistIcon as SVGComponent,
-  ExtraClinicIcon: ExtraClinicIcon as SVGComponent,
-  FloatingClinicIcon: FloatingClinicIcon as SVGComponent,
-  PhoneIcon: PhoneIcon as SVGComponent,
-  LinkIcon: LinkIcon as SVGComponent,
 };
 
 export type IconName = keyof typeof icons;

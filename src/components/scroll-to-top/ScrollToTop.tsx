@@ -3,10 +3,11 @@
 import { useEffect, useState, useCallback, HTMLAttributes } from 'react';
 
 import { VariantProps, cva } from 'class-variance-authority';
-import { ChevronUp } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 import { useI18n } from '@/locales/client';
+
+import { ChevronUpIcon } from '../icons';
 
 const buttonVariants = cva(
   'transition-all duration-367 grid place-items-center',
@@ -102,7 +103,7 @@ const ScrollToTop = ({
     return () => scrollElement.removeEventListener('scroll', toggleVisibility);
   }, [toggleVisibility, element]);
 
-  const icon = !variant || variant === 'icon' ? <ChevronUp /> : null;
+  const icon = !variant || variant === 'icon' ? <ChevronUpIcon /> : null;
   const text = variant === 'text' ? t('scrollToTop') : null;
 
   return (

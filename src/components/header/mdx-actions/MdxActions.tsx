@@ -2,8 +2,7 @@
 
 import { HTMLAttributes, PropsWithChildren, useEffect, useRef } from 'react';
 
-import { PanelLeftOpen } from 'lucide-react';
-
+import { PanelLeftOpenIcon } from '@/components/icons';
 import { useIsSidebarStore } from '@/lib/store';
 import { cn } from '@/lib/utils';
 
@@ -81,7 +80,7 @@ export default function MdxActions({ children, ...props }: MdxActionsProps) {
           className='px-2 py-1 md:hidden'
           aria-label='Expand Sidebar'
         >
-          <PanelLeftOpen
+          <PanelLeftOpenIcon
             aria-hidden='true'
             className={cn(
               'transition-all duration-367',

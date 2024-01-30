@@ -3,12 +3,12 @@
 import { ButtonHTMLAttributes, useState } from 'react';
 
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
-import {
-  ChevronDown,
-  ChevronUp,
-  Languages as LanguageIcon,
-} from 'lucide-react';
 
+import {
+  ChevronDownIcon,
+  ChevronUpIcon,
+  LanguagesIcon,
+} from '@/components/icons';
 import { cn } from '@/lib/utils';
 import { useChangeLocale, useCurrentLocale } from '@/locales/client';
 import { Locales } from '@/locales/config';
@@ -37,12 +37,12 @@ export default function LanguageSelector({
     <DropdownMenu.Root onOpenChange={() => setOpen(prev => !prev)}>
       <DropdownMenu.Trigger asChild>
         <button className={buttonStyles} {...props}>
-          <LanguageIcon />
+          <LanguagesIcon className='text-[1.25rem]' />
           {locale.toLocaleUpperCase()}
           {open ? (
-            <ChevronUp size='0.875rem' />
+            <ChevronUpIcon className='text-[0.875rem]' />
           ) : (
-            <ChevronDown size='0.875rem' />
+            <ChevronDownIcon className='text-[0.875rem]' />
           )}
         </button>
       </DropdownMenu.Trigger>

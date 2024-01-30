@@ -1,5 +1,3 @@
-import { BookOpenText, HeartHandshake, ShieldQuestion } from 'lucide-react';
-
 import { ExternalLink, InternalLink } from '@/components/links';
 import { cn } from '@/lib/utils';
 import { getCurrentLocale, getScopedI18n } from '@/locales/server';
@@ -20,11 +18,14 @@ import {
   Covid19Icon,
   LogoIcon,
   DOCTOR_ICONS,
+  ShieldQuestionIcon,
+  BookOpenTextIcon,
+  HeartHandshakeIcon,
 } from '../icons';
 
 const ROUTE_ICONS = {
-  faq: ShieldQuestion,
-  about: BookOpenText,
+  faq: ShieldQuestionIcon,
+  about: BookOpenTextIcon,
   gp: DOCTOR_ICONS.gp.component,
   ped: DOCTOR_ICONS.ped.component,
   den: DOCTOR_ICONS.den.component,
@@ -125,7 +126,10 @@ export default async function MdxFooter() {
                 target='_blank'
                 rel='noopener'
               >
-                <HeartHandshake size={20} strokeWidth={1.5} />{' '}
+                <HeartHandshakeIcon
+                  className='text-[1.25rem]'
+                  strokeWidth={1.5}
+                />{' '}
                 {tNavLinks('donate.label')}
               </ExternalLink>
             </li>

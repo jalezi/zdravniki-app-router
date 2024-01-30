@@ -9,8 +9,6 @@ import {
 
 import { useParams, usePathname } from 'next/navigation';
 
-import { ChevronDown } from 'lucide-react';
-
 import { useIsSidebarStore } from '@/lib/store';
 import { cn } from '@/lib/utils';
 
@@ -19,6 +17,7 @@ import {
   useActiveHeading,
   useHeadings,
 } from './hooks';
+import { ChevronDownIcon } from '../icons';
 
 interface NavigationLinkProps
   extends LinkHTMLAttributes<HTMLAnchorElement>,
@@ -57,10 +56,7 @@ const TocGroup = ({ headingData }: { headingData: IMdxHeading }) => {
           <summary className='cursor-pointer  bg-text-50 px-2 '>
             <div className='   flex items-center'>
               {headingData.text}{' '}
-              <ChevronDown
-                className='ml-auto py-2 transition-all duration-367 group-open/details:rotate-180'
-                size='2rem'
-              />
+              <ChevronDownIcon className='ml-auto py-2 text-[2rem] transition-all duration-367 group-open/details:rotate-180' />
             </div>
           </summary>
           <ul className='relative mt-4'>
