@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
-import dynamic from 'next/dynamic';
 
 import { setStaticParamsLocale } from 'next-international/server';
 
+import { DoctorCard } from '@/components/cards';
 import MdxFooter from '@/components/footer/MdxFooter';
 import Pagination from '@/components/pagination/Pagination';
 import { TIME } from '@/lib/constants';
@@ -17,8 +17,6 @@ import { getI18n, getScopedI18n, getStaticParams } from '@/locales/server';
 
 import Form from './form';
 import { defaultsSearchParamsSchema, redirectWithSearchParams } from './utils';
-
-const DoctorCard = dynamic(() => import('@/components/cards/DoctorCard'));
 
 export const revalidate = TIME.ONE_HOUR_IN_SECONDS;
 
