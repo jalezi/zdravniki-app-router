@@ -57,7 +57,7 @@ const PaginationLink = function PaginationLink({
 };
 
 export interface PaginationProps
-  extends PropsWithChildren<HTMLAttributes<HTMLDivElement>> {
+  extends Omit<PropsWithChildren<HTMLAttributes<HTMLDivElement>>, 'className'> {
   length: number;
   pageSize: number;
   page: number;
@@ -71,7 +71,6 @@ const Pagination = function Pagination({
   pageSize,
   doctorType,
   accepts,
-  className,
 }: PaginationProps) {
   const pathname = usePathname();
 
@@ -95,10 +94,8 @@ const Pagination = function Pagination({
   const nextPage = currentPage === maxPage ? maxPage : currentPage + 1;
   const firstPage = 1;
 
-  const styles = cn('flex flex-wrap items-center gap-1', className);
-
   return (
-    <div className={styles}>
+    <>
       <Link
         href={`${pathname}?type=${doctorType}&accepts=${accepts}&page=${firstPage}&pageSize=${pageSize}`}
         aria-label='First page'
@@ -156,7 +153,7 @@ const Pagination = function Pagination({
       >
         <ChevronLastIcon />
       </Link>
-    </div>
+    </>
   );
 };
 
