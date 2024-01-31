@@ -1,5 +1,6 @@
 import { ValidationError } from '@/lib/errors';
 
+import { getAcceptsNewPatients } from './doctor';
 import { getStartAndEnd } from './pagination';
 import {
   DoctorTypeCsv,
@@ -62,7 +63,8 @@ export function filterDoctors(
   const byCanonicalType = createByCanonicalType(type);
 
   return doctors.filter(
-    doctor => byCanonicalType(doctor) && doctor.accepts === accepts
+    doctor =>
+      byCanonicalType(doctor) && getAcceptsNewPatients(doctor) === accepts
   );
 }
 
@@ -100,9 +102,10 @@ export function groupDoctorsByType(
 ): Map<FilterDoctorTypeParam, DoctorsCsv[]> {
   const groupedDoctors = new Map<FilterDoctorTypeParam, DoctorsCsv[]>();
 
-  console.log(filters);
   const filteredDoctors = doctors.filter(
-    doctor => filters.accepts === 'all' || doctor.accepts === filters.accepts
+    doctor =>
+      filters.accepts === 'all' ||
+      getAcceptsNewPatients(doctor) === filters.accepts
   );
 
   groupedDoctors.set('all', filteredDoctors);
