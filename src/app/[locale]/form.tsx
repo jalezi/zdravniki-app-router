@@ -4,7 +4,11 @@ import { useCallback, useRef, useState } from 'react';
 
 import { useFormState, useFormStatus } from 'react-dom';
 
-import { ALLOWED_PAGE_SIZES, FilterDoctorTypeParam } from '@/lib/schemas';
+import {
+  ALLOWED_PAGE_SIZES,
+  FilterAcceptsParam,
+  FilterDoctorTypeParam,
+} from '@/lib/schemas';
 import { cn } from '@/lib/utils';
 
 import { handleFormSubmit } from './actions';
@@ -25,7 +29,7 @@ const SubmitButton = () => {
   );
 };
 
-const OPTIONS: FilterDoctorTypeParam[] = [
+const DOCTOR_TYPE_OPTIONS: FilterDoctorTypeParam[] = [
   'all',
   'gp',
   'ped',
@@ -35,16 +39,20 @@ const OPTIONS: FilterDoctorTypeParam[] = [
   'den-s',
 ] as const;
 
+const ACCEPTS_OPTIONS: FilterAcceptsParam[] = ['all', 'y', 'n'] as const;
+
 export default function SearchForm({
   lengths,
   type,
   page,
   pageSize,
+  accepts,
 }: {
-  lengths: Record<(typeof OPTIONS)[number], number>;
+  lengths: Record<(typeof DOCTOR_TYPE_OPTIONS)[number], number>;
   type: DefaultsSearchParams['type'];
   page: DefaultsSearchParams['page'];
   pageSize: DefaultsSearchParams['pageSize'];
+  accepts: DefaultsSearchParams['accepts'];
 }) {
   const [length, setLength] = useState(lengths[type]);
   const ref = useRef<HTMLFormElement>(null);
@@ -62,6 +70,7 @@ export default function SearchForm({
     const formDataType = formData.get('type') as FilterDoctorTypeParam;
     const formDataPageSize = formData.get('pageSize') as string;
     const formDataPage = formData.get('page') as string;
+    // const formDataAccepts = formData.get('accepts') as FilterAcceptsParam;
 
     const newLength = lengths[formDataType];
     const maxPage = Math.floor(newLength / +formDataPageSize) + 1;
@@ -86,7 +95,22 @@ export default function SearchForm({
       <label htmlFor='type' className='inline-flex items-center gap-1 px-2'>
         type
         <select name='type' id='type' defaultValue={type} onChange={onChange}>
-          {OPTIONS.map(filter => (
+          {DOCTOR_TYPE_OPTIONS.map(filter => (
+            <option key={filter} value={filter}>
+              {filter}
+            </option>
+          ))}
+        </select>
+      </label>
+      <label htmlFor='accepts' className='inline-flex items-center gap-1 px-2'>
+        accepts
+        <select
+          name='accepts'
+          id='accepts'
+          defaultValue={accepts}
+          onChange={onChange}
+        >
+          {ACCEPTS_OPTIONS.map(filter => (
             <option key={filter} value={filter}>
               {filter}
             </option>

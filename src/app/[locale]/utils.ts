@@ -17,6 +17,7 @@ export function redirectWithSearchParams(
 ) {
   const url = new URL('/', getSiteUrl());
   url.searchParams.set('type', params.type);
+  url.searchParams.set('accepts', params.accepts);
   url.searchParams.set('page', params.page.toString());
   url.searchParams.set('pageSize', params.pageSize.toString());
 

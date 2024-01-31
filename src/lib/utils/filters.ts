@@ -4,6 +4,7 @@ import { getStartAndEnd } from './pagination';
 import {
   DoctorTypeCsv,
   DoctorsCsv,
+  FilterAcceptsParam,
   FilterDoctorTypeParam,
   InstitutionsCsv,
   doctorCsvTypeGpSchema,
@@ -50,17 +51,19 @@ export function createByCanonicalType(type: DoctorTypeCsv) {
 
 export function filterDoctors(
   doctors: DoctorsCsv[],
-  params: { type: FilterDoctorTypeParam }
+  params: { type: FilterDoctorTypeParam; accepts: FilterAcceptsParam }
 ) {
   if (params.type === 'all') {
     return doctors;
   }
 
-  const { type } = params;
+  const { type, accepts } = params;
 
   const byCanonicalType = createByCanonicalType(type);
 
-  return doctors.filter(doctor => byCanonicalType(doctor));
+  return doctors.filter(
+    doctor => byCanonicalType(doctor) && doctor.accepts === accepts
+  );
 }
 
 export function getUniqueInstitutions(doctors: DoctorsCsv[]) {
@@ -92,13 +95,19 @@ export function getInstitutionsMap(
 export type InstitutionsMap = ReturnType<typeof getInstitutionsMap>;
 
 export function groupDoctorsByType(
-  doctors: DoctorsCsv[]
+  doctors: DoctorsCsv[],
+  filters: { accepts: FilterAcceptsParam } = { accepts: 'all' }
 ): Map<FilterDoctorTypeParam, DoctorsCsv[]> {
   const groupedDoctors = new Map<FilterDoctorTypeParam, DoctorsCsv[]>();
 
-  groupedDoctors.set('all', doctors);
+  console.log(filters);
+  const filteredDoctors = doctors.filter(
+    doctor => filters.accepts === 'all' || doctor.accepts === filters.accepts
+  );
 
-  for (const doctor of doctors) {
+  groupedDoctors.set('all', filteredDoctors);
+
+  for (const doctor of filteredDoctors) {
     const safeParsedType = transformedDoctorCsvTypeSchema.safeParse(
       doctor.type
     );
@@ -127,11 +136,16 @@ export function groupDoctorsByType(
 export function getPaginatedDoctorsWithUniqueInstitutions(
   doctors: DoctorsCsv[],
   institutions: InstitutionsCsv[],
-  params: { type: FilterDoctorTypeParam; page: number; pageSize: number }
+  params: {
+    type: FilterDoctorTypeParam;
+    page: number;
+    pageSize: number;
+    accepts: FilterAcceptsParam;
+  }
 ) {
-  const { type, page, pageSize } = params;
+  const { type, page, pageSize, accepts } = params;
 
-  const filteredDoctors = filterDoctors(doctors, { type });
+  const filteredDoctors = filterDoctors(doctors, { type, accepts });
 
   const uniqueInstitutions = getInstitutionsMap(filteredDoctors, institutions);
 

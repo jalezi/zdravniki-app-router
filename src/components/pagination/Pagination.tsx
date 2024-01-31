@@ -61,6 +61,7 @@ export interface PaginationProps
   length: number;
   pageSize: number;
   page: number;
+  accepts: string;
   doctorType: string;
 }
 
@@ -69,6 +70,7 @@ const Pagination = function Pagination({
   page: currentPage,
   pageSize,
   doctorType,
+  accepts,
   className,
 }: PaginationProps) {
   const pathname = usePathname();
@@ -98,14 +100,14 @@ const Pagination = function Pagination({
   return (
     <div className={styles}>
       <Link
-        href={`${pathname}?type=${doctorType}&page=${firstPage}&pageSize=${pageSize}`}
+        href={`${pathname}?type=${doctorType}&accepts=${accepts}&page=${firstPage}&pageSize=${pageSize}`}
         aria-label='First page'
         title='Go to the first page'
       >
         <ChevronFirstIcon />
       </Link>
       <Link
-        href={`${pathname}?type=${doctorType}&page=${previousPage}&pageSize=${pageSize}`}
+        href={`${pathname}?type=${doctorType}&accepts=${accepts}&page=${previousPage}&pageSize=${pageSize}`}
         aria-label='Previous page'
         title='Go to the previous page'
       >
@@ -119,6 +121,7 @@ const Pagination = function Pagination({
       {show.map(page => {
         const searchParams = new URLSearchParams({
           type: doctorType,
+          accepts,
           page: page.toString(),
           pageSize: pageSize.toString(),
         });
@@ -140,14 +143,14 @@ const Pagination = function Pagination({
         </span>
       ) : null}
       <Link
-        href={`${pathname}?type=${doctorType}&page=${nextPage}&pageSize=${pageSize}`}
+        href={`${pathname}?type=${doctorType}&accepts=${accepts}&page=${nextPage}&pageSize=${pageSize}`}
         aria-label='Next page'
         title='Go to the next page'
       >
         <ChevronRightIcon />
       </Link>
       <Link
-        href={`${pathname}?type=${doctorType}&page=${maxPage}&pageSize=${pageSize}`}
+        href={`${pathname}?type=${doctorType}&accepts=${accepts}&page=${maxPage}&pageSize=${pageSize}`}
         aria-label='Last page'
         title='Go to the last page'
       >
