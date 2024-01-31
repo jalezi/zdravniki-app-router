@@ -80,8 +80,9 @@ export default function SearchForm({
     setLength(newLength);
   }, [lengths]);
 
+  // todo - better aria-label for form
   return (
-    <form ref={ref} action={formAction}>
+    <form ref={ref} action={formAction} aria-label='settings'>
       <label htmlFor='type' className='inline-flex items-center gap-1 px-2'>
         type
         <select name='type' id='type' defaultValue={type} onChange={onChange}>

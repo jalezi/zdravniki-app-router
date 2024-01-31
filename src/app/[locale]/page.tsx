@@ -109,14 +109,17 @@ export default async function Home({
       className='self-center'
     />
   );
-
+  // todo - better aria-label for section
   return (
     <>
       <main id='content' className='mx-auto mt-12 max-w-7xl px-4 py-4 md:mt-16'>
         <h1 className='sr-only'>{t('test')}</h1>
         <Form lengths={lengths} {...parsedSearchParams} />
 
-        <section className='flex flex-col gap-4'>
+        <section
+          className='flex flex-col gap-4'
+          aria-label={`${parsedSearchParams.type}, page: ${parsedSearchParams.page}`}
+        >
           {pagination}
           <ul className='grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 '>
             {filteredDoctors.map(doctor => {
