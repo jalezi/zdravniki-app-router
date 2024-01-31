@@ -94,7 +94,7 @@ export default async function Home({
   const uniqueInstitutions = getInstitutionsMap(paginatedDoctors, institutions);
 
   const lengths = {
-    all: doctors.length,
+    all: doctorGroupsByType.get('all')?.length ?? 0,
     gp: doctorGroupsByType.get('gp')?.length ?? 0,
     ped: doctorGroupsByType.get('ped')?.length ?? 0,
     gyn: doctorGroupsByType.get('gyn')?.length ?? 0,
