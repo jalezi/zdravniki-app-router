@@ -10,9 +10,11 @@ export async function handleFormSubmit(
 ) {
   const locale = getCurrentLocale();
   const type = formData.get('type');
+  const accepts = formData.get('accepts');
   const page = formData.get('page');
   const pageSize = formData.get('pageSize');
   const defaultParams = defaultsSearchParamsSchema.safeParse({
+    accepts,
     page,
     pageSize,
     type,

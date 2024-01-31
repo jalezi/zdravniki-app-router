@@ -125,15 +125,20 @@ export const institutionsCsvSchema = z.object({
 
 export type InstitutionsCsv = z.infer<typeof institutionsCsvSchema>;
 
+export const acceptsNewPatientsSchema = z.enum(['y', 'n']);
+export type AcceptsNewPatients = z.infer<typeof acceptsNewPatientsSchema>;
+
 const DEFAULT_DOCTOR_TYPE = 'all';
 const DEFAULT_PAGE_NUMBER = 1;
 const DEFAULT_PAGE_SIZE = 12;
+const DEFAULT_DOCTOR_ACCEPTS = 'all';
 export const ALLOWED_PAGE_SIZES = ['12', '24'] as const;
 
 export const DEFAULT_SEARCH_PARAMS = {
   type: DEFAULT_DOCTOR_TYPE,
   page: DEFAULT_PAGE_NUMBER,
   pageSize: DEFAULT_PAGE_SIZE,
+  accepts: DEFAULT_DOCTOR_ACCEPTS,
 } as const;
 
 export const pageNumberSchema = z.number().int().positive();
@@ -151,6 +156,11 @@ export const pageNumberAndSizeSchema = z.object({
   pageSize: pageSizeSchema,
 });
 
+export const filterAcceptsParamSchema = acceptsNewPatientsSchema.or(
+  z.enum(['all'])
+);
+export type FilterAcceptsParam = z.infer<typeof filterAcceptsParamSchema>;
+
 export const doctorsQueryInputSchema = z.object({
   type: filterDoctorTypeParamSchema.optional().default(DEFAULT_DOCTOR_TYPE),
   page: pageNumberSchema
@@ -160,6 +170,7 @@ export const doctorsQueryInputSchema = z.object({
       z.coerce.number().int().positive().optional().default(DEFAULT_PAGE_NUMBER)
     ),
   pageSize: pageSizeSchema.default(DEFAULT_PAGE_SIZE),
+  accepts: filterAcceptsParamSchema.default(DEFAULT_DOCTOR_ACCEPTS),
 });
 
 export const addressSchema = z
@@ -200,9 +211,6 @@ export const addressSchema = z
 // });
 
 export type Address = z.infer<typeof addressSchema>;
-
-export const acceptsNewPatientsSchema = z.enum(['y', 'n']);
-export type AcceptsNewPatients = z.infer<typeof acceptsNewPatientsSchema>;
 
 export const extractDoctorCsvBaseTypeSchema = doctorCsvTypeSchema.transform(
   (val, ctx) => {

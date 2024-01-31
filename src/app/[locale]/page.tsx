@@ -56,13 +56,16 @@ export default async function Home({
     type: searchParams.type,
     page: searchParams.page,
     pageSize: searchParams.pageSize,
+    accepts: searchParams.accepts,
   });
 
   const parsedSearchParams = parsedParams.success
     ? parsedParams.data
     : defaultsSearchParamsSchema.parse({});
 
-  const doctorGroupsByType = groupDoctorsByType(doctors);
+  const doctorGroupsByType = groupDoctorsByType(doctors, {
+    accepts: parsedSearchParams.accepts,
+  });
   const doctorsByType = doctorGroupsByType.get(parsedSearchParams.type) ?? [];
 
   const length = doctorsByType.length;
@@ -87,8 +90,8 @@ export default async function Home({
     +parsedSearchParams.pageSize
   );
 
-  const filteredDoctors = doctorsByType.slice(start, end);
-  const uniqueInstitutions = getInstitutionsMap(filteredDoctors, institutions);
+  const paginatedDoctors = doctorsByType.slice(start, end);
+  const uniqueInstitutions = getInstitutionsMap(paginatedDoctors, institutions);
 
   const lengths = {
     all: doctors.length,
@@ -106,6 +109,7 @@ export default async function Home({
       page={parsedSearchParams.page}
       pageSize={+parsedSearchParams.pageSize}
       doctorType={parsedSearchParams.type}
+      accepts={parsedSearchParams.accepts}
       className='self-center'
     />
   );
@@ -122,7 +126,7 @@ export default async function Home({
         >
           {pagination}
           <ul className='grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 '>
-            {filteredDoctors.map(doctor => {
+            {paginatedDoctors.map(doctor => {
               const safeDoctor = doctorsCsvSchema.safeParse(doctor);
 
               if (!safeDoctor.success) {

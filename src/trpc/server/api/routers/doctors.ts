@@ -12,12 +12,17 @@ import { publicProcedure, router } from '../../trpc';
 export const doctorsRouter = router({
   getPage: publicProcedure
     .input(
-      doctorsQueryInputSchema.default({ type: 'all', page: 1, pageSize: 25 })
+      doctorsQueryInputSchema.default({
+        type: 'all',
+        page: 1,
+        pageSize: 12,
+        accepts: 'all',
+      })
     )
     .query(async ({ input }) => {
       const { data, errors, success } =
         await fetchAndParseDoctorsAndInstitutions();
-      if (!data || !success || !data.doctors || !data.institutions || !errors) {
+      if (!data || !success || !data.doctors || !data.institutions) {
         return {
           data: null,
           error: new ValidationError({
@@ -29,7 +34,7 @@ export const doctorsRouter = router({
       }
 
       const { doctors, institutions } = data;
-      const { type, page, pageSize: p } = input;
+      const { type, page, pageSize: p, accepts } = input;
 
       const pageSize = Number(p);
 
@@ -51,7 +56,7 @@ export const doctorsRouter = router({
         const url = new URL('api/trpc/doctors.getPage', getSiteUrl());
         url.searchParams.append(
           'input',
-          JSON.stringify({ json: { type, page: _page, pageSize } })
+          JSON.stringify({ json: { type, accepts, page: _page, pageSize } })
         );
 
         return url.pathname + url.search;
