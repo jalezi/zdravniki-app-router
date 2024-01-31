@@ -104,14 +104,15 @@ export default async function Home({
   } as const;
 
   const pagination = (
-    <Pagination
-      length={lengths[parsedSearchParams.type]}
-      page={parsedSearchParams.page}
-      pageSize={+parsedSearchParams.pageSize}
-      doctorType={parsedSearchParams.type}
-      accepts={parsedSearchParams.accepts}
-      className='self-center'
-    />
+    <div className='flex flex-wrap items-center gap-1 self-center'>
+      <Pagination
+        length={lengths[parsedSearchParams.type]}
+        page={parsedSearchParams.page}
+        pageSize={+parsedSearchParams.pageSize}
+        doctorType={parsedSearchParams.type}
+        accepts={parsedSearchParams.accepts}
+      />
+    </div>
   );
   // todo - better aria-label for section
   return (
