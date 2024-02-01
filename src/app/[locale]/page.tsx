@@ -1,21 +1,26 @@
 import { Suspense } from 'react';
 
 import { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 
 import { setStaticParamsLocale } from 'next-international/server';
 
 import MdxFooter from '@/components/footer/MdxFooter';
-import Pagination from '@/components/pagination/Pagination';
 import { TIME } from '@/lib/constants';
 import { fetchAndParseDoctorsAndInstitutions } from '@/lib/utils';
 import { groupAndFilterDoctorsByType } from '@/lib/utils/filters';
 import { getI18n, getScopedI18n, getStaticParams } from '@/locales/server';
 
-import DoctorListSkeleton from './(doctor-types)/[doctorType]/DoctorListSkeleton';
 import DoctorsList from './(doctor-types)/[doctorType]/DoctorsList';
-import Form from './form';
 import { defaultsSearchParamsSchema } from './utils';
 
+const DoctorListSkeleton = dynamic(
+  () => import('./(doctor-types)/[doctorType]/DoctorListSkeleton')
+);
+const Form = dynamic(() => import('./form'));
+const Pagination = dynamic(
+  () => import('../../components/pagination/Pagination')
+);
 export const revalidate = TIME.ONE_HOUR_IN_SECONDS;
 
 export async function generateMetadata(): Promise<Metadata> {

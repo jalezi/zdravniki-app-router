@@ -5,10 +5,7 @@ import type { HTMLAttributes, PropsWithChildren } from 'react';
 import Link, { LinkProps } from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
 
-import { VariantProps, cva } from 'class-variance-authority';
-
-import { cn } from '@/lib/utils';
-
+import PaginationLink, { PaginationLinkVariants } from './PaginationLink';
 import {
   ChevronFirstIcon,
   ChevronLastIcon,
@@ -17,44 +14,11 @@ import {
   MoreHorizontalIcon,
 } from '../icons';
 
-const paginationLinkVariants = cva(
-  'rounded-full inline-flex items-center justify-center leading-none min-w-[4ch] p-[0.375rem] aspect-square text-sm transition-all duration-367 text-white ',
-  {
-    variants: {
-      variant: {
-        default: 'bg-brand-500 hover:scale-110 focus-visible:scale-110',
-        active: 'bg-brand-800 pointer-events-none',
-      },
-    },
-    defaultVariants: {
-      variant: 'default',
-    },
-  }
-);
-
 export interface PaginationLinkProps
-  extends VariantProps<typeof paginationLinkVariants>,
+  extends PaginationLinkVariants,
     PropsWithChildren<LinkProps> {
   className?: string;
 }
-
-const PaginationLink = function PaginationLink({
-  href,
-  variant,
-  className,
-  children,
-  ...props
-}: PaginationLinkProps) {
-  return (
-    <Link
-      href={href}
-      className={cn(paginationLinkVariants({ variant, className }))}
-      {...props}
-    >
-      {children}
-    </Link>
-  );
-};
 
 export interface PaginationProps
   extends Omit<PropsWithChildren<HTMLAttributes<HTMLDivElement>>, 'className'> {

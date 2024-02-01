@@ -14,9 +14,14 @@ import type {
 } from '@/lib/schemas';
 import { getScopedI18n } from '@/locales/server';
 
-import Doctor, { Accepts, Contacts } from './doctor';
-
 import type { LatLngTuple } from 'leaflet';
+
+const Accepts = dynamic(() => import('./doctor').then(mod => mod.Accepts));
+const Availability = dynamic(() =>
+  import('./doctor').then(mod => mod.Availability)
+);
+const BasicInfo = dynamic(() => import('./doctor').then(mod => mod.BasicInfo));
+const Contacts = dynamic(() => import('./doctor').then(mod => mod.Contacts));
 
 const baseBasePath = path.join(process.cwd(), 'src', 'assets', 'images');
 const filePath = path.join(baseBasePath, 'fake-map-512-16-9.jpeg');
@@ -95,7 +100,7 @@ export default async function DoctorCard({
       <section className='doctor-card' aria-label={name}>
         <DoctorMap center={geoLocation} doubleClickZoom={false} />
         <div className='doctor-card__content flex flex-col gap-2'>
-          <Doctor.BasicInfo
+          <BasicInfo
             name={name}
             address={address}
             href={href}
@@ -110,7 +115,7 @@ export default async function DoctorCard({
               {...acceptsOverrideProps}
             />
             {availability >= 0 ? (
-              <Doctor.Availability availability={availability} />
+              <Availability availability={availability} />
             ) : null}
           </div>
           <address className='text-sm not-italic'>
