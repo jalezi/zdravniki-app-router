@@ -1,6 +1,6 @@
 'use client';
 
-import { HTMLAttributes, PropsWithChildren } from 'react';
+import type { HTMLAttributes, PropsWithChildren } from 'react';
 
 import Link, { LinkProps } from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
@@ -18,7 +18,7 @@ import {
 } from '../icons';
 
 const paginationLinkVariants = cva(
-  'rounded-full inline-flex items-center justify-center leading-none min-w-[4ch] p-[0.375rem] aspect-square text-sm transition-all text-white ',
+  'rounded-full inline-flex items-center justify-center leading-none min-w-[4ch] p-[0.375rem] aspect-square text-sm transition-all duration-367 text-white ',
   {
     variants: {
       variant: {
@@ -63,17 +63,13 @@ export interface PaginationProps
 
 const Pagination = function Pagination({ length }: PaginationProps) {
   const pathname = usePathname();
-  const searchParams = useSearchParams() as {
-    type?: string;
-    accepts?: string;
-    page?: string;
-    pageSize?: string;
-  };
+  const searchParams = useSearchParams();
 
-  const doctorType = searchParams?.type ?? 'all';
-  const accepts = searchParams?.accepts ?? 'all';
-  const pageSize = searchParams?.pageSize ?? '12';
-  const currentPage = searchParams?.page ? +searchParams.page : 1;
+  const doctorType = searchParams.get('type') ?? 'all';
+  const accepts = searchParams.get('accepts') ?? 'all';
+  const pageSize = searchParams.get('pageSize') ?? '12';
+  const _currentPage = Number(searchParams.get('page')) ?? 1;
+  const currentPage = isNaN(_currentPage) ? 1 : Math.max(1, _currentPage);
 
   const maxPage = Math.floor(length / +pageSize) + 1;
 
