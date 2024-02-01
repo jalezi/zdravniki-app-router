@@ -96,7 +96,7 @@ export default async function DoctorCard({
         };
 
   return (
-    <section className='doctor-card' aria-label={name}>
+    <section className='doctor-card h-full bg-white' aria-label={name}>
       <DoctorMap center={geoLocation} doubleClickZoom={false} />
       <div className='doctor-card__content flex flex-col gap-2'>
         <BasicInfo

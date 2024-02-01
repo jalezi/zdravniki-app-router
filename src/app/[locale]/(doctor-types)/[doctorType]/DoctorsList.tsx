@@ -118,7 +118,7 @@ const DoctorsList = async function DoctorsList({
     const { key, ...drProps } = props;
 
     return (
-      <li key={key}>
+      <li key={key} className='place-self-stretch'>
         <DoctorCard {...drProps} />
       </li>
     );

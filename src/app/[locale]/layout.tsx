@@ -76,7 +76,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang={locale}>
       <body
         className={cx(
-          'scroll-smooth bg-white font-sans text-text-500 antialiased',
+          'scroll-smooth bg-footer-50 font-sans text-text-500 antialiased',
           fontSans.variable
         )}
       >

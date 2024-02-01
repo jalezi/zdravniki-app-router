@@ -37,7 +37,7 @@ export default async function BasicInfo({
     : '';
 
   return (
-    <div className='child:py-1'>
+    <>
       <Name
         as='h2'
         href={href}
@@ -58,6 +58,6 @@ export default async function BasicInfo({
         <AddressItem variant='name' clamped text={institutionName} />
         <AddressItem variant='address' clamped text={address} />
       </address>
-    </div>
+    </>
   );
 }
