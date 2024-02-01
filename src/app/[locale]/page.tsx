@@ -11,6 +11,7 @@ import { fetchAndParseDoctorsAndInstitutions } from '@/lib/utils';
 import { groupAndFilterDoctorsByType } from '@/lib/utils/filters';
 import { getI18n, getScopedI18n, getStaticParams } from '@/locales/server';
 
+import DoctorListSkeleton from './(doctor-types)/[doctorType]/DoctorListSkeleton';
 import DoctorsList from './(doctor-types)/[doctorType]/DoctorsList';
 import Form from './form';
 import { defaultsSearchParamsSchema } from './utils';
@@ -95,11 +96,9 @@ export default async function Home({
           <ul className='grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 '>
             <Suspense
               key={searchParams.toString()}
-              fallback={Array.from({ length: 12 }).map((_, i) => (
-                <li key={i} className='animate-pulse'>
-                  <div className='doctor-card h-72 animate-pulse rounded-2xl bg-gray-200' />
-                </li>
-              ))}
+              fallback={
+                <DoctorListSkeleton length={+parsedSearchParams.pageSize} />
+              }
             >
               <DoctorsList
                 type={searchParams.type ?? 'all'}

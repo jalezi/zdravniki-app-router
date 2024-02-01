@@ -228,22 +228,24 @@
     container-name: doctor-card-container;
     max-width: 60rem;
     @apply mx-auto;
+  }
 
-    & > .doctor-card {
-      @apply relative flex flex-col overflow-hidden rounded-2xl;
+  /* Temporary removed from nesting in .doctor-card-container for the sake of skeleton */
+  /* Maybe it is fine that way, not sure if there are some issues */
+  .doctor-card {
+    @apply relative flex flex-col overflow-hidden rounded-2xl;
 
-      & > .doctor-card__map {
-        @apply relative h-48;
-      }
+    & > .doctor-card__map {
+      @apply relative h-48;
+    }
 
-      & > .doctor-card__content {
-        @apply grow p-4;
-      }
+    & > .doctor-card__content {
+      @apply grow p-4;
     }
   }
 
   @container doctor-card-container (min-width: 40rem) {
-    .doctor-card-container > .doctor-card {
+    .doctor-card {
       @apply flex-row;
 
       & > .doctor-card__map {
