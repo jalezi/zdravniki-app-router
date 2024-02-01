@@ -96,41 +96,39 @@ export default async function DoctorCard({
         };
 
   return (
-    <div className='doctor-card-container'>
-      <section className='doctor-card' aria-label={name}>
-        <DoctorMap center={geoLocation} doubleClickZoom={false} />
-        <div className='doctor-card__content flex flex-col gap-2'>
-          <BasicInfo
-            name={name}
-            address={address}
-            href={href}
-            institutionName={institutionName}
-            type={type}
+    <section className='doctor-card' aria-label={name}>
+      <DoctorMap center={geoLocation} doubleClickZoom={false} />
+      <div className='doctor-card__content flex flex-col gap-2'>
+        <BasicInfo
+          name={name}
+          address={address}
+          href={href}
+          institutionName={institutionName}
+          type={type}
+        />
+        <div className='flex flex-wrap gap-2'>
+          <Accepts
+            acceptsNewPatients={acceptsNewPatients}
+            acceptsText={acceptsText}
+            load={load}
+            {...acceptsOverrideProps}
           />
-          <div className='flex flex-wrap gap-2'>
-            <Accepts
-              acceptsNewPatients={acceptsNewPatients}
-              acceptsText={acceptsText}
-              load={load}
-              {...acceptsOverrideProps}
-            />
-            {availability >= 0 ? (
-              <Availability availability={availability} />
-            ) : null}
-          </div>
-          <address className='text-sm not-italic'>
-            {email ? <Contacts as='email' contactValue={email} /> : null}
-            {email && phone ? <br /> : null}
-            {phone ? <Contacts as='phone' contactValue={phone} /> : null}
-            {website && (email || phone) ? <br /> : null}
-            {website ? <Contacts as='website' contactValue={website} /> : null}
-            {orderform && (email || phone || website) ? <br /> : null}
-            {orderform ? (
-              <Contacts as='orderform' contactValue={orderform} />
-            ) : null}
-          </address>
+          {availability >= 0 ? (
+            <Availability availability={availability} />
+          ) : null}
         </div>
-      </section>
-    </div>
+        <address className='text-sm not-italic'>
+          {email ? <Contacts as='email' contactValue={email} /> : null}
+          {email && phone ? <br /> : null}
+          {phone ? <Contacts as='phone' contactValue={phone} /> : null}
+          {website && (email || phone) ? <br /> : null}
+          {website ? <Contacts as='website' contactValue={website} /> : null}
+          {orderform && (email || phone || website) ? <br /> : null}
+          {orderform ? (
+            <Contacts as='orderform' contactValue={orderform} />
+          ) : null}
+        </address>
+      </div>
+    </section>
   );
 }
