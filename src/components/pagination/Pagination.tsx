@@ -3,7 +3,7 @@
 import { HTMLAttributes, PropsWithChildren } from 'react';
 
 import Link, { LinkProps } from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 
 import { VariantProps, cva } from 'class-variance-authority';
 
@@ -59,20 +59,21 @@ const PaginationLink = function PaginationLink({
 export interface PaginationProps
   extends Omit<PropsWithChildren<HTMLAttributes<HTMLDivElement>>, 'className'> {
   length: number;
-  pageSize: number;
-  page: number;
-  accepts: string;
-  doctorType: string;
 }
 
-const Pagination = function Pagination({
-  length,
-  page: currentPage,
-  pageSize,
-  doctorType,
-  accepts,
-}: PaginationProps) {
+const Pagination = function Pagination({ length }: PaginationProps) {
   const pathname = usePathname();
+  const searchParams = useSearchParams() as {
+    type?: string;
+    accepts?: string;
+    page?: string;
+    pageSize?: string;
+  };
+
+  const doctorType = searchParams?.type ?? 'all';
+  const accepts = searchParams?.accepts ?? 'all';
+  const pageSize = searchParams?.pageSize ?? '12';
+  const currentPage = searchParams?.page ? +searchParams.page : 1;
 
   const maxPage = Math.floor(length / +pageSize) + 1;
 
