@@ -98,7 +98,7 @@ export default async function Home({
         >
           {pagination}
 
-          <ul className='grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 '>
+          <ul className='grid grid-cols-1 gap-x-3 gap-y-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 '>
             <Suspense
               key={searchParams.toString()}
               fallback={
