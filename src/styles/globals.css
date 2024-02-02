@@ -232,11 +232,12 @@
 
   /* Temporary removed from nesting in .doctor-card-container for the sake of skeleton */
   /* Maybe it is fine that way, not sure if there are some issues */
+  /* There is plugin tailwindcss-container */
   .doctor-card {
-    @apply relative isolate flex flex-col overflow-hidden rounded-2xl;
+    @apply relative isolate flex flex-col overflow-hidden rounded-2xl focus-visible:outline-none;
 
     & > .doctor-card__map {
-      @apply relative h-48;
+      @apply relative h-48 overflow-hidden rounded-t-2xl;
     }
 
     & > .doctor-card__content {
