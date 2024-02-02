@@ -44,14 +44,14 @@ export default async function BasicInfo({
         name={name}
         nameSrOnly={`, ${institutionName}${translatedType}${translatedSubtype}`}
         translate='no'
-        className=''
+        className='self-start'
       />
       <div className='flex flex-wrap gap-2'>
         <DoctorTypeChip type={type} />
         <DoctorClinicChip type={type} />
       </div>
       <address
-        className='cursor-help text-xs not-italic'
+        className='cursor-help self-start text-xs not-italic'
         translate='no'
         title={`${institutionName}, ${address}`}
       >
