@@ -18,11 +18,14 @@ export default async function Name({
   nameSrOnly,
   ...props
 }: NameProps) {
-  const styles = cn('text-xl font-bold', className);
+  const styles = cn(
+    'text-xl font-bold focus-within:text-accent-700 hover:text-accent-700 transition-all duration-367',
+    className
+  );
 
   return (
-    <Link href={href}>
-      <Heading as={as} className={styles} {...props}>
+    <Link href={href} className={styles}>
+      <Heading as={as} {...props}>
         {name}
         <span className='sr-only'>{nameSrOnly}</span>
       </Heading>
