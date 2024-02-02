@@ -17,6 +17,7 @@ export default function DoctorMap({ ...props }: DoctorMapProps) {
       <OpenStreetMap
         scrollWheelZoom={false}
         dragging={false}
+        keyboard={false}
         zoom={14}
         className='h-48'
         {...props}
