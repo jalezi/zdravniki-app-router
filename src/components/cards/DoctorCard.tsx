@@ -12,6 +12,7 @@ import type {
   DateSchema,
   DoctorTypeCsv,
 } from '@/lib/schemas';
+import { cn } from '@/lib/utils';
 import { getScopedI18n } from '@/locales/server';
 
 import type { LatLngTuple } from 'leaflet';
@@ -95,8 +96,16 @@ export default async function DoctorCard({
           note: null,
         };
 
+  const styles = cn(
+    'doctor-card h-full bg-white shadow-lg before:absolute before:inset-0 before:border-b-4 before:border-b-transparent before:-z-[1] before:rounded-2xl before:transition-all before:duration-367 transition-all duration-367',
+    acceptsNewPatients === 'y' &&
+      'shadow-green-800/20 hover:shadow-green-800/50 before:hover:border-b-green-800/50 focus-within:shadow-green-800/50 before:focus-within:border-b-green-800/50',
+    acceptsNewPatients === 'n' &&
+      'shadow-red-800/20 hover:shadow-red-800/50 before:hover:border-b-red-800/50 focus-within:shadow-red-800/50 before:focus-within:border-b-red-800/50'
+  );
+
   return (
-    <section className='doctor-card h-full bg-white' aria-label={name}>
+    <section className={styles} aria-label={name}>
       <DoctorMap center={geoLocation} doubleClickZoom={false} />
       <div className='doctor-card__content flex flex-col gap-2'>
         <BasicInfo
