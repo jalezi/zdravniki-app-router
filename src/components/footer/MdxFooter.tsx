@@ -1,9 +1,10 @@
 import { ExternalLink, InternalLink } from '@/components/links';
-import { cn } from '@/lib/utils';
 import { getCurrentLocale, getScopedI18n } from '@/locales/server';
+import type { SVGComponent } from '@/types';
 
 import {
-  ROUTES,
+  STATIC_ROUTES,
+  ROUTEST_WITH_NESTED_ROUTES,
   ROUTES_TRANSLATIONS,
 } from '../../../rewrites-redirects.config.mjs';
 import { SocialLink } from '../header/link';
@@ -32,24 +33,27 @@ const ROUTE_ICONS = {
   'den-y': DOCTOR_ICONS.y.component,
   'den-s': DOCTOR_ICONS.s.component,
   gyn: DOCTOR_ICONS.gyn.component,
+} satisfies {
+  [key in
+    | (typeof STATIC_ROUTES)[number]
+    | (typeof ROUTEST_WITH_NESTED_ROUTES)[number]]: SVGComponent;
 };
 
-export default async function MdxFooter() {
+interface InternalLinksProps {
+  routes: typeof STATIC_ROUTES | typeof ROUTEST_WITH_NESTED_ROUTES;
+}
+const InternalLinks = async ({ routes }: InternalLinksProps) => {
   const locale = getCurrentLocale();
   const tNavLinks = await getScopedI18n('navLinks');
-  const tFooter = await getScopedI18n('footer');
 
   const localeLinksTranslations = ROUTES_TRANSLATIONS[locale];
-
-  const internalLinks = ROUTES.map(key => {
+  return routes.map(key => {
     const label = tNavLinks(`${key}.label`);
-
-    const order = ['faq', 'about'].includes(key) ? 'order-last' : 'order-first';
 
     const Icon = ROUTE_ICONS[key];
 
     return (
-      <li key={key} className={cn(order)}>
+      <li key={key}>
         <InternalLink
           variant='footer'
           href={`/${locale}/${localeLinksTranslations[key]}/`}
@@ -61,6 +65,12 @@ export default async function MdxFooter() {
       </li>
     );
   });
+};
+
+export default async function MdxFooter() {
+  const locale = getCurrentLocale();
+  const tNavLinks = await getScopedI18n('navLinks');
+  const tFooter = await getScopedI18n('footer');
 
   return (
     <footer className='bg-footer-100'>
@@ -75,7 +85,10 @@ export default async function MdxFooter() {
           <div className='text-xs font-medium uppercase tracking-widest text-footer-900'>
             {tNavLinks('doctors.label')}
           </div>
-          <ul className='flex flex-col gap-2'>{internalLinks}</ul>
+          <ul className='flex flex-col gap-2'>
+            <InternalLinks routes={ROUTEST_WITH_NESTED_ROUTES} />
+            <InternalLinks routes={STATIC_ROUTES} />
+          </ul>
         </nav>
         <div className='flex flex-col gap-4 border-t py-8 lg:border-r lg:pl-8'>
           <div className='text-xs font-medium uppercase tracking-widest text-footer-900'>
