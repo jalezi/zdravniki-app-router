@@ -19,7 +19,7 @@ export default async function Name({
   ...props
 }: NameProps) {
   const styles = cn(
-    'text-xl font-bold focus-within:text-accent-700 hover:text-accent-700 transition-all duration-367',
+    'text-xl font-bold focus-within:text-brand-500 hover:text-brand-500 transition-all duration-367',
     className
   );
 
