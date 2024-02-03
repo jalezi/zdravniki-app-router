@@ -22,6 +22,7 @@ export default function ContactLink({
   ...props
 }: ContactLinkProps) {
   const href = url instanceof URL ? url.href : url;
+  const safeText = text ? text : href;
 
   return (
     <a
@@ -32,7 +33,9 @@ export default function ContactLink({
       <span className='text-lg'>
         <Icon />
       </span>
-      <span>{text ? text : href}</span>
+      <span className='line-clamp-1' title={safeText}>
+        {safeText}
+      </span>
     </a>
   );
 }
