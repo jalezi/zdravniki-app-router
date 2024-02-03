@@ -33,6 +33,7 @@ export default function Accepts({
         accepts={acceptsNewPatients}
         label={acceptsText}
         className='cursor-help place-self-center'
+        tabIndex={0}
       />
     </Tooltip>
   );

@@ -19,6 +19,7 @@ export default function Availability({ availability }: AvailabilityProps) {
         className='relative inline-block h-[1.625rem] w-[1.625rem] cursor-help place-self-center'
         aria-valuemin={0}
         aria-label="Doctor's availability in percentage"
+        tabIndex={0}
       >
         <CircleChart
           value={firstAvailabilityValue}

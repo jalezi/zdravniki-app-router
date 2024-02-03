@@ -11,13 +11,10 @@ export interface AcceptsChipProps {
   size?: ChipTypes.ChipProps['size'];
   iconSize?: ChipTypes.ChipProps['iconSize'];
   label: string;
+  tabIndex?: ChipTypes.ChipProps['tabIndex'];
 }
 
-export default function AcceptsChip({
-  accepts,
-
-  ...props
-}: AcceptsChipProps) {
+export default function AcceptsChip({ accepts, ...props }: AcceptsChipProps) {
   const AcceptsChipProps: ChipProps = {
     icon: ACCEPTS_NEW_PATIENTS_ICONS[accepts].name,
     variant: 'accepts',
