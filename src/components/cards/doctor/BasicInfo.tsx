@@ -44,7 +44,8 @@ export default async function BasicInfo({
         name={name}
         nameSrOnly={`, ${institutionName}${translatedType}${translatedSubtype}`}
         translate='no'
-        className='self-start'
+        className='line-clamp-1 self-start transition-all duration-367'
+        title={name}
       />
       <div className='flex flex-wrap gap-2'>
         <DoctorTypeChip type={type} />
