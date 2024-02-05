@@ -29,9 +29,11 @@ import MoreHorizontalIcon from '@/assets/svg/icon-more-horizontal.svg';
 import PanelLeftOpenIcon from '@/assets/svg/icon-panel-left-open.svg';
 import PhoneIcon from '@/assets/svg/icon-phone.svg';
 import PodnebnikIcon from '@/assets/svg/icon-podnebnik.svg';
+import SearchIcon from '@/assets/svg/icon-search.svg';
 import ShieldQuestionIcon from '@/assets/svg/icon-shield-question.svg';
 import StudentsIcon from '@/assets/svg/icon-students.svg';
 import TwitterIcon from '@/assets/svg/icon-tw.svg';
+import XIcon from '@/assets/svg/icon-x.svg';
 import YoutubeIcon from '@/assets/svg/icon-youtube.svg';
 import Logo from '@/assets/svg/zdravniki-sledilnik-logo.svg';
 import type { SVGComponent } from '@/types';
@@ -70,9 +72,11 @@ export const icons = {
   PanelLeftOpenIcon: PanelLeftOpenIcon as SVGComponent,
   PhoneIcon: PhoneIcon as SVGComponent,
   PodnebnikIcon: PodnebnikIcon as SVGComponent,
+  SearchIcon: SearchIcon as SVGComponent,
   ShieldQuestionIcon: ShieldQuestionIcon as SVGComponent,
   StudentsIcon: StudentsIcon as SVGComponent,
   TwitterIcon: TwitterIcon as SVGComponent,
+  XIcon: XIcon as SVGComponent,
   YoutubeIcon: YoutubeIcon as SVGComponent,
 };
 

@@ -36,9 +36,11 @@ export const MoreHorizontalIcon = icons.MoreHorizontalIcon;
 export const PanelLeftOpenIcon = icons.PanelLeftOpenIcon;
 export const PhoneIcon = icons.PhoneIcon;
 export const PodnebnikIcon = icons.PodnebnikIcon;
+export const SearchIcon = icons.SearchIcon;
 export const ShieldQuestionIcon = icons.ShieldQuestionIcon;
 export const StudentsIcon = icons.StudentsIcon;
 export const TwitterIcon = icons.TwitterIcon;
+export const XIcon = icons.XIcon;
 export const YoutubeIcon = icons.YoutubeIcon;
 
 export const DOCTOR_ICONS = {

@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic';
 import { setStaticParamsLocale } from 'next-international/server';
 
 import MdxFooter from '@/components/footer/MdxFooter';
+import { Search } from '@/components/search';
 import { TIME } from '@/lib/constants';
 import { fetchAndParseDoctorsAndInstitutions } from '@/lib/utils';
 import { groupAndFilterDoctorsByType } from '@/lib/utils/filters';
@@ -59,6 +60,7 @@ export default async function Home({
     page: searchParams.page,
     pageSize: searchParams.pageSize,
     accepts: searchParams.accepts,
+    query: searchParams.query,
   });
 
   const parsedSearchParams = parsedParams.success
@@ -89,6 +91,9 @@ export default async function Home({
     <>
       <main id='content' className='mx-auto mt-12 max-w-7xl px-4 py-4 md:mt-16'>
         <h1 className='sr-only'>{t('test')}</h1>
+        <form className='mb-2'>
+          <Search />
+        </form>
 
         <section
           className='flex flex-col gap-4'
@@ -108,6 +113,7 @@ export default async function Home({
                 page={parsedSearchParams.page}
                 pageSize={parsedSearchParams.pageSize}
                 accepts={parsedSearchParams.accepts}
+                query={parsedSearchParams.query}
               />
             </Suspense>
           </ul>

@@ -98,7 +98,9 @@ export type InstitutionsMap = ReturnType<typeof getInstitutionsMap>;
 
 export function groupAndFilterDoctorsByType(
   doctors: DoctorsCsv[],
-  filters: { accepts: FilterAcceptsParam } = { accepts: 'all' }
+  filters: { accepts: FilterAcceptsParam } = {
+    accepts: 'all',
+  }
 ): Map<FilterDoctorTypeParam, DoctorsCsv[]> {
   const groupedDoctors = new Map<FilterDoctorTypeParam, DoctorsCsv[]>();
 

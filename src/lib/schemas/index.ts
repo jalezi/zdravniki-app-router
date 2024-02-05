@@ -134,6 +134,7 @@ const DEFAULT_DOCTOR_TYPE = 'all';
 const DEFAULT_PAGE_NUMBER = 1;
 const DEFAULT_PAGE_SIZE = 12;
 const DEFAULT_DOCTOR_ACCEPTS = 'all';
+const DEFAULT_QUERY = '';
 export const ALLOWED_PAGE_SIZES = ['12', '24'] as const;
 
 export const DEFAULT_SEARCH_PARAMS = {
@@ -175,6 +176,7 @@ export const doctorsQueryInputSchema = z.object({
     ),
   pageSize: pageSizeSchema.default(DEFAULT_PAGE_SIZE),
   accepts: filterAcceptsParamSchema.default(DEFAULT_DOCTOR_ACCEPTS),
+  query: z.string().optional().default(DEFAULT_QUERY),
 });
 
 export const addressSchema = z
