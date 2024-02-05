@@ -2,6 +2,7 @@ import { ValidationError } from '@/lib/errors';
 
 import { getAcceptsNewPatients } from './doctor';
 import { getStartAndEnd } from './pagination';
+import { findDoctor } from './search';
 import {
   DoctorTypeCsv,
   DoctorsCsv,
@@ -98,17 +99,31 @@ export type InstitutionsMap = ReturnType<typeof getInstitutionsMap>;
 
 export function groupAndFilterDoctorsByType(
   doctors: DoctorsCsv[],
-  filters: { accepts: FilterAcceptsParam } = {
+  institutions: InstitutionsCsv[],
+  filters: { accepts: FilterAcceptsParam; query: string } = {
     accepts: 'all',
+    query: '',
   }
 ): Map<FilterDoctorTypeParam, DoctorsCsv[]> {
   const groupedDoctors = new Map<FilterDoctorTypeParam, DoctorsCsv[]>();
 
-  const filteredDoctors = doctors.filter(
-    doctor =>
-      filters.accepts === 'all' ||
-      getAcceptsNewPatients(doctor) === filters.accepts
-  );
+  const { accepts, query } = filters;
+
+  const filteredDoctors = doctors.filter(doctor => {
+    const institution = institutions.find(
+      inst => inst.id_inst === doctor.id_inst
+    );
+
+    if (!institution) {
+      return false;
+    }
+
+    return findDoctor(doctor, {
+      accepts,
+      search: query,
+      institution,
+    });
+  });
 
   groupedDoctors.set('all', filteredDoctors);
 

@@ -56,9 +56,14 @@ const DoctorsList = async function DoctorsList({
 
   const parsedSearchParams = parsedParams.data;
 
-  const doctorGroupsByType = groupAndFilterDoctorsByType(doctors, {
-    accepts: parsedSearchParams.accepts,
-  });
+  const doctorGroupsByType = groupAndFilterDoctorsByType(
+    doctors,
+    institutions,
+    {
+      accepts: parsedSearchParams.accepts,
+      query: parsedSearchParams.query,
+    }
+  );
   const doctorsByType = doctorGroupsByType.get(parsedSearchParams.type) ?? [];
 
   const { start, end } = getStartAndEnd(
