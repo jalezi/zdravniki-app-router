@@ -32,6 +32,14 @@ const Search = function Search({ placeholder = 'search...' }: SearchProps) {
     300
   );
 
+  const handleClear = () => {
+    const params = new URLSearchParams(searchParams);
+    const input = document.getElementById('query') as HTMLInputElement;
+    input.value = '';
+    params.delete('query');
+    replace(`${pathname}?${params.toString()}`);
+  };
+
   return (
     <div className='relative flex items-center gap-2 rounded-3xl border-2 border-text-50 bg-white px-4 py-2 focus-within:border-brand-500'>
       <label htmlFor='query' className=''>
@@ -45,14 +53,7 @@ const Search = function Search({ placeholder = 'search...' }: SearchProps) {
         defaultValue={searchParams.get('query')?.toString()}
         className='flex-1 focus:outline-none'
       />
-      <button
-        type='button'
-        onClick={() => {
-          const params = new URLSearchParams(searchParams);
-          params.delete('query');
-          replace(`${pathname}?${params.toString()}`);
-        }}
-      >
+      <button type='button' onClick={handleClear}>
         {searchParams.get('query') ? <XIcon className='' /> : null}
       </button>
     </div>

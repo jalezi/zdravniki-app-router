@@ -1,4 +1,4 @@
-import { getAddress } from './doctor';
+import { getAcceptsNewPatients, getAddress } from './doctor';
 import { DoctorsCsv, InstitutionsCsv } from '../schemas';
 
 /**
@@ -56,19 +56,22 @@ export const partialMatch = (values: string[], query: string) => {
  * @param options
  * @returns filter function for doctors based on options
  */
-export const createDoctorFilter = (options: {
-  accepts: 'all' | 'y' | 'n';
-  search: string;
-}) =>
-  function (doctor: DoctorsCsv, institution: InstitutionsCsv) {
-    const { accepts, search } = options;
-    const acceptsCondition =
-      accepts === 'all' ? true : doctor.accepts === accepts;
+export const findDoctor = (
+  doctor: DoctorsCsv,
+  options: {
+    accepts: 'all' | 'y' | 'n';
+    search: string;
+    institution: InstitutionsCsv;
+  }
+) => {
+  const { accepts, search, institution } = options;
+  const acceptsCondition =
+    accepts === 'all' ? true : getAcceptsNewPatients(doctor) === accepts;
 
-    const searchCondition =
-      fullMatch(doctor.doctor, search) ||
-      partialMatch([institution.name ?? ''], search) ||
-      partialMatch([getAddress(doctor, institution).searchAddress], search);
+  const searchCondition =
+    fullMatch(doctor.doctor, search) ||
+    partialMatch([institution.name ?? ''], search) ||
+    partialMatch([getAddress(doctor, institution).searchAddress], search);
 
-    return acceptsCondition && searchCondition;
-  };
+  return acceptsCondition && searchCondition;
+};

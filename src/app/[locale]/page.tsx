@@ -53,7 +53,7 @@ export default async function Home({
     throw new Error('Failed to fetch doctors and institutions');
   }
 
-  const { doctors } = data;
+  const { doctors, institutions } = data;
 
   const parsedParams = defaultsSearchParamsSchema.safeParse({
     type: searchParams.type,
@@ -67,31 +67,31 @@ export default async function Home({
     ? parsedParams.data
     : defaultsSearchParamsSchema.parse({});
 
-  const doctorGroupsByType = groupAndFilterDoctorsByType(doctors, {
-    accepts: parsedSearchParams.accepts,
-  });
+  const doctorGroupsByType = groupAndFilterDoctorsByType(
+    doctors,
+    institutions,
+    {
+      accepts: parsedSearchParams.accepts,
+      query: parsedSearchParams.query,
+    }
+  );
 
-  const lengths = {
-    all: doctorGroupsByType.get('all')?.length ?? 0,
-    gp: doctorGroupsByType.get('gp')?.length ?? 0,
-    ped: doctorGroupsByType.get('ped')?.length ?? 0,
-    gyn: doctorGroupsByType.get('gyn')?.length ?? 0,
-    den: doctorGroupsByType.get('den')?.length ?? 0,
-    'den-y': doctorGroupsByType.get('den-y')?.length ?? 0,
-    'den-s': doctorGroupsByType.get('den-s')?.length ?? 0,
-  } as const;
+  const length = doctorGroupsByType.get(parsedSearchParams.type)?.length ?? 0;
 
   const pagination = (
     <div className='flex flex-wrap items-center gap-1 self-center'>
-      <Pagination length={lengths[parsedSearchParams.type]} />
+      <Pagination length={length} />
     </div>
   );
   // todo - better aria-label for section
   return (
     <>
-      <main id='content' className='mx-auto mt-12 max-w-7xl px-4 py-4 md:mt-16'>
+      <main
+        id='content'
+        className='mx-auto mt-12 grid min-h-[calc(100dvh-3rem-25.875rem)] max-w-7xl  px-4 pb-4 md:mt-16 md:min-h-[calc(100dvh-4rem-25.875rem)] '
+      >
         <h1 className='sr-only'>{t('test')}</h1>
-        <form className='mb-2'>
+        <form className='m-2'>
           <Search />
         </form>
 
@@ -99,7 +99,13 @@ export default async function Home({
           className='flex flex-col gap-4'
           aria-label={`${parsedSearchParams.type}, page: ${parsedSearchParams.page}`}
         >
-          {pagination}
+          {length > 0 ? (
+            pagination
+          ) : (
+            <div className='grid place-items-center py-10'>
+              Refine your search
+            </div>
+          )}
 
           <ul className='grid grid-cols-1 gap-x-3 gap-y-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 '>
             <Suspense
@@ -117,7 +123,7 @@ export default async function Home({
               />
             </Suspense>
           </ul>
-          {pagination}
+          {length > 0 ? pagination : null}
         </section>
       </main>
       <MdxFooter />
