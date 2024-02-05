@@ -125,7 +125,9 @@ export const institutionsCsvSchema = z.object({
 
 export type InstitutionsCsv = z.infer<typeof institutionsCsvSchema>;
 
-export const acceptsNewPatientsSchema = z.enum(['y', 'n']);
+export const acceptsNewPatientsSchema = z.enum(['y', 'n'], {
+  invalid_type_error: "Invalid accepts value (must be 'y' or 'n')",
+});
 export type AcceptsNewPatients = z.infer<typeof acceptsNewPatientsSchema>;
 
 const DEFAULT_DOCTOR_TYPE = 'all';
@@ -157,7 +159,9 @@ export const pageNumberAndSizeSchema = z.object({
 });
 
 export const filterAcceptsParamSchema = acceptsNewPatientsSchema.or(
-  z.enum(['all'])
+  z.enum(['all'], {
+    invalid_type_error: "Invalid accepts value (must be 'all')",
+  })
 );
 export type FilterAcceptsParam = z.infer<typeof filterAcceptsParamSchema>;
 

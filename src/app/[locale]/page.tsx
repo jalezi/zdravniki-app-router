@@ -17,7 +17,6 @@ import { defaultsSearchParamsSchema } from './utils';
 const DoctorListSkeleton = dynamic(
   () => import('./(doctor-types)/[doctorType]/DoctorListSkeleton')
 );
-const Form = dynamic(() => import('./form'));
 const Pagination = dynamic(
   () => import('../../components/pagination/Pagination')
 );
@@ -90,7 +89,6 @@ export default async function Home({
     <>
       <main id='content' className='mx-auto mt-12 max-w-7xl px-4 py-4 md:mt-16'>
         <h1 className='sr-only'>{t('test')}</h1>
-        <Form lengths={lengths} {...parsedSearchParams} />
 
         <section
           className='flex flex-col gap-4'
@@ -100,16 +98,16 @@ export default async function Home({
 
           <ul className='grid grid-cols-1 gap-x-3 gap-y-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 '>
             <Suspense
-              key={searchParams.toString()}
+              key={parsedSearchParams.toString()}
               fallback={
                 <DoctorListSkeleton length={+parsedSearchParams.pageSize} />
               }
             >
               <DoctorsList
-                type={searchParams.type ?? 'all'}
-                page={searchParams.page ?? '1'}
-                pageSize={searchParams.pageSize ?? '12'}
-                accepts={searchParams.accepts ?? 'all'}
+                type={parsedSearchParams.type}
+                page={parsedSearchParams.page}
+                pageSize={parsedSearchParams.pageSize}
+                accepts={parsedSearchParams.accepts}
               />
             </Suspense>
           </ul>

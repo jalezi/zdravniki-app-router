@@ -10,18 +10,14 @@ import {
   getInstitutionsMap,
   groupAndFilterDoctorsByType,
 } from '@/lib/utils/filters';
-import { getCurrentLocale } from '@/locales/server';
 
-import {
-  defaultsSearchParamsSchema,
-  redirectWithSearchParams,
-} from '../../utils';
+import { defaultsSearchParamsSchema } from '../../utils';
 
-export interface DoctorCardProps {
+export interface DoctorsListProps {
   accepts: string;
   type: string;
-  page: string;
-  pageSize: string;
+  page: number | string;
+  pageSize: number | string;
 }
 
 const DoctorsList = async function DoctorsList({
@@ -29,9 +25,7 @@ const DoctorsList = async function DoctorsList({
   page,
   pageSize,
   accepts,
-}: DoctorCardProps) {
-  const locale = getCurrentLocale();
-
+}: DoctorsListProps) {
   const { data, errors, success } = await fetchAndParseDoctorsAndInstitutions();
 
   if (!success || !data || !data.doctors || !data.institutions) {
@@ -50,20 +44,11 @@ const DoctorsList = async function DoctorsList({
   });
 
   if (!parsedParams.success) {
-    const error = new ValidationError({
-      message: 'Invalid params',
-      context: {
-        type,
-        accepts,
-        page,
-        pageSize,
-      },
+    // it should never happen; handled in middleware
+    throw new ValidationError({
+      message:
+        'Invalid search params. It should never happened while it is supposed to be handled in middleware',
     });
-    console.log(error);
-    console.log('Redirecting to first page with default params');
-
-    redirectWithSearchParams(defaultsSearchParamsSchema.parse({}), locale);
-    return null;
   }
 
   const parsedSearchParams = parsedParams.data;
@@ -72,27 +57,6 @@ const DoctorsList = async function DoctorsList({
     accepts: parsedSearchParams.accepts,
   });
   const doctorsByType = doctorGroupsByType.get(parsedSearchParams.type) ?? [];
-
-  const length = doctorsByType.length;
-  const maxPage = Math.floor(length / +parsedSearchParams.pageSize) + 1;
-
-  if (+parsedSearchParams.page > maxPage) {
-    const error = new ValidationError({
-      message: "Page doesn't exist",
-      context: {
-        page: {
-          maxPage,
-          ...parsedSearchParams,
-        },
-      },
-    });
-    console.log(error);
-    console.log('Redirecting to last page');
-    parsedSearchParams.page = maxPage;
-
-    redirectWithSearchParams(parsedSearchParams, locale);
-    return null;
-  }
 
   const { start, end } = getStartAndEnd(
     parsedSearchParams.page,
