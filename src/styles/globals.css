@@ -29,6 +29,12 @@
     @apply h-auto max-w-full bg-cover bg-no-repeat align-middle italic;
     shape-margin: 0.75rem;
   }
+
+  [type='search']::-webkit-search-cancel-button,
+  [type='search']::-webkit-search-decoration {
+    -webkit-appearance: none;
+    appearance: none;
+  }
 }
 
 @layer components {

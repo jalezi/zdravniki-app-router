@@ -18,6 +18,7 @@ export interface DoctorsListProps {
   type: string;
   page: number | string;
   pageSize: number | string;
+  query: string;
 }
 
 const DoctorsList = async function DoctorsList({
@@ -25,6 +26,7 @@ const DoctorsList = async function DoctorsList({
   page,
   pageSize,
   accepts,
+  query,
 }: DoctorsListProps) {
   const { data, errors, success } = await fetchAndParseDoctorsAndInstitutions();
 
@@ -41,6 +43,7 @@ const DoctorsList = async function DoctorsList({
     page,
     pageSize,
     accepts,
+    query,
   });
 
   if (!parsedParams.success) {
