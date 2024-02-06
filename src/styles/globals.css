@@ -30,6 +30,10 @@
     shape-margin: 0.75rem;
   }
 
+  mark {
+    @apply bg-brand-200;
+  }
+
   [type='search']::-webkit-search-cancel-button,
   [type='search']::-webkit-search-decoration {
     -webkit-appearance: none;
