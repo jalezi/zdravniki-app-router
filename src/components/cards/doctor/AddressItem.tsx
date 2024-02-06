@@ -69,8 +69,8 @@ const AddressItem = function AddressItem({
       }
 
       const before = word.slice(0, index);
-      const match = word.slice(index, index + query.length);
-      const after = word.slice(index + query.length);
+      const match = word.slice(index, index + query.length - 1);
+      const after = word.slice(index + query.length - 1);
 
       highlightedText.push(
         <Fragment key={key}>
