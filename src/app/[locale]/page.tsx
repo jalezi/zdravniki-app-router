@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic';
 import { setStaticParamsLocale } from 'next-international/server';
 
 import MdxFooter from '@/components/footer/MdxFooter';
-import { Search } from '@/components/search';
+import { SearchForm } from '@/components/search';
 import { TIME } from '@/lib/constants';
 import { fetchAndParseDoctorsAndInstitutions } from '@/lib/utils';
 import { groupAndFilterDoctorsByType } from '@/lib/utils/filters';
@@ -88,12 +88,10 @@ export default async function Home({
     <>
       <main
         id='content'
-        className='mx-auto mt-12 grid min-h-[calc(100dvh-3rem-25.875rem)] max-w-7xl  px-4 pb-4 md:mt-16 md:min-h-[calc(100dvh-4rem-25.875rem)] '
+        className='mx-auto mt-12 min-h-[calc(100dvh-3rem-25.875rem)] max-w-7xl  px-4 pb-4 md:mt-16 md:min-h-[calc(100dvh-4rem-25.875rem)] '
       >
         <h1 className='sr-only'>{t('test')}</h1>
-        <form className='m-2'>
-          <Search />
-        </form>
+        <SearchForm />
 
         <section
           className='flex flex-col gap-4'

@@ -14,4 +14,6 @@ export const navLinks = {
   'den-s': { label: 'Zobozdravnik - Študenti' },
   'den-y': { label: 'Zobozdravnik - Mladina' },
   menu: 'Meni',
+  all: 'Vsi',
+  search: 'Išči',
 } as const;

@@ -12,7 +12,9 @@ export interface SearchProps {
   placeholder?: string;
 }
 
-const Search = function Search({ placeholder = 'search...' }: SearchProps) {
+export const Search = function Search({
+  placeholder = 'search...',
+}: SearchProps) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
@@ -41,7 +43,7 @@ const Search = function Search({ placeholder = 'search...' }: SearchProps) {
   };
 
   return (
-    <div className='relative flex items-center gap-2 rounded-3xl border-2 border-text-50 bg-white px-4 py-2 focus-within:border-brand-500'>
+    <div className='relative  flex flex-1 items-center  gap-2 rounded-3xl border-2 border-text-50 bg-white px-4 py-2 transition-all duration-367 focus-within:border-brand-500 sm:ml-auto sm:flex-none sm:shrink-0 sm:focus-within:flex-1 '>
       <label htmlFor='query' className=''>
         <SearchIcon className='' />
       </label>
@@ -51,7 +53,8 @@ const Search = function Search({ placeholder = 'search...' }: SearchProps) {
         onChange={handleQuery}
         placeholder={placeholder}
         defaultValue={searchParams.get('query')?.toString()}
-        className='flex-1 focus:outline-none'
+        className='flex-1  bg-white focus:outline-none'
+        autoComplete='off'
       />
       <button type='button' onClick={handleClear}>
         {searchParams.get('query') ? <XIcon className='' /> : null}
