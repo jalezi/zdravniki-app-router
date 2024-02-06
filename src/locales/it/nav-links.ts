@@ -14,4 +14,6 @@ export const navLinks = {
   'den-s': { label: 'Dentista - Studenti' },
   'den-y': { label: 'Dentista - Giovani' },
   menu: 'Menù',
+  all: 'Tutti',
+  search: 'Cerca',
 } as const;

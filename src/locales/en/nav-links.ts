@@ -14,4 +14,6 @@ export const navLinks = {
   'den-s': { label: 'Dentist - Students' },
   'den-y': { label: 'Dentist - Youth' },
   menu: 'Menu',
+  all: 'All',
+  search: 'Search',
 } as const;

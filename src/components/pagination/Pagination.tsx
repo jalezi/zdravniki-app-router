@@ -77,17 +77,13 @@ const Pagination = function Pagination({ length }: PaginationProps) {
         </span>
       ) : null}
       {show.map(page => {
-        const searchParams = new URLSearchParams({
-          type: doctorType,
-          accepts,
-          page: page.toString(),
-          pageSize: pageSize.toString(),
-        });
+        const linkSearchParams = new URLSearchParams(searchParams);
+        linkSearchParams.set('page', page.toString());
 
         return (
           <PaginationLink
             key={page}
-            href={`${pathname}?${searchParams.toString()}`}
+            href={`${pathname}?${linkSearchParams.toString()}`}
             variant={page === currentPage ? 'active' : 'default'}
             aria-label={`Page ${page}`}
           >
